@@ -105,7 +105,7 @@ export const Navbar: React.FC = () => {
         }`}
         style={{ top: isScrolled ? '0px' : '36px' }}
       >
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between gap-4">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center shadow-lg shadow-primary/20">
@@ -122,17 +122,17 @@ export const Navbar: React.FC = () => {
           </Link>
 
           {/* Desktop Nav Items */}
-          <nav className="hidden lg:flex items-center gap-6">
+          <nav className="hidden xl:flex items-center gap-4">
             <Link 
               href="/" 
-              className={`text-sm font-medium hover:text-primary transition-colors ${pathname === '/' ? 'text-primary' : 'text-dark/80 dark:text-light/80'}`}
+              className={`text-[13px] font-semibold hover:text-primary transition-colors ${pathname === '/' ? 'text-primary' : 'text-dark/80 dark:text-light/80'}`}
             >
               {t('nav.home')}
             </Link>
 
             <Link 
               href="/about" 
-              className={`text-sm font-medium hover:text-primary transition-colors ${pathname === '/about' ? 'text-primary' : 'text-dark/80 dark:text-light/80'}`}
+              className={`text-[13px] font-semibold hover:text-primary transition-colors ${pathname === '/about' ? 'text-primary' : 'text-dark/80 dark:text-light/80'}`}
             >
               {t('nav.about')}
             </Link>
@@ -143,7 +143,7 @@ export const Navbar: React.FC = () => {
               onMouseLeave={() => setActiveMegaMenu(null)}
               className="relative py-2"
             >
-              <button className="flex items-center gap-1 text-sm font-medium text-dark/80 dark:text-light/80 hover:text-primary transition-colors cursor-pointer">
+              <button className="flex items-center gap-1 text-[13px] font-semibold text-dark/80 dark:text-light/80 hover:text-primary transition-colors cursor-pointer">
                 {t('nav.services')} <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${activeMegaMenu === 'services' ? 'rotate-180' : ''}`} />
               </button>
 
@@ -243,7 +243,7 @@ export const Navbar: React.FC = () => {
               onMouseLeave={() => setActiveMegaMenu(null)}
               className="relative py-2"
             >
-              <button className="flex items-center gap-1 text-sm font-medium text-dark/80 dark:text-light/80 hover:text-primary transition-colors cursor-pointer">
+              <button className="flex items-center gap-1 text-[13px] font-semibold text-dark/80 dark:text-light/80 hover:text-primary transition-colors cursor-pointer">
                 {t('nav.industries')} <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${activeMegaMenu === 'industries' ? 'rotate-180' : ''}`} />
               </button>
 
@@ -275,49 +275,49 @@ export const Navbar: React.FC = () => {
 
             <Link 
               href="/technologies" 
-              className={`text-sm font-medium hover:text-primary transition-colors ${pathname === '/technologies' ? 'text-primary' : 'text-dark/80 dark:text-light/80'}`}
+              className={`text-[13px] font-semibold hover:text-primary transition-colors ${pathname === '/technologies' ? 'text-primary' : 'text-dark/80 dark:text-light/80'}`}
             >
               {t('nav.technologies')}
             </Link>
 
             <Link 
               href="/case-studies" 
-              className={`text-sm font-medium hover:text-primary transition-colors ${pathname === '/case-studies' ? 'text-primary' : 'text-dark/80 dark:text-light/80'}`}
+              className={`text-[13px] font-semibold hover:text-primary transition-colors ${pathname === '/case-studies' ? 'text-primary' : 'text-dark/80 dark:text-light/80'}`}
             >
               {t('nav.caseStudies')}
             </Link>
 
             <Link 
               href="/products" 
-              className={`text-sm font-medium hover:text-primary transition-colors ${pathname === '/products' ? 'text-primary' : 'text-dark/80 dark:text-light/80'}`}
+              className={`text-[13px] font-semibold hover:text-primary transition-colors ${pathname === '/products' ? 'text-primary' : 'text-dark/80 dark:text-light/80'}`}
             >
               {t('nav.products')}
             </Link>
 
             <Link 
               href="/careers" 
-              className={`text-sm font-medium hover:text-primary transition-colors ${pathname === '/careers' ? 'text-primary' : 'text-dark/80 dark:text-light/80'}`}
+              className={`text-[13px] font-semibold hover:text-primary transition-colors ${pathname === '/careers' ? 'text-primary' : 'text-dark/80 dark:text-light/80'}`}
             >
               {t('nav.careers')}
             </Link>
 
             <Link 
               href="/insights" 
-              className={`text-sm font-medium hover:text-primary transition-colors ${pathname === '/insights' ? 'text-primary' : 'text-dark/80 dark:text-light/80'}`}
+              className={`text-[13px] font-semibold hover:text-primary transition-colors ${pathname === '/insights' ? 'text-primary' : 'text-dark/80 dark:text-light/80'}`}
             >
               {t('nav.insights')}
             </Link>
 
             <Link 
               href="/blog" 
-              className={`text-sm font-medium hover:text-primary transition-colors ${pathname === '/blog' ? 'text-primary' : 'text-dark/80 dark:text-light/80'}`}
+              className={`text-[13px] font-semibold hover:text-primary transition-colors ${pathname === '/blog' ? 'text-primary' : 'text-dark/80 dark:text-light/80'}`}
             >
               {t('nav.blog')}
             </Link>
           </nav>
 
           {/* Header Controls */}
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden xl:flex items-center gap-4">
             {/* Search Trigger */}
             <button 
               onClick={() => setIsSearchOpen(true)}
@@ -383,7 +383,7 @@ export const Navbar: React.FC = () => {
           </div>
 
           {/* Mobile Navigation Trigger */}
-          <div className="flex items-center gap-3 lg:hidden">
+          <div className="flex items-center gap-3 xl:hidden">
             <button
               onClick={toggleTheme}
               className="p-2 text-dark/80 dark:text-light/80 rounded-xl hover:bg-light-hover dark:hover:bg-white/5 cursor-pointer"
