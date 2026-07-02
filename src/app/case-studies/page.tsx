@@ -64,8 +64,14 @@ export default function CaseStudiesPage() {
               className="group"
             >
               <div className="h-full rounded-2xl glass-card border border-light/20 dark:border-white/5 hover:border-primary/20 flex flex-col overflow-hidden">
-                <div className="w-full h-44 bg-gradient-to-tr from-primary/10 to-secondary/20 flex items-center justify-center p-6 border-b border-light/10 dark:border-white/5 relative">
-                  <Trophy className="w-12 h-12 text-primary group-hover:scale-110 transition-transform duration-300" />
+                <div className="w-full h-48 relative overflow-hidden border-b border-light/10 dark:border-white/5">
+                  <img
+                    src={cs.imagePath === 'case_healthcare' ? '/ind_healthcare.png' : cs.imagePath === 'case_finance' ? '/ind_finance.png' : '/ind_retail.png'}
+                    alt={cs.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-transparent pointer-events-none" />
                   <span className="absolute bottom-4 left-4 px-2.5 py-1 rounded bg-dark/60 backdrop-blur-md text-[10px] uppercase font-bold text-white tracking-widest border border-white/10">
                     {cs.industry}
                   </span>

@@ -40,6 +40,23 @@ export default function CaseStudyDetailPage() {
         </button>
       </div>
 
+      {/* Cover Banner */}
+      <div className="max-w-7xl mx-auto px-6 mb-12">
+        <div className="w-full h-[280px] sm:h-[380px] rounded-3xl overflow-hidden relative border border-light/20 dark:border-white/5">
+          <img
+            src={cs.imagePath === 'case_healthcare' ? '/ind_healthcare.png' : cs.imagePath === 'case_finance' ? '/ind_finance.png' : '/ind_retail.png'}
+            alt={cs.title}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent dark:from-[#0B1120] dark:via-[#0B1120]/40" />
+          <div className="absolute bottom-8 left-8">
+            <span className="px-3 py-1 rounded bg-primary text-white text-[10px] font-bold uppercase tracking-widest">
+              {cs.industry} Case Study
+            </span>
+          </div>
+        </div>
+      </div>
+
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         
         {/* Left Side details */}
