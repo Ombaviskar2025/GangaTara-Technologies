@@ -13,6 +13,39 @@ const DynamicIcon: React.FC<{ name: string; className?: string }> = ({ name, cla
   return <IconComponent className={className} />;
 };
 
+const getServiceImage = (id: string) => {
+  switch (id) {
+    case 'cloud-solutions':
+      return '/slide_cloud.png';
+    case 'ai-machine-learning':
+      return '/slide_ai.png';
+    case 'software-development':
+      return '/slide_datacenter.png';
+    case 'web-development':
+      return '/slide_team.png';
+    case 'application-development':
+      return '/career_banner.png';
+    case 'cyber-security':
+      return '/ind_healthcare.png';
+    case 'devops':
+      return '/slide_datacenter.png';
+    case 'ui-ux-design':
+      return '/ind_education.png';
+    case 'data-analytics':
+      return '/ind_finance.png';
+    case 'blockchain':
+      return '/ind_government.png';
+    case 'iot-solutions':
+      return '/ind_manufacturing.png';
+    case 'digital-transformation':
+      return '/slide_team.png';
+    case 'digital-marketing':
+      return '/ind_retail.png';
+    default:
+      return '/slide_team.png';
+  }
+};
+
 export default function ServicesPage() {
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -66,28 +99,38 @@ export default function ServicesPage() {
                 transition={{ duration: 0.5, delay: index * 0.05 }}
                 className="group"
               >
-                <div className="h-full p-8 rounded-2xl glass-card border border-light/20 dark:border-white/5 hover:border-primary/20 flex flex-col justify-between relative overflow-hidden transition-all duration-300">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="h-full rounded-2xl glass-card border border-light/20 dark:border-white/5 hover:border-primary/20 flex flex-col overflow-hidden transition-all duration-300">
+                  {/* Card Cover Image */}
+                  <div className="w-full h-44 relative overflow-hidden border-b border-light/10 dark:border-white/5">
+                    <img
+                      src={getServiceImage(srv.id)}
+                      alt={srv.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-transparent pointer-events-none" />
+                    <div className="absolute top-4 left-4 w-10 h-10 rounded-lg bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white shadow-md">
+                      <DynamicIcon name={srv.iconName} className="w-5 h-5" />
+                    </div>
+                  </div>
                   
-                  <div>
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform">
-                      <DynamicIcon name={srv.iconName} className="w-6 h-6" />
+                  <div className="p-6 flex flex-col justify-between flex-grow">
+                    <div>
+                      <h3 className="text-base font-bold text-dark dark:text-light mb-3 group-hover:text-primary transition-colors">
+                        {srv.title}
+                      </h3>
+                      <p className="text-xs text-dark/60 dark:text-light/60 leading-relaxed mb-6">
+                        {srv.shortDesc}
+                      </p>
                     </div>
 
-                    <h3 className="text-base font-bold text-dark dark:text-light mb-3 group-hover:text-primary transition-colors">
-                      {srv.title}
-                    </h3>
-                    <p className="text-xs text-dark/60 dark:text-light/60 leading-relaxed mb-6">
-                      {srv.shortDesc}
-                    </p>
+                    <Link
+                      href={`/services/${srv.id}`}
+                      className="flex items-center gap-1 text-xs font-bold text-primary group-hover:text-secondary transition-colors mt-auto w-fit"
+                    >
+                      View Details <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    </Link>
                   </div>
-
-                  <Link
-                    href={`/services/${srv.id}`}
-                    className="flex items-center gap-1 text-xs font-bold text-primary group-hover:text-secondary transition-colors mt-auto w-fit"
-                  >
-                    View Details <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                  </Link>
                 </div>
               </motion.div>
             ))}

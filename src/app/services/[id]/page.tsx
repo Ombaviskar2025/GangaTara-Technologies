@@ -8,11 +8,43 @@ import * as Icons from 'lucide-react';
 import { servicesData } from '@/data/companyData';
 import { landingPagesData } from '@/data/landingPagesData';
 import { LandingPageTemplate } from '@/components/sections/LandingPageTemplate';
-
 const DynamicIcon: React.FC<{ name: string; className?: string }> = ({ name, className }) => {
   const IconComponent = (Icons as any)[name];
   if (!IconComponent) return <Icons.Code className={className} />;
   return <IconComponent className={className} />;
+};
+
+const getServiceImage = (id: string) => {
+  switch (id) {
+    case 'cloud-solutions':
+      return '/slide_cloud.png';
+    case 'ai-machine-learning':
+      return '/slide_ai.png';
+    case 'software-development':
+      return '/slide_datacenter.png';
+    case 'web-development':
+      return '/slide_team.png';
+    case 'application-development':
+      return '/career_banner.png';
+    case 'cyber-security':
+      return '/ind_healthcare.png';
+    case 'devops':
+      return '/slide_datacenter.png';
+    case 'ui-ux-design':
+      return '/ind_education.png';
+    case 'data-analytics':
+      return '/ind_finance.png';
+    case 'blockchain':
+      return '/ind_government.png';
+    case 'iot-solutions':
+      return '/ind_manufacturing.png';
+    case 'digital-transformation':
+      return '/slide_team.png';
+    case 'digital-marketing':
+      return '/ind_retail.png';
+    default:
+      return '/slide_team.png';
+  }
 };
 
 export default function ServiceDetailPage() {
@@ -331,6 +363,23 @@ export default function ServiceDetailPage() {
         >
           <ArrowLeft className="w-4 h-4" /> Back to Services
         </button>
+      </div>
+
+      {/* Cover Banner */}
+      <div className="max-w-7xl mx-auto px-6 mb-12">
+        <div className="w-full h-[280px] sm:h-[380px] rounded-3xl overflow-hidden relative border border-light/20 dark:border-white/5">
+          <img
+            src={getServiceImage(service.id)}
+            alt={service.title}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent dark:from-[#0B1120] dark:via-[#0B1120]/40" />
+          <div className="absolute bottom-8 left-8">
+            <span className="px-3 py-1 rounded bg-primary text-white text-[10px] font-bold uppercase tracking-widest">
+              {service.title} Practice
+            </span>
+          </div>
+        </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
