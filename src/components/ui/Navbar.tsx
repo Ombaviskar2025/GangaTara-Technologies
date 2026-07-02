@@ -1,17 +1,112 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Search, Globe, Sun, Moon, Menu, X, ChevronDown, 
-  ArrowRight, Laptop, Shield, Cpu, Cloud, Database,
-  Phone, Mail
-} from 'lucide-react';
+import { Search, Globe, Sun, Moon, Menu, X, ChevronDown, Phone, Mail, ArrowRight } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import { useLanguage, Language } from '@/context/LanguageContext';
 import { servicesData, industriesData } from '@/data/companyData';
+
+// ─── Nav Menu Structure ─────────────────────────────────────────────────────
+
+const NAV_ITEMS = [
+  {
+    label: 'What We Do',
+    key: 'whatwedo',
+    columns: [
+      {
+        heading: 'Core Services',
+        links: [
+          { label: 'Web Development', href: '/services/web-development' },
+          { label: 'App Development', href: '/services/application-development' },
+          { label: 'Cloud & DevOps', href: '/services/cloud-solutions' },
+          { label: 'AI & Machine Learning', href: '/services/ai-ml-solutions' },
+          { label: 'Cybersecurity', href: '/services/cybersecurity' },
+          { label: 'IT Consulting', href: '/services/it-consulting' },
+        ],
+      },
+      {
+        heading: 'Digital Solutions',
+        links: [
+          { label: 'Digital Marketing', href: '/services/digital-marketing' },
+          { label: 'ERP & SAP', href: '/services/erp-sap' },
+          { label: 'Data Engineering', href: '/services/data-engineering' },
+          { label: 'Blockchain', href: '/services/blockchain' },
+          { label: 'IoT Solutions', href: '/services/iot-solutions' },
+          { label: 'UI/UX Design', href: '/services/ui-ux-design' },
+        ],
+      },
+      {
+        heading: 'Industries',
+        links: [
+          { label: 'Healthcare & Life Sciences', href: '/industries/healthcare' },
+          { label: 'Banking & Finance', href: '/industries/banking-finance' },
+          { label: 'Retail & E-commerce', href: '/industries/retail' },
+          { label: 'Manufacturing', href: '/industries/manufacturing' },
+          { label: 'Education & EdTech', href: '/industries/education' },
+          { label: 'Government & Public', href: '/industries/government' },
+        ],
+      },
+    ],
+    footerLink: { label: 'View All Services →', href: '/services' },
+  },
+  {
+    label: 'Who We Are',
+    key: 'whoweare',
+    columns: [
+      {
+        heading: 'Company',
+        links: [
+          { label: 'About GangaTara', href: '/about' },
+          { label: 'Our Leadership', href: '/about#leadership' },
+          { label: 'Culture & Values', href: '/about#culture' },
+          { label: 'Awards & Recognition', href: '/about#awards' },
+        ],
+      },
+      {
+        heading: 'Global Presence',
+        links: [
+          { label: 'APAC Headquarters – India', href: '/contact' },
+          { label: 'EMEA Office – Germany', href: '/contact' },
+          { label: 'Partner Network', href: '/about#partners' },
+          { label: 'Certifications', href: '/about#certifications' },
+        ],
+      },
+    ],
+    footerLink: { label: 'Our Full Story →', href: '/about' },
+  },
+  {
+    label: 'Insights',
+    key: 'insights',
+    columns: [
+      {
+        heading: 'Knowledge Hub',
+        links: [
+          { label: 'Blog & Articles', href: '/blog' },
+          { label: 'Case Studies', href: '/case-studies' },
+          { label: 'Insights & Reports', href: '/insights' },
+          { label: 'Technology Trends', href: '/technologies' },
+          { label: 'Products Portfolio', href: '/products' },
+        ],
+      },
+    ],
+    footerLink: { label: 'Explore Knowledge Hub →', href: '/insights' },
+  },
+  {
+    label: 'Careers',
+    key: 'careers',
+    href: '/careers',
+  },
+  {
+    label: 'Industries',
+    key: 'industries',
+    href: '/industries',
+  },
+];
+
+// ─── Navbar Component ────────────────────────────────────────────────────────
 
 export const Navbar: React.FC = () => {
   const pathname = usePathname();
@@ -19,340 +114,298 @@ export const Navbar: React.FC = () => {
   const { language, setLanguage, t } = useLanguage();
 
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeMegaMenu, setActiveMegaMenu] = useState<'services' | 'industries' | 'tech' | null>(null);
+  const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
+  const [isLangOpen, setIsLangOpen] = useState(false);
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
 
-  // Monitor scroll to apply sticky styling
+  const megaMenuTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const languages: { code: Language; label: string }[] = [
+    { code: 'EN', label: 'English' },
+    { code: 'DE', label: 'Deutsch' },
+    { code: 'FR', label: 'Français' },
+    { code: 'JA', label: '日本語' },
+  ];
+
+  // Scroll detection
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close menus on route change
+  // Close on route change
   useEffect(() => {
     setIsMobileMenuOpen(false);
     setActiveMegaMenu(null);
   }, [pathname]);
 
-  const languages: { code: Language; label: string }[] = [
-    { code: 'EN', label: 'English' },
-    { code: 'ES', label: 'Español' },
-    { code: 'DE', label: 'Deutsch' },
-    { code: 'FR', label: 'Français' },
-    { code: 'JA', label: '日本語' }
-  ];
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [isMobileMenuOpen]);
+
+  // ESC key handling
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsSearchOpen(false);
+        setActiveMegaMenu(null);
+        setIsLangOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  const handleMenuEnter = (key: string) => {
+    if (megaMenuTimeout.current) clearTimeout(megaMenuTimeout.current);
+    setActiveMegaMenu(key);
+  };
+
+  const handleMenuLeave = () => {
+    megaMenuTimeout.current = setTimeout(() => setActiveMegaMenu(null), 120);
+  };
+
+  const isActivePath = (href: string) => pathname === href || pathname.startsWith(href + '/');
 
   return (
     <>
-      {/* Search Overlay */}
+      {/* ── Search Overlay ── */}
       <AnimatePresence>
         {isSearchOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-dark/95 z-50 flex items-center justify-center p-4"
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-[#0B1120]/97 z-[60] flex items-center justify-center p-6"
           >
-            <button 
+            <button
               onClick={() => setIsSearchOpen(false)}
-              className="absolute top-6 right-6 p-2 text-white/60 hover:text-white rounded-full hover:bg-white/5 cursor-pointer"
+              className="absolute top-6 right-6 p-2 text-white/50 hover:text-white transition-colors cursor-pointer"
+              aria-label="Close search"
             >
               <X className="w-6 h-6" />
             </button>
             <div className="w-full max-w-2xl">
-              <div className="relative">
+              <p className="text-white/40 text-xs uppercase tracking-widest font-semibold mb-4">Search GangaTara</p>
+              <div className="relative border-b-2 border-white/20 focus-within:border-primary transition-colors">
                 <input
                   type="text"
-                  placeholder={t('nav.searchPlaceholder')}
+                  placeholder="Search services, insights, industries…"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-white/5 border-b border-white/20 text-white placeholder-white/30 text-xl py-4 pl-4 pr-12 focus:outline-none focus:border-primary transition-colors"
+                  className="w-full bg-transparent text-white placeholder-white/25 text-2xl py-4 pr-12 focus:outline-none"
                   autoFocus
                 />
-                <Search className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 w-6 h-6" />
+                <Search className="absolute right-2 top-1/2 -translate-y-1/2 text-white/30 w-6 h-6" />
               </div>
-              <p className="text-white/40 text-xs mt-3">Press ESC to close. Try searching "Cloud" or "AI Solutions".</p>
+              <p className="text-white/30 text-[11px] mt-3">Press ESC to close.</p>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Top Contact Bar */}
-      <div className="bg-black text-white text-[10px] sm:text-xs py-2 px-6 flex justify-between items-center z-45 relative border-b border-white/5 h-[36px]">
-        <div className="max-w-7xl mx-auto w-full flex justify-between items-center">
-          <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1.5"><Phone className="w-3.5 h-3.5 text-primary" /> Enquiry Now: +91 9009494056</span>
-            <span className="flex items-center gap-1.5"><Mail className="w-3.5 h-3.5 text-primary" /> Write Us: info@gangatara.com</span>
+      {/* ── Top Utility Bar ── */}
+      <div className="bg-[#050A14] text-white/60 text-[10px] py-1.5 px-6 hidden sm:flex justify-between items-center z-40 relative border-b border-white/5">
+        <div className="max-w-screen-xl mx-auto w-full flex justify-between items-center">
+          <div className="flex items-center gap-5">
+            <span className="flex items-center gap-1.5 hover:text-white transition-colors">
+              <Phone className="w-3 h-3 text-primary" />
+              Enquiry: +91 9009494056
+            </span>
+            <span className="flex items-center gap-1.5 hover:text-white transition-colors">
+              <Mail className="w-3 h-3 text-primary" />
+              info@gangatara.com
+            </span>
           </div>
-          <div className="hidden sm:flex items-center gap-2 text-white/50 text-[10px] uppercase font-bold tracking-widest">
-            <span>Enterprise Solutions</span>
-          </div>
+          <span className="text-white/30 hidden md:block font-medium tracking-wider uppercase text-[9px]">
+            Enterprise IT Solutions · Global Delivery
+          </span>
         </div>
       </div>
 
-      {/* Main Header Container */}
+      {/* ── Main Header ── */}
       <header
-        className={`fixed left-0 w-full z-40 transition-all duration-500 ${
-          isScrolled 
-            ? 'bg-light/85 dark:bg-dark/85 backdrop-blur-md shadow-lg border-b border-light/10 dark:border-white/5 py-4 top-0' 
-            : 'bg-transparent py-6'
+        role="banner"
+        className={`fixed left-0 w-full z-50 transition-all duration-300 ${
+          isScrolled
+            ? 'bg-[#0B1120]/98 backdrop-blur-md border-b border-white/8 shadow-lg shadow-black/30'
+            : 'bg-[#0B1120] border-b border-white/6'
         }`}
-        style={{ top: isScrolled ? '0px' : '36px' }}
+        style={{ top: isScrolled ? '0px' : typeof window !== 'undefined' && window.innerWidth >= 640 ? '32px' : '0px' }}
       >
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between gap-4">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center shadow-lg shadow-primary/20">
-              <span className="text-white font-extrabold text-lg">GT</span>
+        <div className="max-w-screen-xl mx-auto px-6 h-[64px] flex items-center justify-between gap-8">
+
+          {/* ── Logo ── */}
+          <Link
+            href="/"
+            className="flex items-center gap-3 shrink-0 group"
+            aria-label="GangaTara Technologies – Home"
+          >
+            <div className="w-9 h-9 rounded-lg bg-gradient-to-tr from-primary to-secondary flex items-center justify-center shadow-md shadow-primary/30 group-hover:shadow-primary/50 transition-shadow">
+              <span className="text-white font-black text-sm tracking-tight">GT</span>
             </div>
-            <div className="flex flex-col">
-              <span className="font-poppins font-bold text-lg leading-tight tracking-wider text-dark dark:text-light group-hover:text-primary transition-colors">
+            <div className="flex flex-col leading-none">
+              <span className="text-white font-poppins font-bold text-[15px] tracking-wide leading-tight group-hover:text-primary/90 transition-colors">
                 GangaTara
               </span>
-              <span className="text-[9px] uppercase tracking-widest text-primary font-semibold">
+              <span className="text-white/40 text-[8px] uppercase tracking-[0.18em] font-medium">
                 Technologies
               </span>
             </div>
           </Link>
 
-          {/* Desktop Nav Items */}
-          <nav className="hidden xl:flex items-center gap-4">
-            <Link 
-              href="/" 
-              className={`text-[13px] font-semibold hover:text-primary transition-colors ${pathname === '/' ? 'text-primary' : 'text-dark/80 dark:text-light/80'}`}
-            >
-              {t('nav.home')}
-            </Link>
-
-            <Link 
-              href="/about" 
-              className={`text-[13px] font-semibold hover:text-primary transition-colors ${pathname === '/about' ? 'text-primary' : 'text-dark/80 dark:text-light/80'}`}
-            >
-              {t('nav.about')}
-            </Link>
-
-            {/* Services Dropdown Trigger */}
-            <div 
-              onMouseEnter={() => setActiveMegaMenu('services')}
-              onMouseLeave={() => setActiveMegaMenu(null)}
-              className="relative py-2"
-            >
-              <button className="flex items-center gap-1 text-[13px] font-semibold text-dark/80 dark:text-light/80 hover:text-primary transition-colors cursor-pointer">
-                {t('nav.services')} <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${activeMegaMenu === 'services' ? 'rotate-180' : ''}`} />
-              </button>
-
-              {/* Mega Menu Services */}
-              <AnimatePresence>
-                {activeMegaMenu === 'services' && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    className="absolute top-8 left-1/2 -translate-x-1/2 w-[850px] p-6 rounded-2xl glass-panel shadow-2xl border border-light/20 dark:border-white/5 grid grid-cols-3 gap-8 bg-light/95 dark:bg-dark/95 backdrop-blur-xl"
+          {/* ── Desktop Navigation ── */}
+          <nav
+            className="hidden xl:flex items-center h-full"
+            aria-label="Primary Navigation"
+          >
+            {NAV_ITEMS.map((item) => (
+              item.href ? (
+                // Simple link (no dropdown)
+                <Link
+                  key={item.key}
+                  href={item.href}
+                  className={`relative h-[64px] flex items-center px-4 text-[13px] font-medium tracking-wide transition-colors group
+                    ${isActivePath(item.href) ? 'text-white' : 'text-white/65 hover:text-white'}
+                  `}
+                >
+                  {item.label}
+                  {/* Active / Hover underline */}
+                  <span className={`absolute bottom-0 left-4 right-4 h-[2px] bg-primary rounded-t-full transition-transform origin-left duration-200
+                    ${isActivePath(item.href) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}
+                  `} />
+                </Link>
+              ) : (
+                // Dropdown trigger
+                <div
+                  key={item.key}
+                  onMouseEnter={() => handleMenuEnter(item.key)}
+                  onMouseLeave={handleMenuLeave}
+                  className="relative h-[64px] flex items-center"
+                >
+                  <button
+                    className={`h-full flex items-center gap-1 px-4 text-[13px] font-medium tracking-wide transition-colors group cursor-pointer relative
+                      ${activeMegaMenu === item.key ? 'text-white' : 'text-white/65 hover:text-white'}
+                    `}
+                    aria-expanded={activeMegaMenu === item.key}
+                    aria-haspopup="true"
                   >
-                    {/* Column 1: Web Development */}
-                    <Link 
-                      href="/services/web-development"
-                      className="p-4 rounded-2xl hover:bg-primary/5 dark:hover:bg-white/5 border border-transparent hover:border-primary/10 transition-all group flex flex-col items-center text-center text-dark dark:text-light"
-                    >
-                      <svg viewBox="0 0 200 120" className="w-full h-24 mb-4 text-primary group-hover:scale-105 transition-transform duration-300">
-                        <rect x="30" y="10" width="80" height="50" rx="4" fill="none" stroke="currentColor" strokeWidth="2" />
-                        <line x1="30" y1="50" x2="110" y2="50" stroke="currentColor" strokeWidth="1" />
-                        <line x1="70" y1="60" x2="70" y2="70" stroke="currentColor" strokeWidth="2" />
-                        <line x1="60" y1="70" x2="80" y2="70" stroke="currentColor" strokeWidth="2" />
-                        <circle cx="130" cy="50" r="10" fill="none" stroke="currentColor" strokeWidth="2" />
-                        <path d="M115,75 C115,65 145,65 145,75" fill="none" stroke="currentColor" strokeWidth="2" />
-                        <rect x="120" y="68" width="20" height="12" rx="1" fill="none" stroke="currentColor" strokeWidth="2" />
-                        <path d="M10,35 L20,30 L20,40 Z" fill="none" stroke="currentColor" strokeWidth="1" />
-                        <path d="M170,30 L160,35 L170,40" fill="none" stroke="currentColor" strokeWidth="1.5" />
-                        <circle cx="160" cy="15" r="4" fill="none" stroke="currentColor" strokeWidth="1.5" />
-                      </svg>
-                      <h4 className="text-sm font-bold text-dark dark:text-light group-hover:text-primary transition-colors flex items-center gap-2">
-                        Web Development <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                      </h4>
-                      <p className="text-[11px] text-dark/60 dark:text-light/60 mt-1">Settle/Shift Online</p>
-                    </Link>
+                    {item.label}
+                    <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMegaMenu === item.key ? 'rotate-180 text-primary' : ''}`} />
+                    {/* Hover / active underline */}
+                    <span className={`absolute bottom-0 left-4 right-4 h-[2px] bg-primary rounded-t-full transition-transform origin-left duration-200
+                      ${activeMegaMenu === item.key ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}
+                    `} />
+                  </button>
 
-                    {/* Column 2: Application Development */}
-                    <Link 
-                      href="/services/application-development"
-                      className="p-4 rounded-2xl hover:bg-primary/5 dark:hover:bg-white/5 border border-transparent hover:border-primary/10 transition-all group flex flex-col items-center text-center text-dark dark:text-light"
-                    >
-                      <svg viewBox="0 0 200 120" className="w-full h-24 mb-4 text-primary group-hover:scale-105 transition-transform duration-300">
-                        <rect x="75" y="15" width="50" height="90" rx="8" fill="none" stroke="currentColor" strokeWidth="2" />
-                        <line x1="95" y1="20" x2="105" y2="20" stroke="currentColor" strokeWidth="2" />
-                        <circle cx="100" cy="100" r="3" fill="currentColor" />
-                        <rect x="83" y="30" width="10" height="10" rx="1" fill="currentColor" fillOpacity="0.2" />
-                        <rect x="107" y="30" width="10" height="10" rx="1" fill="currentColor" fillOpacity="0.2" />
-                        <rect x="83" y="45" width="10" height="10" rx="1" fill="currentColor" fillOpacity="0.2" />
-                        <rect x="107" y="45" width="10" height="10" rx="1" fill="currentColor" fillOpacity="0.2" />
-                        <line x1="40" y1="90" x2="70" y2="40" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 3" />
-                        <line x1="70" y1="40" x2="90" y2="40" stroke="currentColor" strokeWidth="1.5" />
-                        <circle cx="40" cy="90" r="3" fill="currentColor" />
-                        <circle cx="150" cy="30" r="5" fill="none" stroke="currentColor" strokeWidth="1.5" />
-                        <line x1="125" y1="45" x2="145" y2="35" stroke="currentColor" strokeWidth="1.5" />
-                      </svg>
-                      <h4 className="text-sm font-bold text-dark dark:text-light group-hover:text-primary transition-colors flex items-center gap-2">
-                        Application Development <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                      </h4>
-                      <p className="text-[11px] text-dark/60 dark:text-light/60 mt-1">Pocket In Pocket</p>
-                    </Link>
-
-                    {/* Column 3: Digital Marketing */}
-                    <Link 
-                      href="/services/digital-marketing"
-                      className="p-4 rounded-2xl hover:bg-primary/5 dark:hover:bg-white/5 border border-transparent hover:border-primary/10 transition-all group flex flex-col items-center text-center text-dark dark:text-light"
-                    >
-                      <svg viewBox="0 0 200 120" className="w-full h-24 mb-4 text-primary group-hover:scale-105 transition-transform duration-300">
-                        <rect x="80" y="20" width="50" height="85" rx="6" fill="none" stroke="currentColor" strokeWidth="2" />
-                        <line x1="80" y1="90" x2="130" y2="90" stroke="currentColor" strokeWidth="1" />
-                        <rect x="88" y="70" width="6" height="20" fill="currentColor" fillOpacity="0.3" />
-                        <rect x="98" y="60" width="6" height="30" fill="currentColor" fillOpacity="0.5" />
-                        <rect x="108" y="45" width="6" height="45" fill="currentColor" />
-                        <circle cx="50" cy="45" r="8" fill="none" stroke="currentColor" strokeWidth="2" />
-                        <path d="M35,70 C35,60 65,60 65,70" fill="none" stroke="currentColor" strokeWidth="2" />
-                        <path d="M120,40 L145,20 L155,30 M145,20 L135,22 M145,20 L143,30" fill="none" stroke="currentColor" strokeWidth="2" />
-                        <path d="M90,75 L110,55 L145,20" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="3 3" />
-                      </svg>
-                      <h4 className="text-sm font-bold text-dark dark:text-light group-hover:text-primary transition-colors flex items-center gap-2">
-                        Digital Marketing <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                      </h4>
-                      <p className="text-[11px] text-dark/60 dark:text-light/60 mt-1">Inside Virtual World Market</p>
-                    </Link>
-
-                    <div className="col-span-3 border-t border-light/20 dark:border-white/5 pt-4 flex items-center justify-between">
-                      <p className="text-xs text-primary font-semibold">Looking for custom integration? Let us help you design it.</p>
-                      <Link href="/services" className="text-xs font-bold text-dark dark:text-light hover:text-primary flex items-center gap-1 transition-colors">
-                        View All Services <ArrowRight className="w-3 h-3" />
-                      </Link>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
-            {/* Industries Dropdown Trigger */}
-            <div 
-              onMouseEnter={() => setActiveMegaMenu('industries')}
-              onMouseLeave={() => setActiveMegaMenu(null)}
-              className="relative py-2"
-            >
-              <button className="flex items-center gap-1 text-[13px] font-semibold text-dark/80 dark:text-light/80 hover:text-primary transition-colors cursor-pointer">
-                {t('nav.industries')} <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${activeMegaMenu === 'industries' ? 'rotate-180' : ''}`} />
-              </button>
-
-              {/* Mega Menu Industries */}
-              <AnimatePresence>
-                {activeMegaMenu === 'industries' && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    className="absolute top-8 left-1/2 -translate-x-1/2 w-[600px] p-6 rounded-2xl glass-panel shadow-2xl border border-light/20 dark:border-white/5 grid grid-cols-2 gap-4 bg-light/95 dark:bg-dark/95 backdrop-blur-xl"
-                  >
-                    {industriesData.map((ind) => (
-                      <Link 
-                        key={ind.id} 
-                        href={`/industries/${ind.id}`}
-                        className="p-3 rounded-xl hover:bg-primary/5 dark:hover:bg-white/5 border border-transparent hover:border-primary/10 transition-all group"
+                  {/* ── Mega Menu Panel ── */}
+                  <AnimatePresence>
+                    {activeMegaMenu === item.key && item.columns && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 4 }}
+                        transition={{ duration: 0.18, ease: 'easeOut' }}
+                        onMouseEnter={() => handleMenuEnter(item.key)}
+                        onMouseLeave={handleMenuLeave}
+                        className="absolute top-[64px] left-0 bg-[#0D1526] border border-white/8 rounded-b-2xl shadow-2xl shadow-black/50 z-50 min-w-[220px]"
+                        style={{ width: item.columns.length === 3 ? '780px' : item.columns.length === 2 ? '520px' : '260px' }}
+                        role="menu"
                       >
-                        <h4 className="text-sm font-bold text-dark dark:text-light group-hover:text-primary transition-colors flex items-center gap-2">
-                          {ind.title} <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                        </h4>
-                        <p className="text-[11px] text-dark/60 dark:text-light/60 mt-1 line-clamp-1">{ind.shortDesc}</p>
-                      </Link>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
-            <Link 
-              href="/technologies" 
-              className={`text-[13px] font-semibold hover:text-primary transition-colors ${pathname === '/technologies' ? 'text-primary' : 'text-dark/80 dark:text-light/80'}`}
-            >
-              {t('nav.technologies')}
-            </Link>
-
-            <Link 
-              href="/case-studies" 
-              className={`text-[13px] font-semibold hover:text-primary transition-colors ${pathname === '/case-studies' ? 'text-primary' : 'text-dark/80 dark:text-light/80'}`}
-            >
-              {t('nav.caseStudies')}
-            </Link>
-
-            <Link 
-              href="/products" 
-              className={`text-[13px] font-semibold hover:text-primary transition-colors ${pathname === '/products' ? 'text-primary' : 'text-dark/80 dark:text-light/80'}`}
-            >
-              {t('nav.products')}
-            </Link>
-
-            <Link 
-              href="/careers" 
-              className={`text-[13px] font-semibold hover:text-primary transition-colors ${pathname === '/careers' ? 'text-primary' : 'text-dark/80 dark:text-light/80'}`}
-            >
-              {t('nav.careers')}
-            </Link>
-
-            <Link 
-              href="/insights" 
-              className={`text-[13px] font-semibold hover:text-primary transition-colors ${pathname === '/insights' ? 'text-primary' : 'text-dark/80 dark:text-light/80'}`}
-            >
-              {t('nav.insights')}
-            </Link>
-
-            <Link 
-              href="/blog" 
-              className={`text-[13px] font-semibold hover:text-primary transition-colors ${pathname === '/blog' ? 'text-primary' : 'text-dark/80 dark:text-light/80'}`}
-            >
-              {t('nav.blog')}
-            </Link>
+                        <div className={`p-7 grid gap-8 ${item.columns.length === 3 ? 'grid-cols-3' : item.columns.length === 2 ? 'grid-cols-2' : 'grid-cols-1'}`}>
+                          {item.columns.map((col, ci) => (
+                            <div key={ci}>
+                              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary mb-4">
+                                {col.heading}
+                              </p>
+                              <ul className="flex flex-col gap-1">
+                                {col.links.map((link, li) => (
+                                  <li key={li}>
+                                    <Link
+                                      href={link.href}
+                                      role="menuitem"
+                                      className={`block py-1.5 text-[13px] font-medium transition-all group/link
+                                        ${isActivePath(link.href) ? 'text-primary' : 'text-white/60 hover:text-white'}
+                                      `}
+                                    >
+                                      <span className="flex items-center gap-2">
+                                        <span className="w-0 group-hover/link:w-2.5 h-[1.5px] bg-primary rounded-full transition-all duration-200 shrink-0" />
+                                        {link.label}
+                                      </span>
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                        {/* Footer CTA row */}
+                        {item.footerLink && (
+                          <div className="border-t border-white/6 px-7 py-3.5 flex items-center justify-between">
+                            <p className="text-white/30 text-[11px]">GangaTara Technologies · Enterprise IT Partner</p>
+                            <Link
+                              href={item.footerLink.href}
+                              className="text-primary text-[12px] font-semibold hover:text-secondary flex items-center gap-1 transition-colors"
+                            >
+                              {item.footerLink.label}
+                            </Link>
+                          </div>
+                        )}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              )
+            ))}
           </nav>
 
-          {/* Header Controls */}
-          <div className="hidden xl:flex items-center gap-4">
-            {/* Search Trigger */}
-            <button 
+          {/* ── Right Controls ── */}
+          <div className="hidden xl:flex items-center gap-1 shrink-0">
+
+            {/* Search */}
+            <button
               onClick={() => setIsSearchOpen(true)}
-              className="p-2 text-dark/80 dark:text-light/80 hover:text-primary hover:bg-light/50 dark:hover:bg-white/5 rounded-xl transition-all cursor-pointer"
+              className="p-2.5 text-white/50 hover:text-white hover:bg-white/5 rounded-lg transition-all cursor-pointer"
               aria-label="Search site"
             >
-              <Search className="w-4 h-4" />
+              <Search className="w-[18px] h-[18px]" />
             </button>
 
-            {/* Language Switcher */}
+            {/* Language / Region */}
             <div className="relative">
               <button
-                onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
-                className="p-2 text-dark/80 dark:text-light/80 hover:text-primary hover:bg-light/50 dark:hover:bg-white/5 rounded-xl flex items-center gap-1 transition-all cursor-pointer text-xs font-semibold"
+                onClick={() => setIsLangOpen(!isLangOpen)}
+                className="flex items-center gap-1.5 px-2.5 py-2 text-white/50 hover:text-white hover:bg-white/5 rounded-lg transition-all cursor-pointer text-[12px] font-medium"
+                aria-label="Select language or region"
+                aria-expanded={isLangOpen}
               >
-                <Globe className="w-4 h-4" />
+                <Globe className="w-[17px] h-[17px]" />
+                <span className="hidden 2xl:inline-block">Global ({language})</span>
+                <ChevronDown className={`w-3 h-3 transition-transform ${isLangOpen ? 'rotate-180' : ''}`} />
               </button>
               <AnimatePresence>
-                {isLangDropdownOpen && (
+                {isLangOpen && (
                   <motion.div
                     initial={{ opacity: 0, y: 5 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 5 }}
-                    className="absolute right-0 mt-2 w-36 bg-light dark:bg-dark border border-light/20 dark:border-white/5 rounded-xl shadow-xl z-50 overflow-hidden"
+                    exit={{ opacity: 0, y: 3 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute right-0 top-full mt-2 w-44 bg-[#0D1526] border border-white/8 rounded-xl shadow-xl z-50 overflow-hidden"
                   >
                     {languages.map((lang) => (
                       <button
                         key={lang.code}
-                        onClick={() => {
-                          setLanguage(lang.code);
-                          setIsLangDropdownOpen(false);
-                        }}
-                        className={`w-full text-left px-4 py-2 text-xs font-medium transition-colors hover:bg-primary/10 hover:text-primary cursor-pointer ${
-                          language === lang.code ? 'text-primary bg-primary/5' : 'text-dark dark:text-light'
-                        }`}
+                        onClick={() => { setLanguage(lang.code); setIsLangOpen(false); }}
+                        className={`w-full text-left px-4 py-2.5 text-[12px] font-medium transition-colors cursor-pointer
+                          ${language === lang.code ? 'text-primary bg-primary/8' : 'text-white/60 hover:text-white hover:bg-white/5'}
+                        `}
                       >
                         {lang.label}
                       </button>
@@ -362,122 +415,193 @@ export const Navbar: React.FC = () => {
               </AnimatePresence>
             </div>
 
-            {/* Dark / Light Toggle */}
+            {/* Dark / Light toggle */}
             <button
               onClick={toggleTheme}
-              className="p-2 text-dark/80 dark:text-light/80 hover:text-primary hover:bg-light/50 dark:hover:bg-white/5 rounded-xl transition-all cursor-pointer"
+              className="p-2.5 text-white/50 hover:text-white hover:bg-white/5 rounded-lg transition-all cursor-pointer"
               aria-label="Toggle theme"
             >
-              {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              {theme === 'dark' ? <Sun className="w-[17px] h-[17px]" /> : <Moon className="w-[17px] h-[17px]" />}
             </button>
 
+            {/* Divider */}
+            <div className="w-px h-5 bg-white/10 mx-1" />
 
-
-            {/* Contact CTA */}
+            {/* Contact Us – plain text style link (TCS convention) */}
             <Link
               href="/contact"
-              className="px-4 py-2 rounded-xl bg-primary hover:bg-secondary text-white font-semibold text-xs transition-colors shadow-md shadow-primary/15"
+              className="text-[13px] font-medium text-white/70 hover:text-white px-2 py-1 transition-colors tracking-wide"
             >
-              {t('nav.contact')}
+              Contact Us
+            </Link>
+
+            {/* Primary CTA */}
+            <Link
+              href="/contact"
+              className="ml-2 px-5 py-2 bg-primary hover:bg-secondary text-white text-[12px] font-bold rounded-lg transition-colors shadow-md shadow-primary/20"
+            >
+              Get a Quote
             </Link>
           </div>
 
-          {/* Mobile Navigation Trigger */}
-          <div className="flex items-center gap-3 xl:hidden">
+          {/* ── Mobile Controls ── */}
+          <div className="flex items-center gap-2 xl:hidden">
+            <button
+              onClick={() => setIsSearchOpen(true)}
+              className="p-2 text-white/60 hover:text-white rounded-lg transition-colors cursor-pointer"
+              aria-label="Search"
+            >
+              <Search className="w-5 h-5" />
+            </button>
             <button
               onClick={toggleTheme}
-              className="p-2 text-dark/80 dark:text-light/80 rounded-xl hover:bg-light-hover dark:hover:bg-white/5 cursor-pointer"
+              className="p-2 text-white/60 hover:text-white rounded-lg transition-colors cursor-pointer"
+              aria-label="Toggle theme"
             >
-              {theme === 'dark' ? <Sun className="w-4.5 h-4.5" /> : <Moon className="w-4.5 h-4.5" />}
+              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-dark/80 dark:text-light/80 rounded-xl hover:bg-light-hover dark:hover:bg-white/5 cursor-pointer"
-              aria-label="Toggle menu"
+              className="p-2 text-white/70 hover:text-white rounded-lg hover:bg-white/5 transition-colors cursor-pointer"
+              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isMobileMenuOpen}
             >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
+
         </div>
       </header>
 
-      {/* Mobile Menu Drawer */}
+      {/* ── Mobile Drawer ── */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'tween', duration: 0.3 }}
-            className="fixed inset-y-0 right-0 w-full sm:w-85 bg-light dark:bg-dark border-l border-light/10 dark:border-white/5 z-40 p-6 shadow-2xl flex flex-col gap-6 overflow-y-auto pt-24"
-          >
-            <div className="flex flex-col gap-4">
-              <Link href="/" className="text-base font-bold text-dark dark:text-light border-b border-light/10 dark:border-white/5 pb-2">
-                {t('nav.home')}
-              </Link>
-              <Link href="/about" className="text-base font-bold text-dark dark:text-light border-b border-light/10 dark:border-white/5 pb-2">
-                {t('nav.about')}
-              </Link>
-              <Link href="/services" className="text-base font-bold text-dark dark:text-light border-b border-light/10 dark:border-white/5 pb-2">
-                {t('nav.services')}
-              </Link>
-              <Link href="/industries" className="text-base font-bold text-dark dark:text-light border-b border-light/10 dark:border-white/5 pb-2">
-                {t('nav.industries')}
-              </Link>
-              <Link href="/technologies" className="text-base font-bold text-dark dark:text-light border-b border-light/10 dark:border-white/5 pb-2">
-                {t('nav.technologies')}
-              </Link>
-              <Link href="/case-studies" className="text-base font-bold text-dark dark:text-light border-b border-light/10 dark:border-white/5 pb-2">
-                {t('nav.caseStudies')}
-              </Link>
-              <Link href="/products" className="text-base font-bold text-dark dark:text-light border-b border-light/10 dark:border-white/5 pb-2">
-                {t('nav.products')}
-              </Link>
-              <Link href="/careers" className="text-base font-bold text-dark dark:text-light border-b border-light/10 dark:border-white/5 pb-2">
-                {t('nav.careers')}
-              </Link>
-              <Link href="/insights" className="text-base font-bold text-dark dark:text-light border-b border-light/10 dark:border-white/5 pb-2">
-                {t('nav.insights')}
-              </Link>
-              <Link href="/blog" className="text-base font-bold text-dark dark:text-light border-b border-light/10 dark:border-white/5 pb-2">
-                {t('nav.blog')}
-              </Link>
-              <Link href="/contact" className="text-base font-bold text-dark dark:text-light border-b border-light/10 dark:border-white/5 pb-2">
-                {t('nav.contact')}
-              </Link>
-            </div>
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 bg-black/70 z-40 xl:hidden"
+              onClick={() => setIsMobileMenuOpen(false)}
+            />
 
-            {/* Language Switcher Mobile */}
-            <div className="flex flex-col gap-2">
-              <span className="text-xs font-semibold text-dark/40 dark:text-light/40 uppercase">Select Language</span>
-              <div className="flex flex-wrap gap-2">
-                {languages.map((lang) => (
-                  <button
-                    key={lang.code}
-                    onClick={() => setLanguage(lang.code)}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
-                      language === lang.code 
-                        ? 'bg-primary text-white' 
-                        : 'bg-light-hover dark:bg-white/5 text-dark dark:text-light border border-light/10 dark:border-white/5'
-                    }`}
-                  >
-                    {lang.label}
-                  </button>
+            {/* Drawer panel */}
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'tween', duration: 0.25, ease: 'easeOut' }}
+              className="fixed top-0 right-0 w-[320px] h-full bg-[#0B1120] border-l border-white/8 z-50 xl:hidden flex flex-col overflow-y-auto"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Mobile navigation"
+            >
+              {/* Drawer header */}
+              <div className="flex items-center justify-between px-6 py-4 border-b border-white/8">
+                <Link href="/" className="flex items-center gap-2.5" onClick={() => setIsMobileMenuOpen(false)}>
+                  <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary to-secondary flex items-center justify-center">
+                    <span className="text-white font-black text-xs">GT</span>
+                  </div>
+                  <div className="flex flex-col leading-none">
+                    <span className="text-white font-poppins font-bold text-sm">GangaTara</span>
+                    <span className="text-white/40 text-[8px] uppercase tracking-widest">Technologies</span>
+                  </div>
+                </Link>
+                <button
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="p-2 text-white/50 hover:text-white cursor-pointer"
+                  aria-label="Close menu"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Drawer nav links */}
+              <div className="flex-1 px-4 py-4 flex flex-col gap-1">
+                {NAV_ITEMS.map((item) => (
+                  <div key={item.key}>
+                    {item.href ? (
+                      <Link
+                        href={item.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className={`flex items-center justify-between px-4 py-3 rounded-xl text-[14px] font-medium transition-colors
+                          ${isActivePath(item.href) ? 'text-primary bg-primary/8' : 'text-white/70 hover:text-white hover:bg-white/5'}
+                        `}
+                      >
+                        {item.label}
+                        <ArrowRight className="w-4 h-4 opacity-40" />
+                      </Link>
+                    ) : (
+                      <>
+                        <button
+                          onClick={() => setMobileExpanded(mobileExpanded === item.key ? null : item.key)}
+                          className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-[14px] font-medium transition-colors cursor-pointer
+                            ${mobileExpanded === item.key ? 'text-white bg-white/8' : 'text-white/70 hover:text-white hover:bg-white/5'}
+                          `}
+                          aria-expanded={mobileExpanded === item.key}
+                        >
+                          {item.label}
+                          <ChevronDown className={`w-4 h-4 transition-transform ${mobileExpanded === item.key ? 'rotate-180 text-primary' : 'opacity-40'}`} />
+                        </button>
+                        <AnimatePresence>
+                          {mobileExpanded === item.key && item.columns && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: 'auto' }}
+                              exit={{ opacity: 0, height: 0 }}
+                              transition={{ duration: 0.2 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="ml-4 mt-1 mb-2 flex flex-col gap-4 px-2 py-3 border-l border-white/8">
+                                {item.columns.map((col, ci) => (
+                                  <div key={ci}>
+                                    <p className="text-[9px] font-bold uppercase tracking-widest text-primary mb-2">
+                                      {col.heading}
+                                    </p>
+                                    {col.links.map((link, li) => (
+                                      <Link
+                                        key={li}
+                                        href={link.href}
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                        className="block py-1.5 px-2 text-[13px] text-white/60 hover:text-white transition-colors rounded-lg hover:bg-white/4"
+                                      >
+                                        {link.label}
+                                      </Link>
+                                    ))}
+                                  </div>
+                                ))}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </>
+                    )}
+                  </div>
                 ))}
               </div>
-            </div>
 
-            {/* CTAs */}
-            <div className="mt-auto flex flex-col gap-3">
-
-              <Link
-                href="/contact"
-                className="w-full text-center py-3 rounded-xl bg-primary hover:bg-secondary text-white text-sm font-bold transition-colors shadow-lg"
-              >
-                Get In Touch
-              </Link>
-            </div>
-          </motion.div>
+              {/* Drawer footer CTAs */}
+              <div className="border-t border-white/8 px-6 py-5 flex flex-col gap-3">
+                <div className="flex items-center gap-2 text-white/40 text-[11px]">
+                  <Phone className="w-3.5 h-3.5 text-primary" />
+                  +91 9009494056
+                </div>
+                <div className="flex items-center gap-2 text-white/40 text-[11px]">
+                  <Mail className="w-3.5 h-3.5 text-primary" />
+                  info@gangatara.com
+                </div>
+                <Link
+                  href="/contact"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="mt-2 w-full py-3 rounded-xl bg-primary hover:bg-secondary text-white text-[13px] font-bold text-center transition-colors"
+                >
+                  Get a Quote
+                </Link>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>
