@@ -80,7 +80,7 @@ export const Hero: React.FC = () => {
         </div>
 
         {/* Right Column: Abstract Dashboard/Graphic */}
-        <div className="lg:col-span-5 flex justify-center relative">
+        <div className="lg:col-span-5 flex justify-center relative px-4 sm:px-0">
           
           {/* Floating Uptime Badge */}
           <motion.div

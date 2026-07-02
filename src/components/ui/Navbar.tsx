@@ -832,14 +832,7 @@ export const Navbar: React.FC = () => {
               </AnimatePresence>
             </div>
 
-            {/* Theme */}
-            <button
-              onClick={toggleTheme}
-              className="p-2.5 text-white/50 hover:text-white hover:bg-white/5 rounded-lg transition-all cursor-pointer"
-              aria-label="Toggle theme"
-            >
-              {theme === 'dark' ? <Sun className="w-[17px] h-[17px]" /> : <Moon className="w-[17px] h-[17px]" />}
-            </button>
+
 
             <div className="w-px h-5 bg-white/10 mx-1" />
 
@@ -863,9 +856,7 @@ export const Navbar: React.FC = () => {
             <button onClick={() => setIsSearchOpen(true)} className="p-2 text-white/60 hover:text-white rounded-lg transition-colors cursor-pointer" aria-label="Search">
               <Search className="w-5 h-5" />
             </button>
-            <button onClick={toggleTheme} className="p-2 text-white/60 hover:text-white rounded-lg transition-colors cursor-pointer" aria-label="Toggle theme">
-              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-            </button>
+
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="p-2 text-white/70 hover:text-white rounded-lg hover:bg-white/5 transition-colors cursor-pointer"

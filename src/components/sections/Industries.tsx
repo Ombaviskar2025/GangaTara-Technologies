@@ -46,7 +46,7 @@ export const Industries: React.FC = () => {
               <button
                 key={ind.id}
                 onClick={() => setActiveIndex(index)}
-                className={`flex-shrink-0 flex items-center gap-3 px-5 py-4 rounded-xl border text-left text-xs font-bold transition-all cursor-pointer ${
+                className={`flex-shrink-0 flex items-center gap-3 px-5 py-4 rounded-xl border text-left text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
                   activeIndex === index
                     ? 'bg-primary border-primary text-white shadow-lg shadow-primary/25'
                     : 'bg-light/60 dark:bg-white/5 border-light/20 dark:border-white/5 text-dark/80 dark:text-light/80 hover:bg-primary/5 dark:hover:bg-white/10'

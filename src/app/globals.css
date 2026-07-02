@@ -212,3 +212,34 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* ── Light Mode Border Visibility Fixes ── */
+.light .border-light\/5 {
+  border-color: rgba(11, 17, 32, 0.03) !important;
+}
+.light .border-light\/10 {
+  border-color: rgba(11, 17, 32, 0.06) !important;
+}
+.light .border-light\/15 {
+  border-color: rgba(11, 17, 32, 0.08) !important;
+}
+.light .border-light\/20 {
+  border-color: rgba(11, 17, 32, 0.1) !important;
+}
+.light .border-light\/25 {
+  border-color: rgba(11, 17, 32, 0.12) !important;
+}
+.light .border-light\/30 {
+  border-color: rgba(11, 17, 32, 0.15) !important;
+}
+.light .border-light {
+  border-color: rgba(11, 17, 32, 0.15) !important;
+}
+
+/* Light mode divide colors */
+.light .divide-light\/10 > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgba(11, 17, 32, 0.05) !important;
+}
+.light .divide-light\/20 > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgba(11, 17, 32, 0.08) !important;
+}
