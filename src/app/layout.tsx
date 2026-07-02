@@ -3,8 +3,10 @@ import { Poppins, Inter } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { LanguageProvider } from '@/context/LanguageContext';
+import { ContactModalProvider } from '@/context/ContactModalContext';
 import { Navbar } from '@/components/ui/Navbar';
 import { Footer } from '@/components/ui/Footer';
+import { ContactModal } from '@/components/ui/ContactModal';
 import { InteractiveUIEffects } from '@/components/ui/InteractiveUIEffects';
 
 const poppins = Poppins({
@@ -43,19 +45,24 @@ export default function RootLayout({
       <body className="antialiased min-h-screen flex flex-col bg-light dark:bg-dark text-dark dark:text-light">
         <ThemeProvider>
           <LanguageProvider>
-            {/* Smooth client transitions and visual helpers */}
-            <InteractiveUIEffects />
-            
-            {/* Sticky Header */}
-            <Navbar />
-            
-            {/* Page content */}
-            <main className="flex-grow">
-              {children}
-            </main>
-            
-            {/* Footer */}
-            <Footer />
+            <ContactModalProvider>
+              {/* Smooth client transitions and visual helpers */}
+              <InteractiveUIEffects />
+
+              {/* Global Contact Modal (always mounted, shown via context) */}
+              <ContactModal />
+
+              {/* Sticky Header */}
+              <Navbar />
+
+              {/* Page content */}
+              <main className="flex-grow">
+                {children}
+              </main>
+
+              {/* Footer */}
+              <Footer />
+            </ContactModalProvider>
           </LanguageProvider>
         </ThemeProvider>
       </body>

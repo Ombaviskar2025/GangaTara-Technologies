@@ -747,3 +747,157 @@ export const jobsData: JobItem[] = [
     ]
   }
 ];
+
+// ─── Webinars / Events ──────────────────────────────────────────────────────
+
+export interface WebinarItem {
+  id: string;
+  title: string;
+  date: string;
+  location: string;
+  description: string;
+  category: string;
+  registerLink: string;
+}
+
+export const webinarsData: WebinarItem[] = [
+  {
+    id: 'w1',
+    title: 'Building Secure GenAI Pipelines for the Enterprise',
+    date: 'July 24, 2026',
+    location: 'Virtual — Zoom Webinar',
+    description: 'Learn how GangaTara architects design retrieval-augmented generation (RAG) systems that keep corporate data private while unlocking the full power of large language models.',
+    category: 'AI & Machine Learning',
+    registerLink: '/contact'
+  },
+  {
+    id: 'w2',
+    title: 'Cloud Cost Optimization Masterclass — FinOps in Practice',
+    date: 'August 12, 2026',
+    location: 'Virtual — Google Meet',
+    description: 'Our senior cloud architects share proven FinOps frameworks that help enterprise clients cut cloud spend by 30–40% without sacrificing performance or reliability.',
+    category: 'Cloud & DevOps',
+    registerLink: '/contact'
+  },
+  {
+    id: 'w3',
+    title: 'Zero-Trust Security Architecture for Modern Enterprises',
+    date: 'September 5, 2026',
+    location: 'Munich, Germany + Virtual',
+    description: 'A deep dive into implementing zero-trust network access, IAM strategies, and automated vulnerability scanning to protect your enterprise perimeter in 2026.',
+    category: 'Cybersecurity',
+    registerLink: '/contact'
+  }
+];
+
+// ─── What's New Carousel Slides ─────────────────────────────────────────────
+
+export interface WhatsNewItem {
+  id: string;
+  headline: string;
+  description: string;
+  tag: string;
+  date: string;
+  link: string;
+  image: string;
+  gradientFrom: string;
+  gradientTo: string;
+}
+
+export const whatsNewData: WhatsNewItem[] = [
+  {
+    id: 'wn1',
+    headline: 'GangaTara Achieves Google Cloud Partner of the Year 2025',
+    description: 'Recognized for exceptional delivery of multi-cloud migrations and AI-driven analytics solutions for enterprise clients across APAC and EMEA.',
+    tag: 'Recognition',
+    date: 'June 2026',
+    link: '/about',
+    image: '/slide_datacenter.png',
+    gradientFrom: '#0057FF',
+    gradientTo: '#0B1120'
+  },
+  {
+    id: 'wn2',
+    headline: 'Introducing GangaTara AI Studio — Deploy GenAI in Days',
+    description: 'Our new AI Studio platform lets enterprise teams prototype, evaluate, and deploy production-grade LLM-powered workflows inside their own secure cloud environment.',
+    tag: 'Product Launch',
+    date: 'May 2026',
+    link: '/products',
+    image: '/slide_ai.png',
+    gradientFrom: '#0B1120',
+    gradientTo: '#00B4FF'
+  },
+  {
+    id: 'wn3',
+    headline: 'GangaTara Is Hiring 200+ Engineers Globally in 2026',
+    description: 'Expanding global delivery centers in Pune, Munich, and Singapore. Join us to build next-generation enterprise software products that serve millions.',
+    tag: 'Careers',
+    date: 'April 2026',
+    link: '/careers',
+    image: '/slide_team.png',
+    gradientFrom: '#0057FF',
+    gradientTo: '#10B981'
+  },
+  {
+    id: 'wn4',
+    headline: 'CloudOps Suite Now Available on AWS Marketplace',
+    description: 'Our infrastructure automation toolchain — FinOps monitors, security posture dashboards, and GitOps orchestrators — is now one-click deployable via AWS.',
+    tag: 'News',
+    date: 'March 2026',
+    link: '/products',
+    image: '/slide_cloud.png',
+    gradientFrom: '#00B4FF',
+    gradientTo: '#0B1120'
+  }
+];
+
+// ─── Products Showcase ───────────────────────────────────────────────────────
+
+export interface ProductItem {
+  id: string;
+  title: string;
+  shortDesc: string;
+  category: string;
+  badge?: string;
+  link: string;
+}
+
+export const productsData: ProductItem[] = [
+  {
+    id: 'ai-studio',
+    title: 'GangaTara AI Studio',
+    shortDesc: 'No-code GenAI workflow builder with RAG pipelines, LLM orchestration, and enterprise SSO.',
+    category: 'AI Platform',
+    badge: 'New',
+    link: '/products'
+  },
+  {
+    id: 'cloudops-suite',
+    title: 'CloudOps Suite',
+    shortDesc: 'Unified FinOps, security posture, and GitOps dashboards for AWS, Azure, and GCP.',
+    category: 'Cloud Management',
+    link: '/products'
+  },
+  {
+    id: 'databridge',
+    title: 'DataBridge ETL',
+    shortDesc: 'Real-time data pipeline orchestration connecting 200+ enterprise data sources.',
+    category: 'Data Engineering',
+    link: '/products'
+  },
+  {
+    id: 'sentry-ztna',
+    title: 'Sentry ZTNA',
+    shortDesc: 'Zero-trust network access with biometric identity enforcement and threat analytics.',
+    category: 'Security',
+    badge: 'Beta',
+    link: '/products'
+  },
+  {
+    id: 'gt-lms',
+    title: 'GangaTara LMS',
+    shortDesc: 'Enterprise learning management system with AI-curated learning paths and skills tracking.',
+    category: 'EdTech Platform',
+    link: '/products'
+  }
+];
