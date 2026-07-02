@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { ArrowLeft, CheckCircle, ShieldCheck, Mail, Phone, Lock } from 'lucide-react';
 import * as Icons from 'lucide-react';
 import { servicesData } from '@/data/companyData';
+import { landingPagesData } from '@/data/landingPagesData';
+import { LandingPageTemplate } from '@/components/sections/LandingPageTemplate';
 
 const DynamicIcon: React.FC<{ name: string; className?: string }> = ({ name, className }) => {
   const IconComponent = (Icons as any)[name];
@@ -17,6 +19,11 @@ export default function ServiceDetailPage() {
   const params = useParams();
   const router = useRouter();
   const id = params.id as string;
+
+  const content = landingPagesData[id];
+  if (content) {
+    return <LandingPageTemplate content={content} />;
+  }
 
   const service = servicesData.find((s) => s.id === id);
 

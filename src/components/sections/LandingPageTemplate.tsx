@@ -1,0 +1,353 @@
+'use client';
+
+import React, { useState, useRef } from 'react';
+import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, ChevronLeft, ChevronRight, Quote, ExternalLink } from 'lucide-react';
+import { useContactModal } from '@/context/ContactModalContext';
+import { LandingPageContent } from '@/data/landingPagesData';
+
+interface LandingPageTemplateProps {
+  content: LandingPageContent;
+}
+
+const TabbedCarousel: React.FC<{
+  tabs: { label: string; cards: any[] }[];
+  sectionTitle: string;
+}> = ({ tabs, sectionTitle }) => {
+  const [activeTabIdx, setActiveTabIdx] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const activeTab = tabs[activeTabIdx];
+
+  const scroll = (dir: 'left' | 'right') => {
+    if (!scrollRef.current) return;
+    scrollRef.current.scrollBy({ left: dir === 'right' ? 340 : -340, behavior: 'smooth' });
+  };
+
+  if (!tabs || tabs.length === 0) return null;
+
+  return (
+    <div className="py-16 border-b border-dark/5 dark:border-white/5">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8">
+        <h3 className="text-xl font-poppins font-bold text-dark dark:text-white">
+          {sectionTitle}
+        </h3>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => scroll('left')}
+            className="w-9 h-9 rounded-full border border-dark/15 dark:border-white/10 text-dark/60 dark:text-white/50 flex items-center justify-center hover:border-primary hover:text-primary transition-all cursor-pointer"
+            aria-label="Scroll left"
+          >
+            <ChevronLeft className="w-4.5 h-4.5" />
+          </button>
+          <button
+            onClick={() => scroll('right')}
+            className="w-9 h-9 rounded-full border border-dark/15 dark:border-white/10 text-dark/60 dark:text-white/50 flex items-center justify-center hover:border-primary hover:text-primary transition-all cursor-pointer"
+            aria-label="Scroll right"
+          >
+            <ChevronRight className="w-4.5 h-4.5" />
+          </button>
+        </div>
+      </div>
+
+      {/* Tabs list — TCS Style (minimal underline) */}
+      <div className="flex gap-2 border-b border-dark/10 dark:border-white/8 mb-8 overflow-x-auto no-scrollbar">
+        {tabs.map((tab, idx) => (
+          <button
+            key={idx}
+            onClick={() => setActiveTabIdx(idx)}
+            className={`relative px-5 py-3 text-xs font-bold tracking-wide transition-all cursor-pointer whitespace-nowrap ${
+              activeTabIdx === idx
+                ? 'text-primary'
+                : 'text-dark/45 dark:text-white/40 hover:text-dark dark:hover:text-white'
+            }`}
+          >
+            {tab.label}
+            {activeTabIdx === idx && (
+              <motion.div
+                layoutId={`tab-underline-${sectionTitle}`}
+                className="absolute bottom-0 left-0 right-0 h-[2px] bg-primary"
+              />
+            )}
+          </button>
+        ))}
+      </div>
+
+      {/* Carousel */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeTabIdx}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -5 }}
+          transition={{ duration: 0.25 }}
+        >
+          {activeTab.cards.length === 0 ? (
+            <div className="py-10 text-center text-xs text-dark/40 dark:text-white/30 border border-dashed border-dark/10 dark:border-white/10 rounded-2xl">
+              Coming soon. We are currently preparing content for this category.
+            </div>
+          ) : (
+            <div
+              ref={scrollRef}
+              className="flex gap-6 overflow-x-auto no-scrollbar pb-3 scroll-smooth"
+              style={{ scrollSnapType: 'x mandatory' }}
+            >
+              {activeTab.cards.map((card: any, ci: number) => (
+                <div
+                  key={ci}
+                  className="shrink-0 w-[290px] sm:w-[320px]"
+                  style={{ scrollSnapAlign: 'start' }}
+                >
+                  <div className="group h-full flex flex-col rounded-2xl border border-dark/6 dark:border-white/6 bg-white dark:bg-white/3 overflow-hidden hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 transition-all">
+                    {/* Visual Cover */}
+                    <div className="h-44 relative overflow-hidden bg-slate-900">
+                      <img
+                        src={card.image}
+                        alt={card.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    </div>
+
+                    {/* Card Content */}
+                    <div className="p-6 flex-1 flex flex-col justify-between">
+                      <h4 className="text-dark dark:text-white font-poppins font-bold text-[13px] leading-snug mb-4 group-hover:text-primary transition-colors line-clamp-2">
+                        {card.title}
+                      </h4>
+                      <Link
+                        href={card.link}
+                        className="inline-flex items-center gap-1 text-[11px] font-bold text-primary hover:text-secondary transition-all"
+                      >
+                        READ MORE <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+};
+
+export const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({ content }) => {
+  const { openModal } = useContactModal();
+
+  return (
+    <div className="bg-light dark:bg-dark min-h-screen text-dark dark:text-light">
+      {/* 1. HERO SECTION */}
+      <section className="relative min-h-[70vh] sm:min-h-[80vh] flex items-center pt-24 overflow-hidden">
+        {/* Background Image */}
+        <img
+          src={content.hero.bgImage}
+          alt={content.hero.title}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        {/* Gradient overlays */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0B1120]/96 via-[#0B1120]/80 to-[#0B1120]/30" />
+        <div className="absolute inset-0 grid-bg opacity-15" />
+
+        <div className="relative z-10 max-w-screen-xl mx-auto px-6 sm:px-14 py-16 w-full text-white">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-2xl"
+          >
+            {/* Breadcrumb */}
+            <p className="text-[10px] sm:text-[11px] font-bold tracking-[0.22em] text-primary uppercase mb-4">
+              {content.hero.breadcrumb}
+            </p>
+            {/* Eyebrow */}
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/20 border border-primary/40 text-primary text-[9px] sm:text-[10px] font-bold uppercase tracking-widest mb-6">
+              {content.hero.eyebrow}
+            </span>
+            {/* Headline */}
+            <h1 className="text-3xl sm:text-5xl font-poppins font-extrabold leading-tight mb-5">
+              {content.hero.title}
+            </h1>
+            {/* Subheading */}
+            <p className="text-white/70 text-sm sm:text-base leading-relaxed mb-8 max-w-xl">
+              {content.hero.subtitle}
+            </p>
+            {/* Contact CTA */}
+            <button
+              onClick={openModal}
+              className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary hover:bg-secondary text-white font-bold text-[13px] rounded-xl transition-all shadow-lg shadow-primary/20 cursor-pointer border-0 outline-none"
+            >
+              Get in Touch <ArrowRight className="w-4 h-4" />
+            </button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Content wrapper */}
+      <div className="max-w-screen-xl mx-auto px-6 sm:px-14 py-20 flex flex-col gap-20">
+        
+        {/* 2. INTRO/CONTEXT BLOCK */}
+        <section className="max-w-3xl">
+          <p className="text-[10px] font-bold tracking-[0.25em] text-primary uppercase mb-3">
+            {content.intro.eyebrow}
+          </p>
+          <h2 className="text-2xl sm:text-3xl font-poppins font-bold text-dark dark:text-white mb-6">
+            Pioneering the Next Era of Efficiency
+          </h2>
+          <p className="text-dark/70 dark:text-white/65 text-sm sm:text-base leading-relaxed">
+            {content.intro.paragraph}
+          </p>
+        </section>
+
+        {/* 3. FEATURED INSIGHT BLOCK */}
+        <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center py-10 border-t border-dark/5 dark:border-white/5">
+          <div className={`lg:col-span-6 ${content.featuredInsight.align === 'left' ? 'lg:order-2' : ''}`}>
+            <div className="rounded-3xl overflow-hidden shadow-2xl relative h-72 sm:h-96">
+              <img
+                src={content.featuredInsight.image}
+                alt={content.featuredInsight.title}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-primary/10 mix-blend-overlay" />
+            </div>
+          </div>
+          <div className="lg:col-span-6">
+            <p className="text-[10px] font-bold tracking-[0.25em] text-primary uppercase mb-3">FEATURED REPORT</p>
+            <h3 className="text-xl sm:text-2xl font-poppins font-bold text-dark dark:text-white mb-4">
+              {content.featuredInsight.title}
+            </h3>
+            <p className="text-dark/70 dark:text-white/65 text-xs sm:text-sm leading-relaxed mb-6">
+              {content.featuredInsight.text}
+            </p>
+            <Link
+              href={content.featuredInsight.link}
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:text-secondary transition-all"
+            >
+              Read the full insight <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </section>
+
+        {/* 4. "IN FOCUS" TABBED CONTENT CAROUSEL */}
+        <TabbedCarousel
+          tabs={content.inFocus.tabs}
+          sectionTitle="In Focus"
+        />
+
+        {/* 5. SECOND FEATURED BLOCK */}
+        <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center py-10 border-t border-dark/5 dark:border-white/5">
+          <div className={`lg:col-span-6 ${content.featuredInsight.align === 'right' ? 'lg:order-2' : ''}`}>
+            <div className="rounded-3xl overflow-hidden shadow-2xl relative h-72 sm:h-96">
+              <img
+                src={content.secondFeatured.image}
+                alt={content.secondFeatured.title}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-secondary/10 mix-blend-overlay" />
+            </div>
+          </div>
+          <div className="lg:col-span-6">
+            <p className="text-[10px] font-bold tracking-[0.25em] text-primary uppercase mb-3">
+              {content.secondFeatured.eyebrow}
+            </p>
+            <h3 className="text-xl sm:text-2xl font-poppins font-bold text-dark dark:text-white mb-4">
+              {content.secondFeatured.title}
+            </h3>
+            <p className="text-dark/70 dark:text-white/65 text-xs sm:text-sm leading-relaxed mb-6">
+              {content.secondFeatured.text}
+            </p>
+            <Link
+              href={content.secondFeatured.link}
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:text-secondary transition-all"
+            >
+              Learn more <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </section>
+
+        {/* 6. "SOLUTIONS" TABBED CAROUSEL */}
+        <TabbedCarousel
+          tabs={content.solutions.tabs}
+          sectionTitle="Target Systems & Platforms"
+        />
+
+        {/* 7. CLIENT QUOTE BLOCK */}
+        {content.clientQuote && (
+          <section className="py-12 px-8 sm:px-12 rounded-3xl bg-primary/5 border border-primary/10 relative overflow-hidden my-6">
+            <Quote className="absolute -top-4 -left-4 w-28 h-28 text-primary/5 pointer-events-none" />
+            <div className="relative z-10 max-w-4xl">
+              <p className="text-primary/95 text-base sm:text-lg font-medium leading-relaxed italic mb-6">
+                "{content.clientQuote.quote}"
+              </p>
+              <div>
+                <p className="text-dark dark:text-white font-bold text-xs sm:text-sm">
+                  {content.clientQuote.author}
+                </p>
+                <p className="text-dark/50 dark:text-white/40 text-[10px] sm:text-xs">
+                  {content.clientQuote.role} · <strong className="text-primary">{content.clientQuote.company}</strong>
+                </p>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* 8. RECOGNITION/AWARD BLOCK */}
+        {content.recognition && (
+          <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center py-10 border-t border-dark/5 dark:border-white/5">
+            <div className="lg:col-span-5">
+              <div className="rounded-2xl overflow-hidden h-60 relative">
+                <img
+                  src={content.recognition.image}
+                  alt={content.recognition.title}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+            <div className="lg:col-span-7">
+              <p className="text-[10px] font-bold tracking-[0.25em] text-primary uppercase mb-3">
+                {content.recognition.eyebrow}
+              </p>
+              <h3 className="text-lg sm:text-xl font-poppins font-bold text-dark dark:text-white mb-3">
+                {content.recognition.title}
+              </h3>
+              <p className="text-dark/70 dark:text-white/65 text-xs sm:text-sm leading-relaxed mb-5">
+                {content.recognition.text}
+              </p>
+              <Link
+                href={content.recognition.link}
+                className="inline-flex items-center gap-1 text-xs font-bold text-primary hover:text-secondary transition-all"
+              >
+                Know more <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </section>
+        )}
+
+      </div>
+
+      {/* 9. CLOSING CTA BAND */}
+      <section className="relative overflow-hidden bg-gradient-to-r from-primary via-[#0047DD] to-secondary py-16 sm:py-20 text-white">
+        <div className="absolute inset-0 grid-bg opacity-10" />
+        <div className="relative z-10 max-w-screen-xl mx-auto px-6 text-center">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-poppins font-bold leading-tight mb-4">
+            Ready to Accelerate Your Enterprise Practice?
+          </h2>
+          <p className="text-white/80 text-sm sm:text-base leading-relaxed mb-8 max-w-xl mx-auto">
+            Schedule a private scoping call with our core engineering architects. Let us design, optimize, and secure your digital roadmap.
+          </p>
+          <button
+            onClick={openModal}
+            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary font-bold text-[14px] rounded-xl hover:bg-white/90 transition-all shadow-lg cursor-pointer border-0 outline-none"
+          >
+            Connect with us <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
+      </section>
+    </div>
+  );
+};

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Search, Globe, Sun, Moon, Menu, X, ChevronDown, Phone, Mail, ArrowRight,
+  Search, Globe, Sun, Moon, Menu, X, ChevronDown, ChevronRight, Phone, Mail, ArrowRight,
   Cloud, Cpu, Code2, Globe2, Smartphone, Shield, GitBranch, Palette, BarChart3,
   Workflow, Radio, TrendingUp, Megaphone, HeartPulse, DollarSign, ShoppingBag,
   GraduationCap, Factory, Truck, Car, Building, Landmark, Plane, Users, Award,
@@ -44,56 +44,24 @@ const INDUSTRY_ICONS: Record<string, React.ReactNode> = {
   'Automobile & Mobility': <Car className="w-3.5 h-3.5" />,
   'Real Estate & PropTech': <Building className="w-3.5 h-3.5" />,
   'Government & Public': <Landmark className="w-3.5 h-3.5" />,
-  'Travel & Hospitality': <Plane className="w-3.5 h-3.5" />,
 };
 
 // ─── Nav Structure ────────────────────────────────────────────────────────────
 
-const NAV_ITEMS = [
+const NAV_ITEMS: {
+  label: string;
+  key: string;
+  href?: string;
+  isNested?: boolean;
+  intro?: { headline: string; body: string; link: string };
+  columns?: { heading: string; links: { label: string; href: string; icon: React.ReactNode }[] }[];
+  liveStrip?: { type: 'blogs' | 'jobs' | 'awards'; heading: string };
+  footerLink?: { label: string; href: string };
+}[] = [
   {
     label: 'What We Do',
     key: 'whatwedo',
-    intro: {
-      headline: 'Perpetually Adaptive Enterprise',
-      body: 'GangaTara delivers cloud-native, AI-enhanced services that evolve alongside your business — from first line of code to global scale.',
-      link: '/services',
-    },
-    columns: [
-      {
-        heading: 'Core Services',
-        links: [
-          { label: 'Cloud Solutions', href: '/services/cloud-solutions', icon: <Cloud className="w-3.5 h-3.5" /> },
-          { label: 'AI & Machine Learning', href: '/services/ai-machine-learning', icon: <Cpu className="w-3.5 h-3.5" /> },
-          { label: 'Software Development', href: '/services/software-development', icon: <Code2 className="w-3.5 h-3.5" /> },
-          { label: 'Web Development', href: '/services/web-development', icon: <Globe2 className="w-3.5 h-3.5" /> },
-          { label: 'App Development', href: '/services/application-development', icon: <Smartphone className="w-3.5 h-3.5" /> },
-          { label: 'Cybersecurity', href: '/services/cyber-security', icon: <Shield className="w-3.5 h-3.5" /> },
-        ],
-      },
-      {
-        heading: 'Digital Solutions',
-        links: [
-          { label: 'DevOps & GitOps', href: '/services/devops', icon: <GitBranch className="w-3.5 h-3.5" /> },
-          { label: 'UI/UX Design', href: '/services/ui-ux-design', icon: <Palette className="w-3.5 h-3.5" /> },
-          { label: 'Data Analytics & BI', href: '/services/data-analytics', icon: <BarChart3 className="w-3.5 h-3.5" /> },
-          { label: 'Blockchain & Web3', href: '/services/blockchain', icon: <Workflow className="w-3.5 h-3.5" /> },
-          { label: 'IoT Solutions', href: '/services/iot-solutions', icon: <Radio className="w-3.5 h-3.5" /> },
-          { label: 'Digital Marketing', href: '/services/digital-marketing', icon: <Megaphone className="w-3.5 h-3.5" /> },
-        ],
-      },
-      {
-        heading: 'By Industry',
-        links: [
-          { label: 'Healthcare', href: '/industries/healthcare', icon: <HeartPulse className="w-3.5 h-3.5" /> },
-          { label: 'Finance & Banking', href: '/industries/finance', icon: <DollarSign className="w-3.5 h-3.5" /> },
-          { label: 'Retail & E-commerce', href: '/industries/retail', icon: <ShoppingBag className="w-3.5 h-3.5" /> },
-          { label: 'Manufacturing', href: '/industries/manufacturing', icon: <Factory className="w-3.5 h-3.5" /> },
-          { label: 'Government & Public', href: '/industries/government', icon: <Landmark className="w-3.5 h-3.5" /> },
-          { label: 'Education & EdTech', href: '/industries/education', icon: <GraduationCap className="w-3.5 h-3.5" /> },
-        ],
-      },
-    ],
-    footerLink: { label: 'View All Services', href: '/services' },
+    isNested: true,
   },
   {
     label: 'Who We Are',
@@ -123,7 +91,6 @@ const NAV_ITEMS = [
         ],
       },
     ],
-    // Live strip: recent awards
     liveStrip: {
       type: 'awards' as const,
       heading: 'Recent Recognitions',
@@ -150,7 +117,6 @@ const NAV_ITEMS = [
         ],
       },
     ],
-    // Live strip: latest blog posts
     liveStrip: {
       type: 'blogs' as const,
       heading: 'Latest Articles',
@@ -176,7 +142,6 @@ const NAV_ITEMS = [
         ],
       },
     ],
-    // Live strip: open jobs
     liveStrip: {
       type: 'jobs' as const,
       heading: 'Featured Openings',
@@ -186,9 +151,199 @@ const NAV_ITEMS = [
   {
     label: 'Industries',
     key: 'industries',
-    href: '/industries',
+    isNested: true,
   },
 ];
+
+// ─── Nested Nav Data ─────────────────────────────────────────────────────────
+
+const NESTED_NAV_DATA: Record<string, {
+  left: {
+    headline: string;
+    body: string;
+    ctaLabel: string;
+    ctaHref: string;
+  };
+  categories: {
+    label: string;
+    key: string;
+    columns: {
+      heading: string;
+      links: { label: string; href: string; icon?: React.ReactNode }[];
+    }[];
+  }[];
+}> = {
+  whatwedo: {
+    left: {
+      headline: "Enterprise IT, Delivered Right",
+      body: "We combine deep industry insights with advanced software engineering to design, deploy, and scale robust digital infrastructures.",
+      ctaLabel: "See how we deliver →",
+      ctaHref: "/services"
+    },
+    categories: [
+      {
+        label: "Core Services",
+        key: "core-services",
+        columns: [
+          {
+            heading: "Core Infrastructure",
+            links: [
+              { label: 'Cloud Solutions', href: '/services/cloud-solutions', icon: <Cloud className="w-3.5 h-3.5" /> },
+              { label: 'AI & Machine Learning', href: '/services/ai-machine-learning', icon: <Cpu className="w-3.5 h-3.5" /> },
+              { label: 'Software Development', href: '/services/software-development', icon: <Code2 className="w-3.5 h-3.5" /> },
+            ]
+          },
+          {
+            heading: "Web & Mobile Stacks",
+            links: [
+              { label: 'Web Development', href: '/services/web-development', icon: <Globe2 className="w-3.5 h-3.5" /> },
+              { label: 'App Development', href: '/services/application-development', icon: <Smartphone className="w-3.5 h-3.5" /> },
+              { label: 'Cybersecurity', href: '/services/cyber-security', icon: <Shield className="w-3.5 h-3.5" /> },
+            ]
+          }
+        ]
+      },
+      {
+        label: "Digital Solutions",
+        key: "digital-solutions",
+        columns: [
+          {
+            heading: "Modern Automation",
+            links: [
+              { label: 'DevOps & GitOps', href: '/services/devops', icon: <GitBranch className="w-3.5 h-3.5" /> },
+              { label: 'UI/UX Design', href: '/services/ui-ux-design', icon: <Palette className="w-3.5 h-3.5" /> },
+              { label: 'Data Analytics & BI', href: '/services/data-analytics', icon: <BarChart3 className="w-3.5 h-3.5" /> },
+            ]
+          },
+          {
+            heading: "Emerging Platforms",
+            links: [
+              { label: 'Blockchain & Web3', href: '/services/blockchain', icon: <Workflow className="w-3.5 h-3.5" /> },
+              { label: 'IoT Solutions', href: '/services/iot-solutions', icon: <Radio className="w-3.5 h-3.5" /> },
+              { label: 'Digital Marketing', href: '/services/digital-marketing', icon: <Megaphone className="w-3.5 h-3.5" /> },
+            ]
+          }
+        ]
+      },
+      {
+        label: "By Industry",
+        key: "by-industry",
+        columns: [
+          {
+            heading: "Financial & Health",
+            links: [
+              { label: 'Healthcare & Life Sciences', href: '/industries/healthcare', icon: <HeartPulse className="w-3.5 h-3.5" /> },
+              { label: 'Banking & Finance', href: '/industries/finance', icon: <DollarSign className="w-3.5 h-3.5" /> },
+              { label: 'Retail & E-commerce', href: '/industries/retail', icon: <ShoppingBag className="w-3.5 h-3.5" /> },
+            ]
+          },
+          {
+            heading: "Public & Scale",
+            links: [
+              { label: 'Manufacturing', href: '/industries/manufacturing', icon: <Factory className="w-3.5 h-3.5" /> },
+              { label: 'Government & Public', href: '/industries/government', icon: <Landmark className="w-3.5 h-3.5" /> },
+              { label: 'Education & EdTech', href: '/industries/education', icon: <GraduationCap className="w-3.5 h-3.5" /> },
+            ]
+          }
+        ]
+      },
+      {
+        label: "Products & Platforms",
+        key: "products-platforms",
+        columns: [
+          {
+            heading: "AI Platforms",
+            links: [
+              { label: 'GangaTara AI Studio', href: '/products', icon: <Cpu className="w-3.5 h-3.5" /> },
+              { label: 'CloudOps Suite', href: '/products', icon: <Cloud className="w-3.5 h-3.5" /> },
+              { label: 'DataBridge ETL', href: '/products', icon: <BarChart3 className="w-3.5 h-3.5" /> },
+            ]
+          },
+          {
+            heading: "Security & LMS",
+            links: [
+              { label: 'Sentry ZTNA', href: '/products', icon: <Shield className="w-3.5 h-3.5" /> },
+              { label: 'GangaTara LMS', href: '/products', icon: <GraduationCap className="w-3.5 h-3.5" /> },
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  industries: {
+    left: {
+      headline: "Sector-Specific Engineering",
+      body: "We align digital systems with the operational realities and regulatory compliance of every major industry vertical.",
+      ctaLabel: "See how we deliver →",
+      ctaHref: "/industries"
+    },
+    categories: [
+      {
+        label: "Key Industries",
+        key: "key-industries",
+        columns: [
+          {
+            heading: "Private Sector Practice",
+            links: [
+              { label: 'Healthcare & Life Sciences', href: '/industries/healthcare', icon: <HeartPulse className="w-3.5 h-3.5" /> },
+              { label: 'Banking & Finance', href: '/industries/finance', icon: <DollarSign className="w-3.5 h-3.5" /> },
+              { label: 'Retail & E-commerce', href: '/industries/retail', icon: <ShoppingBag className="w-3.5 h-3.5" /> },
+              { label: 'Manufacturing', href: '/industries/manufacturing', icon: <Factory className="w-3.5 h-3.5" /> },
+            ]
+          },
+          {
+            heading: "Public & Services Practice",
+            links: [
+              { label: 'Education & EdTech', href: '/industries/education', icon: <GraduationCap className="w-3.5 h-3.5" /> },
+              { label: 'Government & Public', href: '/industries/government', icon: <Landmark className="w-3.5 h-3.5" /> },
+            ]
+          }
+        ]
+      },
+      {
+        label: "Case Studies",
+        key: "case-studies",
+        columns: [
+          {
+            heading: "Active Scopes",
+            links: [
+              { label: 'MediHealth Group', href: '/case-studies', icon: <Briefcase className="w-3.5 h-3.5" /> },
+              { label: 'Apex Global Finance', href: '/case-studies', icon: <Briefcase className="w-3.5 h-3.5" /> },
+              { label: 'ShopSmart E-Commerce', href: '/case-studies', icon: <Briefcase className="w-3.5 h-3.5" /> },
+            ]
+          },
+          {
+            heading: "Academic & Public",
+            links: [
+              { label: 'EduStream Platform', href: '/case-studies', icon: <Briefcase className="w-3.5 h-3.5" /> },
+              { label: 'GovConnect Portal', href: '/case-studies', icon: <Briefcase className="w-3.5 h-3.5" /> },
+            ]
+          }
+        ]
+      },
+      {
+        label: "Our Accreditations",
+        key: "accreditations",
+        columns: [
+          {
+            heading: "Partner Status",
+            links: [
+              { label: 'AWS Advanced Partner', href: '/about#partners', icon: <Award className="w-3.5 h-3.5" /> },
+              { label: 'GCP Consulting Partner', href: '/about#partners', icon: <Award className="w-3.5 h-3.5" /> },
+            ]
+          },
+          {
+            heading: "Security & Audits",
+            links: [
+              { label: 'ISO 27001 Certified', href: '/about#certifications', icon: <Shield className="w-3.5 h-3.5" /> },
+              { label: 'SOC 2 Type II Certified', href: '/about#certifications', icon: <Shield className="w-3.5 h-3.5" /> },
+            ]
+          }
+        ]
+      }
+    ]
+  }
+};
 
 // ─── Mega Menu Live Strip ─────────────────────────────────────────────────────
 
@@ -231,7 +386,7 @@ interface MegaMenuPanelProps {
 }
 
 const MegaMenuPanel: React.FC<MegaMenuPanelProps> = ({ item, isActive, onMouseEnter, onMouseLeave, isActivePath }) => {
-  if (!item.columns) return null;
+  if (item.isNested || !item.columns) return null;
   const colCount = item.columns.length;
   const panelWidth = colCount === 3 ? 860 : colCount === 2 ? 580 : 360;
 
@@ -307,10 +462,112 @@ const MegaMenuPanel: React.FC<MegaMenuPanelProps> = ({ item, isActive, onMouseEn
                 href={item.footerLink.href}
                 className="text-primary text-[12px] font-semibold hover:text-secondary flex items-center gap-1 transition-colors"
               >
-                {item.footerLink.label} <ArrowRight className="w-3 h-3" />
+                {item.footerLink.label} <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
           )}
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
+
+// ─── Nested Mega Menu Panel ───────────────────────────────────────────────────
+
+interface NestedMegaMenuPanelProps {
+  menuKey: 'whatwedo' | 'industries';
+  isActive: boolean;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
+  isActivePath: (href: string) => boolean;
+}
+
+const NestedMegaMenuPanel: React.FC<NestedMegaMenuPanelProps> = ({ menuKey, isActive, onMouseEnter, onMouseLeave, isActivePath }) => {
+  const data = NESTED_NAV_DATA[menuKey];
+  const [activeCatIdx, setActiveCatIdx] = useState(0);
+
+  if (!data) return null;
+
+  const activeCategory = data.categories[activeCatIdx] || data.categories[0];
+
+  return (
+    <AnimatePresence>
+      {isActive && (
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 4 }}
+          transition={{ duration: 0.18, ease: 'easeOut' }}
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
+          className="absolute top-[64px] left-0 bg-[#0D1526] border border-white/8 rounded-b-2xl shadow-2xl shadow-black/60 z-50 overflow-hidden flex"
+          style={{ width: 960 }}
+          role="menu"
+        >
+          {/* Left Panel - fixed 25% width */}
+          <div className="w-1/4 p-6 border-r border-white/6 bg-white/[0.01] flex flex-col justify-between">
+            <div>
+              <h4 className="text-white font-poppins font-bold text-[14px] leading-tight mb-3">
+                {data.left.headline}
+              </h4>
+              <p className="text-white/50 text-[11px] leading-relaxed">
+                {data.left.body}
+              </p>
+            </div>
+            <Link
+              href={data.left.ctaHref}
+              className="text-primary text-[11px] font-bold hover:text-secondary flex items-center gap-1 transition-colors mt-4"
+            >
+              {data.left.ctaLabel} <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+
+          {/* Middle Panel - Category Selectors 20% width */}
+          <div className="w-1/5 p-4 border-r border-white/6 bg-[#0B1120]/20 flex flex-col gap-0.5">
+            {data.categories.map((cat, idx) => (
+              <button
+                key={cat.key}
+                onMouseEnter={() => setActiveCatIdx(idx)}
+                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left text-[12px] font-semibold transition-all cursor-pointer border-0 outline-none
+                  ${activeCatIdx === idx ? 'text-primary bg-primary/8' : 'text-white/60 hover:text-white hover:bg-white/4'}
+                `}
+              >
+                {cat.label}
+                <ChevronRight className={`w-3.5 h-3.5 transition-transform ${activeCatIdx === idx ? 'translate-x-0.5 text-primary' : 'opacity-30 text-white/30'}`} />
+              </button>
+            ))}
+          </div>
+
+          {/* Right Panel - Links Display 55% width */}
+          <div className="flex-1 p-6 grid grid-cols-2 gap-8 bg-white/[0.005]">
+            {activeCategory.columns.map((col, ci) => (
+              <div key={ci}>
+                <p className="text-[9px] font-bold uppercase tracking-[0.22em] text-primary mb-4">
+                  {col.heading}
+                </p>
+                <ul className="flex flex-col gap-0.5">
+                  {col.links.map((link, li) => (
+                    <li key={li}>
+                      <Link
+                        href={link.href}
+                        role="menuitem"
+                        className={`flex items-center gap-2.5 py-1.5 px-2 rounded-lg text-[12.5px] font-medium transition-all group/link -mx-2 hover:underline
+                          ${isActivePath(link.href) ? 'text-primary' : 'text-white/60 hover:text-white'}
+                        `}
+                      >
+                        {link.icon && (
+                          <span className={`shrink-0 transition-colors ${isActivePath(link.href) ? 'text-primary' : 'text-white/30 group-hover/link:text-primary'}`}>
+                            {link.icon}
+                          </span>
+                        )}
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
@@ -507,13 +764,23 @@ export const Navbar: React.FC = () => {
                     `} />
                   </button>
 
-                  <MegaMenuPanel
-                    item={item}
-                    isActive={activeMegaMenu === item.key}
-                    onMouseEnter={() => handleMenuEnter(item.key)}
-                    onMouseLeave={handleMenuLeave}
-                    isActivePath={isActivePath}
-                  />
+                  {item.isNested ? (
+                    <NestedMegaMenuPanel
+                      menuKey={item.key as 'whatwedo' | 'industries'}
+                      isActive={activeMegaMenu === item.key}
+                      onMouseEnter={() => handleMenuEnter(item.key)}
+                      onMouseLeave={handleMenuLeave}
+                      isActivePath={isActivePath}
+                    />
+                  ) : (
+                    <MegaMenuPanel
+                      item={item}
+                      isActive={activeMegaMenu === item.key}
+                      onMouseEnter={() => handleMenuEnter(item.key)}
+                      onMouseLeave={handleMenuLeave}
+                      isActivePath={isActivePath}
+                    />
+                  )}
                 </div>
               )
             )}
@@ -676,7 +943,7 @@ export const Navbar: React.FC = () => {
                           <ChevronDown className={`w-4 h-4 transition-transform ${mobileExpanded === item.key ? 'rotate-180 text-primary' : 'opacity-40'}`} />
                         </button>
                         <AnimatePresence>
-                          {mobileExpanded === item.key && item.columns && (
+                          {mobileExpanded === item.key && (
                             <motion.div
                               initial={{ opacity: 0, height: 0 }}
                               animate={{ opacity: 1, height: 'auto' }}
@@ -684,31 +951,62 @@ export const Navbar: React.FC = () => {
                               transition={{ duration: 0.2 }}
                               className="overflow-hidden"
                             >
-                              {/* Intro */}
-                              {item.intro && (
-                                <div className="mx-4 mb-2 p-3 rounded-lg bg-white/3 border border-white/6">
-                                  <p className="text-[11px] font-bold text-white mb-0.5">{item.intro.headline}</p>
-                                  <p className="text-[10px] text-white/40 leading-relaxed">{item.intro.body}</p>
+                              {item.isNested ? (
+                                <div className="ml-4 mt-1 mb-2 flex flex-col gap-4 px-2 py-2 border-l border-white/8">
+                                  {NESTED_NAV_DATA[item.key as 'whatwedo' | 'industries']?.categories.map((cat, ci) => (
+                                    <div key={ci} className="flex flex-col gap-1.5">
+                                      <p className="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">
+                                        {cat.label}
+                                      </p>
+                                      {cat.columns.map((col, cj) => (
+                                        <div key={cj} className="flex flex-col gap-1">
+                                          {col.links.map((link, li) => (
+                                            <Link
+                                              key={li}
+                                              href={link.href}
+                                              onClick={() => setIsMobileMenuOpen(false)}
+                                              className="flex items-center gap-2 py-1.5 px-2 text-[13px] text-white/60 hover:text-white transition-all rounded-lg"
+                                            >
+                                              {link.icon && <span className="text-white/30">{link.icon}</span>}
+                                              {link.label}
+                                            </Link>
+                                          ))}
+                                        </div>
+                                      ))}
+                                    </div>
+                                  ))}
                                 </div>
+                              ) : (
+                                <>
+                                  {/* Intro */}
+                                  {item.intro && (
+                                    <div className="mx-4 mb-2 p-3 rounded-lg bg-white/3 border border-white/6">
+                                      <p className="text-[11px] font-bold text-white mb-0.5">{item.intro.headline}</p>
+                                      <p className="text-[10px] text-white/40 leading-relaxed">{item.intro.body}</p>
+                                    </div>
+                                  )}
+                                  {item.columns && (
+                                    <div className="ml-4 mt-1 mb-2 flex flex-col gap-3 px-2 py-2 border-l border-white/8">
+                                      {item.columns.map((col, ci) => (
+                                        <div key={ci}>
+                                          <p className="text-[9px] font-bold uppercase tracking-widest text-primary mb-2">{col.heading}</p>
+                                          {col.links.map((link, li) => (
+                                            <Link
+                                              key={li}
+                                              href={link.href}
+                                              onClick={() => setIsMobileMenuOpen(false)}
+                                              className="flex items-center gap-2 py-1.5 px-2 text-[13px] text-white/60 hover:text-white transition-colors rounded-lg hover:bg-white/4"
+                                            >
+                                              <span className="text-white/30">{link.icon}</span>
+                                              {link.label}
+                                            </Link>
+                                          ))}
+                                        </div>
+                                      ))}
+                                    </div>
+                                  )}
+                                </>
                               )}
-                              <div className="ml-4 mt-1 mb-2 flex flex-col gap-3 px-2 py-2 border-l border-white/8">
-                                {item.columns.map((col, ci) => (
-                                  <div key={ci}>
-                                    <p className="text-[9px] font-bold uppercase tracking-widest text-primary mb-2">{col.heading}</p>
-                                    {col.links.map((link, li) => (
-                                      <Link
-                                        key={li}
-                                        href={link.href}
-                                        onClick={() => setIsMobileMenuOpen(false)}
-                                        className="flex items-center gap-2 py-1.5 px-2 text-[13px] text-white/60 hover:text-white transition-colors rounded-lg hover:bg-white/4"
-                                      >
-                                        <span className="text-white/30">{link.icon}</span>
-                                        {link.label}
-                                      </Link>
-                                    ))}
-                                  </div>
-                                ))}
-                              </div>
                             </motion.div>
                           )}
                         </AnimatePresence>
