@@ -71,10 +71,20 @@ export const Testimonials: React.FC = () => {
 
               {/* Author Info */}
               <div className="flex items-center gap-4">
-                {/* Visual Avatar Placeholder container with initials */}
-                <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-primary to-secondary flex items-center justify-center font-bold text-white shadow-md">
-                  {current.name.split(' ').map(n => n[0]).join('')}
-                </div>
+                {/* Avatar: photo if path starts with /, else initials */}
+                {current.image && current.image.startsWith('/') ? (
+                  <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-primary/30 shadow-md flex-shrink-0">
+                    <img
+                      src={current.image}
+                      alt={current.name}
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-primary to-secondary flex items-center justify-center font-bold text-white shadow-md flex-shrink-0">
+                    {current.name.split(' ').map(n => n[0]).join('')}
+                  </div>
+                )}
                 <div>
                   <h4 className="text-sm font-bold text-dark dark:text-light">{current.name}</h4>
                   <p className="text-[11px] text-dark/60 dark:text-light/60">

@@ -708,7 +708,7 @@ export const Navbar: React.FC = () => {
         }`}
         style={{ top: isScrolled ? 0 : 32 }}
       >
-        <div className="max-w-screen-xl mx-auto px-6 h-[64px] flex items-center justify-between gap-6">
+        <div className="max-w-screen-xl mx-auto px-6 h-[64px] flex items-center justify-between gap-6 relative">
 
           {/* Logo */}
           <Link
@@ -748,7 +748,7 @@ export const Navbar: React.FC = () => {
                   key={item.key}
                   onMouseEnter={() => handleMenuEnter(item.key)}
                   onMouseLeave={handleMenuLeave}
-                  className="relative h-[64px] flex items-center"
+                  className={`${item.isNested ? '' : 'relative'} h-[64px] flex items-center`}
                 >
                   <button
                     className={`h-full flex items-center gap-1 px-4 text-[13px] font-medium tracking-wide transition-colors group cursor-pointer relative

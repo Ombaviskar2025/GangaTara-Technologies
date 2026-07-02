@@ -18,6 +18,7 @@ export interface IndustryItem {
   description: string;
   solutions: string[];
   stats: { label: string; value: string }[];
+  image: string;
 }
 
 export interface TechItem {
@@ -378,7 +379,8 @@ export const industriesData: IndustryItem[] = [
       { label: 'Patient Retention', value: '+40%' },
       { label: 'Ingestion Time', value: '-60%' },
       { label: 'Active Care Users', value: '4M+' }
-    ]
+    ],
+    image: '/ind_healthcare.png'
   },
   {
     id: 'finance',
@@ -391,7 +393,8 @@ export const industriesData: IndustryItem[] = [
       { label: 'Transaction Latency', value: '<5ms' },
       { label: 'Fraud Detection Rate', value: '99.8%' },
       { label: 'Compliance Audit Time', value: '-75%' }
-    ]
+    ],
+    image: '/ind_finance.png'
   },
   {
     id: 'retail',
@@ -404,7 +407,8 @@ export const industriesData: IndustryItem[] = [
       { label: 'Conversion Rates', value: '+22%' },
       { label: 'Inventory Updates', value: 'Real-time' },
       { label: 'System Load Capacity', value: '100k req/s' }
-    ]
+    ],
+    image: '/ind_retail.png'
   },
   {
     id: 'education',
@@ -417,7 +421,8 @@ export const industriesData: IndustryItem[] = [
       { label: 'User Engagement', value: '+35%' },
       { label: 'Platform Availability', value: '99.99%' },
       { label: 'Graduation Auditing', value: '-80%' }
-    ]
+    ],
+    image: '/ind_education.png'
   },
   {
     id: 'manufacturing',
@@ -430,7 +435,8 @@ export const industriesData: IndustryItem[] = [
       { label: 'Unplanned Outages', value: '-42%' },
       { label: 'Equipment Lifetime', value: '+18%' },
       { label: 'Data Latency', value: '<20ms' }
-    ]
+    ],
+    image: '/ind_manufacturing.png'
   },
   {
     id: 'logistics',
@@ -443,7 +449,8 @@ export const industriesData: IndustryItem[] = [
       { label: 'Fuel Cost Savings', value: '14%' },
       { label: 'Delivery Accuracy', value: '99.6%' },
       { label: 'Loading Processing', value: '-30%' }
-    ]
+    ],
+    image: '/ind_manufacturing.png'
   },
   {
     id: 'automobile',
@@ -456,7 +463,8 @@ export const industriesData: IndustryItem[] = [
       { label: 'Data Ingestion Rate', value: '2M/sec' },
       { label: 'Firmware Success Rate', value: '99.95%' },
       { label: 'Fleet Idle Time', value: '-25%' }
-    ]
+    ],
+    image: '/slide_datacenter.png'
   },
   {
     id: 'real-estate',
@@ -469,7 +477,8 @@ export const industriesData: IndustryItem[] = [
       { label: 'Lease Processing Time', value: '-70%' },
       { label: 'Virtual Tours Viewed', value: '1.2M+' },
       { label: 'Valuation Precision', value: '94.2%' }
-    ]
+    ],
+    image: '/slide_team.png'
   },
   {
     id: 'government',
@@ -482,7 +491,8 @@ export const industriesData: IndustryItem[] = [
       { label: 'Citizen Wait Times', value: '-55%' },
       { label: 'Data Breaches', value: '0' },
       { label: 'User Accessibility', value: '100%' }
-    ]
+    ],
+    image: '/ind_government.png'
   },
   {
     id: 'travel',
@@ -495,7 +505,8 @@ export const industriesData: IndustryItem[] = [
       { label: 'Booking Speed', value: '+300%' },
       { label: 'Dynamic Revenue Boost', value: '12%' },
       { label: 'Client Retention Rate', value: '+18%' }
-    ]
+    ],
+    image: '/slide_cloud.png'
   }
 ];
 
@@ -585,7 +596,7 @@ export const testimonialsData: TestimonialItem[] = [
     company: 'MediHealth Group Inc.',
     quote: 'GangaTara Technologies delivered a HIPAA-compliant serverless infrastructure that scaled flawlessly through our largest patient surge in history. Their technical depth and execution speed are world-class.',
     rating: 5,
-    image: 'sarah_jenkins'
+    image: '/avatar_sarah.png'
   },
   {
     id: 't2',
@@ -594,7 +605,7 @@ export const testimonialsData: TestimonialItem[] = [
     company: 'Apex Global Bank',
     quote: 'The AI fraud prevention system designed by their engineers reduced our evaluation latency to under 7 milliseconds while slashing false positive block triggers by 80%. An incredible engineering feat.',
     rating: 5,
-    image: 'david_vance'
+    image: '/ind_finance.png'
   },
   {
     id: 't3',
@@ -603,7 +614,7 @@ export const testimonialsData: TestimonialItem[] = [
     company: 'Veloce Apparel',
     quote: 'Our Black Friday site reliability went from a source of stress to a complete success. The Next.js frontend is stunningly fast, and our checkout conversions increased by 22% immediately.',
     rating: 5,
-    image: 'elena_rostova'
+    image: '/ind_retail.png'
   }
 ];
 
@@ -758,6 +769,7 @@ export interface WebinarItem {
   description: string;
   category: string;
   registerLink: string;
+  image: string;
 }
 
 export const webinarsData: WebinarItem[] = [
@@ -768,7 +780,8 @@ export const webinarsData: WebinarItem[] = [
     location: 'Virtual — Zoom Webinar',
     description: 'Learn how GangaTara architects design retrieval-augmented generation (RAG) systems that keep corporate data private while unlocking the full power of large language models.',
     category: 'AI & Machine Learning',
-    registerLink: '/contact'
+    registerLink: '/contact',
+    image: '/event_ai.png'
   },
   {
     id: 'w2',
@@ -777,7 +790,8 @@ export const webinarsData: WebinarItem[] = [
     location: 'Virtual — Google Meet',
     description: 'Our senior cloud architects share proven FinOps frameworks that help enterprise clients cut cloud spend by 30–40% without sacrificing performance or reliability.',
     category: 'Cloud & DevOps',
-    registerLink: '/contact'
+    registerLink: '/contact',
+    image: '/event_cloud.png'
   },
   {
     id: 'w3',
@@ -786,7 +800,8 @@ export const webinarsData: WebinarItem[] = [
     location: 'Munich, Germany + Virtual',
     description: 'A deep dive into implementing zero-trust network access, IAM strategies, and automated vulnerability scanning to protect your enterprise perimeter in 2026.',
     category: 'Cybersecurity',
-    registerLink: '/contact'
+    registerLink: '/contact',
+    image: '/event_security.png'
   }
 ];
 

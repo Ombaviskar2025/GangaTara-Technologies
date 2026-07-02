@@ -70,6 +70,23 @@ export const Industries: React.FC = () => {
                 className="h-full p-8 sm:p-10 rounded-3xl glass-card border border-light/20 dark:border-white/5 flex flex-col justify-between"
               >
                 <div>
+                  {/* Industry Hero Image */}
+                  <div className="w-full h-48 rounded-2xl overflow-hidden relative mb-6 border border-light/10 dark:border-white/5">
+                    <img
+                      src={activeInd.image}
+                      alt={activeInd.title}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-dark/70 via-dark/20 to-transparent pointer-events-none" />
+                    <div className="absolute bottom-4 left-4 flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white shadow-md">
+                        <DynamicIcon name={activeInd.iconName} className="w-4 h-4" />
+                      </div>
+                      <span className="text-white font-poppins font-bold text-sm">{activeInd.title}</span>
+                    </div>
+                  </div>
+
                   {/* Title & Description */}
                   <div className="flex items-center gap-4 mb-6">
                     <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white">

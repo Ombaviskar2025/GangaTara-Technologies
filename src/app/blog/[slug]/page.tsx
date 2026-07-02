@@ -98,6 +98,18 @@ export default function BlogDetailPage() {
         </header>
 
         {/* Content Body */}
+        {/* Hero Image */}
+        {blog.image && (
+          <div className="w-full h-64 sm:h-80 rounded-2xl overflow-hidden mb-8 relative border border-light/10 dark:border-white/5">
+            <img
+              src={`/${blog.image}.png`}
+              alt={blog.title}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-dark/30 via-transparent to-transparent pointer-events-none" />
+          </div>
+        )}
+
         <div className="prose dark:prose-invert max-w-none">
           {renderContent(blog.content)}
         </div>

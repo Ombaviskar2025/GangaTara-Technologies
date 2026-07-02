@@ -14,6 +14,7 @@ const CARDS = [
     gradient: 'from-blue-600/15 to-primary/10',
     iconColor: 'text-primary',
     iconBg: 'bg-primary/10 border-primary/20',
+    image: '/slide_team.png',
   },
   {
     icon: <BookOpen className="w-6 h-6" />,
@@ -23,6 +24,7 @@ const CARDS = [
     gradient: 'from-cyan-600/15 to-secondary/10',
     iconColor: 'text-secondary',
     iconBg: 'bg-secondary/10 border-secondary/20',
+    image: '/blog_ai.png',
   },
   {
     icon: <Trophy className="w-6 h-6" />,
@@ -32,6 +34,7 @@ const CARDS = [
     gradient: 'from-amber-600/15 to-yellow-500/10',
     iconColor: 'text-amber-500',
     iconBg: 'bg-amber-500/10 border-amber-500/20',
+    image: '/slide_datacenter.png',
   },
   {
     icon: <BarChart3 className="w-6 h-6" />,
@@ -41,6 +44,7 @@ const CARDS = [
     gradient: 'from-emerald-600/15 to-green-500/10',
     iconColor: 'text-emerald-500',
     iconBg: 'bg-emerald-500/10 border-emerald-500/20',
+    image: '/ind_healthcare.png',
   },
 ];
 
@@ -68,23 +72,36 @@ export const NewsInsightsRow: React.FC = () => {
             >
               <Link
                 href={card.href}
-                className={`group flex flex-col h-full p-6 rounded-2xl border border-dark/6 dark:border-white/6 bg-gradient-to-br ${card.gradient} hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all`}
+                className={`group flex flex-col h-full rounded-2xl border border-dark/6 dark:border-white/6 overflow-hidden hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all`}
               >
-                {/* Icon */}
-                <div className={`w-12 h-12 rounded-xl border flex items-center justify-center mb-5 ${card.iconBg} ${card.iconColor} group-hover:scale-110 transition-transform`}>
-                  {card.icon}
+                {/* Thumbnail image */}
+                <div className="w-full h-32 relative overflow-hidden">
+                  <img
+                    src={card.image}
+                    alt={card.label}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className={`absolute inset-0 bg-gradient-to-b ${card.gradient} pointer-events-none`} />
+                  <div className={`absolute top-3 left-3 w-9 h-9 rounded-xl border flex items-center justify-center ${card.iconBg} ${card.iconColor}`}>
+                    {card.icon}
+                  </div>
                 </div>
-                {/* Label */}
-                <p className="text-[15px] font-bold text-dark dark:text-white mb-2 group-hover:text-primary transition-colors">
-                  {card.label}
-                </p>
-                {/* Description */}
-                <p className="text-[12px] text-dark/55 dark:text-white/50 leading-relaxed flex-1">
-                  {card.description}
-                </p>
-                {/* Read more */}
-                <div className="flex items-center gap-1.5 mt-4 text-[12px] font-semibold text-dark/40 dark:text-white/40 group-hover:text-primary transition-all">
-                  Explore <ArrowRight className="w-3.5 h-3.5 -translate-x-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+
+                {/* Text body */}
+                <div className={`flex flex-col flex-1 p-5 bg-gradient-to-br ${card.gradient}`}>
+                  {/* Label */}
+                  <p className="text-[15px] font-bold text-dark dark:text-white mb-2 group-hover:text-primary transition-colors">
+                    {card.label}
+                  </p>
+                  {/* Description */}
+                  <p className="text-[12px] text-dark/55 dark:text-white/50 leading-relaxed flex-1">
+                    {card.description}
+                  </p>
+                  {/* Read more */}
+                  <div className="flex items-center gap-1.5 mt-4 text-[12px] font-semibold text-dark/40 dark:text-white/40 group-hover:text-primary transition-all">
+                    Explore <ArrowRight className="w-3.5 h-3.5 -translate-x-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                  </div>
                 </div>
               </Link>
             </motion.div>

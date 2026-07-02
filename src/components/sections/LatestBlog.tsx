@@ -46,19 +46,27 @@ export const LatestBlog: React.FC = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group"
             >
-              <div className="h-full p-8 rounded-3xl glass-card border border-light/25 dark:border-white/5 hover:border-primary/25 flex flex-col justify-between transition-all duration-300">
+              <div className="h-full rounded-3xl glass-card border border-light/25 dark:border-white/5 hover:border-primary/25 flex flex-col transition-all duration-300 overflow-hidden">
+                {/* Blog Cover Image */}
+                <div className="w-full h-44 relative overflow-hidden">
+                  <img
+                    src={blog.image ? `/${blog.image}.png` : '/slide_ai.png'}
+                    alt={blog.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-dark/70 via-dark/20 to-transparent pointer-events-none" />
+                  <span className="absolute bottom-3 left-4 text-[9px] uppercase font-bold text-white tracking-widest bg-primary/80 px-2.5 py-0.5 rounded border border-primary/40 backdrop-blur-sm">
+                    {blog.category}
+                  </span>
+                  <span className="absolute top-3 right-3 flex items-center gap-1 text-[9px] text-white/80 font-semibold bg-dark/50 px-2 py-0.5 rounded backdrop-blur-sm">
+                    <Clock className="w-2.5 h-2.5" /> {blog.readTime}
+                  </span>
+                </div>
+
+                <div className="p-8 flex flex-col flex-grow justify-between">
                 <div>
                   
-                  {/* Category & Readtime */}
-                  <div className="flex items-center justify-between gap-4 mb-4">
-                    <span className="text-[9px] uppercase font-bold text-primary tracking-widest bg-primary/10 px-2.5 py-0.5 rounded border border-primary/20">
-                      {blog.category}
-                    </span>
-                    <span className="flex items-center gap-1 text-[10px] text-dark/40 dark:text-light/40 font-semibold">
-                      <Clock className="w-3 h-3" /> {blog.readTime}
-                    </span>
-                  </div>
-
                   {/* Title */}
                   <h3 className="text-lg sm:text-xl font-poppins font-bold text-dark dark:text-light mb-4 group-hover:text-primary transition-colors leading-tight">
                     {blog.title}
@@ -89,6 +97,8 @@ export const LatestBlog: React.FC = () => {
                   >
                     Read Article <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </Link>
+                </div>
+
                 </div>
 
               </div>

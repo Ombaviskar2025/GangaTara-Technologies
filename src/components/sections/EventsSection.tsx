@@ -54,17 +54,21 @@ export const EventsSection: React.FC = () => {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="group relative flex flex-col rounded-2xl border border-dark/8 dark:border-white/8 overflow-hidden hover:border-primary/40 transition-all bg-white dark:bg-white/3 hover:shadow-xl hover:shadow-primary/5"
               >
-                {/* Gradient visual header */}
-                <div className={`h-36 bg-gradient-to-br ${grad} relative`}>
-                  <div className="absolute inset-0 grid-bg opacity-20" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <p className="text-[9px] font-bold uppercase tracking-[0.25em] text-white/60 mb-1">{event.category}</p>
-                      <p className="text-white font-poppins font-bold text-sm px-4 leading-tight">{event.date}</p>
-                    </div>
+                {/* Event Image */}
+                <div className={`h-40 relative overflow-hidden`}>
+                  <img
+                    src={event.image}
+                    alt={event.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/30 to-transparent pointer-events-none" />
+                  {/* Date overlay */}
+                  <div className="absolute inset-0 flex items-end px-4 pb-3">
+                    <p className="text-white font-poppins font-bold text-sm leading-tight">{event.date}</p>
                   </div>
                   {/* Top badge */}
-                  <span className="absolute top-3 left-3 px-2.5 py-1 bg-white/10 border border-white/20 text-white text-[9px] font-bold uppercase tracking-widest rounded-full backdrop-blur-sm">
+                  <span className="absolute top-3 left-3 px-2.5 py-1 bg-dark/60 border border-white/20 text-white text-[9px] font-bold uppercase tracking-widest rounded-full backdrop-blur-sm">
                     {event.location.includes('Virtual') ? '🌐 Virtual' : '📍 In-Person'}
                   </span>
                 </div>
