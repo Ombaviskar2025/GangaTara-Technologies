@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Search, Globe, Sun, Moon, Menu, X, ChevronDown, 
-  ArrowRight, Lock, Laptop, Shield, Cpu, Cloud, Database,
+  ArrowRight, Laptop, Shield, Cpu, Cloud, Database,
   Phone, Mail
 } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
@@ -371,13 +371,7 @@ export const Navbar: React.FC = () => {
               {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
 
-            {/* Client Portal Button */}
-            <Link
-              href="/contact"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-light/20 dark:border-white/10 text-xs font-semibold hover:border-primary/50 text-dark dark:text-light hover:text-primary transition-all"
-            >
-              <Lock className="w-3.5 h-3.5" /> Portal
-            </Link>
+
 
             {/* Contact CTA */}
             <Link
@@ -475,12 +469,7 @@ export const Navbar: React.FC = () => {
 
             {/* CTAs */}
             <div className="mt-auto flex flex-col gap-3">
-              <Link
-                href="/contact"
-                className="w-full text-center py-3 rounded-xl border border-light/20 dark:border-white/10 text-sm font-bold text-dark dark:text-light hover:text-primary transition-colors flex items-center justify-center gap-1.5"
-              >
-                <Lock className="w-4 h-4" /> Client Portal
-              </Link>
+
               <Link
                 href="/contact"
                 className="w-full text-center py-3 rounded-xl bg-primary hover:bg-secondary text-white text-sm font-bold transition-colors shadow-lg"

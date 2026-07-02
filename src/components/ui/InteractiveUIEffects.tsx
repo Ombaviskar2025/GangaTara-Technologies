@@ -5,53 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUp, MessageSquare, Send, X } from 'lucide-react';
 
 export const InteractiveUIEffects: React.FC = () => {
-  // --- Custom Cursor ---
-  const cursorDotRef = useRef<HTMLDivElement>(null);
-  const cursorRingRef = useRef<HTMLDivElement>(null);
-  const [hasPointer, setHasPointer] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
 
-  useEffect(() => {
-    // Check if the device has a fine pointer (mouse)
-    const mediaQuery = window.matchMedia('(pointer: fine)');
-    setHasPointer(mediaQuery.matches);
-
-    if (!mediaQuery.matches) return;
-
-    const moveCursor = (e: MouseEvent) => {
-      if (cursorDotRef.current && cursorRingRef.current) {
-        // Instant position for the inner dot
-        cursorDotRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-        
-        // Soft lag position for the outer ring using transition or animate
-        cursorRingRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-      }
-    };
-
-    const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (
-        target.tagName === 'A' || 
-        target.tagName === 'BUTTON' || 
-        target.closest('a') || 
-        target.closest('button') || 
-        target.getAttribute('role') === 'button' ||
-        target.classList.contains('cursor-pointer')
-      ) {
-        setIsHovered(true);
-      } else {
-        setIsHovered(false);
-      }
-    };
-
-    window.addEventListener('mousemove', moveCursor);
-    window.addEventListener('mouseover', handleMouseOver);
-
-    return () => {
-      window.removeEventListener('mousemove', moveCursor);
-      window.removeEventListener('mouseover', handleMouseOver);
-    };
-  }, []);
 
   // --- Scroll Progress Bar ---
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -108,23 +62,7 @@ export const InteractiveUIEffects: React.FC = () => {
 
   return (
     <>
-      {/* 1. Custom Cursor */}
-      {hasPointer && (
-        <>
-          <div
-            ref={cursorDotRef}
-            className="fixed top-0 left-0 w-2 h-2 bg-primary rounded-full pointer-events-none z-50 -translate-x-1/2 -translate-y-1/2 transition-transform duration-75 ease-out"
-            style={{ mixBlendMode: 'difference' }}
-          />
-          <div
-            ref={cursorRingRef}
-            className={`fixed top-0 left-0 w-8 h-8 border border-secondary rounded-full pointer-events-none z-50 -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ease-out ${
-              isHovered ? 'scale-150 bg-primary/10 border-primary' : 'scale-100'
-            }`}
-            style={{ mixBlendMode: 'difference' }}
-          />
-        </>
-      )}
+
 
       {/* 2. Scroll Progress Bar */}
       <div className="fixed top-0 left-0 w-full h-[3px] bg-dark/20 dark:bg-light/10 z-50">

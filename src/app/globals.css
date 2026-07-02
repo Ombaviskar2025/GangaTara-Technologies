@@ -53,7 +53,6 @@
 /* Smooth Scrolling */
 html {
   scroll-behavior: smooth;
-  cursor: none; /* Hide default cursor to use custom cursor */
 }
 
 /* Fallback for devices without fine pointer (touch devices) */
