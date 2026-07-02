@@ -333,7 +333,7 @@ export const Navbar: React.FC = () => {
                 onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
                 className="p-2 text-dark/80 dark:text-light/80 hover:text-primary hover:bg-light/50 dark:hover:bg-white/5 rounded-xl flex items-center gap-1 transition-all cursor-pointer text-xs font-semibold"
               >
-                <Globe className="w-4 h-4" /> {language}
+                <Globe className="w-4 h-4" />
               </button>
               <AnimatePresence>
                 {isLangDropdownOpen && (
