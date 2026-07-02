@@ -5,6 +5,36 @@ import { motion } from 'framer-motion';
 import { Cpu, Terminal, Shield, CheckCircle } from 'lucide-react';
 import { technologiesData } from '@/data/companyData';
 
+const getDeviconUrl = (iconType: string) => {
+  let name = iconType;
+  let fileType = 'original'; // original, plain, line
+  
+  if (iconType === 'vue') {
+    name = 'vuejs';
+  } else if (iconType === 'node') {
+    name = 'nodejs';
+  } else if (iconType === 'springboot') {
+    name = 'spring';
+  } else if (iconType === 'dotnet') {
+    name = 'dot-net';
+  } else if (iconType === 'reactnative') {
+    name = 'react';
+  } else if (iconType === 'aws') {
+    name = 'amazonwebservices';
+    fileType = 'original-wordmark';
+  } else if (iconType === 'gcp') {
+    name = 'googlecloud';
+  } else if (iconType === 'kubernetes') {
+    fileType = 'plain';
+  } else if (iconType === 'graphql') {
+    fileType = 'plain';
+  } else if (iconType === 'tensorflow') {
+    fileType = 'line';
+  }
+  
+  return `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${name}/${name}-${fileType}.svg`;
+};
+
 export default function TechnologiesPage() {
   const categories = [
     { key: 'frontend', label: 'Frontend Libraries' },
@@ -59,8 +89,22 @@ export default function TechnologiesPage() {
                     key={tech.name}
                     className="p-5 rounded-2xl bg-light/50 dark:bg-white/5 border border-light/15 dark:border-white/5 flex flex-col items-center justify-center text-center group hover:border-primary/20 transition-all cursor-pointer"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/10 to-secondary/15 flex items-center justify-center text-primary mb-3 group-hover:scale-110 transition-transform">
-                      <span className="font-poppins font-extrabold text-xs">{tech.name.slice(0, 2)}</span>
+                    <div className="w-12 h-12 rounded-xl bg-slate-900/5 dark:bg-white/5 flex items-center justify-center group-hover:scale-110 transition-all duration-300 mb-3 p-2">
+                      <img 
+                        src={getDeviconUrl(tech.iconType)} 
+                        alt={tech.name} 
+                        className="w-full h-full object-contain filter group-hover:brightness-110 transition-all"
+                        onError={(e) => {
+                          (e.target as HTMLElement).style.display = 'none';
+                          const parent = (e.target as HTMLElement).parentElement;
+                          if (parent) {
+                            const span = document.createElement('span');
+                            span.className = "font-poppins font-extrabold text-xs text-primary";
+                            span.innerText = tech.name.slice(0, 2);
+                            parent.appendChild(span);
+                          }
+                        }}
+                      />
                     </div>
                     <span className="text-xs font-semibold text-dark dark:text-light group-hover:text-primary transition-colors">
                       {tech.name}

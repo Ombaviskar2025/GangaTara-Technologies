@@ -11,12 +11,18 @@ interface StatItemProps {
 }
 
 const StatItem: React.FC<StatItemProps> = ({ value, suffix, label, description }) => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(value); // Default to target value for SSR / instant load
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
-    if (!isInView) return;
+    // Reset to 0 on mount to trigger animation
+    setCount(0);
+  }, []);
+
+  useEffect(() => {
+    if (!isInView || hasAnimated) return;
 
     let start = 0;
     const duration = 2000; // 2 seconds
@@ -30,6 +36,7 @@ const StatItem: React.FC<StatItemProps> = ({ value, suffix, label, description }
       start += Math.ceil(end / 100); // increment by steps
       if (start >= end) {
         setCount(end);
+        setHasAnimated(true);
         clearInterval(timer);
       } else {
         setCount(start);
@@ -37,7 +44,7 @@ const StatItem: React.FC<StatItemProps> = ({ value, suffix, label, description }
     }, incrementTime);
 
     return () => clearInterval(timer);
-  }, [isInView, value]);
+  }, [isInView, value, hasAnimated]);
 
   return (
     <div ref={ref} className="p-6 rounded-2xl glass-card flex flex-col items-center justify-center text-center">
@@ -52,11 +59,13 @@ const StatItem: React.FC<StatItemProps> = ({ value, suffix, label, description }
 };
 
 export const Statistics: React.FC = () => {
+  const yearsExp = new Date().getFullYear() - 2006;
+  
   const stats = [
     { value: 1000, suffix: '+', label: 'Global Talents', description: 'Experienced engineers, architects, and designers.' },
     { value: 50, suffix: '+', label: 'Countries Covered', description: 'Enterprise operations across multiple continents.' },
     { value: 500, suffix: '+', label: 'Satisfied Clients', description: 'From fast-scaling startups to Fortune 500 giants.' },
-    { value: 20, suffix: '+', label: 'Years Experience', description: 'Delivering robust technological solutions since 2006.' }
+    { value: yearsExp, suffix: '+', label: 'Years Experience', description: `Delivering robust technological solutions since 2006.` }
   ];
 
   return (

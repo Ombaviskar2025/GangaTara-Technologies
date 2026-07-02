@@ -583,7 +583,7 @@ export const testimonialsData: TestimonialItem[] = [
     name: 'Sarah Jenkins',
     role: 'Chief Technology Officer',
     company: 'MediHealth Group Inc.',
-    quote: 'Antigravity delivered a HIPAA-compliant serverless infrastructure that scaled flawlessly through our largest patient surge in history. Their technical depth and execution speed are world-class.',
+    quote: 'GangaTara Technologies delivered a HIPAA-compliant serverless infrastructure that scaled flawlessly through our largest patient surge in history. Their technical depth and execution speed are world-class.',
     rating: 5,
     image: 'sarah_jenkins'
   },

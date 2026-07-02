@@ -154,7 +154,7 @@ export const InteractiveUIEffects: React.FC = () => {
 
         {/* WhatsApp Button */}
         <a
-          href="https://wa.me/1234567890"
+          href="https://wa.me/919009494056"
           target="_blank"
           rel="noopener noreferrer"
           className="p-3 bg-[#25D366] hover:bg-[#20BA56] text-white rounded-full shadow-lg flex items-center justify-center transition-colors cursor-pointer"

@@ -7,6 +7,36 @@ import { technologiesData } from '@/data/companyData';
 
 type Category = 'frontend' | 'backend' | 'cloud' | 'database' | 'mobile' | 'emerging';
 
+const getDeviconUrl = (iconType: string) => {
+  let name = iconType;
+  let fileType = 'original'; // original, plain, line
+  
+  if (iconType === 'vue') {
+    name = 'vuejs';
+  } else if (iconType === 'node') {
+    name = 'nodejs';
+  } else if (iconType === 'springboot') {
+    name = 'spring';
+  } else if (iconType === 'dotnet') {
+    name = 'dot-net';
+  } else if (iconType === 'reactnative') {
+    name = 'react';
+  } else if (iconType === 'aws') {
+    name = 'amazonwebservices';
+    fileType = 'original-wordmark';
+  } else if (iconType === 'gcp') {
+    name = 'googlecloud';
+  } else if (iconType === 'kubernetes') {
+    fileType = 'plain';
+  } else if (iconType === 'graphql') {
+    fileType = 'plain';
+  } else if (iconType === 'tensorflow') {
+    fileType = 'line';
+  }
+  
+  return `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${name}/${name}-${fileType}.svg`;
+};
+
 export const Technologies: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<Category>('frontend');
 
@@ -74,11 +104,23 @@ export const Technologies: React.FC = () => {
                   key={tech.name}
                   className="p-6 rounded-2xl glass-card border border-light/20 dark:border-white/5 hover:border-primary/30 flex flex-col items-center justify-center text-center group cursor-pointer"
                 >
-                  {/* Decorative glowing background on card hover */}
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/10 to-secondary/15 flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300 mb-4">
-                    <span className="font-poppins font-black text-sm uppercase tracking-wide">
-                      {tech.name.slice(0, 2)}
-                    </span>
+                  {/* Technology Logo */}
+                  <div className="w-12 h-12 rounded-xl bg-slate-900/5 dark:bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 mb-4 p-2">
+                    <img 
+                      src={getDeviconUrl(tech.iconType)} 
+                      alt={tech.name} 
+                      className="w-full h-full object-contain filter group-hover:brightness-110 transition-all"
+                      onError={(e) => {
+                        (e.target as HTMLElement).style.display = 'none';
+                        const parent = (e.target as HTMLElement).parentElement;
+                        if (parent) {
+                          const span = document.createElement('span');
+                          span.className = "font-poppins font-extrabold text-xs text-primary";
+                          span.innerText = tech.name.slice(0, 2);
+                          parent.appendChild(span);
+                        }
+                      }}
+                    />
                   </div>
                   <span className="text-xs font-semibold text-dark dark:text-light group-hover:text-primary transition-colors">
                     {tech.name}
