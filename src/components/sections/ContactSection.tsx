@@ -11,7 +11,9 @@ export const ContactSection: React.FC = () => {
     phone: '',
     company: '',
     service: 'cloud-solutions',
-    message: ''
+    message: '',
+    summary: '',
+    advancePayment: false
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -29,7 +31,9 @@ export const ContactSection: React.FC = () => {
       phone: '',
       company: '',
       service: 'cloud-solutions',
-      message: ''
+      message: '',
+      summary: '',
+      advancePayment: false
     });
     setTimeout(() => setSubmitted(false), 5000);
   };
@@ -211,6 +215,29 @@ export const ContactSection: React.FC = () => {
                     className="px-4 py-3 bg-white/5 border border-dark/15 dark:border-white/10 rounded-xl text-xs text-dark dark:text-white focus:outline-none focus:border-primary placeholder-dark/30 dark:placeholder-white/20 resize-none"
                   />
                 </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-[10px] uppercase tracking-wider font-bold text-dark/60 dark:text-light/60">Summarize Project / Requirements</label>
+                  <textarea
+                    rows={2}
+                    value={formData.summary}
+                    onChange={(e) => setFormData({ ...formData, summary: e.target.value })}
+                    placeholder="Short 1-sentence summary of your requirements..."
+                    className="px-4 py-3 bg-white/5 border border-dark/15 dark:border-white/10 rounded-xl text-xs text-dark dark:text-white focus:outline-none focus:border-primary placeholder-dark/30 dark:placeholder-white/20 resize-none"
+                  />
+                </div>
+
+                <label className="flex items-start gap-2.5 cursor-pointer mt-1">
+                  <input
+                    type="checkbox"
+                    checked={formData.advancePayment}
+                    onChange={(e) => setFormData({ ...formData, advancePayment: e.target.checked })}
+                    className="w-4 h-4 rounded border-dark/15 dark:border-white/10 text-primary focus:ring-primary shrink-0 mt-0.5"
+                  />
+                  <span className="text-[11px] text-dark/60 dark:text-light/50 leading-snug">
+                    I agree to pay <strong className="text-dark dark:text-light">50% in advance</strong> to initiate the project lifecycle.
+                  </span>
+                </label>
 
                 <button
                   type="submit"

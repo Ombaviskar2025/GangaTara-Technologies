@@ -5,9 +5,11 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Terminal, Cpu, Cloud, Globe, CpuIcon, ShieldAlert } from 'lucide-react';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
+import { useContactModal } from '@/context/ContactModalContext';
 
 export const Hero: React.FC = () => {
   const { t } = useLanguage();
+  const { openModal } = useContactModal();
 
   const floatingIcons = [
     { icon: <Cpu className="w-6 h-6 text-primary" />, x: '10%', y: '20%', delay: 0 },
@@ -96,12 +98,12 @@ export const Hero: React.FC = () => {
               {t('hero.ctaPrimary')}
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
-            <Link
-              href="/contact"
-              className="px-8 py-4 rounded-2xl border border-dark/10 dark:border-white/10 text-dark dark:text-light hover:border-primary/50 hover:bg-primary/5 font-bold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
+            <button
+              onClick={openModal}
+              className="px-8 py-4 rounded-2xl border border-dark/10 dark:border-white/10 text-dark dark:text-light hover:border-primary/50 hover:bg-primary/5 font-bold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer bg-transparent outline-none"
             >
               {t('hero.ctaSecondary')}
-            </Link>
+            </button>
           </motion.div>
         </div>
 

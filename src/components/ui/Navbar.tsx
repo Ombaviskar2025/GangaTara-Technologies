@@ -14,6 +14,7 @@ import {
 import { useTheme } from '@/context/ThemeContext';
 import { useLanguage, Language } from '@/context/LanguageContext';
 import { blogsData, jobsData, awardsData } from '@/data/companyData';
+import { useContactModal } from '@/context/ContactModalContext';
 
 // ─── Icon Map ─────────────────────────────────────────────────────────────────
 
@@ -322,6 +323,7 @@ export const Navbar: React.FC = () => {
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
   const { language, setLanguage } = useLanguage();
+  const { openModal } = useContactModal();
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
@@ -532,12 +534,11 @@ export const Navbar: React.FC = () => {
             <div className="relative">
               <button
                 onClick={() => setIsLangOpen(!isLangOpen)}
-                className="flex items-center gap-1.5 px-2.5 py-2 text-white/50 hover:text-white hover:bg-white/5 rounded-lg transition-all cursor-pointer text-[12px] font-medium"
+                className="p-2.5 text-white/50 hover:text-white hover:bg-white/5 rounded-lg transition-all cursor-pointer"
                 aria-expanded={isLangOpen}
+                aria-label="Select language"
               >
                 <Globe className="w-[17px] h-[17px]" />
-                <span className="hidden 2xl:inline-block">Global ({language})</span>
-                <ChevronDown className={`w-3 h-3 transition-transform ${isLangOpen ? 'rotate-180' : ''}`} />
               </button>
               <AnimatePresence>
                 {isLangOpen && (
@@ -575,16 +576,19 @@ export const Navbar: React.FC = () => {
 
             <div className="w-px h-5 bg-white/10 mx-1" />
 
-            <Link href="/contact" className="text-[13px] font-medium text-white/60 hover:text-white px-2 py-1 transition-colors tracking-wide">
+            <button
+              onClick={openModal}
+              className="text-[13px] font-medium text-white/60 hover:text-white px-2 py-1 transition-colors tracking-wide cursor-pointer bg-transparent border-0 outline-none"
+            >
               Contact Us
-            </Link>
+            </button>
 
-            <Link
-              href="/contact"
-              className="ml-2 px-5 py-2 bg-primary hover:bg-secondary text-white text-[12px] font-bold rounded-lg transition-colors shadow-md shadow-primary/20"
+            <button
+              onClick={openModal}
+              className="ml-2 px-5 py-2 bg-primary hover:bg-secondary text-white text-[12px] font-bold rounded-lg transition-colors shadow-md shadow-primary/20 cursor-pointer border-0 outline-none"
             >
               Get a Quote
-            </Link>
+            </button>
           </div>
 
           {/* Mobile Controls */}
@@ -724,13 +728,15 @@ export const Navbar: React.FC = () => {
                   <Mail className="w-3.5 h-3.5 text-primary" />
                   info@gangatara.com
                 </div>
-                <Link
-                  href="/contact"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="mt-2 w-full py-3 rounded-xl bg-primary hover:bg-secondary text-white text-[13px] font-bold text-center transition-colors"
+                <button
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    openModal();
+                  }}
+                  className="mt-2 w-full py-3 rounded-xl bg-primary hover:bg-secondary text-white text-[13px] font-bold text-center transition-colors cursor-pointer border-0 outline-none"
                 >
                   Get a Quote
-                </Link>
+                </button>
               </div>
             </motion.div>
           </>

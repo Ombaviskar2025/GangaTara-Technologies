@@ -4,8 +4,11 @@ import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, Phone } from 'lucide-react';
+import { useContactModal } from '@/context/ContactModalContext';
 
 export const ClosingCTABand: React.FC = () => {
+  const { openModal } = useContactModal();
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-r from-primary via-[#0047DD] to-secondary py-16 sm:py-20">
       {/* Subtle grid texture */}
@@ -37,12 +40,12 @@ export const ClosingCTABand: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.15 }}
           className="flex flex-col sm:flex-row items-center gap-4 shrink-0"
         >
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-primary font-bold text-[14px] rounded-xl hover:bg-white/90 transition-all shadow-lg"
+          <button
+            onClick={openModal}
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-primary font-bold text-[14px] rounded-xl hover:bg-white/90 transition-all shadow-lg cursor-pointer border-0 outline-none"
           >
             Contact Us <ArrowRight className="w-4 h-4" />
-          </Link>
+          </button>
           <a
             href="tel:+919009494056"
             className="inline-flex items-center gap-2 px-8 py-3.5 bg-white/15 border border-white/25 text-white font-bold text-[14px] rounded-xl hover:bg-white/20 transition-all"

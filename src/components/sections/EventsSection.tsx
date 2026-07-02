@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, Calendar, MapPin, ExternalLink } from 'lucide-react';
 import { webinarsData } from '@/data/companyData';
+import { useContactModal } from '@/context/ContactModalContext';
 
 const CATEGORY_COLORS: Record<string, string> = {
   'AI & Machine Learning': 'from-purple-600/40 to-blue-700/40',
@@ -14,6 +15,8 @@ const CATEGORY_COLORS: Record<string, string> = {
 const DEFAULT_GRADIENT = 'from-primary/30 to-secondary/30';
 
 export const EventsSection: React.FC = () => {
+  const { openModal } = useContactModal();
+
   return (
     <section className="py-20 bg-light dark:bg-dark relative overflow-hidden">
       <div className="absolute inset-0 grid-bg opacity-30" />
@@ -30,12 +33,12 @@ export const EventsSection: React.FC = () => {
               Join our engineers and architects at upcoming workshops, webinars, and industry events.
             </p>
           </div>
-          <Link
-            href="/contact"
-            className="shrink-0 flex items-center gap-2 text-[13px] font-semibold text-primary hover:text-secondary transition-colors"
+          <button
+            onClick={openModal}
+            className="shrink-0 flex items-center gap-2 text-[13px] font-semibold text-primary hover:text-secondary transition-colors cursor-pointer bg-transparent border-0 outline-none"
           >
             Request a Private Session <ArrowRight className="w-4 h-4" />
-          </Link>
+          </button>
         </div>
 
         {/* Events grid */}
@@ -88,12 +91,12 @@ export const EventsSection: React.FC = () => {
                   </div>
 
                   {/* CTA */}
-                  <Link
-                    href={event.registerLink}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary/10 hover:bg-primary text-primary hover:text-white border border-primary/30 hover:border-primary rounded-lg text-[12px] font-bold transition-all"
+                  <button
+                    onClick={openModal}
+                    className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary/10 hover:bg-primary text-primary hover:text-white border border-primary/30 hover:border-primary rounded-lg text-[12px] font-bold transition-all cursor-pointer outline-none"
                   >
                     Register Now <ExternalLink className="w-3.5 h-3.5" />
-                  </Link>
+                  </button>
                 </div>
               </motion.article>
             );

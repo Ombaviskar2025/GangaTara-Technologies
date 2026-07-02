@@ -17,14 +17,10 @@ const StatItem: React.FC<StatItemProps> = ({ value, suffix, label, description }
   const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
-    // Reset to 0 on mount to trigger animation
-    setCount(0);
-  }, []);
-
-  useEffect(() => {
     if (!isInView || hasAnimated) return;
 
     let start = 0;
+    setCount(0); // Reset to 0 only when in view to start the animation
     const duration = 2000; // 2 seconds
     const end = value;
     if (start === end) return;

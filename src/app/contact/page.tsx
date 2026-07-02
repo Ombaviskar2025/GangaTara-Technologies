@@ -43,7 +43,9 @@ export default function ContactPage() {
     phone: '',
     company: '',
     service: 'cloud-solutions',
-    message: ''
+    message: '',
+    summary: '',
+    advancePayment: false
   });
   const [submitted, setSubmitted] = useState(false);
 
@@ -52,7 +54,16 @@ export default function ContactPage() {
     if (!formData.name || !formData.email || !formData.message) return;
 
     setSubmitted(true);
-    setFormData({ name: '', email: '', phone: '', company: '', service: 'cloud-solutions', message: '' });
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      company: '',
+      service: 'cloud-solutions',
+      message: '',
+      summary: '',
+      advancePayment: false
+    });
     setTimeout(() => setSubmitted(false), 5000);
   };
 
@@ -127,9 +138,31 @@ export default function ContactPage() {
                 rows={4}
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                placeholder="Briefly summarize your integration requirements..."
+                placeholder="Briefly describe your integration requirements..."
                 className="px-4 py-3 bg-white/5 border border-dark/15 dark:border-white/10 rounded-xl text-xs text-dark dark:text-white focus:outline-none focus:border-primary placeholder-dark/30 dark:placeholder-white/20 resize-none"
               />
+
+              <div className="flex flex-col gap-1.5">
+                <textarea
+                  rows={2}
+                  value={formData.summary}
+                  onChange={(e) => setFormData({ ...formData, summary: e.target.value })}
+                  placeholder="Summarize Project / Requirements (Short 1-sentence summary)..."
+                  className="px-4 py-3 bg-white/5 border border-dark/15 dark:border-white/10 rounded-xl text-xs text-dark dark:text-white focus:outline-none focus:border-primary placeholder-dark/30 dark:placeholder-white/20 resize-none"
+                />
+              </div>
+
+              <label className="flex items-start gap-2.5 cursor-pointer mt-1">
+                <input
+                  type="checkbox"
+                  checked={formData.advancePayment}
+                  onChange={(e) => setFormData({ ...formData, advancePayment: e.target.checked })}
+                  className="w-4 h-4 rounded border-dark/15 dark:border-white/10 text-primary focus:ring-primary shrink-0 mt-0.5"
+                />
+                <span className="text-[11px] text-dark/60 dark:text-light/50 leading-snug">
+                  I agree to pay <strong className="text-dark dark:text-light">50% in advance</strong> to start the project.
+                </span>
+              </label>
 
               <button
                 type="submit"
