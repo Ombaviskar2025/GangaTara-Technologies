@@ -25,6 +25,8 @@ export default function ServiceDetailPage() {
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [selectedService, setSelectedService] = useState(id);
+  const [summary, setSummary] = useState('');
+  const [advancePayment, setAdvancePayment] = useState(false);
   const [agreed, setAgreed] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
@@ -81,6 +83,8 @@ export default function ServiceDetailPage() {
     setName('');
     setPhone('');
     setEmail('');
+    setSummary('');
+    setAdvancePayment(false);
     setAgreed(false);
 
     setTimeout(() => {
@@ -256,8 +260,30 @@ export default function ServiceDetailPage() {
                   </select>
                 </div>
 
+                {/* Summarize Project / Requirements */}
+                <textarea
+                  placeholder="Summarize Project / Requirements"
+                  value={summary}
+                  onChange={(e) => setSummary(e.target.value)}
+                  rows={3}
+                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 text-slate-800 placeholder-slate-400 rounded-xl text-xs focus:outline-none focus:border-primary focus:bg-white transition-all resize-none"
+                />
+
+                {/* 50% Advance Payment Checkbox */}
+                <label className="flex items-start gap-2.5 cursor-pointer mt-1">
+                  <input
+                    type="checkbox"
+                    checked={advancePayment}
+                    onChange={(e) => setAdvancePayment(e.target.checked)}
+                    className="w-4 h-4 rounded text-primary focus:ring-primary shrink-0 mt-0.5"
+                  />
+                  <span className="text-[10px] sm:text-xs text-slate-500 leading-snug">
+                    I agree to pay <strong>50% in advance</strong> to start the project.
+                  </span>
+                </label>
+
                 {/* Agreement Checkbox */}
-                <label className="flex items-start gap-2.5 cursor-pointer mt-2">
+                <label className="flex items-start gap-2.5 cursor-pointer mt-1">
                   <input
                     type="checkbox"
                     checked={agreed}
@@ -265,7 +291,7 @@ export default function ServiceDetailPage() {
                     className="w-4 h-4 rounded text-primary focus:ring-primary shrink-0 mt-0.5"
                   />
                   <span className="text-[10px] sm:text-xs text-slate-500 leading-snug">
-                    I agree with our <Link href="/contact" className="text-primary hover:underline font-bold">Privacy Policy</Link> and <Link href="/contact" className="text-primary hover:underline font-bold">Terms Conditions</Link>
+                    I agree with our <Link href="/privacy-policy" className="text-primary hover:underline font-bold">Privacy Policy</Link> and <Link href="/terms-conditions" className="text-primary hover:underline font-bold">Terms Conditions</Link>
                   </span>
                 </label>
 
