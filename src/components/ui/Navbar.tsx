@@ -6,7 +6,8 @@ import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Search, Globe, Sun, Moon, Menu, X, ChevronDown, 
-  ArrowRight, Lock, Laptop, Shield, Cpu, Cloud, Database 
+  ArrowRight, Lock, Laptop, Shield, Cpu, Cloud, Database,
+  Phone, Mail
 } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import { useLanguage, Language } from '@/context/LanguageContext';
@@ -82,13 +83,27 @@ export const Navbar: React.FC = () => {
         )}
       </AnimatePresence>
 
+      {/* Top Contact Bar */}
+      <div className="bg-black text-white text-[10px] sm:text-xs py-2 px-6 flex justify-between items-center z-45 relative border-b border-white/5 h-[36px]">
+        <div className="max-w-7xl mx-auto w-full flex justify-between items-center">
+          <div className="flex items-center gap-4">
+            <span className="flex items-center gap-1.5"><Phone className="w-3.5 h-3.5 text-primary" /> Enquiry Now: +91 9009494056</span>
+            <span className="flex items-center gap-1.5"><Mail className="w-3.5 h-3.5 text-primary" /> Write Us: info@gangatara.com</span>
+          </div>
+          <div className="hidden sm:flex items-center gap-2 text-white/50 text-[10px] uppercase font-bold tracking-widest">
+            <span>Enterprise Solutions</span>
+          </div>
+        </div>
+      </div>
+
       {/* Main Header Container */}
       <header
-        className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 ${
+        className={`fixed left-0 w-full z-40 transition-all duration-500 ${
           isScrolled 
-            ? 'bg-light/85 dark:bg-dark/85 backdrop-blur-md shadow-lg border-b border-light/10 dark:border-white/5 py-4' 
+            ? 'bg-light/85 dark:bg-dark/85 backdrop-blur-md shadow-lg border-b border-light/10 dark:border-white/5 py-4 top-0' 
             : 'bg-transparent py-6'
         }`}
+        style={{ top: isScrolled ? '0px' : '36px' }}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
@@ -139,22 +154,80 @@ export const Navbar: React.FC = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
-                    className="absolute top-8 left-1/2 -translate-x-1/2 w-[850px] p-6 rounded-2xl glass-panel shadow-2xl border border-light/20 dark:border-white/5 grid grid-cols-3 gap-6 bg-light/95 dark:bg-dark/95 backdrop-blur-xl"
+                    className="absolute top-8 left-1/2 -translate-x-1/2 w-[850px] p-6 rounded-2xl glass-panel shadow-2xl border border-light/20 dark:border-white/5 grid grid-cols-3 gap-8 bg-light/95 dark:bg-dark/95 backdrop-blur-xl"
                   >
-                    {servicesData.slice(0, 9).map((srv) => (
-                      <Link 
-                        key={srv.id} 
-                        href={`/services/${srv.id}`}
-                        className="p-3 rounded-xl hover:bg-primary/5 dark:hover:bg-white/5 border border-transparent hover:border-primary/10 transition-all group"
-                      >
-                        <h4 className="text-sm font-bold text-dark dark:text-light group-hover:text-primary transition-colors flex items-center gap-2">
-                          {srv.title} <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                        </h4>
-                        <p className="text-[11px] text-dark/60 dark:text-light/60 mt-1 line-clamp-2">{srv.shortDesc}</p>
-                      </Link>
-                    ))}
+                    {/* Column 1: Web Development */}
+                    <Link 
+                      href="/services/web-development"
+                      className="p-4 rounded-2xl hover:bg-primary/5 dark:hover:bg-white/5 border border-transparent hover:border-primary/10 transition-all group flex flex-col items-center text-center text-dark dark:text-light"
+                    >
+                      <svg viewBox="0 0 200 120" className="w-full h-24 mb-4 text-primary group-hover:scale-105 transition-transform duration-300">
+                        <rect x="30" y="10" width="80" height="50" rx="4" fill="none" stroke="currentColor" strokeWidth="2" />
+                        <line x1="30" y1="50" x2="110" y2="50" stroke="currentColor" strokeWidth="1" />
+                        <line x1="70" y1="60" x2="70" y2="70" stroke="currentColor" strokeWidth="2" />
+                        <line x1="60" y1="70" x2="80" y2="70" stroke="currentColor" strokeWidth="2" />
+                        <circle cx="130" cy="50" r="10" fill="none" stroke="currentColor" strokeWidth="2" />
+                        <path d="M115,75 C115,65 145,65 145,75" fill="none" stroke="currentColor" strokeWidth="2" />
+                        <rect x="120" y="68" width="20" height="12" rx="1" fill="none" stroke="currentColor" strokeWidth="2" />
+                        <path d="M10,35 L20,30 L20,40 Z" fill="none" stroke="currentColor" strokeWidth="1" />
+                        <path d="M170,30 L160,35 L170,40" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                        <circle cx="160" cy="15" r="4" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                      </svg>
+                      <h4 className="text-sm font-bold text-dark dark:text-light group-hover:text-primary transition-colors flex items-center gap-2">
+                        Web Development <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                      </h4>
+                      <p className="text-[11px] text-dark/60 dark:text-light/60 mt-1">Settle/Shift Online</p>
+                    </Link>
+
+                    {/* Column 2: Application Development */}
+                    <Link 
+                      href="/services/application-development"
+                      className="p-4 rounded-2xl hover:bg-primary/5 dark:hover:bg-white/5 border border-transparent hover:border-primary/10 transition-all group flex flex-col items-center text-center text-dark dark:text-light"
+                    >
+                      <svg viewBox="0 0 200 120" className="w-full h-24 mb-4 text-primary group-hover:scale-105 transition-transform duration-300">
+                        <rect x="75" y="15" width="50" height="90" rx="8" fill="none" stroke="currentColor" strokeWidth="2" />
+                        <line x1="95" y1="20" x2="105" y2="20" stroke="currentColor" strokeWidth="2" />
+                        <circle cx="100" cy="100" r="3" fill="currentColor" />
+                        <rect x="83" y="30" width="10" height="10" rx="1" fill="currentColor" fillOpacity="0.2" />
+                        <rect x="107" y="30" width="10" height="10" rx="1" fill="currentColor" fillOpacity="0.2" />
+                        <rect x="83" y="45" width="10" height="10" rx="1" fill="currentColor" fillOpacity="0.2" />
+                        <rect x="107" y="45" width="10" height="10" rx="1" fill="currentColor" fillOpacity="0.2" />
+                        <line x1="40" y1="90" x2="70" y2="40" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 3" />
+                        <line x1="70" y1="40" x2="90" y2="40" stroke="currentColor" strokeWidth="1.5" />
+                        <circle cx="40" cy="90" r="3" fill="currentColor" />
+                        <circle cx="150" cy="30" r="5" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                        <line x1="125" y1="45" x2="145" y2="35" stroke="currentColor" strokeWidth="1.5" />
+                      </svg>
+                      <h4 className="text-sm font-bold text-dark dark:text-light group-hover:text-primary transition-colors flex items-center gap-2">
+                        Application Development <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                      </h4>
+                      <p className="text-[11px] text-dark/60 dark:text-light/60 mt-1">Pocket In Pocket</p>
+                    </Link>
+
+                    {/* Column 3: Digital Marketing */}
+                    <Link 
+                      href="/services/digital-marketing"
+                      className="p-4 rounded-2xl hover:bg-primary/5 dark:hover:bg-white/5 border border-transparent hover:border-primary/10 transition-all group flex flex-col items-center text-center text-dark dark:text-light"
+                    >
+                      <svg viewBox="0 0 200 120" className="w-full h-24 mb-4 text-primary group-hover:scale-105 transition-transform duration-300">
+                        <rect x="80" y="20" width="50" height="85" rx="6" fill="none" stroke="currentColor" strokeWidth="2" />
+                        <line x1="80" y1="90" x2="130" y2="90" stroke="currentColor" strokeWidth="1" />
+                        <rect x="88" y="70" width="6" height="20" fill="currentColor" fillOpacity="0.3" />
+                        <rect x="98" y="60" width="6" height="30" fill="currentColor" fillOpacity="0.5" />
+                        <rect x="108" y="45" width="6" height="45" fill="currentColor" />
+                        <circle cx="50" cy="45" r="8" fill="none" stroke="currentColor" strokeWidth="2" />
+                        <path d="M35,70 C35,60 65,60 65,70" fill="none" stroke="currentColor" strokeWidth="2" />
+                        <path d="M120,40 L145,20 L155,30 M145,20 L135,22 M145,20 L143,30" fill="none" stroke="currentColor" strokeWidth="2" />
+                        <path d="M90,75 L110,55 L145,20" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="3 3" />
+                      </svg>
+                      <h4 className="text-sm font-bold text-dark dark:text-light group-hover:text-primary transition-colors flex items-center gap-2">
+                        Digital Marketing <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                      </h4>
+                      <p className="text-[11px] text-dark/60 dark:text-light/60 mt-1">Inside Virtual World Market</p>
+                    </Link>
+
                     <div className="col-span-3 border-t border-light/20 dark:border-white/5 pt-4 flex items-center justify-between">
-                      <p className="text-xs text-primary font-medium">Looking for custom integration? Let us help you design it.</p>
+                      <p className="text-xs text-primary font-semibold">Looking for custom integration? Let us help you design it.</p>
                       <Link href="/services" className="text-xs font-bold text-dark dark:text-light hover:text-primary flex items-center gap-1 transition-colors">
                         View All Services <ArrowRight className="w-3 h-3" />
                       </Link>

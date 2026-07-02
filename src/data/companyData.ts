@@ -7,6 +7,7 @@ export interface ServiceItem {
   features: string[];
   benefits: string[];
   technologies: string[];
+  caption?: string;
 }
 
 export interface IndustryItem {
@@ -153,6 +154,7 @@ export const servicesData: ServiceItem[] = [
   {
     id: 'web-development',
     title: 'Web Development',
+    caption: 'Settle/Shift Online',
     shortDesc: 'High-speed, SEO-optimized, and premium web portals designed for maximum user engagement.',
     iconName: 'Globe',
     description: 'Create lightning-fast, visually breathtaking web portals that render instantly across all client form-factors. We build responsive Next.js and React applications backed by robust Content Delivery Networks, featuring state-of-the-art security, page loads under a second, and interactive UI states.',
@@ -172,8 +174,9 @@ export const servicesData: ServiceItem[] = [
     technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Node.js']
   },
   {
-    id: 'mobile-app-development',
-    title: 'Mobile App Development',
+    id: 'application-development',
+    title: 'Application Development',
+    caption: 'Pocket In Pocket',
     shortDesc: 'Cross-platform and native mobile apps with smooth interactive states and offline capabilities.',
     iconName: 'Smartphone',
     description: 'Connect with your clients on the go. We design cross-platform and native mobile apps that balance native operating system performance with high developer velocity. Our mobile engineering processes ensure offline-first support, strict biometric data encryption, and instant background syncs.',
@@ -338,6 +341,28 @@ export const servicesData: ServiceItem[] = [
       'Attract top developer talent by introducing modern tools'
     ],
     technologies: ['Next.js', 'Jira / Confluence', 'MuleSoft', 'Microsoft Power Platform']
+  },
+  {
+    id: 'digital-marketing',
+    title: 'Digital Marketing',
+    caption: 'Inside Virtual World Market',
+    shortDesc: 'Drive high-conversion user acquisition campaigns, optimize search engine visibility, and scale brand reach.',
+    iconName: 'Megaphone',
+    description: 'We scale your digital presence globally. Our digital marketing practices leverage search engine optimization, advanced tracking telemetry, data-driven ad management, and strategic content planning to drive corporate visibility and client acquisition.',
+    features: [
+      'Search Engine Optimization (SEO) & Audits',
+      'Data-Driven PPC & Social Media Campaigns',
+      'Conversion Rate Optimization (CRO) Telemetry',
+      'Brand Strategy & Multi-Channel Marketing',
+      'Advanced Marketing Analytics & BI Dashboards'
+    ],
+    benefits: [
+      'Boost organic business traffic by up to 150%',
+      'Lower client acquisition costs through ad and budget optimizations',
+      'Trace exact user pathways from initial ad impressions to conversions',
+      'Establish a consistent, authoritative brand voice across digital networks'
+    ],
+    technologies: ['Google Analytics', 'Google Ads', 'SEMrush', 'HubSpot', 'Meta Ads']
   }
 ];
 
