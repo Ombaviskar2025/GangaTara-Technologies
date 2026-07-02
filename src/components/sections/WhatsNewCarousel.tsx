@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { whatsNewData } from '@/data/companyData';
@@ -60,13 +59,11 @@ export const WhatsNewCarousel: React.FC = () => {
             transition={{ duration: 0.6, ease: 'easeInOut' }}
           >
             {/* Background image with overlay */}
-            <Image
+            <img
               src={slide.image}
               alt={slide.headline}
-              fill
-              className="object-cover"
+              className="absolute inset-0 w-full h-full object-cover"
               loading="lazy"
-              sizes="100vw"
             />
             {/* Gradient overlay for text legibility */}
             <div

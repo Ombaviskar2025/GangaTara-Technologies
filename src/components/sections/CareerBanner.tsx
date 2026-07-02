@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 
@@ -12,13 +11,11 @@ export const CareerBanner: React.FC = () => {
   return (
     <section className="relative overflow-hidden min-h-[420px] flex items-center" aria-label="Careers at GangaTara Technologies">
       {/* Background image */}
-      <Image
+      <img
         src="/career_banner.png"
         alt="GangaTara Technologies engineering team collaborating on enterprise software"
-        fill
-        className="object-cover"
+        className="absolute inset-0 w-full h-full object-cover"
         loading="lazy"
-        sizes="100vw"
       />
 
       {/* Gradient overlay — dark from left, transparent on right */}
