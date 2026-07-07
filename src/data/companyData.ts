@@ -589,23 +589,6 @@ export const caseStudiesData: CaseStudyItem[] = [
     technologies: ['Next.js', 'React', 'Tailwind CSS', 'Redis', 'GraphQL'],
     imagePath: 'case_retail',
     impactHeadline: '0.6-second page load speed and -35% checkout churn for Veloce Apparel'
-  },
-  {
-    id: 'personalized-retail-ai-recommendations',
-    title: 'Personalizing the Digital Aisle: AI recommendations for Aura Cosmetics',
-    client: 'Aura Cosmetics',
-    industry: 'Retail & E-commerce',
-    overview: 'Aura Cosmetics wanted to recreate the helpful, personal touch of an in-store beauty consultant on their website. We built a real-time product recommendation engine that guides shoppers to the perfect skincare routine, increasing customer delight and sales.',
-    challenge: "With thousands of products online, customers felt overwhelmed and frequently left the site without purchasing. Aura's static filter systems were hard to navigate, and their generic recommendation widgets failed to suggest products tailored to individual skin types and concerns.",
-    solution: "We sat down with Aura's beauty advisors to translate their physical consultation secrets into code. We built a lightweight, privacy-focused machine learning model that analyzes live browsing preferences, offering instant recommendations. We created a modern interactive skin-quiz interface that loads instantly and suggests custom product routines.",
-    results: [
-      { label: 'AOV Increase', value: '+28%' },
-      { label: 'Quiz completions', value: '84%' },
-      { label: 'CSAT rating', value: '4.9/5' }
-    ],
-    technologies: ['React', 'Next.js', 'Tailwind CSS', 'Node.js', 'Python'],
-    imagePath: 'case_cosmetics',
-    impactHeadline: '28% increase in average order value and 4.9/5 CSAT for Aura Cosmetics'
   }
 ];
 
