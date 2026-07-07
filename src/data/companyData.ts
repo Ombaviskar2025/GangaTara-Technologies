@@ -544,13 +544,13 @@ export const caseStudiesData: CaseStudyItem[] = [
     title: 'Transforming Telehealth Delivery globally',
     client: 'MediHealth Group Inc.',
     industry: 'Healthcare',
-    overview: 'MediHealth needed to scale its digital doctor visits during a period of 400% user growth. We re-engineered their booking systems and HIPAA data flow using a serverless microservices setup.',
-    challenge: 'Their existing monolith database locked under concurrent booking requests, causing patient wait screens to freeze. In addition, their media servers struggled with high-latency WebRTC streams in remote regions.',
-    solution: 'We decoupled the database using Amazon DynamoDB and AWS Lambda serverless routines. We routed WebRTC traffic through geographically distributed media relay servers and built an automated HIPAA logging pipeline with AWS CloudTrail.',
+    overview: "MediHealth's patient intake system was struggling under a massive 400% surge of families seeking digital care. We stepped in to rewrite their scheduling systems and compliance architecture, creating a warm, frictionless digital waiting room that lets patients consult doctors in minutes.",
+    challenge: 'At the peak of a health crisis, families waiting to see a doctor online faced frozen screens and dropped video feeds as the backend database choked on database locks. Behind the scenes, the healthcare staff was overwhelmed, and remote patients had high latency, making vital appointments impossible.',
+    solution: "Instead of just upgrading servers, we sat down with the MediHealth team to understand their workflow. We designed a resilient, decentralized database queue using Amazon DynamoDB and AWS Lambda that processed patient intake smoothly even during extreme spikes. We smoothed out WebRTC video flows with custom relay nodes to ensure patients in low-bandwidth regions could clearly see their doctor's face without interruptions.",
     results: [
-      { label: 'Patient Ingestion', value: '4.2x faster' },
+      { label: 'Time to see doctor', value: '4.2x faster' },
       { label: 'Video Call Latency', value: '-65%' },
-      { label: 'HIPAA Compliance Audit', value: 'Passed 100%' }
+      { label: 'Compliance checklist', value: 'Passed 100%' }
     ],
     technologies: ['AWS', 'Next.js', 'PostgreSQL', 'WebRTC', 'Docker'],
     imagePath: 'case_healthcare',
@@ -561,13 +561,13 @@ export const caseStudiesData: CaseStudyItem[] = [
     title: 'AI-Powered Financial Fraud Detection System',
     client: 'Apex Global Bank',
     industry: 'Finance',
-    overview: 'Apex Bank required a system that could evaluate credit card transactions under 10 milliseconds to identify fraud. We engineered an ML pipeline using Apache Kafka and custom PyTorch models.',
-    challenge: 'Existing third-party validation systems flagged too many false positives, locking legitimate client cards and causing customer support backlogs. Processing delays also affected merchant checkout queues.',
-    solution: 'We designed a streaming architecture using Apache Kafka and Apache Flink to ingest transaction details. The stream is evaluated by a customized deep-neural prediction model trained on ten years of transaction telemetry.',
+    overview: 'Apex Global Bank wanted to protect customer transactions from fraud without blocking legitimate purchases. We worked alongside their safety team to implement an AI system that checks transactions in under 10 milliseconds, safeguarding accounts while keeping checkouts smooth.',
+    challenge: 'Standard fraud detectors were locking accounts of legitimate travelers buying groceries abroad, leading to frustrating customer service calls and frozen credit cards. Apex Bank needed to distinguish true fraud from normal customer behavior instantly without making customers wait at the counter.',
+    solution: 'We integrated a deep-neural predictive AI model trained on years of telemetry, helping the system learn true human spending habits. Using Apache Kafka and Apache Flink, we built a real-time event pipeline that analyzes transactions in under 7 milliseconds, allowing families to purchase securely and with confidence.',
     results: [
-      { label: 'Fraud Detection Rate', value: '99.85%' },
-      { label: 'False Positives', value: '-80%' },
-      { label: 'Evaluation Latency', value: '6.4ms' }
+      { label: 'Fraud stopped instantly', value: '99.85%' },
+      { label: 'Accidental locks', value: '-80%' },
+      { label: 'Decision response time', value: '6.4ms' }
     ],
     technologies: ['Python', 'PyTorch', 'Apache Kafka', 'Kubernetes', 'Redis'],
     imagePath: 'case_finance',
@@ -578,13 +578,13 @@ export const caseStudiesData: CaseStudyItem[] = [
     title: 'Migrating to Headless Commerce for Black Friday Scaling',
     client: 'Veloce Apparel',
     industry: 'Retail & E-commerce',
-    overview: 'Veloce needed to survive massive inventory lookup surges during holiday sales. We rebuilt their legacy website into a decoupled Next.js storefront backed by a fast Redis caching cluster.',
-    challenge: 'Their old e-commerce system crashed during previous flash sales, leading to lost revenue and customer complaints on social media.',
-    solution: 'We split the storefront from the backend database. We built a Next.js server-side rendered storefront deployed on Vercel Edge networks and integrated it with a high-availability Redis cache to manage real-time inventory checks.',
+    overview: "Veloce's online store was crashing every holiday season, frustrating eager shoppers and hurting sales. We rebuilt their entire storefront with Next.js and Redis, turning their seasonal stress into a fast, seamless shopping experience that handles millions of visitors.",
+    challenge: "Every holiday season, Veloce's database would crash under flash-sale spikes, leaving customers with empty carts, slow pages, and failed checkout forms. Social media was flooded with complaints, and the retail team felt helpless as their system failed during their most critical sales window.",
+    solution: 'We decoupled the frontend website from the backend databases using a modern headless architecture. We created a static-generated, edge-cached Next.js site that loads in milliseconds, backed by a high-availability Redis cache to check inventory instantly without hitting the main database. Now, pages load instantly, and the checkout process is smooth and stress-free.',
     results: [
-      { label: 'Page Load Speed', value: '0.6 seconds' },
-      { label: 'Concurrent Users', value: '120,000' },
-      { label: 'Checkout Churn Rate', value: '-35%' }
+      { label: 'Instant page load', value: '0.6 seconds' },
+      { label: 'Shoppers handled', value: '120,000' },
+      { label: 'Abandoned shopping carts', value: '-35%' }
     ],
     technologies: ['Next.js', 'React', 'Tailwind CSS', 'Redis', 'GraphQL'],
     imagePath: 'case_retail',
