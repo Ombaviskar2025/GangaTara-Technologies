@@ -4,12 +4,12 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import {
-  X, Briefcase, Mic2, Users, Handshake, MessageSquare,
+  X, Briefcase, MessageSquare,
   ArrowRight, Mail, Phone, ChevronRight,
 } from 'lucide-react';
 import { useContactModal } from '@/context/ContactModalContext';
 
-type Category = 'select' | 'services' | 'careers' | 'media' | 'partnership' | 'feedback';
+type Category = 'select' | 'services' | 'feedback';
 
 interface CategoryDef {
   key: Exclude<Category, 'select'>;
@@ -31,30 +31,6 @@ const CATEGORIES: CategoryDef[] = [
     href: '/contact',
   },
   {
-    key: 'careers',
-    icon: <Users className="w-6 h-6" />,
-    label: 'Careers & Hiring',
-    description: 'Explore open roles, submit your CV, or ask about internship and campus recruitment programs.',
-    cta: 'View Open Roles',
-    href: '/careers',
-  },
-  {
-    key: 'media',
-    icon: <Mic2 className="w-6 h-6" />,
-    label: 'Media & Press',
-    description: 'Press inquiries, interview requests, photography access, and official media statements.',
-    cta: 'Contact Our PR Team',
-    email: 'press@gangatara.com',
-  },
-  {
-    key: 'partnership',
-    icon: <Handshake className="w-6 h-6" />,
-    label: 'Partnerships & Alliances',
-    description: 'Technology partnerships, reseller agreements, system integrator collaborations, and co-innovation programs.',
-    cta: 'Explore Partnership',
-    email: 'partners@gangatara.com',
-  },
-  {
     key: 'feedback',
     icon: <MessageSquare className="w-6 h-6" />,
     label: 'Website Feedback',
@@ -66,9 +42,6 @@ const CATEGORIES: CategoryDef[] = [
 
 const ICON_COLORS: Record<Exclude<Category, 'select'>, string> = {
   services: 'bg-primary/10 text-primary border-primary/20',
-  careers: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
-  media: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
-  partnership: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
   feedback: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
 };
 

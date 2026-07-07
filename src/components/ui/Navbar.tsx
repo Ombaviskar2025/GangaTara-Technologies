@@ -9,7 +9,7 @@ import {
   Cloud, Cpu, Code2, Globe2, Smartphone, Shield, GitBranch, Palette, BarChart3,
   Workflow, Radio, TrendingUp, Megaphone, HeartPulse, DollarSign, ShoppingBag,
   GraduationCap, Factory, Truck, Car, Building, Landmark, Plane, Users, Award,
-  BookOpen, Briefcase, Calendar, MapPin, ExternalLink, Sparkles,
+  BookOpen, Briefcase, Calendar, MapPin, ExternalLink, Sparkles, Mic2, Handshake,
 } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import { useLanguage, Language } from '@/context/LanguageContext';
@@ -337,6 +337,26 @@ const NESTED_NAV_DATA: Record<string, {
             links: [
               { label: 'ISO 27001 Certified', href: '/about#certifications', icon: <Shield className="w-3.5 h-3.5" /> },
               { label: 'SOC 2 Type II Certified', href: '/about#certifications', icon: <Shield className="w-3.5 h-3.5" /> },
+            ]
+          }
+        ]
+      },
+      {
+        label: "Connect With Us",
+        key: "connect",
+        columns: [
+          {
+            heading: "Join & Collaborate",
+            links: [
+              { label: 'Careers & Hiring', href: '/careers', icon: <Users className="w-3.5 h-3.5" /> },
+              { label: 'Partnerships & Alliances', href: '/contact', icon: <Handshake className="w-3.5 h-3.5" /> },
+            ]
+          },
+          {
+            heading: "Media & Press",
+            links: [
+              { label: 'Press Inquiries', href: '/contact', icon: <Mic2 className="w-3.5 h-3.5" /> },
+              { label: 'Media Statements', href: '/contact', icon: <Mic2 className="w-3.5 h-3.5" /> },
             ]
           }
         ]
