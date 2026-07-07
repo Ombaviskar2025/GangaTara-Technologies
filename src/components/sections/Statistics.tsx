@@ -58,10 +58,10 @@ export const Statistics: React.FC = () => {
   const yearsExp = new Date().getFullYear() - 2006;
   
   const stats = [
-    { value: 1000, suffix: '+', label: 'Global Talents', description: 'Experienced engineers, architects, and designers.' },
-    { value: 50, suffix: '+', label: 'Countries Covered', description: 'Enterprise operations across multiple continents.' },
-    { value: 500, suffix: '+', label: 'Satisfied Clients', description: 'From fast-scaling startups to Fortune 500 giants.' },
-    { value: yearsExp, suffix: '+', label: 'Years Experience', description: `Delivering robust technological solutions since 2006.` }
+    { value: yearsExp, suffix: '+', label: 'Years of Experience', description: `Delivering robust technological solutions since 2006.` },
+    { value: 50, suffix: '+', label: 'Countries Served', description: 'Enterprise operations across multiple continents.' },
+    { value: 1000, suffix: '+', label: 'Global Talent', description: 'Experienced engineers, architects, and designers.' },
+    { value: 500, suffix: '+', label: 'Satisfied Clients', description: 'From fast-scaling startups to Fortune 500 giants.' }
   ];
 
   return (

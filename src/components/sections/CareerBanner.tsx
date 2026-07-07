@@ -40,13 +40,12 @@ export const CareerBanner: React.FC = () => {
 
           {/* Headline */}
           <h2 className="text-white text-3xl sm:text-4xl font-poppins font-bold leading-tight mb-4">
-            Seize the Future.{' '}
-            <span className="text-shimmer">Build What Matters.</span>
+            Build What's Next With Us
           </h2>
 
           {/* Description */}
           <p className="text-white/65 text-sm leading-relaxed mb-7 max-w-md">
-            Join a team of 500+ engineers, architects, and designers solving complex enterprise challenges across cloud, AI, cybersecurity, and product engineering — in India, Germany, and beyond.
+            Join a global team of over 500 engineers, architects, and designers. We build modern, robust solutions that redefine how leading enterprises solve critical scale and security challenges.
           </p>
 
           {/* Perk pills */}
@@ -67,7 +66,7 @@ export const CareerBanner: React.FC = () => {
               href="/careers"
               className="inline-flex items-center gap-2 px-7 py-3 bg-primary hover:bg-secondary text-white font-bold text-[13px] rounded-xl transition-all shadow-lg shadow-primary/25"
             >
-              Join Us <ArrowRight className="w-4 h-4" />
+              Join Our Team →
             </Link>
             <Link
               href="/careers"

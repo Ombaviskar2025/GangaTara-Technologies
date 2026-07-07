@@ -39,6 +39,7 @@ const getDeviconUrl = (iconType: string) => {
 
 export const Technologies: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<Category>('frontend');
+  const [failedIcons, setFailedIcons] = useState<Record<string, boolean>>({});
 
   const categories: { key: Category; label: string }[] = [
     { key: 'frontend', label: 'Frontend' },
@@ -50,6 +51,19 @@ export const Technologies: React.FC = () => {
   ];
 
   const filteredTech = technologiesData.filter(t => t.category === activeCategory);
+
+  const getFallbackIcon = (category: Category) => {
+    switch (category) {
+      case 'cloud':
+        return <Cpu className="w-5 h-5 text-primary" />;
+      case 'database':
+        return <Cpu className="w-5 h-5 text-primary" />;
+      case 'emerging':
+        return <Cpu className="w-5 h-5 text-primary" />;
+      default:
+        return <Cpu className="w-5 h-5 text-primary" />;
+    }
+  };
 
   return (
     <section className="py-24 bg-light dark:bg-dark relative overflow-hidden">
@@ -106,21 +120,18 @@ export const Technologies: React.FC = () => {
                 >
                   {/* Technology Logo */}
                   <div className="w-12 h-12 rounded-xl bg-slate-900/5 dark:bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 mb-4 p-2">
-                    <img 
-                      src={getDeviconUrl(tech.iconType)} 
-                      alt={tech.name} 
-                      className="w-full h-full object-contain filter group-hover:brightness-110 transition-all"
-                      onError={(e) => {
-                        (e.target as HTMLElement).style.display = 'none';
-                        const parent = (e.target as HTMLElement).parentElement;
-                        if (parent) {
-                          const span = document.createElement('span');
-                          span.className = "font-poppins font-extrabold text-xs text-primary";
-                          span.innerText = tech.name.slice(0, 2);
-                          parent.appendChild(span);
-                        }
-                      }}
-                    />
+                    {failedIcons[tech.name] ? (
+                      getFallbackIcon(tech.category)
+                    ) : (
+                      <img 
+                        src={getDeviconUrl(tech.iconType)} 
+                        alt={tech.name} 
+                        className="w-full h-full object-contain filter group-hover:brightness-110 transition-all"
+                        onError={() => {
+                          setFailedIcons(prev => ({ ...prev, [tech.name]: true }));
+                        }}
+                      />
+                    )}
                   </div>
                   <span className="text-xs font-semibold text-dark dark:text-light group-hover:text-primary transition-colors">
                     {tech.name}

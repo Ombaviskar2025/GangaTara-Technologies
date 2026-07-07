@@ -97,9 +97,9 @@ export const EventsSection: React.FC = () => {
                   {/* CTA */}
                   <button
                     onClick={openModal}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary/10 hover:bg-primary text-primary hover:text-white border border-primary/30 hover:border-primary rounded-lg text-[12px] font-bold transition-all cursor-pointer outline-none"
+                    className="inline-flex items-center gap-1.5 text-[12px] font-bold text-primary hover:text-secondary transition-colors cursor-pointer bg-transparent border-0 p-0 outline-none mt-auto w-fit"
                   >
-                    Register Now <ExternalLink className="w-3.5 h-3.5" />
+                    Read more →
                   </button>
                 </div>
               </motion.article>

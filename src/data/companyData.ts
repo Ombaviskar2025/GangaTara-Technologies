@@ -38,6 +38,7 @@ export interface CaseStudyItem {
   imagePath: string;
   challenge: string;
   solution: string;
+  impactHeadline: string;
 }
 
 export interface TestimonialItem {
@@ -552,7 +553,8 @@ export const caseStudiesData: CaseStudyItem[] = [
       { label: 'HIPAA Compliance Audit', value: 'Passed 100%' }
     ],
     technologies: ['AWS', 'Next.js', 'PostgreSQL', 'WebRTC', 'Docker'],
-    imagePath: 'case_healthcare'
+    imagePath: 'case_healthcare',
+    impactHeadline: '4.2x faster patient ingestion for MediHealth Group Inc.'
   },
   {
     id: 'realtime-banking-fraud-prevention',
@@ -568,7 +570,8 @@ export const caseStudiesData: CaseStudyItem[] = [
       { label: 'Evaluation Latency', value: '6.4ms' }
     ],
     technologies: ['Python', 'PyTorch', 'Apache Kafka', 'Kubernetes', 'Redis'],
-    imagePath: 'case_finance'
+    imagePath: 'case_finance',
+    impactHeadline: '99.85% fraud detection accuracy for Apex Global Bank'
   },
   {
     id: 'headless-retail-scale-out',
@@ -584,7 +587,8 @@ export const caseStudiesData: CaseStudyItem[] = [
       { label: 'Checkout Churn Rate', value: '-35%' }
     ],
     technologies: ['Next.js', 'React', 'Tailwind CSS', 'Redis', 'GraphQL'],
-    imagePath: 'case_retail'
+    imagePath: 'case_retail',
+    impactHeadline: '0.6-second page load speed and -35% checkout churn for Veloce Apparel'
   }
 ];
 

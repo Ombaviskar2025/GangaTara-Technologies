@@ -65,7 +65,7 @@ export const Testimonials: React.FC = () => {
               </div>
 
               {/* Quotation text */}
-              <p className="text-base sm:text-lg text-dark/95 dark:text-light/95 leading-relaxed font-medium italic mb-8">
+              <p className="text-lg sm:text-xl md:text-2xl text-primary font-poppins font-semibold leading-relaxed italic mb-8">
                 "{current.quote}"
               </p>
 

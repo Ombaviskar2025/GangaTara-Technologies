@@ -102,26 +102,21 @@ export const TabbedSolutions: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -5 }}
             transition={{ duration: 0.25 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-4"
           >
             {currentItems.map((item, i) => (
               <Link
                 key={i}
                 href={item.href}
-                className="group flex items-start gap-3 p-4 rounded-xl border border-dark/6 dark:border-white/6 hover:border-primary/40 bg-white/60 dark:bg-white/3 hover:bg-primary/3 dark:hover:bg-primary/5 transition-all"
+                className="group flex items-center gap-3 py-2 text-dark/85 dark:text-white/85 hover:text-primary transition-colors cursor-pointer"
               >
-                <span className="shrink-0 w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mt-0.5 group-hover:bg-primary group-hover:text-white transition-all">
+                <span className="shrink-0 w-8 h-8 rounded-lg bg-light-hover dark:bg-white/5 flex items-center justify-center text-dark/70 dark:text-white/70 group-hover:bg-primary/10 group-hover:text-primary transition-colors">
                   {item.icon}
                 </span>
-                <div className="flex-1 min-w-0">
-                  <p className="text-[13px] font-semibold text-dark dark:text-white group-hover:text-primary transition-colors leading-tight mb-0.5">
-                    {item.label}
-                  </p>
-                  <p className="text-[11px] text-dark/50 dark:text-white/40 leading-relaxed line-clamp-2">
-                    {item.desc}
-                  </p>
-                </div>
-                <ArrowRight className="w-3.5 h-3.5 text-dark/20 dark:text-white/20 group-hover:text-primary shrink-0 mt-1 transition-colors opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all" />
+                <span className="text-[13px] font-semibold tracking-wide flex-1 truncate">
+                  {item.label}
+                </span>
+                <ArrowRight className="w-3.5 h-3.5 text-dark/30 dark:text-white/30 group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
               </Link>
             ))}
           </motion.div>

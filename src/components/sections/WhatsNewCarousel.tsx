@@ -22,6 +22,22 @@ export const WhatsNewCarousel: React.FC = () => {
     return () => clearInterval(id);
   }, [isHovered, next]);
 
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (document.activeElement?.tagName === 'INPUT' || document.activeElement?.tagName === 'TEXTAREA') {
+        return;
+      }
+      if (e.key === 'ArrowRight') {
+        next();
+      } else if (e.key === 'ArrowLeft') {
+        prev();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [next, prev]);
+
   const slide = whatsNewData[activeIndex];
 
   return (
@@ -48,7 +64,7 @@ export const WhatsNewCarousel: React.FC = () => {
       </div>
 
       {/* Slide area */}
-      <div className="relative h-[420px] sm:h-[480px] overflow-hidden">
+      <div className="relative h-[420px] sm:h-[480px] overflow-hidden cursor-grab active:cursor-grabbing">
         <AnimatePresence initial={false} mode="sync">
           <motion.div
             key={slide.id}
@@ -57,12 +73,22 @@ export const WhatsNewCarousel: React.FC = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6, ease: 'easeInOut' }}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.2}
+            onDragEnd={(event, info) => {
+              if (info.offset.x < -80) {
+                next();
+              } else if (info.offset.x > 80) {
+                prev();
+              }
+            }}
           >
             {/* Background image with overlay */}
             <img
               src={slide.image}
               alt={slide.headline}
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
               loading="lazy"
             />
             {/* Gradient overlay for text legibility */}
@@ -93,14 +119,14 @@ export const WhatsNewCarousel: React.FC = () => {
                   <h3 className="text-white text-xl sm:text-2xl lg:text-[28px] font-poppins font-bold leading-tight mb-4">
                     {slide.headline}
                   </h3>
-                  <p className="text-white/70 text-sm leading-relaxed mb-6 max-w-md">
+                  <p className="text-white/70 text-sm leading-relaxed mb-6 max-w-md line-clamp-2">
                     {slide.description}
                   </p>
                   <Link
                     href={slide.link}
                     className="inline-flex items-center gap-2 px-6 py-2.5 bg-white text-dark font-bold text-[13px] rounded-lg hover:bg-primary hover:text-white transition-all shadow-lg"
                   >
-                    Read More <ArrowRight className="w-4 h-4" />
+                    Read More →
                   </Link>
                 </motion.div>
               </div>

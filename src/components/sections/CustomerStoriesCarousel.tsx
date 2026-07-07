@@ -87,45 +87,49 @@ export const CustomerStoriesCarousel: React.FC = () => {
                 className="shrink-0 w-[320px] sm:w-[360px]"
                 style={{ scrollSnapAlign: 'start' }}
               >
-                <div className="h-full flex flex-col p-7 rounded-2xl border border-dark/6 dark:border-white/6 bg-white dark:bg-white/3 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all group">
-                  {/* Client logo / initials */}
-                  <div className="flex items-center gap-4 mb-5">
-                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-tr ${gradClass} flex items-center justify-center text-white font-bold text-sm shadow-md`}>
-                      {getInitials(cs.client)}
-                    </div>
-                    <div>
-                      <p className="text-[13px] font-bold text-dark dark:text-white leading-tight">{cs.client}</p>
-                      <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-widest border ${color.bg} ${color.text} ${color.border}`}>
-                        {cs.industry}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Quote */}
-                  <div className="relative flex-1">
-                    <Quote className="absolute -top-1 -left-1 w-5 h-5 text-primary/20" />
-                    <p className="text-dark/70 dark:text-white/65 text-[13px] leading-relaxed pl-4 line-clamp-4">
-                      {cs.overview}
-                    </p>
-                  </div>
-
-                  {/* Key results */}
-                  <div className="mt-5 grid grid-cols-3 gap-2 py-4 border-t border-dark/5 dark:border-white/5">
-                    {cs.results.slice(0, 3).map((r, ri) => (
-                      <div key={ri} className="text-center">
-                        <p className="text-primary font-bold text-[15px] leading-tight">{r.value}</p>
-                        <p className="text-dark/40 dark:text-white/35 text-[9px] mt-0.5 leading-tight">{r.label}</p>
+                <div className="h-full flex flex-col p-6 rounded-2xl border border-dark/6 dark:border-white/6 bg-white dark:bg-white/3 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all group overflow-hidden">
+                  {/* Client banner with logo overlay */}
+                  <div className="w-full h-40 rounded-xl overflow-hidden mb-5 relative border border-light/10 dark:border-white/5">
+                    <img 
+                      src={cs.imagePath === 'case_healthcare' ? '/ind_healthcare.png' : cs.imagePath === 'case_finance' ? '/ind_finance.png' : '/ind_retail.png'}
+                      alt={cs.client}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/40 to-transparent pointer-events-none" />
+                    <div className="absolute bottom-3 left-4 flex items-center gap-3">
+                      <div className={`w-8 h-8 rounded-lg bg-gradient-to-tr ${gradClass} flex items-center justify-center text-white font-bold text-xs shrink-0 shadow-md`}>
+                        {getInitials(cs.client)}
                       </div>
-                    ))}
+                      <div>
+                        <p className="text-white text-xs font-bold leading-tight">{cs.client}</p>
+                        <p className="text-white/50 text-[9px] uppercase tracking-wider font-semibold">{cs.industry}</p>
+                      </div>
+                    </div>
                   </div>
 
-                  {/* CTA */}
-                  <Link
-                    href={`/case-studies/${cs.id}`}
-                    className="mt-4 flex items-center gap-1.5 text-[12px] font-semibold text-primary hover:text-secondary transition-colors group-hover:gap-2.5"
-                  >
-                    Read Case Study <ArrowRight className="w-3.5 h-3.5 transition-all" />
-                  </Link>
+                  {/* Impact Headline */}
+                  <h3 className="text-dark dark:text-white font-poppins font-extrabold text-[14px] leading-snug mb-2.5 line-clamp-2 min-h-[40px] group-hover:text-primary transition-colors">
+                    {cs.impactHeadline}
+                  </h3>
+
+                  {/* Short overview */}
+                  <p className="text-dark/60 dark:text-white/50 text-[11px] leading-relaxed mb-5 line-clamp-3">
+                    {cs.overview}
+                  </p>
+
+                  {/* Results preview */}
+                  <div className="mt-auto pt-4 border-t border-dark/5 dark:border-white/5 flex items-center justify-between">
+                    <div className="flex flex-col">
+                      <span className="text-[9px] text-dark/40 dark:text-white/35 font-bold uppercase tracking-wider">Metrics</span>
+                      <span className="text-[11px] font-bold text-primary">{cs.results[0]?.value} {cs.results[0]?.label}</span>
+                    </div>
+                    <Link
+                      href={`/case-studies/${cs.id}`}
+                      className="flex items-center gap-1.5 text-[12px] font-semibold text-primary hover:text-secondary transition-colors"
+                    >
+                      Read more →
+                    </Link>
+                  </div>
                 </div>
               </motion.div>
             );
