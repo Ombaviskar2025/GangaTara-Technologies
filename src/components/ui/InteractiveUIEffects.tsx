@@ -34,7 +34,7 @@ export const InteractiveUIEffects: React.FC = () => {
   const [chatInput, setChatInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [messages, setMessages] = useState<Array<{ text: string; sender: 'bot' | 'user' }>>([
-    { text: 'Hello! I am GangaTara Digital Assistant. How can I help you explore our enterprise services today?', sender: 'bot' }
+    { text: 'Hello! I am Sarthi, your GangaTara Digital Assistant. How can I help you explore our enterprise services today?', sender: 'bot' }
   ]);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -50,7 +50,7 @@ export const InteractiveUIEffects: React.FC = () => {
 
     // 1. Greetings
     if (['hi', 'hello', 'hey', 'yo', 'greetings', 'hola', 'hi chatbot', 'hi bot'].includes(normalizedMsg)) {
-      return "Hello! I am your GangaTara Digital Assistant. I can tell you about our services, key industries, recent case studies, career openings, or help you contact our team. What are you looking to build today?";
+      return "Hello! I am Sarthi, your GangaTara Digital Assistant. I can tell you about our services, key industries, recent case studies, career openings, or help you contact our team. What are you looking to build today?";
     } 
     // 2. Contact, Email, Phone, Office Location, Address
     else if (normalizedMsg.includes('contact') || normalizedMsg.includes('email') || normalizedMsg.includes('phone') || normalizedMsg.includes('call') || normalizedMsg.includes('reach') || normalizedMsg.includes('address') || normalizedMsg.includes('office') || normalizedMsg.includes('location')) {
@@ -199,7 +199,7 @@ export const InteractiveUIEffects: React.FC = () => {
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-success rounded-full animate-pulse" />
                 <div>
-                  <h4 className="font-semibold text-sm">GangaTara Assistant</h4>
+                  <h4 className="font-poppins font-black tracking-[0.15em] text-sm uppercase bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent leading-none mb-0.5">Sarthi</h4>
                   <p className="text-[10px] text-white/80">Active now</p>
                 </div>
               </div>
