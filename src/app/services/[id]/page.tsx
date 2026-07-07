@@ -133,124 +133,124 @@ export default function ServiceDetailPage() {
 
   // Render Custom Split Layout Pages (Web Dev, App Dev, Digital Marketing)
   if (isCustomService) {
-    // Custom gradient configurations
-    let gradientBg = 'bg-gradient-to-r from-[#0057FF] to-[#00D2FF]'; // Web
-    if (id === 'application-development') {
-      gradientBg = 'bg-gradient-to-r from-[#FF0057] to-[#7A00FF]';
-    } else if (id === 'digital-marketing') {
-      gradientBg = 'bg-gradient-to-r from-[#00FFC2] to-[#00B4FF]';
-    }
+    // Per-service config
+    const serviceConfig: Record<string, {
+      image: string;
+      gradientFrom: string;
+      gradientTo: string;
+      accentFrom: string;
+      accentTo: string;
+      tag: string;
+    }> = {
+      'web-development': {
+        image: '/service_web_dev.png',
+        gradientFrom: 'from-[#0057FF]',
+        gradientTo: 'to-[#00B4FF]',
+        accentFrom: 'from-[#0057FF]',
+        accentTo: 'to-[#00D2FF]',
+        tag: 'Web Solutions',
+      },
+      'application-development': {
+        image: '/service_app_dev.png',
+        gradientFrom: 'from-[#7C3AED]',
+        gradientTo: 'to-[#EC4899]',
+        accentFrom: 'from-[#7C3AED]',
+        accentTo: 'to-[#EC4899]',
+        tag: 'Mobile & App',
+      },
+      'digital-marketing': {
+        image: '/service_digital_marketing.png',
+        gradientFrom: 'from-[#0090FF]',
+        gradientTo: 'to-[#00D2C8]',
+        accentFrom: 'from-[#0090FF]',
+        accentTo: 'to-[#00D2C8]',
+        tag: 'Growth & Reach',
+      },
+    };
+    const cfg = serviceConfig[id] || serviceConfig['web-development'];
 
     return (
-      <div className={`min-h-screen ${gradientBg} pt-24 pb-16 flex items-center justify-center relative overflow-hidden`}>
-        {/* Decorative Grid Lines */}
-        <div className="absolute inset-0 grid-bg opacity-10 pointer-events-none" />
+      <div className="min-h-screen bg-[#1E1F22] pt-24 pb-16 flex items-center justify-center relative overflow-hidden">
+        {/* Background glow blobs */}
+        <div className={`absolute top-0 left-0 w-[600px] h-[600px] rounded-full blur-[120px] opacity-20 bg-gradient-to-br ${cfg.gradientFrom} ${cfg.gradientTo} pointer-events-none`} />
+        <div className={`absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full blur-[100px] opacity-15 bg-gradient-to-tl ${cfg.gradientFrom} ${cfg.gradientTo} pointer-events-none`} />
+        <div className="absolute inset-0 grid-bg opacity-8 pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full relative z-10">
-          
-          {/* Left Column: Title, Illustration & Caption */}
-          <div className="lg:col-span-6 flex flex-col items-center justify-center text-center text-white">
-            <h1 className="text-4xl sm:text-5xl font-poppins font-black tracking-tight mb-8 drop-shadow-md">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center w-full relative z-10">
+
+          {/* Left Column: Image + Title */}
+          <div className="lg:col-span-6 flex flex-col gap-6">
+            {/* Tag */}
+            <div className={`inline-flex self-start px-4 py-1.5 rounded-full bg-gradient-to-r ${cfg.accentFrom} ${cfg.accentTo} text-white font-bold text-[10px] uppercase tracking-widest shadow-lg`}>
+              {cfg.tag}
+            </div>
+
+            {/* Title */}
+            <h1 className="text-4xl sm:text-5xl font-poppins font-black tracking-tight text-white leading-[1.1]">
               {service.title}
             </h1>
 
-            {/* Custom SVG Illustration Containers */}
-            <div className="w-full max-w-sm aspect-video mb-8 flex items-center justify-center relative">
-              {id === 'web-development' && (
-                <svg viewBox="0 0 200 120" className="w-full h-full text-white fill-none stroke-white">
-                  {/* Screens */}
-                  <rect x="25" y="10" width="85" height="55" rx="4" strokeWidth="2.5" />
-                  <line x1="25" y1="52" x2="110" y2="52" strokeWidth="1.5" />
-                  <line x1="67" y1="65" x2="67" y2="78" strokeWidth="3.5" />
-                  <line x1="50" y1="78" x2="84" y2="78" strokeWidth="3.5" />
-                  
-                  {/* Laptop & Programmer */}
-                  <circle cx="140" cy="55" r="12" strokeWidth="2.5" />
-                  <path d="M120,85 C120,70 160,70 160,85" strokeWidth="2.5" />
-                  <rect x="125" y="76" width="30" height="15" rx="1.5" strokeWidth="2.5" />
-                  
-                  {/* Code Elements */}
-                  <path d="M10,40 L20,32 L20,48" strokeWidth="1.5" />
-                  <path d="M185,32 L175,40 L185,48" strokeWidth="1.5" />
-                  <circle cx="170" cy="18" r="5" strokeWidth="1.5" />
-                  <path d="M8,15 L18,22" strokeWidth="1.5" />
-                </svg>
-              )}
+            <p className="text-white/60 text-sm leading-relaxed max-w-md">
+              {service.description}
+            </p>
 
-              {id === 'application-development' && (
-                <svg viewBox="0 0 200 120" className="w-full h-full text-white fill-none stroke-white">
-                  {/* Phone Screen */}
-                  <rect x="70" y="10" width="60" height="100" rx="10" strokeWidth="2.5" />
-                  <line x1="90" y1="16" x2="110" y2="16" strokeWidth="2" />
-                  <circle cx="100" cy="103" r="3.5" fill="white" />
-                  
-                  {/* App Grid */}
-                  <rect x="80" y="28" width="15" height="15" rx="2" strokeWidth="2" fill="white" fillOpacity="0.1" />
-                  <rect x="105" y="28" width="15" height="15" rx="2" strokeWidth="2" fill="white" fillOpacity="0.1" />
-                  <rect x="80" y="50" width="15" height="15" rx="2" strokeWidth="2" fill="white" fillOpacity="0.1" />
-                  <rect x="105" y="50" width="15" height="15" rx="2" strokeWidth="2" fill="white" fillOpacity="0.1" />
-                  
-                  {/* Surrounding clouds/rockets */}
-                  <path d="M25,50 C25,45 35,40 45,45 C50,42 60,45 60,50 L25,50 Z" strokeWidth="1.5" />
-                  <path d="M150,60 C150,55 160,50 170,55 C175,52 185,55 185,60 L150,60 Z" strokeWidth="1.5" />
-                  <circle cx="35" cy="20" r="4" strokeWidth="1.5" />
-                  <circle cx="165" cy="25" r="5" strokeWidth="1.5" />
-                </svg>
-              )}
-
-              {id === 'digital-marketing' && (
-                <svg viewBox="0 0 200 120" className="w-full h-full text-white fill-none stroke-white">
-                  {/* Giant Phone */}
-                  <rect x="80" y="15" width="55" height="95" rx="8" strokeWidth="2.5" />
-                  <line x1="80" y1="92" x2="135" y2="92" strokeWidth="1.5" />
-                  
-                  {/* Chart inside phone */}
-                  <rect x="88" y="70" width="8" height="20" fill="white" fillOpacity="0.2" strokeWidth="1.5" />
-                  <rect x="100" y="55" width="8" height="35" fill="white" fillOpacity="0.4" strokeWidth="1.5" />
-                  <rect x="112" y="40" width="8" height="50" fill="white" strokeWidth="1.5" />
-
-                  {/* Woman Marketer */}
-                  <circle cx="45" cy="40" r="10" strokeWidth="2.5" />
-                  <path d="M30,75 C30,60 60,60 60,75" strokeWidth="2.5" />
-                  <line x1="45" y1="50" x2="45" y2="60" strokeWidth="2" />
-                  
-                  {/* Trend Arrow */}
-                  <path d="M125,45 L155,20 L165,30 M155,20 L142,22 M155,20 L153,32" strokeWidth="2" />
-                  <path d="M92,80 L110,60 L155,20" strokeWidth="2" strokeDasharray="3 3" />
-                </svg>
-              )}
+            {/* Hero Image */}
+            <div className="relative w-full aspect-[16/10] rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-black/40">
+              <img
+                src={cfg.image}
+                alt={service.title}
+                className="w-full h-full object-cover"
+              />
+              <div className={`absolute inset-0 bg-gradient-to-t from-[#1E1F22]/80 via-transparent to-transparent`} />
+              {/* Caption overlay */}
+              <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
+                <span className="text-white font-poppins font-bold text-lg drop-shadow-lg">
+                  {service.caption || 'Enterprise Grade Solutions'}
+                </span>
+                <span className={`px-3 py-1 rounded-full text-[10px] font-bold text-white bg-gradient-to-r ${cfg.accentFrom} ${cfg.accentTo} shadow`}>
+                  {cfg.tag}
+                </span>
+              </div>
             </div>
 
-            {/* Captions */}
-            <h2 className="text-2xl sm:text-3xl font-poppins font-bold tracking-wide drop-shadow-md">
-              {service.caption || 'Enterprise Services'}
-            </h2>
+            {/* Feature pills */}
+            <div className="flex flex-wrap gap-2">
+              {service.features.slice(0, 4).map((feat, i) => (
+                <span key={i} className="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-[11px] text-white/70 font-medium">
+                  ✓ {feat}
+                </span>
+              ))}
+            </div>
           </div>
 
-          {/* Right Column: Custom Enquiry Form */}
+          {/* Right Column: Glass Enquiry Form */}
           <div className="lg:col-span-6 flex items-center justify-center">
-            <div className="w-full max-w-md p-8 sm:p-10 bg-white rounded-[32px] shadow-2xl flex flex-col gap-6">
-              
-              <div className="text-center">
-                <h3 className="text-xl sm:text-2xl font-poppins font-black text-slate-800">
+            <div className="w-full max-w-lg bg-white/5 backdrop-blur-xl border border-white/10 rounded-[28px] shadow-2xl shadow-black/40 p-8 sm:p-10 flex flex-col gap-6">
+
+              {/* Form Header */}
+              <div className="flex flex-col gap-1">
+                <span className={`text-[10px] font-bold uppercase tracking-[0.2em] bg-gradient-to-r ${cfg.accentFrom} ${cfg.accentTo} bg-clip-text text-transparent`}>
+                  Get in Touch
+                </span>
+                <h3 className="text-2xl font-poppins font-bold text-white">
                   Enquiry Form
                 </h3>
-                <p className="text-xs text-slate-400 font-medium mt-1">
-                  Fill Out This Form to respond about Your intrest
+                <p className="text-white/40 text-xs">
+                  Fill out this form and our consultant will respond within 24 hours.
                 </p>
               </div>
 
+              {/* Error / Success */}
               {errorMsg && (
-                <div className="p-3 bg-red-50 text-red-500 border border-red-100 text-xs font-semibold rounded-xl text-center">
+                <div className="p-3 bg-red-500/10 text-red-400 border border-red-500/20 text-xs font-semibold rounded-xl text-center">
                   {errorMsg}
                 </div>
               )}
-
               {success && (
-                <div className="p-4 bg-emerald-50 text-emerald-600 border border-emerald-100 text-xs font-semibold rounded-2xl text-center flex flex-col gap-1 items-center justify-center">
-                  <CheckCircle className="w-5 h-5 text-emerald-500 animate-bounce" />
+                <div className="p-4 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-semibold rounded-2xl text-center flex flex-col gap-1 items-center">
+                  <CheckCircle className="w-5 h-5 animate-bounce" />
                   <span>Enquiry submitted successfully!</span>
-                  <span className="text-[10px] text-slate-400 font-normal">Our consultant will contact you shortly.</span>
+                  <span className="text-[10px] text-white/30 font-normal">Our consultant will contact you shortly.</span>
                 </div>
               )}
 
@@ -258,91 +258,91 @@ export default function ServiceDetailPage() {
                 {/* Name */}
                 <input
                   type="text"
-                  placeholder="Name"
+                  placeholder="Full Name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 text-slate-800 placeholder-slate-400 rounded-xl text-xs focus:outline-none focus:border-primary focus:bg-white transition-all"
+                  className="w-full px-4 py-3 bg-white/5 border border-white/10 text-white placeholder-white/30 rounded-xl text-sm focus:outline-none focus:border-primary focus:bg-white/8 transition-all"
                 />
 
-                {/* 10 Digit Phone */}
+                {/* Phone */}
                 <input
                   type="tel"
                   placeholder="10 Digit Contact Number"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 text-slate-800 placeholder-slate-400 rounded-xl text-xs focus:outline-none focus:border-primary focus:bg-white transition-all"
+                  className="w-full px-4 py-3 bg-white/5 border border-white/10 text-white placeholder-white/30 rounded-xl text-sm focus:outline-none focus:border-primary focus:bg-white/8 transition-all"
                 />
 
                 {/* Email */}
                 <input
                   type="email"
-                  placeholder="Email"
+                  placeholder="Email Address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 text-slate-800 placeholder-slate-400 rounded-xl text-xs focus:outline-none focus:border-primary focus:bg-white transition-all"
+                  className="w-full px-4 py-3 bg-white/5 border border-white/10 text-white placeholder-white/30 rounded-xl text-sm focus:outline-none focus:border-primary focus:bg-white/8 transition-all"
                 />
 
-                {/* Select Services dropdown */}
-                <div className="flex border border-slate-200 rounded-xl overflow-hidden text-xs bg-slate-50">
-                  <div className="px-4 py-3 bg-slate-100 border-r border-slate-200 text-slate-500 font-bold">
-                    Select
+                {/* Service dropdown */}
+                <div className="flex border border-white/10 rounded-xl overflow-hidden text-sm bg-white/5">
+                  <div className="px-4 py-3 bg-white/8 border-r border-white/10 text-white/50 font-bold text-xs">
+                    Service
                   </div>
                   <select
                     value={selectedService}
                     onChange={(e) => setSelectedService(e.target.value)}
-                    className="flex-1 px-4 py-3 bg-transparent text-slate-700 focus:outline-none"
+                    className="flex-1 px-4 py-3 bg-transparent text-white/80 focus:outline-none text-sm cursor-pointer"
                   >
-                    <option value="" disabled>Services...</option>
+                    <option value="" disabled className="bg-[#1E1F22]">Select a service...</option>
                     {servicesData.map((s) => (
-                      <option key={s.id} value={s.id}>{s.title}</option>
+                      <option key={s.id} value={s.id} className="bg-[#1E1F22]">{s.title}</option>
                     ))}
                   </select>
                 </div>
 
-                {/* Summarize Project / Requirements */}
+                {/* Summary */}
                 <textarea
-                  placeholder="Summarize Project / Requirements"
+                  placeholder="Summarize your project / requirements..."
                   value={summary}
                   onChange={(e) => setSummary(e.target.value)}
                   rows={3}
-                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 text-slate-800 placeholder-slate-400 rounded-xl text-xs focus:outline-none focus:border-primary focus:bg-white transition-all resize-none"
+                  className="w-full px-4 py-3 bg-white/5 border border-white/10 text-white placeholder-white/30 rounded-xl text-sm focus:outline-none focus:border-primary focus:bg-white/8 transition-all resize-none"
                 />
 
-                {/* 50% Advance Payment Checkbox */}
-                <label className="flex items-start gap-2.5 cursor-pointer mt-1">
+                {/* Checkboxes */}
+                <label className="flex items-start gap-2.5 cursor-pointer">
                   <input
                     type="checkbox"
                     checked={advancePayment}
                     onChange={(e) => setAdvancePayment(e.target.checked)}
-                    className="w-4 h-4 rounded text-primary focus:ring-primary shrink-0 mt-0.5"
+                    className="w-4 h-4 rounded border-white/20 bg-white/5 text-primary focus:ring-primary shrink-0 mt-0.5 cursor-pointer"
                   />
-                  <span className="text-[10px] sm:text-xs text-slate-500 leading-snug">
-                    I agree to pay <strong>50% in advance</strong> to start the project.
+                  <span className="text-xs text-white/50 leading-snug">
+                    I agree to pay <strong className="text-white/80">50% in advance</strong> to start the project.
                   </span>
                 </label>
-
-                {/* Agreement Checkbox */}
-                <label className="flex items-start gap-2.5 cursor-pointer mt-1">
+                <label className="flex items-start gap-2.5 cursor-pointer">
                   <input
                     type="checkbox"
                     checked={agreed}
                     onChange={(e) => setAgreed(e.target.checked)}
-                    className="w-4 h-4 rounded text-primary focus:ring-primary shrink-0 mt-0.5"
+                    className="w-4 h-4 rounded border-white/20 bg-white/5 text-primary focus:ring-primary shrink-0 mt-0.5 cursor-pointer"
                   />
-                  <span className="text-[10px] sm:text-xs text-slate-500 leading-snug">
-                    I agree with our <Link href="/privacy-policy" className="text-primary hover:underline font-bold">Privacy Policy</Link> and <Link href="/terms-conditions" className="text-primary hover:underline font-bold">Terms Conditions</Link>
+                  <span className="text-xs text-white/50 leading-snug">
+                    I agree with our{' '}
+                    <Link href="/privacy-policy" className="text-primary hover:underline font-bold">Privacy Policy</Link>
+                    {' '}and{' '}
+                    <Link href="/terms-conditions" className="text-primary hover:underline font-bold">Terms Conditions</Link>
                   </span>
                 </label>
 
-                {/* Submit button */}
+                {/* Submit */}
                 <button
                   type="submit"
-                  className="w-full py-4.5 rounded-2xl bg-teal-400 hover:bg-teal-500 text-white font-black text-xs sm:text-sm uppercase tracking-wider transition-colors shadow-lg cursor-pointer"
+                  className={`w-full py-4 rounded-2xl bg-gradient-to-r ${cfg.accentFrom} ${cfg.accentTo} text-white font-black text-sm uppercase tracking-wider transition-all shadow-lg hover:opacity-90 hover:scale-[1.01] cursor-pointer`}
                 >
-                  Submit
+                  Submit Enquiry
                 </button>
               </form>
-
             </div>
           </div>
 
