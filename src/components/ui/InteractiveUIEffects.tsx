@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUp, MessageSquare, Send, X } from 'lucide-react';
+import { servicesData, caseStudiesData, jobsData } from '@/data/companyData';
 
 export const InteractiveUIEffects: React.FC = () => {
 
@@ -43,17 +44,64 @@ export const InteractiveUIEffects: React.FC = () => {
     setMessages((prev) => [...prev, { text: userMsg, sender: 'user' }]);
     setChatInput('');
 
-    // Generate automated corporate response
+    // Generate automated smart response scanning site content
     setTimeout(() => {
-      let botResponse = "Thank you for reaching out. A client relations manager will contact you shortly. Please feel free to email us directly at info@gangatara.com.";
-      
-      const normalizedMsg = userMsg.toLowerCase();
-      if (normalizedMsg.includes('service') || normalizedMsg.includes('cloud') || normalizedMsg.includes('ai')) {
-        botResponse = "We offer cloud migration, AI/ML deployment, and enterprise software engineering. You can review our full offerings on the Services page!";
-      } else if (normalizedMsg.includes('career') || normalizedMsg.includes('job') || normalizedMsg.includes('work')) {
-        botResponse = "We are currently hiring senior engineers and architects! Check out our open positions on the Careers page.";
-      } else if (normalizedMsg.includes('contact') || normalizedMsg.includes('office') || normalizedMsg.includes('call')) {
-        botResponse = "You can contact our corporate offices through the Contact form on our site, or via phone at +1 (800) 555-0199.";
+      const normalizedMsg = userMsg.toLowerCase().trim();
+      let botResponse = "";
+
+      // 1. Greetings
+      if (['hi', 'hello', 'hey', 'yo', 'greetings', 'hola'].includes(normalizedMsg)) {
+        botResponse = "Hello! I am your GangaTara Digital Assistant. I can tell you about our services, key industries, recent case studies, career openings, or help you contact our team. What are you looking to build today?";
+      } 
+      // 2. Contact, Email, Phone, Office Location, Address
+      else if (normalizedMsg.includes('contact') || normalizedMsg.includes('email') || normalizedMsg.includes('phone') || normalizedMsg.includes('call') || normalizedMsg.includes('reach') || normalizedMsg.includes('address') || normalizedMsg.includes('office') || normalizedMsg.includes('location')) {
+        botResponse = "You can reach GangaTara Technologies via email at info@gangatara.com or call us directly at +91 9009494056. Our team is available 24/7. You can also send a request through our 'Contact Us' page or click the 'Get a Quote' button at the top right to start a project.";
+      }
+      // 3. Case Studies / Success Stories / Projects / Clients
+      else if (normalizedMsg.includes('case study') || normalizedMsg.includes('portfolio') || normalizedMsg.includes('success story') || normalizedMsg.includes('projects') || normalizedMsg.includes('experience') || normalizedMsg.includes('client') || normalizedMsg.includes('work')) {
+        const casesList = caseStudiesData.map(cs => `• ${cs.client}: ${cs.title} (Industry: ${cs.industry})\n  "${cs.overview.slice(0, 120)}..."`).join("\n\n");
+        botResponse = `Here are some of our key enterprise success stories:\n\n${casesList}\n\nYou can read the details for each study on our Case Studies page!`;
+      }
+      // 4. Careers, Jobs, Hiring, Vacancy, Internship, Benefits
+      else if (normalizedMsg.includes('job') || normalizedMsg.includes('career') || normalizedMsg.includes('hiring') || normalizedMsg.includes('work at') || normalizedMsg.includes('join') || normalizedMsg.includes('internship') || normalizedMsg.includes('vacancy') || normalizedMsg.includes('position')) {
+        const jobsList = jobsData.map(j => `• ${j.title} (${j.department} - ${j.location})`).join("\n");
+        botResponse = `We are actively hiring talented professionals to join our team! Here are some of our open positions:\n\n${jobsList}\n\nWe offer fantastic benefits like comprehensive health insurance, remote work options, learning stipends, and performance bonuses. Check out our Careers page to apply!`;
+      }
+      // 5. Services / What we do / Capabilities
+      else if (normalizedMsg.includes('service') || normalizedMsg.includes('what we do') || normalizedMsg.includes('capability') || normalizedMsg.includes('offer') || normalizedMsg.includes('expert')) {
+        const servicesList = servicesData.map(s => `• ${s.title}: ${s.description.slice(0, 100)}...`).join("\n\n");
+        botResponse = `GangaTara Technologies offers premium enterprise IT solutions:\n\n${servicesList}\n\nYou can explore each service detail on our Services page!`;
+      }
+      // 6. Pricing, Cost, Payments, Advance
+      else if (normalizedMsg.includes('price') || normalizedMsg.includes('cost') || normalizedMsg.includes('quote') || normalizedMsg.includes('pay') || normalizedMsg.includes('advance') || normalizedMsg.includes('rate') || normalizedMsg.includes('charge')) {
+        botResponse = "We tailor our pricing based on project scope, timeline, and required talent. For custom projects (such as Web or App Development), we request a 50% advance payment to start development. Click 'Get a Quote' at the top right of the screen or fill out the enquiry form on our service pages to get a customized estimate.";
+      }
+      // 7. Accreditations, ISO, AWS, GCP, Partners
+      else if (normalizedMsg.includes('iso') || normalizedMsg.includes('aws') || normalizedMsg.includes('gcp') || normalizedMsg.includes('partner') || normalizedMsg.includes('certif') || normalizedMsg.includes('security') || normalizedMsg.includes('standard')) {
+        botResponse = "GangaTara Technologies maintains the highest industry standards for security and reliability. We are ISO 27001 and SOC 2 Type II Certified, and we are proud to be an AWS Advanced Consulting Partner and GCP Consulting Partner.";
+      }
+      // 8. Specific Service search
+      else {
+        const matchedService = servicesData.find(s => 
+          normalizedMsg.includes(s.title.toLowerCase()) || 
+          s.title.toLowerCase().split(' ').some(word => word.length > 3 && normalizedMsg.includes(word)) ||
+          s.technologies.some(tech => normalizedMsg.includes(tech.toLowerCase()))
+        );
+
+        const matchedCase = caseStudiesData.find(cs => 
+          normalizedMsg.includes(cs.client.toLowerCase()) || 
+          normalizedMsg.includes(cs.industry.toLowerCase())
+        );
+
+        if (matchedService) {
+          botResponse = `Yes, we specialize in ${matchedService.title}! Our team uses advanced technologies like ${matchedService.technologies.join(', ')} to deliver robust solutions.\n\nKey features of this service include:\n${matchedService.features.map(f => `• ${f}`).join('\n')}\n\nYou can read more or submit an inquiry on the dedicated ${matchedService.title} page under Services.`;
+        } else if (matchedCase) {
+          botResponse = `We did an outstanding project for ${matchedCase.client} in the ${matchedCase.industry} sector:\n\n"${matchedCase.overview}"\n\nKey Results achieved:\n${matchedCase.results.map(r => `• ${r.label}: ${r.value}`).join('\n')}\n\nRead more details on the Case Studies details page.`;
+        }
+        // Fallback
+        else {
+          botResponse = "I want to make sure I answer correctly. I am trained on GangaTara's services (Cloud, AI/ML, Web/App development, DevOps, Cybersecurity), case studies (MediHealth, Apex Global, Veloce Apparel), career opportunities, and contact details. Could you please specify your question, or email us at info@gangatara.com for direct support?";
+        }
       }
 
       setMessages((prev) => [...prev, { text: botResponse, sender: 'bot' }]);
@@ -144,7 +192,7 @@ export const InteractiveUIEffects: React.FC = () => {
               {messages.map((msg, index) => (
                 <div
                   key={index}
-                  className={`max-w-[80%] p-3 rounded-2xl text-xs leading-relaxed ${
+                  className={`max-w-[80%] p-3 rounded-2xl text-xs leading-relaxed whitespace-pre-line ${
                     msg.sender === 'user'
                       ? 'bg-primary text-white rounded-br-none align-self-end ml-auto'
                       : 'bg-white dark:bg-white/5 text-slate-800 dark:text-white rounded-bl-none border border-slate-100 dark:border-white/5 mr-auto shadow-sm'
