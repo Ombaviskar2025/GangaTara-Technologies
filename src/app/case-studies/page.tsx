@@ -12,7 +12,7 @@ export default function CaseStudiesPage() {
 
   const filteredCases = filter === 'All'
     ? caseStudiesData
-    : caseStudiesData.filter(cs => cs.industry === filter);
+    : caseStudiesData.filter(cs => cs.industry.toLowerCase().includes(filter.toLowerCase()));
 
   return (
     <div className="pt-28 pb-20">
