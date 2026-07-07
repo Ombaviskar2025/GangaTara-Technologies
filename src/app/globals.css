@@ -6,7 +6,7 @@
 @theme {
   --color-primary: #0057FF;
   --color-secondary: #00B4FF;
-  --color-dark: #0B1120;
+  --color-dark: #1E1F22;
   --color-light: #F8FAFC;
   --color-accent: #3B82F6;
   --color-success: #10B981;
@@ -40,13 +40,13 @@
 
 :root {
   --background: #F8FAFC;
-  --foreground: #0B1120;
+  --foreground: #1E1F22;
   --font-poppins: 'Poppins';
   --font-inter: 'Inter';
 }
 
 .dark {
-  --background: #0B1120;
+  --background: #1E1F22;
   --foreground: #F8FAFC;
 }
 
@@ -75,7 +75,7 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0B1120;
+  background: #1E1F22;
 }
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #0057FF, #00B4FF);
@@ -123,7 +123,7 @@ body {
 /* Gradient Borders */
 .gradient-border-blue {
   position: relative;
-  background: rgba(11, 17, 32, 0.8);
+  background: rgba(30, 31, 34, 0.8);
   border-radius: 16px;
   z-index: 1;
 }
@@ -164,7 +164,7 @@ body {
 }
 
 .radial-glow-blue {
-  background: radial-gradient(circle, rgba(0, 87, 255, 0.15) 0%, rgba(11, 17, 32, 0) 70%);
+  background: radial-gradient(circle, rgba(0, 87, 255, 0.15) 0%, rgba(30, 31, 34, 0) 70%);
 }
 
 .light .radial-glow-blue {
@@ -172,7 +172,7 @@ body {
 }
 
 .radial-glow-cyan {
-  background: radial-gradient(circle, rgba(0, 180, 255, 0.15) 0%, rgba(11, 17, 32, 0) 70%);
+  background: radial-gradient(circle, rgba(0, 180, 255, 0.15) 0%, rgba(30, 31, 34, 0) 70%);
 }
 
 .light .radial-glow-cyan {
@@ -215,31 +215,31 @@ body {
 
 /* ── Light Mode Border Visibility Fixes ── */
 .light .border-light\/5 {
-  border-color: rgba(11, 17, 32, 0.03) !important;
+  border-color: rgba(30, 31, 34, 0.03) !important;
 }
 .light .border-light\/10 {
-  border-color: rgba(11, 17, 32, 0.06) !important;
+  border-color: rgba(30, 31, 34, 0.06) !important;
 }
 .light .border-light\/15 {
-  border-color: rgba(11, 17, 32, 0.08) !important;
+  border-color: rgba(30, 31, 34, 0.08) !important;
 }
 .light .border-light\/20 {
-  border-color: rgba(11, 17, 32, 0.1) !important;
+  border-color: rgba(30, 31, 34, 0.1) !important;
 }
 .light .border-light\/25 {
-  border-color: rgba(11, 17, 32, 0.12) !important;
+  border-color: rgba(30, 31, 34, 0.12) !important;
 }
 .light .border-light\/30 {
-  border-color: rgba(11, 17, 32, 0.15) !important;
+  border-color: rgba(30, 31, 34, 0.15) !important;
 }
 .light .border-light {
-  border-color: rgba(11, 17, 32, 0.15) !important;
+  border-color: rgba(30, 31, 34, 0.15) !important;
 }
 
 /* Light mode divide colors */
 .light .divide-light\/10 > :not([hidden]) ~ :not([hidden]) {
-  border-color: rgba(11, 17, 32, 0.05) !important;
+  border-color: rgba(30, 31, 34, 0.05) !important;
 }
 .light .divide-light\/20 > :not([hidden]) ~ :not([hidden]) {
-  border-color: rgba(11, 17, 32, 0.08) !important;
+  border-color: rgba(30, 31, 34, 0.08) !important;
 }

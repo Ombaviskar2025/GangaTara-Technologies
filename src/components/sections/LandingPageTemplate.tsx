@@ -108,7 +108,7 @@ const TabbedCarousel: React.FC<{
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent" />
                     </div>
 
                     {/* Card Content */}
@@ -148,7 +148,7 @@ export const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({ conten
           className="absolute inset-0 w-full h-full object-cover"
         />
         {/* Gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0B1120]/96 via-[#0B1120]/80 to-[#0B1120]/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1E1F22]/96 via-[#1E1F22]/80 to-[#1E1F22]/30" />
         <div className="absolute inset-0 grid-bg opacity-15" />
 
         <div className="relative z-10 max-w-screen-xl mx-auto px-6 sm:px-14 py-16 w-full text-white">

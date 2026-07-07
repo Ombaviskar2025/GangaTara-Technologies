@@ -400,7 +400,7 @@ const MegaMenuPanel: React.FC<MegaMenuPanelProps> = ({ item, isActive, onMouseEn
           transition={{ duration: 0.18, ease: 'easeOut' }}
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
-          className="absolute top-[64px] left-0 bg-[#0D1526] border border-white/8 rounded-b-2xl shadow-2xl shadow-black/60 z-50 overflow-hidden"
+          className="absolute top-[64px] left-0 bg-[#2B2D31] border border-white/8 rounded-b-2xl shadow-2xl shadow-gray-950/60 z-50 overflow-hidden"
           style={{ width: panelWidth }}
           role="menu"
         >
@@ -500,7 +500,7 @@ const NestedMegaMenuPanel: React.FC<NestedMegaMenuPanelProps> = ({ menuKey, isAc
           transition={{ duration: 0.18, ease: 'easeOut' }}
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
-          className="absolute top-[64px] left-0 bg-[#0D1526] border border-white/8 rounded-b-2xl shadow-2xl shadow-black/60 z-50 overflow-hidden flex"
+          className="absolute top-[64px] left-0 bg-[#2B2D31] border border-white/8 rounded-b-2xl shadow-2xl shadow-gray-950/60 z-50 overflow-hidden flex"
           style={{ width: 960 }}
           role="menu"
         >
@@ -523,7 +523,7 @@ const NestedMegaMenuPanel: React.FC<NestedMegaMenuPanelProps> = ({ menuKey, isAc
           </div>
 
           {/* Middle Panel - Category Selectors 20% width */}
-          <div className="w-1/5 p-4 border-r border-white/6 bg-[#0B1120]/20 flex flex-col gap-0.5">
+          <div className="w-1/5 p-4 border-r border-white/6 bg-[#1E1F22]/20 flex flex-col gap-0.5">
             {data.categories.map((cat, idx) => (
               <button
                 key={cat.key}
@@ -651,7 +651,7 @@ export const Navbar: React.FC = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-[#0B1120]/97 z-[60] flex items-center justify-center p-6"
+            className="fixed inset-0 bg-[#1E1F22]/97 z-[60] flex items-center justify-center p-6"
           >
             <button
               onClick={() => setIsSearchOpen(false)}
@@ -703,8 +703,8 @@ export const Navbar: React.FC = () => {
         role="banner"
         className={`fixed left-0 w-full z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-[#0B1120]/98 backdrop-blur-md border-b border-white/8 shadow-lg shadow-black/30'
-            : 'bg-[#0B1120] border-b border-white/6'
+            ? 'bg-[#1E1F22]/98 backdrop-blur-md border-b border-white/8 shadow-lg shadow-gray-950/30'
+            : 'bg-[#1E1F22] border-b border-white/6'
         }`}
         style={{ top: isScrolled ? 0 : 32 }}
       >
@@ -814,7 +814,7 @@ export const Navbar: React.FC = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 3 }}
                     transition={{ duration: 0.15 }}
-                    className="absolute right-0 top-full mt-2 w-40 bg-[#0D1526] border border-white/8 rounded-xl shadow-xl z-50 overflow-hidden"
+                    className="absolute right-0 top-full mt-2 w-40 bg-[#2B2D31] border border-white/8 rounded-xl shadow-xl z-50 overflow-hidden"
                   >
                     {languages.map((lang) => (
                       <button
@@ -878,7 +878,7 @@ export const Navbar: React.FC = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-black/70 z-40 xl:hidden"
+              className="fixed inset-0 bg-gray-900/70 z-40 xl:hidden"
               onClick={() => setIsMobileMenuOpen(false)}
             />
             <motion.div
@@ -886,7 +886,7 @@ export const Navbar: React.FC = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.25, ease: 'easeOut' }}
-              className="fixed top-0 right-0 w-[320px] h-full bg-[#0B1120] border-l border-white/8 z-50 xl:hidden flex flex-col overflow-y-auto"
+              className="fixed top-0 right-0 w-[320px] h-full bg-[#1E1F22] border-l border-white/8 z-50 xl:hidden flex flex-col overflow-y-auto"
               role="dialog"
               aria-modal="true"
             >

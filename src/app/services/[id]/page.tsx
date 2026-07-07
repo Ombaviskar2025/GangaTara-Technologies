@@ -373,7 +373,7 @@ export default function ServiceDetailPage() {
             alt={service.title}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent dark:from-[#0B1120] dark:via-[#0B1120]/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent dark:from-[#1E1F22] dark:via-[#1E1F22]/40" />
           <div className="absolute bottom-8 left-8">
             <span className="px-3 py-1 rounded bg-primary text-white text-[10px] font-bold uppercase tracking-widest">
               {service.title} Practice

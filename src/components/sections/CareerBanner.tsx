@@ -19,7 +19,7 @@ export const CareerBanner: React.FC = () => {
       />
 
       {/* Gradient overlay — dark from left, transparent on right */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0B1120]/96 via-[#0B1120]/80 to-[#0B1120]/30" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#1E1F22]/96 via-[#1E1F22]/80 to-[#1E1F22]/30" />
 
       {/* Grid texture */}
       <div className="absolute inset-0 grid-bg opacity-15" />

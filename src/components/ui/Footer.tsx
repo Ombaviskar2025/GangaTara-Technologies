@@ -24,7 +24,7 @@ const CookiePreferences: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   };
 
   return (
-    <div className="fixed bottom-6 left-4 right-4 sm:left-auto sm:right-6 sm:w-[380px] z-[80] bg-[#0D1526] border border-white/10 rounded-2xl shadow-2xl p-5">
+    <div className="fixed bottom-6 left-4 right-4 sm:left-auto sm:right-6 sm:w-[380px] z-[80] bg-[#2B2D31] border border-white/10 rounded-2xl shadow-2xl p-5">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <Cookie className="w-4 h-4 text-primary" />
