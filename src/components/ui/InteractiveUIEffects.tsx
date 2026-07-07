@@ -32,9 +32,77 @@ export const InteractiveUIEffects: React.FC = () => {
   // --- Chat Bot Drawer ---
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [chatInput, setChatInput] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
   const [messages, setMessages] = useState<Array<{ text: string; sender: 'bot' | 'user' }>>([
     { text: 'Hello! I am GangaTara Digital Assistant. How can I help you explore our enterprise services today?', sender: 'bot' }
   ]);
+
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Auto scroll to bottom
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages, isTyping, isChatOpen]);
+
+  // Shared response logic
+  const getBotResponse = (userMsg: string): string => {
+    const normalizedMsg = userMsg.toLowerCase().trim();
+
+    // 1. Greetings
+    if (['hi', 'hello', 'hey', 'yo', 'greetings', 'hola', 'hi chatbot', 'hi bot'].includes(normalizedMsg)) {
+      return "Hello! I am your GangaTara Digital Assistant. I can tell you about our services, key industries, recent case studies, career openings, or help you contact our team. What are you looking to build today?";
+    } 
+    // 2. Contact, Email, Phone, Office Location, Address
+    else if (normalizedMsg.includes('contact') || normalizedMsg.includes('email') || normalizedMsg.includes('phone') || normalizedMsg.includes('call') || normalizedMsg.includes('reach') || normalizedMsg.includes('address') || normalizedMsg.includes('office') || normalizedMsg.includes('location')) {
+      return "You can reach GangaTara Technologies via email at info@gangatara.com or call us directly at +91 9009494056. Our team is available 24/7. You can also send a request through our 'Contact Us' page or click the 'Get a Quote' button at the top right to start a project.";
+    }
+    // 3. Case Studies / Success Stories / Projects / Clients
+    else if (normalizedMsg.includes('case study') || normalizedMsg.includes('portfolio') || normalizedMsg.includes('success story') || normalizedMsg.includes('projects') || normalizedMsg.includes('experience') || normalizedMsg.includes('client') || normalizedMsg.includes('work')) {
+      const casesList = caseStudiesData.map(cs => `• ${cs.client}: ${cs.title} (Industry: ${cs.industry})\n  "${cs.overview.slice(0, 120)}..."`).join("\n\n");
+      return `Here are some of our key enterprise success stories:\n\n${casesList}\n\nYou can read the details for each study on our Case Studies page!`;
+    }
+    // 4. Careers, Jobs, Hiring, Vacancy, Internship, Benefits
+    else if (normalizedMsg.includes('job') || normalizedMsg.includes('career') || normalizedMsg.includes('hiring') || normalizedMsg.includes('work at') || normalizedMsg.includes('join') || normalizedMsg.includes('internship') || normalizedMsg.includes('vacancy') || normalizedMsg.includes('position')) {
+      const jobsList = jobsData.map(j => `• ${j.title} (${j.department} - ${j.location})`).join("\n");
+      return `We are actively hiring talented professionals to join our team! Here are some of our open positions:\n\n${jobsList}\n\nWe offer fantastic benefits like comprehensive health insurance, remote work options, learning stipends, and performance bonuses. Check out our Careers page to apply!`;
+    }
+    // 5. Services / What we do / Capabilities
+    else if (normalizedMsg.includes('service') || normalizedMsg.includes('what we do') || normalizedMsg.includes('capability') || normalizedMsg.includes('offer') || normalizedMsg.includes('expert')) {
+      const servicesList = servicesData.map(s => `• ${s.title}: ${s.description.slice(0, 100)}...`).join("\n\n");
+      return `GangaTara Technologies offers premium enterprise IT solutions:\n\n${servicesList}\n\nYou can explore each service detail on our Services page!`;
+    }
+    // 6. Pricing, Cost, Payments, Advance
+    else if (normalizedMsg.includes('price') || normalizedMsg.includes('cost') || normalizedMsg.includes('quote') || normalizedMsg.includes('pay') || normalizedMsg.includes('advance') || normalizedMsg.includes('rate') || normalizedMsg.includes('charge')) {
+      return "We tailor our pricing based on project scope, timeline, and required talent. For custom projects (such as Web or App Development), we request a 50% advance payment to start development. Click 'Get a Quote' at the top right of the screen or fill out the enquiry form on our service pages to get a customized estimate.";
+    }
+    // 7. Accreditations, ISO, AWS, GCP, Partners
+    else if (normalizedMsg.includes('iso') || normalizedMsg.includes('aws') || normalizedMsg.includes('gcp') || normalizedMsg.includes('partner') || normalizedMsg.includes('certif') || normalizedMsg.includes('security') || normalizedMsg.includes('standard')) {
+      return "GangaTara Technologies maintains the highest industry standards for security and reliability. We are ISO 27001 and SOC 2 Type II Certified, and we are proud to be an AWS Advanced Consulting Partner and GCP Consulting Partner.";
+    }
+    // 8. Specific Service search
+    else {
+      const matchedService = servicesData.find(s => 
+        normalizedMsg.includes(s.title.toLowerCase()) || 
+        s.title.toLowerCase().split(' ').some(word => word.length > 3 && normalizedMsg.includes(word)) ||
+        s.technologies.some(tech => normalizedMsg.includes(tech.toLowerCase()))
+      );
+
+      const matchedCase = caseStudiesData.find(cs => 
+        normalizedMsg.includes(cs.client.toLowerCase()) || 
+        normalizedMsg.includes(cs.industry.toLowerCase())
+      );
+
+      if (matchedService) {
+        return `Yes, we specialize in ${matchedService.title}! Our team uses advanced technologies like ${matchedService.technologies.join(', ')} to deliver robust solutions.\n\nKey features of this service include:\n${matchedService.features.map(f => `• ${f}`).join('\n')}\n\nYou can read more or submit an inquiry on the dedicated ${matchedService.title} page under Services.`;
+      } else if (matchedCase) {
+        return `We did an outstanding project for ${matchedCase.client} in the ${matchedCase.industry} sector:\n\n"${matchedCase.overview}"\n\nKey Results achieved:\n${matchedCase.results.map(r => `• ${r.label}: ${r.value}`).join('\n')}\n\nRead more details on the Case Studies details page.`;
+      }
+      // Fallback
+      else {
+        return "I want to make sure I answer correctly. I am trained on GangaTara's services (Cloud, AI/ML, Web/App development, DevOps, Cybersecurity), case studies (MediHealth, Apex Global, Veloce Apparel), career opportunities, and contact details. Could you please specify your question, or email us at info@gangatara.com for direct support?";
+      }
+    }
+  };
 
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,69 +111,25 @@ export const InteractiveUIEffects: React.FC = () => {
     const userMsg = chatInput.trim();
     setMessages((prev) => [...prev, { text: userMsg, sender: 'user' }]);
     setChatInput('');
+    setIsTyping(true);
 
-    // Generate automated smart response scanning site content
+    // Simulate AI thinking and response
     setTimeout(() => {
-      const normalizedMsg = userMsg.toLowerCase().trim();
-      let botResponse = "";
-
-      // 1. Greetings
-      if (['hi', 'hello', 'hey', 'yo', 'greetings', 'hola'].includes(normalizedMsg)) {
-        botResponse = "Hello! I am your GangaTara Digital Assistant. I can tell you about our services, key industries, recent case studies, career openings, or help you contact our team. What are you looking to build today?";
-      } 
-      // 2. Contact, Email, Phone, Office Location, Address
-      else if (normalizedMsg.includes('contact') || normalizedMsg.includes('email') || normalizedMsg.includes('phone') || normalizedMsg.includes('call') || normalizedMsg.includes('reach') || normalizedMsg.includes('address') || normalizedMsg.includes('office') || normalizedMsg.includes('location')) {
-        botResponse = "You can reach GangaTara Technologies via email at info@gangatara.com or call us directly at +91 9009494056. Our team is available 24/7. You can also send a request through our 'Contact Us' page or click the 'Get a Quote' button at the top right to start a project.";
-      }
-      // 3. Case Studies / Success Stories / Projects / Clients
-      else if (normalizedMsg.includes('case study') || normalizedMsg.includes('portfolio') || normalizedMsg.includes('success story') || normalizedMsg.includes('projects') || normalizedMsg.includes('experience') || normalizedMsg.includes('client') || normalizedMsg.includes('work')) {
-        const casesList = caseStudiesData.map(cs => `• ${cs.client}: ${cs.title} (Industry: ${cs.industry})\n  "${cs.overview.slice(0, 120)}..."`).join("\n\n");
-        botResponse = `Here are some of our key enterprise success stories:\n\n${casesList}\n\nYou can read the details for each study on our Case Studies page!`;
-      }
-      // 4. Careers, Jobs, Hiring, Vacancy, Internship, Benefits
-      else if (normalizedMsg.includes('job') || normalizedMsg.includes('career') || normalizedMsg.includes('hiring') || normalizedMsg.includes('work at') || normalizedMsg.includes('join') || normalizedMsg.includes('internship') || normalizedMsg.includes('vacancy') || normalizedMsg.includes('position')) {
-        const jobsList = jobsData.map(j => `• ${j.title} (${j.department} - ${j.location})`).join("\n");
-        botResponse = `We are actively hiring talented professionals to join our team! Here are some of our open positions:\n\n${jobsList}\n\nWe offer fantastic benefits like comprehensive health insurance, remote work options, learning stipends, and performance bonuses. Check out our Careers page to apply!`;
-      }
-      // 5. Services / What we do / Capabilities
-      else if (normalizedMsg.includes('service') || normalizedMsg.includes('what we do') || normalizedMsg.includes('capability') || normalizedMsg.includes('offer') || normalizedMsg.includes('expert')) {
-        const servicesList = servicesData.map(s => `• ${s.title}: ${s.description.slice(0, 100)}...`).join("\n\n");
-        botResponse = `GangaTara Technologies offers premium enterprise IT solutions:\n\n${servicesList}\n\nYou can explore each service detail on our Services page!`;
-      }
-      // 6. Pricing, Cost, Payments, Advance
-      else if (normalizedMsg.includes('price') || normalizedMsg.includes('cost') || normalizedMsg.includes('quote') || normalizedMsg.includes('pay') || normalizedMsg.includes('advance') || normalizedMsg.includes('rate') || normalizedMsg.includes('charge')) {
-        botResponse = "We tailor our pricing based on project scope, timeline, and required talent. For custom projects (such as Web or App Development), we request a 50% advance payment to start development. Click 'Get a Quote' at the top right of the screen or fill out the enquiry form on our service pages to get a customized estimate.";
-      }
-      // 7. Accreditations, ISO, AWS, GCP, Partners
-      else if (normalizedMsg.includes('iso') || normalizedMsg.includes('aws') || normalizedMsg.includes('gcp') || normalizedMsg.includes('partner') || normalizedMsg.includes('certif') || normalizedMsg.includes('security') || normalizedMsg.includes('standard')) {
-        botResponse = "GangaTara Technologies maintains the highest industry standards for security and reliability. We are ISO 27001 and SOC 2 Type II Certified, and we are proud to be an AWS Advanced Consulting Partner and GCP Consulting Partner.";
-      }
-      // 8. Specific Service search
-      else {
-        const matchedService = servicesData.find(s => 
-          normalizedMsg.includes(s.title.toLowerCase()) || 
-          s.title.toLowerCase().split(' ').some(word => word.length > 3 && normalizedMsg.includes(word)) ||
-          s.technologies.some(tech => normalizedMsg.includes(tech.toLowerCase()))
-        );
-
-        const matchedCase = caseStudiesData.find(cs => 
-          normalizedMsg.includes(cs.client.toLowerCase()) || 
-          normalizedMsg.includes(cs.industry.toLowerCase())
-        );
-
-        if (matchedService) {
-          botResponse = `Yes, we specialize in ${matchedService.title}! Our team uses advanced technologies like ${matchedService.technologies.join(', ')} to deliver robust solutions.\n\nKey features of this service include:\n${matchedService.features.map(f => `• ${f}`).join('\n')}\n\nYou can read more or submit an inquiry on the dedicated ${matchedService.title} page under Services.`;
-        } else if (matchedCase) {
-          botResponse = `We did an outstanding project for ${matchedCase.client} in the ${matchedCase.industry} sector:\n\n"${matchedCase.overview}"\n\nKey Results achieved:\n${matchedCase.results.map(r => `• ${r.label}: ${r.value}`).join('\n')}\n\nRead more details on the Case Studies details page.`;
-        }
-        // Fallback
-        else {
-          botResponse = "I want to make sure I answer correctly. I am trained on GangaTara's services (Cloud, AI/ML, Web/App development, DevOps, Cybersecurity), case studies (MediHealth, Apex Global, Veloce Apparel), career opportunities, and contact details. Could you please specify your question, or email us at info@gangatara.com for direct support?";
-        }
-      }
-
+      setIsTyping(false);
+      const botResponse = getBotResponse(userMsg);
       setMessages((prev) => [...prev, { text: botResponse, sender: 'bot' }]);
-    }, 1000);
+    }, 1200);
+  };
+
+  const triggerQuickReply = (text: string) => {
+    setMessages((prev) => [...prev, { text, sender: 'user' }]);
+    setIsTyping(true);
+
+    setTimeout(() => {
+      setIsTyping(false);
+      const botResponse = getBotResponse(text);
+      setMessages((prev) => [...prev, { text: botResponse, sender: 'bot' }]);
+    }, 1200);
   };
 
   return (
@@ -190,17 +214,51 @@ export const InteractiveUIEffects: React.FC = () => {
             {/* Message Area */}
             <div className="flex-1 p-4 overflow-y-auto flex flex-col gap-3 no-scrollbar bg-slate-50 dark:bg-[#1E1F22]">
               {messages.map((msg, index) => (
-                <div
-                  key={index}
-                  className={`max-w-[80%] p-3 rounded-2xl text-xs leading-relaxed whitespace-pre-line ${
-                    msg.sender === 'user'
-                      ? 'bg-primary text-white rounded-br-none align-self-end ml-auto'
-                      : 'bg-white dark:bg-white/5 text-slate-800 dark:text-white rounded-bl-none border border-slate-100 dark:border-white/5 mr-auto shadow-sm'
-                  }`}
-                >
-                  {msg.text}
+                <div key={index} className="flex flex-col gap-2">
+                  <div
+                    className={`max-w-[80%] p-3 rounded-2xl text-xs leading-relaxed whitespace-pre-line ${
+                      msg.sender === 'user'
+                        ? 'bg-primary text-white rounded-br-none align-self-end ml-auto'
+                        : 'bg-white dark:bg-white/5 text-slate-800 dark:text-white rounded-bl-none border border-slate-100 dark:border-white/5 mr-auto shadow-sm'
+                    }`}
+                  >
+                    {msg.text}
+                  </div>
+
+                  {/* Quick suggested prompt buttons (only show right after the welcome message) */}
+                  {index === 0 && messages.length === 1 && (
+                    <div className="flex flex-col gap-1.5 mt-1 max-w-[85%] mr-auto">
+                      <p className="text-[9px] uppercase font-bold text-slate-400 dark:text-white/30 tracking-wider">Suggested actions</p>
+                      <div className="flex flex-wrap gap-1.5">
+                        <button type="button" onClick={() => triggerQuickReply('Explore Services')} className="px-2.5 py-1 bg-primary/10 border border-primary/20 hover:bg-primary text-[10px] text-primary hover:text-white font-bold rounded-lg transition-colors cursor-pointer text-left">
+                          Explore Services
+                        </button>
+                        <button type="button" onClick={() => triggerQuickReply('Show Case Studies')} className="px-2.5 py-1 bg-primary/10 border border-primary/20 hover:bg-primary text-[10px] text-primary hover:text-white font-bold rounded-lg transition-colors cursor-pointer text-left">
+                          View Projects
+                        </button>
+                        <button type="button" onClick={() => triggerQuickReply('Are you hiring?')} className="px-2.5 py-1 bg-primary/10 border border-primary/20 hover:bg-primary text-[10px] text-primary hover:text-white font-bold rounded-lg transition-colors cursor-pointer text-left">
+                          Careers & Jobs
+                        </button>
+                        <button type="button" onClick={() => triggerQuickReply('How do I contact your team?')} className="px-2.5 py-1 bg-primary/10 border border-primary/20 hover:bg-primary text-[10px] text-primary hover:text-white font-bold rounded-lg transition-colors cursor-pointer text-left">
+                          Contact Info
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               ))}
+
+              {/* Typing animation bubble */}
+              {isTyping && (
+                <div className="max-w-[80%] p-3.5 rounded-2xl text-xs rounded-bl-none border border-slate-100 dark:border-white/5 mr-auto shadow-sm bg-white dark:bg-white/5 text-slate-800 dark:text-white flex gap-1 items-center justify-center w-14">
+                  <span className="w-1.5 h-1.5 bg-slate-400 dark:bg-white/40 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                  <span className="w-1.5 h-1.5 bg-slate-400 dark:bg-white/40 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                  <span className="w-1.5 h-1.5 bg-slate-400 dark:bg-white/40 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                </div>
+              )}
+
+              {/* Invisible scroll target */}
+              <div ref={messagesEndRef} />
             </div>
 
             {/* Input Form */}
