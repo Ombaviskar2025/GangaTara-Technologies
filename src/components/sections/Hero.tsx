@@ -80,16 +80,9 @@ export const Hero: React.FC = () => {
   return (
     <section
       id="hero"
-      className="hero-light-section relative w-full overflow-hidden"
-      style={{ minHeight: '100vh' }}
+      className="relative w-full overflow-hidden"
+      style={{ minHeight: '100vh', background: '#ffffff' }}
     >
-      {/* ── Subtle dot-pattern background ─────────────────────────────────── */}
-      <div className="hero-light-dots" aria-hidden="true" />
-
-      {/* ── Soft top-left accent blob ─────────────────────────────────────── */}
-      <div className="hero-light-blob-tl" aria-hidden="true" />
-      {/* ── Soft bottom-right accent blob ────────────────────────────────── */}
-      <div className="hero-light-blob-br" aria-hidden="true" />
 
       {/* ── Content ───────────────────────────────────────────────────────── */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 flex flex-col justify-center"
