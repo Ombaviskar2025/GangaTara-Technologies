@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -736,15 +737,14 @@ export const Navbar: React.FC = () => {
             className="flex items-center gap-3 shrink-0 group"
             aria-label="GangaTara Technologies – Home"
           >
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-tr from-primary to-secondary flex items-center justify-center shadow-md shadow-primary/30 group-hover:shadow-primary/50 transition-shadow">
-              <span className="text-white font-black text-sm tracking-tight">GT</span>
-            </div>
-            <div className="flex flex-col leading-none">
-              <span className="text-white font-poppins font-bold text-[15px] tracking-wide leading-tight group-hover:text-primary/90 transition-colors">
-                GangaTara
-              </span>
-              <span className="text-white/35 text-[8px] uppercase tracking-[0.18em] font-medium">Technologies</span>
-            </div>
+            <Image
+              src="/logo.png"
+              alt="GangaTara Technologies"
+              width={140}
+              height={48}
+              className="h-12 w-auto object-contain drop-shadow-sm"
+              priority
+            />
           </Link>
 
           {/* Desktop Nav */}
@@ -913,13 +913,14 @@ export const Navbar: React.FC = () => {
               {/* Drawer header */}
               <div className="flex items-center justify-between px-6 py-4 border-b border-white/8">
                 <Link href="/" className="flex items-center gap-2.5" onClick={() => setIsMobileMenuOpen(false)}>
-                  <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary to-secondary flex items-center justify-center">
-                    <span className="text-white font-black text-xs">GT</span>
-                  </div>
-                  <div className="flex flex-col leading-none">
-                    <span className="text-white font-poppins font-bold text-sm">GangaTara</span>
-                    <span className="text-white/35 text-[8px] uppercase tracking-widest">Technologies</span>
-                  </div>
+                  <Image
+                    src="/logo.png"
+                    alt="GangaTara Technologies"
+                    width={120}
+                    height={40}
+                    className="h-10 w-auto object-contain"
+                    priority
+                  />
                 </Link>
                 <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 text-white/50 hover:text-white cursor-pointer" aria-label="Close menu">
                   <X className="w-5 h-5" />
