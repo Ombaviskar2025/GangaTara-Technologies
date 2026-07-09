@@ -81,10 +81,61 @@ export const Hero: React.FC = () => {
     <section
       id="hero"
       className="relative w-full overflow-hidden"
-      style={{ minHeight: '100vh', background: '#ffffff' }}
+      style={{
+        minHeight: '100vh',
+        background: 'radial-gradient(ellipse at 80% 10%, #ffffff 0%, #d1d5db 38%, #9ca3af 75%, #8b919a 100%)',
+      }}
     >
 
-      {/* ── Content ───────────────────────────────────────────────────────── */}
+      {/* ── Layered wave ribbons (bottom) ─────────────────────────────────── */}
+      <div
+        className="absolute bottom-0 left-0 right-0 pointer-events-none overflow-hidden"
+        style={{ height: 220, zIndex: 10 }}
+      >
+        {/* Blue-slate filled waves — deepest layer */}
+        <svg viewBox="0 0 1440 180" preserveAspectRatio="none"
+          className="absolute bottom-0 w-full" style={{ height: 180 }}>
+          <path d="M0,90 C200,140 400,60 600,100 C800,140 1000,70 1200,105 C1320,125 1400,100 1440,95 L1440,180 L0,180 Z"
+            fill="rgba(100,116,145,0.55)" />
+        </svg>
+
+        {/* Mid blue wave */}
+        <svg viewBox="0 0 1440 160" preserveAspectRatio="none"
+          className="absolute bottom-0 w-full" style={{ height: 155 }}>
+          <path d="M0,80 C180,120 380,50 620,85 C860,118 1060,60 1260,88 C1360,102 1420,85 1440,80 L1440,160 L0,160 Z"
+            fill="rgba(130,148,175,0.45)" />
+        </svg>
+
+        {/* Light blue wave */}
+        <svg viewBox="0 0 1440 130" preserveAspectRatio="none"
+          className="absolute bottom-0 w-full" style={{ height: 125 }}>
+          <path d="M0,65 C220,100 450,40 700,70 C920,98 1150,48 1380,72 C1410,76 1430,70 1440,68 L1440,130 L0,130 Z"
+            fill="rgba(165,185,210,0.38)" />
+        </svg>
+
+        {/* Very light blue top wave */}
+        <svg viewBox="0 0 1440 100" preserveAspectRatio="none"
+          className="absolute bottom-0 w-full" style={{ height: 95 }}>
+          <path d="M0,50 C260,78 520,30 780,55 C1000,76 1220,38 1440,52 L1440,100 L0,100 Z"
+            fill="rgba(190,210,230,0.28)" />
+        </svg>
+
+        {/* Orange thin line */}
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none"
+          className="absolute w-full" style={{ height: 80, bottom: 88 }}>
+          <path d="M-100,42 C180,14 420,68 680,40 C900,16 1160,58 1540,32"
+            fill="none" stroke="rgba(251,146,60,0.9)" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+
+        {/* Cyan-blue thin line */}
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none"
+          className="absolute w-full" style={{ height: 80, bottom: 72 }}>
+          <path d="M-100,48 C200,22 460,64 720,44 C940,26 1200,60 1540,38"
+            fill="none" stroke="rgba(147,197,253,0.7)" strokeWidth="1.5" strokeLinecap="round" />
+        </svg>
+      </div>
+
+
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 flex flex-col justify-center"
         style={{ minHeight: '100vh', paddingTop: 100, paddingBottom: 80 }}
       >
