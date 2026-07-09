@@ -737,13 +737,11 @@ export const Navbar: React.FC = () => {
             className="flex items-center gap-3 shrink-0 group"
             aria-label="GangaTara Technologies – Home"
           >
-            <Image
-              src="/logo.png"
+            <img
+              src="/logo.svg"
               alt="GangaTara Technologies"
-              width={140}
-              height={48}
-              className="h-12 w-auto object-contain drop-shadow-sm"
-              priority
+              className="h-11 w-auto object-contain"
+              loading="eager"
             />
           </Link>
 
@@ -913,13 +911,11 @@ export const Navbar: React.FC = () => {
               {/* Drawer header */}
               <div className="flex items-center justify-between px-6 py-4 border-b border-white/8">
                 <Link href="/" className="flex items-center gap-2.5" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Image
-                    src="/logo.png"
+                  <img
+                    src="/logo.svg"
                     alt="GangaTara Technologies"
-                    width={120}
-                    height={40}
-                    className="h-10 w-auto object-contain"
-                    priority
+                    className="h-9 w-auto object-contain"
+                    loading="eager"
                   />
                 </Link>
                 <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 text-white/50 hover:text-white cursor-pointer" aria-label="Close menu">
