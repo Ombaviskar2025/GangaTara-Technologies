@@ -245,6 +245,127 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
+   HERO – Light Theme (clean professional)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Section background */
+.hero-light-section {
+  background: linear-gradient(145deg, #ffffff 0%, #f0f6ff 50%, #e8f4ff 100%);
+}
+
+/* Subtle dot grid pattern */
+.hero-light-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(0, 87, 255, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Top-left soft accent blob */
+.hero-light-blob-tl {
+  position: absolute;
+  top: -120px;
+  left: -120px;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 87, 255, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Bottom-right soft accent blob */
+.hero-light-blob-br {
+  position: absolute;
+  bottom: -80px;
+  right: -80px;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 180, 255, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Badge */
+.hero-light-badge {
+  background: rgba(0, 87, 255, 0.07);
+  border: 1px solid rgba(0, 87, 255, 0.2);
+}
+.hero-light-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #0057FF;
+  animation: hero-badge-pulse 2s ease-in-out infinite;
+}
+@keyframes hero-badge-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.8); }
+}
+
+/* Typewriter gradient text */
+.hero-light-gradient-text {
+  background: linear-gradient(90deg, #0057FF 0%, #00B4FF 60%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Blinking cursor */
+.hero-cursor {
+  display: inline-block;
+  color: #0057FF;
+  font-weight: 300;
+  animation: hero-cursor-blink 1s step-end infinite;
+}
+@keyframes hero-cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* Trust badge pill */
+.hero-light-trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #374151;
+  background: #ffffff;
+  border: 1px solid rgba(0, 87, 255, 0.14);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+/* Primary CTA button – light theme */
+.hero-btn-light-primary {
+  background: linear-gradient(135deg, #0057FF 0%, #00B4FF 100%);
+  box-shadow: 0 6px 22px rgba(0, 87, 255, 0.3);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+.hero-btn-light-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 34px rgba(0, 87, 255, 0.42);
+}
+
+/* Secondary CTA button – light theme */
+.hero-btn-light-secondary {
+  color: #0057FF;
+  border: 1.5px solid rgba(0, 87, 255, 0.35);
+  background: transparent;
+  transition: background 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+}
+.hero-btn-light-secondary:hover {
+  background: rgba(0, 87, 255, 0.06);
+  border-color: rgba(0, 87, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
    HERO – Cinematic Wave Ribbon Animations
    ═══════════════════════════════════════════════════════════════════════════ */
 
