@@ -168,7 +168,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.3, ease: 'easeOut' as const }}
-            className="text-gray-500 text-base sm:text-lg leading-relaxed mb-8 max-w-xl"
+            className="text-gray-700 text-base sm:text-lg leading-relaxed mb-8 max-w-xl"
           >
             We empower global brands with innovative AI, cloud computing,
             cybersecurity, and bespoke software solutions to drive digital excellence.
@@ -224,10 +224,10 @@ export const Hero: React.FC = () => {
         className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 cursor-pointer bg-transparent border-none"
         aria-label="Scroll down"
       >
-        <span className="text-[10px] font-semibold tracking-[0.18em] uppercase text-gray-400">
+        <span className="text-[10px] font-semibold tracking-[0.18em] uppercase text-gray-600">
           Scroll Down
         </span>
-        <ChevronDown className="w-4 h-4 hero-chevron-bounce text-gray-400" />
+        <ChevronDown className="w-4 h-4 hero-chevron-bounce text-gray-600" />
       </motion.button>
     </section>
   );
