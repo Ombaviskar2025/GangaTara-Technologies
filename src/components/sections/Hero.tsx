@@ -71,11 +71,7 @@ export const Hero: React.FC = () => {
     window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
   }, []);
 
-  const fadeUp = (delay = 0) => ({
-    initial:    { opacity: 0, y: 24 },
-    animate:    { opacity: 1, y: 0  },
-    transition: { duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] },
-  });
+
 
   return (
     <section
@@ -142,7 +138,10 @@ export const Hero: React.FC = () => {
         <div className="max-w-3xl">
 
           {/* Badge */}
-          <motion.div {...fadeUp(0.1)}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.1, ease: 'easeOut' as const }}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-7 hero-light-badge"
           >
             <span className="hero-light-badge-dot" />
@@ -152,7 +151,10 @@ export const Hero: React.FC = () => {
           </motion.div>
 
           {/* Headline */}
-          <motion.h1 {...fadeUp(0.2)}
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.2, ease: 'easeOut' as const }}
             className="font-poppins font-extrabold leading-[1.1] tracking-tight text-gray-900 mb-4"
             style={{ fontSize: 'clamp(2.1rem, 4.8vw, 3.8rem)' }}
           >
@@ -162,7 +164,10 @@ export const Hero: React.FC = () => {
           </motion.h1>
 
           {/* Sub-description */}
-          <motion.p {...fadeUp(0.3)}
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.3, ease: 'easeOut' as const }}
             className="text-gray-500 text-base sm:text-lg leading-relaxed mb-8 max-w-xl"
           >
             We empower global brands with innovative AI, cloud computing,
@@ -170,7 +175,10 @@ export const Hero: React.FC = () => {
           </motion.p>
 
           {/* Trust badges */}
-          <motion.div {...fadeUp(0.38)}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.38, ease: 'easeOut' as const }}
             className="flex flex-wrap gap-3 mb-9"
           >
             {TRUST.map((item) => (
@@ -182,7 +190,10 @@ export const Hero: React.FC = () => {
           </motion.div>
 
           {/* CTA buttons */}
-          <motion.div {...fadeUp(0.46)}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.46, ease: 'easeOut' as const }}
             className="flex flex-row flex-wrap gap-4"
           >
             <Link
