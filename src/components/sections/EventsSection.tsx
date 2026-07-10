@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, Calendar, MapPin, ExternalLink } from 'lucide-react';
 import { webinarsData } from '@/data/companyData';
-import { useContactModal } from '@/context/ContactModalContext';
 
 const CATEGORY_COLORS: Record<string, string> = {
   'AI & Machine Learning': 'from-purple-600/40 to-blue-700/40',
@@ -15,7 +14,6 @@ const CATEGORY_COLORS: Record<string, string> = {
 const DEFAULT_GRADIENT = 'from-primary/30 to-secondary/30';
 
 export const EventsSection: React.FC = () => {
-  const { openModal } = useContactModal();
 
   return (
     <section className="py-20 bg-light dark:bg-dark relative overflow-hidden">
@@ -33,12 +31,12 @@ export const EventsSection: React.FC = () => {
               Join our engineers and architects at upcoming workshops, webinars, and industry events.
             </p>
           </div>
-          <button
-            onClick={openModal}
+          <Link
+            href="/contact"
             className="shrink-0 flex items-center gap-2 text-[13px] font-semibold text-primary hover:text-secondary transition-colors cursor-pointer bg-transparent border-0 outline-none"
           >
             Request a Private Session <ArrowRight className="w-4 h-4" />
-          </button>
+          </Link>
         </div>
 
         {/* Events grid */}
@@ -95,12 +93,12 @@ export const EventsSection: React.FC = () => {
                   </div>
 
                   {/* CTA */}
-                  <button
-                    onClick={openModal}
+                  <Link
+                    href="/contact"
                     className="inline-flex items-center gap-1.5 text-[12px] font-bold text-primary hover:text-secondary transition-colors cursor-pointer bg-transparent border-0 p-0 outline-none mt-auto w-fit"
                   >
                     Read more →
-                  </button>
+                  </Link>
                 </div>
               </motion.article>
             );

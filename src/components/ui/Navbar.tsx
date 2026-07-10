@@ -15,7 +15,6 @@ import {
 import { useTheme } from '@/context/ThemeContext';
 import { useLanguage, Language } from '@/context/LanguageContext';
 import { blogsData, jobsData, awardsData, servicesData, industriesData } from '@/data/companyData';
-import { useContactModal } from '@/context/ContactModalContext';
 
 // ─── Icon Map ─────────────────────────────────────────────────────────────────
 
@@ -558,7 +557,6 @@ export const Navbar: React.FC = () => {
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
   const { language, setLanguage } = useLanguage();
-  const { openModal } = useContactModal();
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
@@ -875,12 +873,12 @@ export const Navbar: React.FC = () => {
 
             <div className="w-px h-5 bg-white/10 mx-1" />
 
-            <button
-              onClick={openModal}
+            <Link
+              href="/contact"
               className="text-[13px] font-medium text-white/60 hover:text-white px-2 py-1 transition-colors tracking-wide cursor-pointer bg-transparent border-0 outline-none"
             >
               Contact Us
-            </button>
+            </Link>
 
 
           </div>
@@ -1054,15 +1052,15 @@ export const Navbar: React.FC = () => {
                   <Mail className="w-3.5 h-3.5 text-primary" />
                   info@gangatara.com
                 </div>
-                <button
+                <Link
+                  href="/contact"
                   onClick={() => {
                     setIsMobileMenuOpen(false);
-                    openModal();
                   }}
                   className="mt-2 w-full py-3 rounded-xl bg-primary hover:bg-secondary text-white text-[13px] font-bold text-center transition-colors cursor-pointer border-0 outline-none"
                 >
                   Contact Us
-                </button>
+                </Link>
               </div>
             </motion.div>
           </>

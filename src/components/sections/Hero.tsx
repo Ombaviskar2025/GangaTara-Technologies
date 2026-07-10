@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import { ArrowRight, ChevronDown, CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
-import { useContactModal } from '@/context/ContactModalContext';
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  Typewriter – cycles through key service areas
@@ -65,7 +64,6 @@ const TRUST = [
 // ─────────────────────────────────────────────────────────────────────────────
 export const Hero: React.FC = () => {
   const { t }         = useLanguage();
-  const { openModal } = useContactModal();
 
   const scrollDown = useCallback(() => {
     window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
@@ -204,12 +202,12 @@ export const Hero: React.FC = () => {
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
 
-            <button
-              onClick={openModal}
+            <Link
+              href="/contact"
               className="hero-btn-light-secondary inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-bold text-sm cursor-pointer"
             >
               {t('hero.ctaSecondary')}
-            </button>
+            </Link>
           </motion.div>
 
         </div>

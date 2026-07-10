@@ -4,7 +4,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ChevronLeft, ChevronRight, Quote, ExternalLink, CheckCircle } from 'lucide-react';
-import { useContactModal } from '@/context/ContactModalContext';
 import { LandingPageContent } from '@/data/landingPagesData';
 import { servicesData, industriesData } from '@/data/companyData';
 
@@ -136,65 +135,7 @@ const TabbedCarousel: React.FC<{
 };
 
 export const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({ content }) => {
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
-  const [selectedItem, setSelectedItem] = useState(content.id);
-  const [summary, setSummary] = useState('');
-  const [advancePayment, setAdvancePayment] = useState(false);
-  const [agreed, setAgreed] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [errorMsg, setErrorMsg] = useState('');
-
   const isIndustry = industriesData.some((ind) => ind.id === content.id);
-
-  // Sync selected item when page changes
-  useEffect(() => {
-    setSelectedItem(content.id);
-  }, [content.id]);
-
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setErrorMsg('');
-
-    if (!name.trim()) {
-      setErrorMsg('Please enter your name.');
-      return;
-    }
-    const phoneRegex = /^\d{10}$/;
-    if (!phoneRegex.test(phone.trim())) {
-      setErrorMsg('Please enter a valid 10-digit contact number.');
-      return;
-    }
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email.trim())) {
-      setErrorMsg('Please enter a valid email address.');
-      return;
-    }
-    if (!agreed) {
-      setErrorMsg('You must agree to our Privacy Policy and Terms Conditions.');
-      return;
-    }
-
-    setSuccess(true);
-    setName('');
-    setPhone('');
-    setEmail('');
-    setSummary('');
-    setAdvancePayment(false);
-    setAgreed(false);
-
-    setTimeout(() => {
-      setSuccess(false);
-    }, 5000);
-  };
-
-  const scrollToForm = () => {
-    const formSec = document.getElementById('enquiry-form-section');
-    if (formSec) {
-      formSec.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <div className="bg-light dark:bg-dark min-h-screen text-dark dark:text-light">
@@ -233,13 +174,13 @@ export const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({ conten
             <p className="text-white/70 text-sm sm:text-base leading-relaxed mb-8 max-w-xl">
               {content.hero.subtitle}
             </p>
-            {/* Contact CTA */}
-            <button
-              onClick={scrollToForm}
+            {/* Contact CTA (Redirects directly to new Enquiry Form page) */}
+            <Link
+              href={isIndustry ? `/contact?industry=${content.id}` : `/contact?service=${content.id}`}
               className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary hover:bg-secondary text-white font-bold text-[13px] rounded-xl transition-all shadow-lg shadow-primary/20 cursor-pointer border-0 outline-none"
             >
               Get in Touch <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -386,137 +327,6 @@ export const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({ conten
             </div>
           </section>
         )}
-
-        {/* 9. ENQUIRY FORM SECTION (Exactly like Web Development form) */}
-        <section id="enquiry-form-section" className="py-12 border-t border-dark/5 dark:border-white/5 scroll-mt-24">
-          <div className="max-w-xl mx-auto">
-            <div className="w-full bg-[#57585E]/30 backdrop-blur-xl border border-white/10 rounded-[28px] shadow-2xl p-8 sm:p-10 flex flex-col gap-6">
-              
-              {/* Form Header */}
-              <div className="flex flex-col gap-1">
-                <span className="text-[10px] font-bold uppercase tracking-[0.2em] bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  Get in Touch
-                </span>
-                <h3 className="text-2xl font-poppins font-bold text-dark dark:text-white">
-                  Enquiry Form
-                </h3>
-                <p className="text-dark/65 dark:text-white/40 text-xs">
-                  Fill out this form and our consultant will respond within 24 hours.
-                </p>
-              </div>
-
-              {/* Error / Success Messages */}
-              {errorMsg && (
-                <div className="p-3 bg-red-500/10 text-red-400 border border-red-500/20 text-xs font-semibold rounded-xl text-center">
-                  {errorMsg}
-                </div>
-              )}
-              {success && (
-                <div className="p-4 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-semibold rounded-2xl text-center flex flex-col gap-1 items-center">
-                  <CheckCircle className="w-5 h-5 animate-bounce" />
-                  <span>Enquiry submitted successfully!</span>
-                  <span className="text-[10px] text-dark/45 dark:text-white/30 font-normal">Our consultant will contact you shortly.</span>
-                </div>
-              )}
-
-              <form onSubmit={handleFormSubmit} className="flex flex-col gap-4">
-                {/* Name */}
-                <input
-                  type="text"
-                  placeholder="Full Name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full px-4 py-3 bg-white/5 border border-dark/15 dark:border-white/10 text-dark dark:text-white placeholder-dark/45 dark:placeholder-white/30 rounded-xl text-sm focus:outline-none focus:border-primary focus:bg-white/8 transition-all"
-                />
-
-                {/* Phone */}
-                <input
-                  type="tel"
-                  placeholder="10 Digit Contact Number"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  className="w-full px-4 py-3 bg-white/5 border border-dark/15 dark:border-white/10 text-dark dark:text-white placeholder-dark/45 dark:placeholder-white/30 rounded-xl text-sm focus:outline-none focus:border-primary focus:bg-white/8 transition-all"
-                />
-
-                {/* Email */}
-                <input
-                  type="email"
-                  placeholder="Email Address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 bg-white/5 border border-dark/15 dark:border-white/10 text-dark dark:text-white placeholder-dark/45 dark:placeholder-white/30 rounded-xl text-sm focus:outline-none focus:border-primary focus:bg-white/8 transition-all"
-                />
-
-                {/* Service/Industry dropdown */}
-                <div className="flex border border-dark/15 dark:border-white/10 rounded-xl overflow-hidden text-sm bg-white/5">
-                  <div className="px-4 py-3 bg-white/8 dark:bg-white/5 border-r border-dark/15 dark:border-white/10 text-dark/50 dark:text-white/50 font-bold text-xs">
-                    {isIndustry ? 'Industry' : 'Service'}
-                  </div>
-                  <select
-                    value={selectedItem}
-                    onChange={(e) => setSelectedItem(e.target.value)}
-                    className="flex-1 px-4 py-3 bg-transparent text-dark/80 dark:text-white/80 focus:outline-none text-sm cursor-pointer"
-                  >
-                    <option value="" disabled className="bg-[#57585E] text-white">Select {isIndustry ? 'an industry' : 'a service'}...</option>
-                    {isIndustry ? (
-                      industriesData.map((ind) => (
-                        <option key={ind.id} value={ind.id} className="bg-[#57585E] text-white">{ind.title}</option>
-                      ))
-                    ) : (
-                      servicesData.map((s) => (
-                        <option key={s.id} value={s.id} className="bg-[#57585E] text-white">{s.title}</option>
-                      ))
-                    )}
-                  </select>
-                </div>
-
-                {/* Summary */}
-                <textarea
-                  placeholder="Summarize your project / requirements..."
-                  value={summary}
-                  onChange={(e) => setSummary(e.target.value)}
-                  rows={3}
-                  className="w-full px-4 py-3 bg-white/5 border border-dark/15 dark:border-white/10 text-dark dark:text-white placeholder-dark/45 dark:placeholder-white/30 rounded-xl text-sm focus:outline-none focus:border-primary focus:bg-white/8 transition-all resize-none"
-                />
-
-                {/* Checkboxes */}
-                <label className="flex items-start gap-2.5 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={advancePayment}
-                    onChange={(e) => setAdvancePayment(e.target.checked)}
-                    className="w-4 h-4 rounded border-dark/15 dark:border-white/20 bg-white/5 text-primary focus:ring-primary shrink-0 mt-0.5 cursor-pointer"
-                  />
-                  <span className="text-xs text-dark/65 dark:text-white/50 leading-snug">
-                    I agree to pay <strong className="text-dark dark:text-white/80">50% in advance</strong> to start the project.
-                  </span>
-                </label>
-                <label className="flex items-start gap-2.5 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={agreed}
-                    onChange={(e) => setAgreed(e.target.checked)}
-                    className="w-4 h-4 rounded border-dark/15 dark:border-white/20 bg-white/5 text-primary focus:ring-primary shrink-0 mt-0.5 cursor-pointer"
-                  />
-                  <span className="text-xs text-dark/65 dark:text-white/50 leading-snug">
-                    I agree with our{' '}
-                    <Link href="/privacy-policy" className="text-primary hover:underline font-bold">Privacy Policy</Link>
-                    {' '}and{' '}
-                    <Link href="/terms-conditions" className="text-primary hover:underline font-bold">Terms Conditions</Link>
-                  </span>
-                </label>
-
-                {/* Submit */}
-                <button
-                  type="submit"
-                  className="w-full py-4 rounded-2xl bg-gradient-to-r from-primary to-secondary text-white font-black text-sm uppercase tracking-wider transition-all shadow-lg hover:opacity-90 hover:scale-[1.01] cursor-pointer"
-                >
-                  Submit Enquiry
-                </button>
-              </form>
-            </div>
-          </div>
-        </section>
 
       </div>
     </div>
