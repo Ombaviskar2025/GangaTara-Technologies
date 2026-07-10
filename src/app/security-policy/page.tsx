@@ -86,7 +86,7 @@ export default function SecurityPolicyPage() {
             <p>
               Email: <a href="mailto:security@gangatara.com" className="text-primary hover:text-secondary transition-colors">security@gangatara.com</a><br />
               Encrypted communications via PGP key available upon request.<br />
-              For urgent security matters: +91 9009494056 (24/7 incident hotline)
+              For urgent security matters: +91 9111903111 (24/7 incident hotline)
             </p>
           </section>
         </div>

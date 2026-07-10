@@ -97,7 +97,7 @@ export default function PrivacyPolicyPage() {
               For privacy audits, GDPR data extraction requests, or queries regarding our ISO 27001 control protocols, please reach out to our privacy management team:
             </p>
             <div className="text-xs text-dark/60 dark:text-light/60">
-              Email: <a href="mailto:privacy@gangatara.com" className="text-primary hover:underline font-bold">privacy@gangatara.com</a> | Phone: +91 9009494056 (APAC Support Hub)
+              Email: <a href="mailto:privacy@gangatara.com" className="text-primary hover:underline font-bold">privacy@gangatara.com</a> | Phone: +91 9111903111 (APAC Support Hub)
             </div>
           </section>
 

@@ -190,8 +190,8 @@ export const ContactModal: React.FC = () => {
                     <div className="p-4 rounded-xl bg-white/3 border border-white/6">
                       <p className="text-white/35 text-[10px] font-bold uppercase tracking-widest mb-3">Or reach us directly</p>
                       <div className="flex flex-col sm:flex-row gap-3">
-                        <a href="tel:+919009494056" className="flex items-center gap-2 text-[12px] text-white/60 hover:text-white transition-colors">
-                          <Phone className="w-3.5 h-3.5 text-primary" /> +91 9009494056
+                        <a href="tel:+919111903111" className="flex items-center gap-2 text-[12px] text-white/60 hover:text-white transition-colors">
+                          <Phone className="w-3.5 h-3.5 text-primary" /> +91 9111903111
                         </a>
                         <a href="mailto:info@gangatara.com" className="flex items-center gap-2 text-[12px] text-white/60 hover:text-white transition-colors">
                           <Mail className="w-3.5 h-3.5 text-primary" /> info@gangatara.com

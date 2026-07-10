@@ -329,7 +329,7 @@ const MegaMenuLiveStrip: React.FC<{ type: 'blogs' | 'jobs' | 'awards'; heading: 
 
   return (
     <div className="border-t border-white/6 px-7 py-5">
-      <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/35 mb-3">{heading}</p>
+      <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-white/70 mb-3">{heading}</p>
       <div className="flex flex-col gap-2.5">
         {items.map((item, i) => (
           <Link key={i} href={item.href} className="flex items-start gap-2.5 group/strip">
@@ -338,7 +338,7 @@ const MegaMenuLiveStrip: React.FC<{ type: 'blogs' | 'jobs' | 'awards'; heading: 
               <p className="text-[12px] text-white/70 group-hover/strip:text-white transition-colors leading-tight font-medium line-clamp-1">
                 {item.label}
               </p>
-              <p className="text-[10px] text-white/30 mt-0.5">{item.sub}</p>
+              <p className="text-[10.5px] text-white/55 mt-0.5">{item.sub}</p>
             </div>
           </Link>
         ))}
@@ -404,15 +404,15 @@ const MegaMenuPanel: React.FC<MegaMenuPanelProps> = ({ item, isActive, onMouseEn
           >
             {item.columns.map((col, ci) => (
               <div key={ci}>
-                <p className="text-[9px] font-bold uppercase tracking-[0.22em] text-primary mb-4">{col.heading}</p>
+                <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-primary mb-4">{col.heading}</p>
                 <ul className="flex flex-col gap-0.5">
                   {col.links.map((link, li) => (
                     <li key={li}>
                       <Link
                         href={link.href}
                         role="menuitem"
-                        className={`flex items-center gap-2.5 py-1.5 px-2 rounded-lg text-[12.5px] font-medium transition-all group/link -mx-2
-                          ${isActivePath(link.href) ? 'text-primary bg-primary/6' : 'text-white/60 hover:text-white hover:bg-white/4'}
+                        className={`flex items-center gap-2.5 py-1.5 px-2 rounded-lg text-[13px] font-medium transition-all group/link -mx-2
+                          ${isActivePath(link.href) ? 'text-primary bg-primary/6' : 'text-white/85 hover:text-white hover:bg-white/4'}
                         `}
                       >
                         <span className={`shrink-0 transition-colors ${isActivePath(link.href) ? 'text-primary' : 'text-white/30 group-hover/link:text-primary'}`}>
@@ -435,7 +435,7 @@ const MegaMenuPanel: React.FC<MegaMenuPanelProps> = ({ item, isActive, onMouseEn
           {/* Footer row */}
           {item.footerLink && (
             <div className="border-t border-white/6 px-7 py-3.5 flex items-center justify-between bg-white/[0.02]">
-              <p className="text-white/25 text-[10px] font-medium">GangaTara Technologies · Enterprise IT Partner</p>
+              <p className="text-white/50 text-[11px] font-medium">GangaTara Technologies · Enterprise IT Partner</p>
               <Link
                 href={item.footerLink.href}
                 className="text-primary text-[12px] font-semibold hover:text-secondary flex items-center gap-1 transition-colors"
@@ -520,7 +520,7 @@ const NestedMegaMenuPanel: React.FC<NestedMegaMenuPanelProps> = ({ menuKey, isAc
           <div className="flex-1 p-6 grid grid-cols-2 gap-8 bg-white/[0.005]">
             {activeCategory.columns.map((col, ci) => (
               <div key={ci}>
-                <p className="text-[9px] font-bold uppercase tracking-[0.22em] text-primary mb-4">
+                <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-primary mb-4">
                   {col.heading}
                 </p>
                 <ul className="flex flex-col gap-0.5">
@@ -529,8 +529,8 @@ const NestedMegaMenuPanel: React.FC<NestedMegaMenuPanelProps> = ({ menuKey, isAc
                       <Link
                         href={link.href}
                         role="menuitem"
-                        className={`flex items-center gap-2.5 py-1.5 px-2 rounded-lg text-[12.5px] font-medium transition-all group/link -mx-2 hover:underline
-                          ${isActivePath(link.href) ? 'text-primary' : 'text-white/60 hover:text-white'}
+                        className={`flex items-center gap-2.5 py-1.5 px-2 rounded-lg text-[13px] font-medium transition-all group/link -mx-2 hover:underline
+                          ${isActivePath(link.href) ? 'text-primary' : 'text-white/85 hover:text-white'}
                         `}
                       >
                         {link.icon && (
@@ -759,9 +759,9 @@ export const Navbar: React.FC = () => {
             aria-label="GangaTara Technologies – Home"
           >
             <img
-              src="/logo.svg"
+              src="/logo-new.png"
               alt="GangaTara Technologies"
-              className="h-11 w-auto object-contain"
+              className="h-12 w-auto object-contain"
               loading="eager"
             />
           </Link>
@@ -928,9 +928,9 @@ export const Navbar: React.FC = () => {
               <div className="flex items-center justify-between px-6 py-4 border-b border-white/8">
                 <Link href="/" className="flex items-center gap-2.5" onClick={() => setIsMobileMenuOpen(false)}>
                   <img
-                    src="/logo.svg"
+                    src="/logo-new.png"
                     alt="GangaTara Technologies"
-                    className="h-9 w-auto object-contain"
+                    className="h-10 w-auto object-contain"
                     loading="eager"
                   />
                 </Link>
@@ -1048,7 +1048,7 @@ export const Navbar: React.FC = () => {
               <div className="border-t border-white/8 px-6 py-5 flex flex-col gap-3">
                 <div className="flex items-center gap-2 text-white/35 text-[11px]">
                   <Phone className="w-3.5 h-3.5 text-primary" />
-                  +91 9009494056
+                  +91 9111903111
                 </div>
                 <div className="flex items-center gap-2 text-white/35 text-[11px]">
                   <Mail className="w-3.5 h-3.5 text-primary" />

@@ -54,7 +54,7 @@ export const InteractiveUIEffects: React.FC = () => {
     } 
     // 2. Contact, Email, Phone, Office Location, Address
     else if (normalizedMsg.includes('contact') || normalizedMsg.includes('email') || normalizedMsg.includes('phone') || normalizedMsg.includes('call') || normalizedMsg.includes('reach') || normalizedMsg.includes('address') || normalizedMsg.includes('office') || normalizedMsg.includes('location')) {
-      return "You can reach GangaTara Technologies via email at info@gangatara.com or call us directly at +91 9009494056. Our team is available 24/7. You can also send a request through our 'Contact Us' page or click the 'Get a Quote' button at the top right to start a project.";
+      return "You can reach GangaTara Technologies via email at info@gangatara.com or call us directly at +91 9111903111. Our team is available 24/7. You can also send a request through our 'Contact Us' page or click the 'Get a Quote' button at the top right to start a project.";
     }
     // 3. Case Studies / Success Stories / Projects / Clients
     else if (normalizedMsg.includes('case study') || normalizedMsg.includes('portfolio') || normalizedMsg.includes('success story') || normalizedMsg.includes('projects') || normalizedMsg.includes('experience') || normalizedMsg.includes('client') || normalizedMsg.includes('work')) {
@@ -164,7 +164,7 @@ export const InteractiveUIEffects: React.FC = () => {
 
         {/* WhatsApp Button */}
         <a
-          href="https://wa.me/919009494056"
+          href="https://wa.me/919111903111"
           target="_blank"
           rel="noopener noreferrer"
           className="p-3 bg-[#25D366] hover:bg-[#20BA56] text-white rounded-full shadow-lg flex items-center justify-center transition-colors cursor-pointer"

@@ -95,7 +95,7 @@ export default function CookiePolicyPage() {
               If you have queries regarding our cookie usage or analytical tracking details, please contact our information security team:
             </p>
             <div className="text-xs text-dark/60 dark:text-light/60">
-              Email: <a href="mailto:security@gangatara.com" className="text-primary hover:underline font-bold">security@gangatara.com</a> | Phone: +91 9009494056
+              Email: <a href="mailto:security@gangatara.com" className="text-primary hover:underline font-bold">security@gangatara.com</a> | Phone: +91 9111903111
             </div>
           </section>
 

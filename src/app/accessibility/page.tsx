@@ -71,7 +71,7 @@ export default function AccessibilityPage() {
             <p>We welcome feedback on the accessibility of our website. Please contact us:</p>
             <ul className="list-disc pl-5 space-y-1.5">
               <li>Email: <a href="mailto:accessibility@gangatara.com" className="text-primary hover:text-secondary transition-colors">accessibility@gangatara.com</a></li>
-              <li>Phone: +91 9009494056</li>
+              <li>Phone: +91 9111903111</li>
               <li>Response time: within 2 business days</li>
             </ul>
           </section>
