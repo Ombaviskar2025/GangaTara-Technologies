@@ -78,17 +78,13 @@ const NAV_ITEMS: {
         links: [
           { label: 'About GangaTara', href: '/about', icon: <Users className="w-3.5 h-3.5" /> },
           { label: 'Leadership Team', href: '/about#leadership', icon: <Award className="w-3.5 h-3.5" /> },
-          { label: 'Culture & Values', href: '/about#culture', icon: <Sparkles className="w-3.5 h-3.5" /> },
           { label: 'Awards & Recognition', href: '/about#awards', icon: <Award className="w-3.5 h-3.5" /> },
         ],
       },
       {
         heading: 'Global Presence',
         links: [
-          { label: 'APAC HQ — Pune, India', href: '/contact', icon: <MapPin className="w-3.5 h-3.5" /> },
-          { label: 'EMEA Office — Munich, Germany', href: '/contact', icon: <MapPin className="w-3.5 h-3.5" /> },
-          { label: 'Partner Network', href: '/about#partners', icon: <Globe2 className="w-3.5 h-3.5" /> },
-          { label: 'Certifications', href: '/about#certifications', icon: <Shield className="w-3.5 h-3.5" /> },
+          { label: 'Indore Madhya-Pradesh', href: '/contact', icon: <MapPin className="w-3.5 h-3.5" /> },
         ],
       },
     ],
@@ -189,7 +185,6 @@ const NESTED_NAV_DATA: Record<string, {
           {
             heading: "Core Infrastructure",
             links: [
-              { label: 'Cloud Solutions', href: '/services/cloud-solutions', icon: <Cloud className="w-3.5 h-3.5" /> },
               { label: 'AI & Machine Learning', href: '/services/ai-machine-learning', icon: <Cpu className="w-3.5 h-3.5" /> },
               { label: 'Software Development', href: '/services/software-development', icon: <Code2 className="w-3.5 h-3.5" /> },
             ]
@@ -601,7 +596,7 @@ export const Navbar: React.FC = () => {
     ];
 
     servicesData.forEach(srv => {
-      const removedIds = ['devops', 'data-analytics', 'blockchain', 'iot-solutions'];
+      const removedIds = ['cloud-solutions', 'devops', 'data-analytics', 'blockchain', 'iot-solutions'];
       if (!removedIds.includes(srv.id)) {
         items.push({
           title: srv.title,

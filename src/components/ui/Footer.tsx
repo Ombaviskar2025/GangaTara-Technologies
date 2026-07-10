@@ -191,7 +191,7 @@ export const Footer: React.FC = () => {
             <div className="flex flex-col gap-5">
               <h4 className="text-sm font-bold tracking-wider uppercase text-white/90">{t('nav.contact')}</h4>
               <div className="flex flex-col gap-2.5 text-xs text-white/50">
-                <span className="flex items-center gap-2"><MapPin className="w-3.5 h-3.5 text-primary" /> Pune, India | Munich, Germany</span>
+                <span className="flex items-center gap-2"><MapPin className="w-3.5 h-3.5 text-primary" /> Indore, Madhya Pradesh</span>
                 <span className="flex items-center gap-2"><Phone className="w-3.5 h-3.5 text-primary" /> +91 9009494056</span>
                 <span className="flex items-center gap-2"><Mail className="w-3.5 h-3.5 text-primary" /> info@gangatara.com</span>
               </div>

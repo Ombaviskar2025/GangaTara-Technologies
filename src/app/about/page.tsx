@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Sparkles, Heart, Landmark, ArrowRight, Eye, Milestone, Users } from 'lucide-react';
+import { Sparkles, ArrowRight, Eye } from 'lucide-react';
 import Link from 'next/link';
 
 export default function AboutPage() {
@@ -12,12 +12,7 @@ export default function AboutPage() {
     { name: 'Akiro Tanaka', role: 'Head of AI Research', bio: 'Ph.D. in Deep Learning from Stanford. Innovates semantic caches and LLM alignment.' }
   ];
 
-  const milestones = [
-    { year: '2006', title: 'Founding in Munich', desc: 'Started as a small database performance advisory team.' },
-    { year: '2012', title: 'European Expansion', desc: 'Opened hubs in London and Zurich to support global financial clients.' },
-    { year: '2018', title: 'APAC Integration', desc: 'Launched our Bangalore Tech Center and Tokyo AI Lab.' },
-    { year: '2024', title: 'Enterprise Cloud Era', desc: 'Reached 1,000+ employees and achieved AWS Advanced Partner status.' }
-  ];
+
 
   return (
     <div className="pt-28 pb-20">
@@ -126,60 +121,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 4. History Timeline */}
-      <section className="py-20 max-w-7xl mx-auto px-6">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 border border-primary/20 px-3 py-1 rounded-full mb-4 inline-block">
-            Milestones
-          </span>
-          <h2 className="text-3xl font-poppins font-extrabold text-dark dark:text-light">
-            Our Journey So Far
-          </h2>
-        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {milestones.map((ml, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.05 }}
-              className="p-6 rounded-2xl glass-panel border border-light/20 dark:border-white/5 relative"
-            >
-              <div className="text-3xl font-poppins font-black text-primary/20 mb-4">{ml.year}</div>
-              <h4 className="text-sm font-bold text-dark dark:text-light mb-2">{ml.title}</h4>
-              <p className="text-xs text-dark/60 dark:text-light/60 leading-relaxed">{ml.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* 5. CSR & Social Responsibility */}
-      <section className="py-20 bg-light/50 dark:bg-dark/40 border-t border-light/10 dark:border-white/5">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-6">
-            <span className="text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 border border-primary/20 px-3 py-1 rounded-full mb-4 inline-block">
-              CSR Initiatives
-            </span>
-            <h2 className="text-3xl font-poppins font-extrabold text-dark dark:text-light mb-6">
-              Green Computing & Tech Inclusivity
-            </h2>
-            <p className="text-sm text-dark/70 dark:text-light/65 leading-relaxed mb-6">
-              We pledge to build code architectures that minimize server cluster compute usage and utilize data-center cooling offsets. In addition, we actively sponsor computing scholarships for underprivileged engineering students globally to bridge the opportunity divide.
-            </p>
-            
-            <div className="flex gap-4 items-center">
-              <div className="w-10 h-10 rounded-full bg-success/15 flex items-center justify-center text-success"><Heart className="w-5 h-5" /></div>
-              <span className="text-xs font-semibold text-dark/85 dark:text-light/85">Commitment to 100% net-zero carbon operations offset by 2030.</span>
-            </div>
-          </div>
-          
-          <div className="lg:col-span-6 h-64 rounded-3xl border border-light/20 dark:border-white/5 bg-slate-900/5 dark:bg-slate-900/20 flex items-center justify-center p-8">
-            <Landmark className="w-20 h-20 text-primary dark:text-secondary opacity-30" />
-          </div>
-        </div>
-      </section>
 
     </div>
   );
