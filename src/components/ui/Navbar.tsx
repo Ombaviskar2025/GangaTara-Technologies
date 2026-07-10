@@ -248,27 +248,7 @@ const NESTED_NAV_DATA: Record<string, {
           }
         ]
       },
-      {
-        label: "Products & Platforms",
-        key: "products-platforms",
-        columns: [
-          {
-            heading: "AI Platforms",
-            links: [
-              { label: 'GangaTara AI Studio', href: '/products', icon: <Cpu className="w-3.5 h-3.5" /> },
-              { label: 'CloudOps Suite', href: '/products', icon: <Cloud className="w-3.5 h-3.5" /> },
-              { label: 'DataBridge ETL', href: '/products', icon: <BarChart3 className="w-3.5 h-3.5" /> },
-            ]
-          },
-          {
-            heading: "Security & LMS",
-            links: [
-              { label: 'Sentry ZTNA', href: '/products', icon: <Shield className="w-3.5 h-3.5" /> },
-              { label: 'GangaTara LMS', href: '/products', icon: <GraduationCap className="w-3.5 h-3.5" /> },
-            ]
-          }
-        ]
-      }
+
     ]
   },
   industries: {
@@ -610,7 +590,7 @@ export const Navbar: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
-  const [topBarHeight, setTopBarHeight] = useState(32);
+
 
   const megaMenuTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -660,7 +640,7 @@ export const Navbar: React.FC = () => {
 
   const isActivePath = (href: string) => pathname === href || pathname.startsWith(href + '/');
 
-  const headerTop = isScrolled ? 0 : topBarHeight;
+
 
   return (
     <>
@@ -700,34 +680,16 @@ export const Navbar: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* ── Top Utility Bar ── */}
-      <div className="bg-[#050A14] text-white/55 text-[10px] py-1.5 px-6 hidden sm:flex justify-between items-center z-40 relative border-b border-white/5 h-8">
-        <div className="max-w-screen-xl mx-auto w-full flex justify-between items-center">
-          <div className="flex items-center gap-5">
-            <span className="flex items-center gap-1.5 hover:text-white transition-colors cursor-default">
-              <Phone className="w-3 h-3 text-primary" />
-              Enquiry: +91 9009494056
-            </span>
-            <span className="flex items-center gap-1.5 hover:text-white transition-colors cursor-default">
-              <Mail className="w-3 h-3 text-primary" />
-              info@gangatara.com
-            </span>
-          </div>
-          <span className="text-white/25 hidden md:block font-medium tracking-widest uppercase text-[9px]">
-            Enterprise IT · Global Delivery · ISO 27001 Certified
-          </span>
-        </div>
-      </div>
+
 
       {/* ── Main Header ── */}
       <header
         role="banner"
-        className={`fixed left-0 w-full z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
           isScrolled
             ? 'bg-[#1E1F22]/98 backdrop-blur-md border-b border-white/8 shadow-lg shadow-gray-950/30'
             : 'bg-[#1E1F22] border-b border-white/6'
         }`}
-        style={{ top: isScrolled ? 0 : 32 }}
       >
         <div className="max-w-screen-xl mx-auto px-6 h-[64px] flex items-center justify-between gap-6 relative">
 
@@ -861,12 +823,7 @@ export const Navbar: React.FC = () => {
               Contact Us
             </button>
 
-            <button
-              onClick={openModal}
-              className="ml-2 px-5 py-2 bg-primary hover:bg-secondary text-white text-[12px] font-bold rounded-lg transition-colors shadow-md shadow-primary/20 cursor-pointer border-0 outline-none"
-            >
-              Get a Quote
-            </button>
+
           </div>
 
           {/* Mobile Controls */}
@@ -1041,7 +998,7 @@ export const Navbar: React.FC = () => {
                   }}
                   className="mt-2 w-full py-3 rounded-xl bg-primary hover:bg-secondary text-white text-[13px] font-bold text-center transition-colors cursor-pointer border-0 outline-none"
                 >
-                  Get a Quote
+                  Contact Us
                 </button>
               </div>
             </motion.div>

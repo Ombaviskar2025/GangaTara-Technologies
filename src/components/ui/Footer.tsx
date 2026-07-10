@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
-import { Mail, Phone, MapPin, Send, ArrowRight, Heart, Cookie } from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowRight, Heart, Cookie } from 'lucide-react';
 import { servicesData } from '@/data/companyData';
 
 // ─── Cookie Preference Banner (inline toggle) ─────────────────────────────────
@@ -72,17 +72,7 @@ const CookiePreferences: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
 export const Footer: React.FC = () => {
   const { t } = useLanguage();
-  const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
   const [showCookies, setShowCookies] = useState(false);
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
-    setSubscribed(true);
-    setEmail('');
-    setTimeout(() => setSubscribed(false), 5000);
-  };
 
   const socialLinks = [
     {
@@ -205,36 +195,10 @@ export const Footer: React.FC = () => {
               </ul>
             </div>
 
-            {/* Newsletter + Contact */}
+            {/* Contact Info */}
             <div className="flex flex-col gap-5">
-              <h4 className="text-sm font-bold tracking-wider uppercase text-white/90">{t('footer.newsletter')}</h4>
-              <p className="text-xs text-white/50 leading-relaxed">
-                Receive the latest technology reports and business trends directly.
-              </p>
-              <form onSubmit={handleSubscribe} className="relative flex flex-col gap-2">
-                <div className="relative">
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder={t('footer.newsletterPlaceholder')}
-                    required
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 placeholder-white/30"
-                  />
-                  <button
-                    type="submit"
-                    className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 bg-primary hover:bg-secondary text-white rounded-lg transition-colors cursor-pointer"
-                    aria-label="Subscribe"
-                  >
-                    <Send className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-                {subscribed && (
-                  <p className="text-[10px] text-success font-semibold animate-pulse">Subscribed successfully!</p>
-                )}
-              </form>
-
-              <div className="flex flex-col gap-2.5 text-xs text-white/50 border-t border-white/5 pt-4">
+              <h4 className="text-sm font-bold tracking-wider uppercase text-white/90">{t('nav.contact')}</h4>
+              <div className="flex flex-col gap-2.5 text-xs text-white/50">
                 <span className="flex items-center gap-2"><MapPin className="w-3.5 h-3.5 text-primary" /> Pune, India | Munich, Germany</span>
                 <span className="flex items-center gap-2"><Phone className="w-3.5 h-3.5 text-primary" /> +91 9009494056</span>
                 <span className="flex items-center gap-2"><Mail className="w-3.5 h-3.5 text-primary" /> info@gangatara.com</span>
