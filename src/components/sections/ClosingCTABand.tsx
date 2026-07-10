@@ -10,7 +10,7 @@ export const ClosingCTABand: React.FC = () => {
   const { openModal } = useContactModal();
 
   return (
-    <section className="relative overflow-hidden bg-[#2B2D31] border-t border-white/10 py-16 sm:py-20 text-center">
+    <section className="relative overflow-hidden bg-[#57585E] border-t border-white/10 py-16 sm:py-20 text-center">
       {/* Subtle grid texture */}
       <div className="absolute inset-0 grid-bg opacity-10" />
       {/* Glow spots */}

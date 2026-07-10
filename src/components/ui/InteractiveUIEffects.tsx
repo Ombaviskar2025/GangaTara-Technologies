@@ -192,7 +192,7 @@ export const InteractiveUIEffects: React.FC = () => {
             initial={{ opacity: 0, scale: 0.9, y: 50 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 50 }}
-            className="fixed bottom-24 right-6 w-80 sm:w-96 h-[480px] rounded-2xl border border-slate-200 dark:border-white/10 shadow-2xl overflow-hidden flex flex-col z-40 bg-white dark:bg-[#2B2D31]"
+            className="fixed bottom-24 right-6 w-80 sm:w-96 h-[480px] rounded-2xl border border-slate-200 dark:border-white/10 shadow-2xl overflow-hidden flex flex-col z-40 bg-white dark:bg-[#57585E]"
           >
             {/* Header */}
             <div className="p-4 bg-primary text-white flex items-center justify-between">
@@ -212,7 +212,7 @@ export const InteractiveUIEffects: React.FC = () => {
             </div>
 
             {/* Message Area */}
-            <div className="flex-1 p-4 overflow-y-auto flex flex-col gap-3 no-scrollbar bg-slate-50 dark:bg-[#1E1F22]">
+            <div className="flex-1 p-4 overflow-y-auto flex flex-col gap-3 no-scrollbar bg-slate-50 dark:bg-[#4A4B50]">
               {messages.map((msg, index) => (
                 <div key={index} className="flex flex-col gap-2">
                   <div
@@ -262,7 +262,7 @@ export const InteractiveUIEffects: React.FC = () => {
             </div>
 
             {/* Input Form */}
-            <form onSubmit={handleSendMessage} className="p-3 border-t border-slate-100 dark:border-white/5 flex gap-2 bg-white dark:bg-[#2B2D31]">
+            <form onSubmit={handleSendMessage} className="p-3 border-t border-slate-100 dark:border-white/5 flex gap-2 bg-white dark:bg-[#57585E]">
               <input
                 type="text"
                 value={chatInput}

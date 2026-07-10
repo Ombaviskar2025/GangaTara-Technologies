@@ -148,7 +148,7 @@ export const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({ conten
           className="absolute inset-0 w-full h-full object-cover"
         />
         {/* Gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1E1F22]/96 via-[#1E1F22]/80 to-[#1E1F22]/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#4A4B50]/96 via-[#4A4B50]/80 to-[#4A4B50]/30" />
         <div className="absolute inset-0 grid-bg opacity-15" />
 
         <div className="relative z-10 max-w-screen-xl mx-auto px-6 sm:px-14 py-16 w-full text-white">

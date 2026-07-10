@@ -833,7 +833,7 @@ export const whatsNewData: WhatsNewItem[] = [
     link: '/about',
     image: '/slide_datacenter.png',
     gradientFrom: '#0057FF',
-    gradientTo: '#1E1F22'
+    gradientTo: '#4A4B50'
   },
   {
     id: 'wn2',
@@ -843,7 +843,7 @@ export const whatsNewData: WhatsNewItem[] = [
     date: 'May 2026',
     link: '/products',
     image: '/slide_ai.png',
-    gradientFrom: '#1E1F22',
+    gradientFrom: '#4A4B50',
     gradientTo: '#00B4FF'
   },
   {
@@ -866,7 +866,7 @@ export const whatsNewData: WhatsNewItem[] = [
     link: '/products',
     image: '/slide_cloud.png',
     gradientFrom: '#00B4FF',
-    gradientTo: '#1E1F22'
+    gradientTo: '#4A4B50'
   }
 ];
 

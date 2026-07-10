@@ -99,7 +99,7 @@ export const WhatsNewCarousel: React.FC = () => {
               }}
             />
             {/* Additional dark overlay for better text contrast */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#1E1F22]/90 via-[#1E1F22]/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#4A4B50]/90 via-[#4A4B50]/60 to-transparent" />
 
             {/* Slide content */}
             <div className="absolute inset-0 flex items-center">

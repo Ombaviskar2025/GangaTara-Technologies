@@ -66,7 +66,7 @@ export const ContactModal: React.FC = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-[#1E1F22]/85 z-[70] backdrop-blur-sm"
+            className="fixed inset-0 bg-[#4A4B50]/85 z-[70] backdrop-blur-sm"
             onClick={handleClose}
           />
 
@@ -76,7 +76,7 @@ export const ContactModal: React.FC = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.97, y: 5 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="fixed inset-x-4 top-[8vh] bottom-[8vh] sm:inset-auto sm:left-1/2 sm:-translate-x-1/2 sm:top-[8vh] sm:w-[680px] sm:max-h-[84vh] z-[75] flex flex-col rounded-2xl overflow-hidden bg-[#2B2D31] border border-white/10 shadow-2xl shadow-gray-950/60"
+            className="fixed inset-x-4 top-[8vh] bottom-[8vh] sm:inset-auto sm:left-1/2 sm:-translate-x-1/2 sm:top-[8vh] sm:w-[680px] sm:max-h-[84vh] z-[75] flex flex-col rounded-2xl overflow-hidden bg-[#57585E] border border-white/10 shadow-2xl shadow-gray-950/60"
             role="dialog"
             aria-modal="true"
             aria-label="Contact GangaTara Technologies"
