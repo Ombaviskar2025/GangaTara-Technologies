@@ -79,7 +79,7 @@ export const Hero: React.FC = () => {
       className="relative w-full overflow-hidden"
       style={{
         minHeight: '100vh',
-        background: 'radial-gradient(ellipse at 80% 10%, #ffffff 0%, #d1d5db 38%, #9ca3af 75%, #8b919a 100%)',
+        background: 'radial-gradient(ellipse at 80% 10%, #ffffff 0%, #f3f4f6 40%, #e5e7eb 80%, #d1d5db 100%)',
       }}
     >
 
@@ -155,7 +155,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.2, ease: 'easeOut' as const }}
-            className="font-poppins font-extrabold leading-[1.1] tracking-tight text-gray-900 mb-4"
+            className="font-poppins font-extrabold leading-[1.1] tracking-tight text-gray-950 mb-4"
             style={{ fontSize: 'clamp(2.1rem, 4.8vw, 3.8rem)' }}
           >
             {t('hero.title1')}{' '}
@@ -168,7 +168,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.3, ease: 'easeOut' as const }}
-            className="text-gray-700 text-base sm:text-lg leading-relaxed mb-8 max-w-xl"
+            className="text-gray-900 font-medium text-base sm:text-lg leading-relaxed mb-8 max-w-xl"
           >
             We empower global brands with innovative AI, cloud computing,
             cybersecurity, and bespoke software solutions to drive digital excellence.
@@ -224,10 +224,10 @@ export const Hero: React.FC = () => {
         className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 cursor-pointer bg-transparent border-none"
         aria-label="Scroll down"
       >
-        <span className="text-[10px] font-semibold tracking-[0.18em] uppercase text-gray-600">
+        <span className="text-[10px] font-semibold tracking-[0.18em] uppercase text-gray-800">
           Scroll Down
         </span>
-        <ChevronDown className="w-4 h-4 hero-chevron-bounce text-gray-600" />
+        <ChevronDown className="w-4 h-4 hero-chevron-bounce text-gray-800" />
       </motion.button>
     </section>
   );
