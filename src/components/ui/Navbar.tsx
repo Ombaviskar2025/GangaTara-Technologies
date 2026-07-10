@@ -54,7 +54,7 @@ const NAV_ITEMS: {
   key: string;
   href?: string;
   isNested?: boolean;
-  intro?: { headline: string; body: string; link: string };
+  intro?: { headline?: string; body?: string; link?: string };
   columns?: { heading: string; links: { label: string; href: string; icon: React.ReactNode }[] }[];
   liveStrip?: { type: 'blogs' | 'jobs' | 'awards'; heading: string };
   footerLink?: { label: string; href: string };
@@ -69,8 +69,6 @@ const NAV_ITEMS: {
     key: 'whoweare',
     intro: {
       headline: 'Built on Trust, Driven by Innovation',
-      body: 'More than a decade of engineering excellence across APAC and EMEA — delivering measurable outcomes for global enterprises.',
-      link: '/about',
     },
     columns: [
       {
@@ -88,19 +86,12 @@ const NAV_ITEMS: {
         ],
       },
     ],
-    liveStrip: {
-      type: 'awards' as const,
-      heading: 'Recent Recognitions',
-    },
-    footerLink: { label: 'Our Full Story', href: '/about' },
   },
   {
     label: 'Insights',
     key: 'insights',
     intro: {
       headline: 'Knowledge Drives Transformation',
-      body: 'Our engineers publish research on cloud architectures, AI pipelines, cybersecurity, and enterprise modernization.',
-      link: '/insights',
     },
     columns: [
       {
@@ -108,26 +99,15 @@ const NAV_ITEMS: {
         links: [
           { label: 'Blog & Articles', href: '/blog', icon: <BookOpen className="w-3.5 h-3.5" /> },
           { label: 'Case Studies', href: '/case-studies', icon: <BarChart3 className="w-3.5 h-3.5" /> },
-          { label: 'Insights & Reports', href: '/insights', icon: <TrendingUp className="w-3.5 h-3.5" /> },
           { label: 'Technology Stack', href: '/technologies', icon: <Code2 className="w-3.5 h-3.5" /> },
           { label: 'Products Portfolio', href: '/products', icon: <Sparkles className="w-3.5 h-3.5" /> },
         ],
       },
     ],
-    liveStrip: {
-      type: 'blogs' as const,
-      heading: 'Latest Articles',
-    },
-    footerLink: { label: 'Explore All Insights', href: '/insights' },
   },
   {
     label: 'Careers',
     key: 'careers',
-    intro: {
-      headline: 'Seize the Future. Build with Purpose.',
-      body: 'Join 500+ engineers across Pune, Munich, and Singapore. Hybrid, remote, and on-site roles available globally.',
-      link: '/careers',
-    },
     columns: [
       {
         heading: 'Work at GangaTara',
@@ -397,18 +377,24 @@ const MegaMenuPanel: React.FC<MegaMenuPanelProps> = ({ item, isActive, onMouseEn
           role="menu"
         >
           {/* Intro CTA Block */}
-          {item.intro && (
+          {item.intro && (item.intro.headline || item.intro.body) && (
             <div className="px-7 pt-6 pb-5 border-b border-white/6 flex items-start justify-between gap-6">
               <div className="flex-1">
-                <p className="text-[13px] font-bold text-white mb-1">{item.intro.headline}</p>
-                <p className="text-[12px] text-white/50 leading-relaxed">{item.intro.body}</p>
+                {item.intro.headline && (
+                  <p className="text-[13px] font-bold text-white mb-1">{item.intro.headline}</p>
+                )}
+                {item.intro.body && (
+                  <p className="text-[12px] text-white/50 leading-relaxed">{item.intro.body}</p>
+                )}
               </div>
-              <Link
-                href={item.intro.link}
-                className="shrink-0 mt-0.5 text-primary text-[11px] font-semibold hover:text-secondary flex items-center gap-1 transition-colors"
-              >
-                Learn more <ArrowRight className="w-3 h-3" />
-              </Link>
+              {item.intro.link && (
+                <Link
+                  href={item.intro.link}
+                  className="shrink-0 mt-0.5 text-primary text-[11px] font-semibold hover:text-secondary flex items-center gap-1 transition-colors"
+                >
+                  Learn more <ArrowRight className="w-3 h-3" />
+                </Link>
+              )}
             </div>
           )}
 
@@ -1017,10 +1003,14 @@ export const Navbar: React.FC = () => {
                               ) : (
                                 <>
                                   {/* Intro */}
-                                  {item.intro && (
+                                  {item.intro && (item.intro.headline || item.intro.body) && (
                                     <div className="mx-4 mb-2 p-3 rounded-lg bg-white/3 border border-white/6">
-                                      <p className="text-[11px] font-bold text-white mb-0.5">{item.intro.headline}</p>
-                                      <p className="text-[10px] text-white/40 leading-relaxed">{item.intro.body}</p>
+                                      {item.intro.headline && (
+                                        <p className="text-[11px] font-bold text-white mb-0.5">{item.intro.headline}</p>
+                                      )}
+                                      {item.intro.body && (
+                                        <p className="text-[10px] text-white/40 leading-relaxed">{item.intro.body}</p>
+                                      )}
                                     </div>
                                   )}
                                   {item.columns && (
