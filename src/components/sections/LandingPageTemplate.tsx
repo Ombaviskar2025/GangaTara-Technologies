@@ -330,24 +330,7 @@ export const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({ conten
 
       </div>
 
-      {/* 9. CLOSING CTA BAND */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-primary via-[#0047DD] to-secondary py-16 sm:py-20 text-white">
-        <div className="absolute inset-0 grid-bg opacity-10" />
-        <div className="relative z-10 max-w-screen-xl mx-auto px-6 text-center">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-poppins font-bold leading-tight mb-4">
-            Ready to Accelerate Your Enterprise Practice?
-          </h2>
-          <p className="text-white/80 text-sm sm:text-base leading-relaxed mb-8 max-w-xl mx-auto">
-            Schedule a private scoping call with our core engineering architects. Let us design, optimize, and secure your digital roadmap.
-          </p>
-          <button
-            onClick={openModal}
-            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary font-bold text-[14px] rounded-xl hover:bg-white/90 transition-all shadow-lg cursor-pointer border-0 outline-none"
-          >
-            Connect with us <ArrowRight className="w-4 h-4" />
-          </button>
-        </div>
-      </section>
+
     </div>
   );
 };

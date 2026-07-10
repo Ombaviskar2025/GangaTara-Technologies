@@ -1,41 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { HelpCircle, ChevronDown, CheckCircle, Mail, Phone, MapPin, Send } from 'lucide-react';
-
-interface FaqItem {
-  q: string;
-  a: string;
-}
+import { CheckCircle, Mail, Phone, MapPin, Send } from 'lucide-react';
 
 export default function ContactPage() {
-  const faqs: FaqItem[] = [
-    {
-      q: 'Do you offer formal Service Level Agreements (SLAs)?',
-      a: 'Yes. We sign comprehensive corporate SLAs guaranteeing up to 99.99% system availability and detailing 24/7/365 bug-resolution reaction timelines.'
-    },
-    {
-      q: 'Who owns the intellectual property and code repository?',
-      a: 'Once project deliverables are signed off and settled, full repository ownership, patents, and copyright licenses are transferred entirely to the client.'
-    },
-    {
-      q: 'Are your cloud migration and software processes ISO certified?',
-      a: 'Yes. GangaTara Technologies holds active ISO 27001 certifications for information security management, ensuring strict corporate governance standards.'
-    },
-    {
-      q: 'Do you support legacy system re-architecting?',
-      a: 'Frequently. We specialize in wrapping outdated mainframes and monolith systems with secure API layers or refactoring them into serverless microservices.'
-    }
-  ];
-
-  // FAQ Accordion State
-  const [openFaqIdx, setOpenFaqIdx] = useState<number | null>(null);
-
-  const toggleFaq = (idx: number) => {
-    setOpenFaqIdx(openFaqIdx === idx ? null : idx);
-  };
-
   // Contact Form State
   const [formData, setFormData] = useState({
     name: '',
@@ -80,21 +48,20 @@ export default function ContactPage() {
             Contact Channels
           </span>
           <h1 className="text-4xl sm:text-5xl font-poppins font-extrabold text-dark dark:text-light mb-6 tracking-tight">
-            Schedule an Architectural Audit
+            Contact Us
           </h1>
           <p className="text-base text-dark/70 dark:text-light/60 max-w-2xl mx-auto leading-relaxed">
-            Fill out our formal inquiry form below or consult our FAQ section regarding corporate contracts, IP rights, and SLAs.
+            Fill out our formal inquiry form below to get in touch with our team.
           </p>
         </div>
       </section>
 
-      {/* 2. Contact Form & FAQ grid */}
-      <section className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+      {/* 2. Contact Form */}
+      <section className="max-w-3xl mx-auto px-6 py-10">
         
-        {/* Form Intake - Left */}
-        <div className="lg:col-span-7">
-          <div className="p-8 sm:p-10 rounded-3xl glass-panel border border-light/25 dark:border-white/5 shadow-2xl bg-light/70 dark:bg-dark/70">
-            <h3 className="text-base font-bold text-dark dark:text-light mb-6">Business Inquiry Form</h3>
+        {/* Form Intake */}
+        <div className="p-8 sm:p-10 rounded-3xl glass-panel border border-light/25 dark:border-white/5 shadow-2xl bg-light/70 dark:bg-dark/70">
+          <h3 className="text-base font-bold text-dark dark:text-light mb-6">Business Inquiry Form</h3>
             
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -178,51 +145,7 @@ export default function ContactPage() {
               )}
             </form>
           </div>
-        </div>
-
-        {/* FAQs Accordion - Right */}
-        <div className="lg:col-span-5 flex flex-col gap-6">
-          <h2 className="text-lg font-poppins font-bold text-dark dark:text-light flex items-center gap-2 mb-2"><HelpCircle className="w-5 h-5 text-primary" /> Core Agreements FAQ</h2>
-          
-          <div className="flex flex-col gap-3">
-            {faqs.map((faq, idx) => {
-              const isOpen = openFaqIdx === idx;
-              return (
-                <div
-                  key={idx}
-                  className="rounded-2xl border border-light/20 dark:border-white/5 overflow-hidden transition-all bg-light/30 dark:bg-white/5"
-                >
-                  <button
-                    onClick={() => toggleFaq(idx)}
-                    className="w-full px-6 py-4 flex items-center justify-between text-left text-xs font-bold text-dark dark:text-light cursor-pointer hover:bg-primary/5 transition-colors"
-                  >
-                    <span>{faq.q}</span>
-                    <ChevronDown className={`w-4 h-4 shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180 text-primary' : ''}`} />
-                  </button>
-                  
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.div
-                        initial={{ height: 0 }}
-                        animate={{ height: 'auto' }}
-                        exit={{ height: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="overflow-hidden"
-                      >
-                        <p className="px-6 pb-5 pt-1 text-[11px] text-dark/60 dark:text-light/60 leading-relaxed border-t border-light/10 dark:border-white/5">
-                          {faq.a}
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-      </section>
-
-    </div>
+        </section>
+      </div>
   );
 }

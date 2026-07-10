@@ -14,7 +14,7 @@ import {
 } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import { useLanguage, Language } from '@/context/LanguageContext';
-import { blogsData, jobsData, awardsData } from '@/data/companyData';
+import { blogsData, jobsData, awardsData, servicesData, industriesData } from '@/data/companyData';
 import { useContactModal } from '@/context/ContactModalContext';
 
 // ─── Icon Map ─────────────────────────────────────────────────────────────────
@@ -211,16 +211,12 @@ const NESTED_NAV_DATA: Record<string, {
           {
             heading: "Modern Automation",
             links: [
-              { label: 'DevOps & GitOps', href: '/services/devops', icon: <GitBranch className="w-3.5 h-3.5" /> },
               { label: 'UI/UX Design', href: '/services/ui-ux-design', icon: <Palette className="w-3.5 h-3.5" /> },
-              { label: 'Data Analytics & BI', href: '/services/data-analytics', icon: <BarChart3 className="w-3.5 h-3.5" /> },
             ]
           },
           {
             heading: "Emerging Platforms",
             links: [
-              { label: 'Blockchain & Web3', href: '/services/blockchain', icon: <Workflow className="w-3.5 h-3.5" /> },
-              { label: 'IoT Solutions', href: '/services/iot-solutions', icon: <Radio className="w-3.5 h-3.5" /> },
               { label: 'Digital Marketing', href: '/services/digital-marketing', icon: <Megaphone className="w-3.5 h-3.5" /> },
             ]
           }
@@ -591,6 +587,57 @@ export const Navbar: React.FC = () => {
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
 
+  const searchableItems = React.useMemo(() => {
+    const items: { title: string; category: string; href: string }[] = [
+      { title: 'Home', category: 'Page', href: '/' },
+      { title: 'About Us', category: 'Page', href: '/about' },
+      { title: 'Careers', category: 'Page', href: '/careers' },
+      { title: 'Contact Us', category: 'Page', href: '/contact' },
+      { title: 'Technologies', category: 'Page', href: '/technologies' },
+      { title: 'Products', category: 'Page', href: '/products' },
+      { title: 'Privacy Policy', category: 'Page', href: '/privacy-policy' },
+      { title: 'Terms & Conditions', category: 'Page', href: '/terms-conditions' },
+      { title: 'Cookie Policy', category: 'Page', href: '/cookie-policy' },
+    ];
+
+    servicesData.forEach(srv => {
+      const removedIds = ['devops', 'data-analytics', 'blockchain', 'iot-solutions'];
+      if (!removedIds.includes(srv.id)) {
+        items.push({
+          title: srv.title,
+          category: 'Service',
+          href: `/services/${srv.id}`
+        });
+      }
+    });
+
+    industriesData.forEach(ind => {
+      items.push({
+        title: ind.title,
+        category: 'Industry',
+        href: `/industries/${ind.id}`
+      });
+    });
+
+    blogsData.forEach(blog => {
+      items.push({
+        title: blog.title,
+        category: 'Insight',
+        href: `/blog/${blog.slug}`
+      });
+    });
+
+    return items;
+  }, []);
+
+  const filteredResults = React.useMemo(() => {
+    if (!searchQuery.trim()) return [];
+    const query = searchQuery.toLowerCase().trim();
+    return searchableItems.filter(item => 
+      item.title.toLowerCase().includes(query) || 
+      item.category.toLowerCase().includes(query)
+    ).slice(0, 8);
+  }, [searchQuery, searchableItems]);
 
   const megaMenuTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -674,6 +721,37 @@ export const Navbar: React.FC = () => {
                 />
                 <Search className="absolute right-2 top-1/2 -translate-y-1/2 text-white/30 w-6 h-6" />
               </div>
+              
+              {filteredResults.length > 0 && (
+                <div className="mt-6 max-h-[350px] overflow-y-auto flex flex-col gap-2 no-scrollbar animate-fadeIn">
+                  {filteredResults.map((result, idx) => (
+                    <Link
+                      key={idx}
+                      href={result.href}
+                      onClick={() => {
+                        setIsSearchOpen(false);
+                        setSearchQuery('');
+                      }}
+                      className="flex items-center justify-between p-3.5 rounded-xl bg-white/5 border border-white/5 hover:border-primary/30 hover:bg-white/10 transition-all group"
+                    >
+                      <div className="flex flex-col">
+                        <span className="text-[13px] text-white font-medium group-hover:text-primary transition-colors">
+                          {result.title}
+                        </span>
+                        <span className="text-[9px] uppercase tracking-wider text-white/30 mt-0.5">
+                          {result.category}
+                        </span>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-white/30 group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                    </Link>
+                  ))}
+                </div>
+              )}
+
+              {searchQuery.trim() && filteredResults.length === 0 && (
+                <p className="text-white/40 text-xs mt-6 text-center py-4">No results found for "{searchQuery}"</p>
+              )}
+
               <p className="text-white/25 text-[11px] mt-3">Press ESC to close.</p>
             </div>
           </motion.div>

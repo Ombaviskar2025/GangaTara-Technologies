@@ -26,10 +26,10 @@ export const ClosingCTABand: React.FC = () => {
           className="max-w-xl"
         >
           <h2 className="text-white text-2xl sm:text-3xl lg:text-4xl font-poppins font-extrabold leading-tight mb-4">
-            Ready to build what's next?
+            Ready to Accelerate Your Enterprise Practice?
           </h2>
           <p className="text-white/70 text-sm sm:text-base leading-relaxed">
-            Partner with GangaTara's expert engineers and cloud architects to accelerate your digital transformation today.
+            Schedule a private scoping call with our core engineering architects. Let us design, optimize, and secure your digital roadmap.
           </p>
         </motion.div>
 
