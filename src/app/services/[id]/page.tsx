@@ -91,7 +91,7 @@ export default function ServiceDetailPage() {
     );
   }
 
-  const isCustomService = ['web-development', 'application-development', 'digital-marketing'].includes(id);
+  const isCustomService = true;
 
   const handleEnquirySubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -166,11 +166,91 @@ export default function ServiceDetailPage() {
         accentTo: 'to-[#00D2C8]',
         tag: 'Growth & Reach',
       },
+      'ai-machine-learning': {
+        image: '/slide_ai.png',
+        gradientFrom: 'from-[#8B5CF6]',
+        gradientTo: 'to-[#EC4899]',
+        accentFrom: 'from-[#8B5CF6]',
+        accentTo: 'to-[#EC4899]',
+        tag: 'AI & Cognition',
+      },
+      'software-development': {
+        image: '/slide_datacenter.png',
+        gradientFrom: 'from-[#10B981]',
+        gradientTo: 'to-[#3B82F6]',
+        accentFrom: 'from-[#10B981]',
+        accentTo: 'to-[#3B82F6]',
+        tag: 'Core Software',
+      },
+      'cyber-security': {
+        image: '/event_security.png',
+        gradientFrom: 'from-[#EF4444]',
+        gradientTo: 'to-[#F59E0B]',
+        accentFrom: 'from-[#EF4444]',
+        accentTo: 'to-[#F59E0B]',
+        tag: 'Cybersecurity',
+      },
+      'ui-ux-design': {
+        image: '/ind_education.png',
+        gradientFrom: 'from-[#EC4899]',
+        gradientTo: 'to-[#F59E0B]',
+        accentFrom: 'from-[#EC4899]',
+        accentTo: 'to-[#F59E0B]',
+        tag: 'Design & Experience',
+      },
+      'cloud-solutions': {
+        image: '/slide_cloud.png',
+        gradientFrom: 'from-[#0EA5E9]',
+        gradientTo: 'to-[#2563EB]',
+        accentFrom: 'from-[#0EA5E9]',
+        accentTo: 'to-[#2563EB]',
+        tag: 'Cloud Solutions',
+      },
+      'devops': {
+        image: '/blog_devops.png',
+        gradientFrom: 'from-[#6366F1]',
+        gradientTo: 'to-[#A855F7]',
+        accentFrom: 'from-[#6366F1]',
+        accentTo: 'to-[#A855F7]',
+        tag: 'DevOps & GitOps',
+      },
+      'data-analytics': {
+        image: '/ind_finance.png',
+        gradientFrom: 'from-[#F59E0B]',
+        gradientTo: 'to-[#10B981]',
+        accentFrom: 'from-[#F59E0B]',
+        accentTo: 'to-[#10B981]',
+        tag: 'Analytics & BI',
+      },
+      'blockchain': {
+        image: '/ind_government.png',
+        gradientFrom: 'from-[#3B82F6]',
+        gradientTo: 'to-[#8B5CF6]',
+        accentFrom: 'from-[#3B82F6]',
+        accentTo: 'to-[#8B5CF6]',
+        tag: 'Web3 & Ledger',
+      },
+      'iot-solutions': {
+        image: '/ind_manufacturing.png',
+        gradientFrom: 'from-[#14B8A6]',
+        gradientTo: 'to-[#0EA5E9]',
+        accentFrom: 'from-[#14B8A6]',
+        accentTo: 'to-[#0EA5E9]',
+        tag: 'IoT & Edge',
+      },
+      'digital-transformation': {
+        image: '/slide_team.png',
+        gradientFrom: 'from-[#6366F1]',
+        gradientTo: 'to-[#EC4899]',
+        accentFrom: 'from-[#6366F1]',
+        accentTo: 'to-[#EC4899]',
+        tag: 'Transformation',
+      },
     };
     const cfg = serviceConfig[id] || serviceConfig['web-development'];
 
     return (
-      <div className="min-h-screen bg-[#1E1F22] pt-24 pb-16 flex items-center justify-center relative overflow-hidden">
+      <div className="min-h-screen bg-[#4A4B50] pt-24 pb-16 flex items-center justify-center relative overflow-hidden">
         {/* Background glow blobs */}
         <div className={`absolute top-0 left-0 w-[600px] h-[600px] rounded-full blur-[120px] opacity-20 bg-gradient-to-br ${cfg.gradientFrom} ${cfg.gradientTo} pointer-events-none`} />
         <div className={`absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full blur-[100px] opacity-15 bg-gradient-to-tl ${cfg.gradientFrom} ${cfg.gradientTo} pointer-events-none`} />
@@ -201,7 +281,7 @@ export default function ServiceDetailPage() {
                 alt={service.title}
                 className="w-full h-full object-cover"
               />
-              <div className={`absolute inset-0 bg-gradient-to-t from-[#1E1F22]/80 via-transparent to-transparent`} />
+              <div className={`absolute inset-0 bg-gradient-to-t from-[#4A4B50]/80 via-transparent to-transparent`} />
               {/* Caption overlay */}
               <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
                 <span className="text-white font-poppins font-bold text-lg drop-shadow-lg">
@@ -292,9 +372,9 @@ export default function ServiceDetailPage() {
                     onChange={(e) => setSelectedService(e.target.value)}
                     className="flex-1 px-4 py-3 bg-transparent text-white/80 focus:outline-none text-sm cursor-pointer"
                   >
-                    <option value="" disabled className="bg-[#1E1F22]">Select a service...</option>
+                    <option value="" disabled className="bg-[#4A4B50]">Select a service...</option>
                     {servicesData.map((s) => (
-                      <option key={s.id} value={s.id} className="bg-[#1E1F22]">{s.title}</option>
+                      <option key={s.id} value={s.id} className="bg-[#4A4B50]">{s.title}</option>
                     ))}
                   </select>
                 </div>
@@ -373,7 +453,7 @@ export default function ServiceDetailPage() {
             alt={service.title}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent dark:from-[#1E1F22] dark:via-[#1E1F22]/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent dark:from-[#4A4B50] dark:via-[#4A4B50]/40" />
           <div className="absolute bottom-8 left-8">
             <span className="px-3 py-1 rounded bg-primary text-white text-[10px] font-bold uppercase tracking-widest">
               {service.title} Practice
