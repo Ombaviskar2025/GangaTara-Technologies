@@ -63,7 +63,7 @@ export const TabbedSolutions: React.FC = () => {
           <div>
             <p className="text-[10px] uppercase tracking-[0.25em] font-bold text-primary mb-2">Cutting Edge Solutions</p>
             <h2 className="text-2xl sm:text-3xl font-poppins font-bold text-dark dark:text-white">
-              What We Do
+              Built for Every Sector & Scale
             </h2>
           </div>
           <p className="text-sm text-dark/55 dark:text-white/50 max-w-sm">
