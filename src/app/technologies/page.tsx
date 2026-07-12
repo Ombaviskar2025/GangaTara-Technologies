@@ -41,8 +41,7 @@ export default function TechnologiesPage() {
     { key: 'backend', label: 'Backend Stacks' },
     { key: 'cloud', label: 'Cloud & DevOps Infrastructure' },
     { key: 'database', label: 'Databases & In-Memory Caches' },
-    { key: 'mobile', label: 'Mobile Platforms' },
-    { key: 'emerging', label: 'Emerging & Cognitive AI' }
+    { key: 'mobile', label: 'Mobile Platforms' }
   ];
 
   return (

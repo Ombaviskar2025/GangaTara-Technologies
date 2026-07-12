@@ -8,7 +8,7 @@ import Link from 'next/link';
 export default function AboutPage() {
   const leadership = [
     { name: 'Dr. Evelyn Brand', role: 'Chief Executive Officer', bio: 'Former Senior Partner at McKinsey with 20+ years steering IT advisory fleets.' },
-    { name: 'Marcus Vance', role: 'VP of Engineering', bio: 'Former Principal Infrastructure Architect at AWS. Guru of distributed serverless networks.' }
+    { name: 'Chetan Singh Chouhan', role: 'Co-Founder & Investor', bio: 'Visionary entrepreneur and technology leader with expertise in AI, software development, and digital transformation. Passionate about building innovative technology solutions and helping businesses grow through scalable digital products.' }
   ];
 
   const awards = [
