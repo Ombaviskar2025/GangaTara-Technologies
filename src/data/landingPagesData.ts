@@ -671,7 +671,7 @@ export const landingPagesData: Record<string, LandingPageContent> = {
     videoShowcase: {
       title: 'Real-Time RAG & AI Agent Workflow Demo',
       description: 'Explore the live engineering walkthrough of our cognitive AI pipelines, showcasing document chunking, embeddings generation, and conversational answer rendering.',
-      videoUrl: '/hero-video.mp4',
+      videoUrl: '/AI_Machine_Learning_Neural.mp4',
       poster: IMAGES.services['ai-machine-learning'].videoPoster,
       caption: 'Walkthrough of GangaTara AI Studio and semantic search routing',
     },
@@ -818,7 +818,7 @@ export const landingPagesData: Record<string, LandingPageContent> = {
     videoShowcase: {
       title: 'Real-Time Server-Side Rendering Performance Demo',
       description: 'Watch a direct rendering speed test showcasing our Next.js edge-caching solution. Experience load metrics and layout stability under 10k concurrent hits.',
-      videoUrl: '/hero-video.mp4',
+      videoUrl: '/Software_Development_Architec.mp4',
       poster: IMAGES.services['web-development'].videoPoster,
       caption: 'Core Web Vitals dashboard rendering and CDN cache hit stats',
     },
