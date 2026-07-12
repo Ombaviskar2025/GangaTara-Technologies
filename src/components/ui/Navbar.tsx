@@ -111,6 +111,11 @@ const NAV_ITEMS: {
   {
     label: 'Careers',
     key: 'careers',
+    intro: {
+      headline: 'Build the Future of Enterprise IT',
+      body: 'Explore high-impact full-time careers and structured student internship programs with modern, clean code practices.',
+      link: '/careers',
+    },
     columns: [
       {
         heading: 'Work at GangaTara',
