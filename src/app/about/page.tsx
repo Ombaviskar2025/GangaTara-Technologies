@@ -8,8 +8,7 @@ import Link from 'next/link';
 export default function AboutPage() {
   const leadership = [
     { name: 'Dr. Evelyn Brand', role: 'Chief Executive Officer', bio: 'Former Senior Partner at McKinsey with 20+ years steering IT advisory fleets.' },
-    { name: 'Marcus Vance', role: 'VP of Engineering', bio: 'Former Principal Infrastructure Architect at AWS. Guru of distributed serverless networks.' },
-    { name: 'Akiro Tanaka', role: 'Head of AI Research', bio: 'Ph.D. in Deep Learning from Stanford. Innovates semantic caches and LLM alignment.' }
+    { name: 'Marcus Vance', role: 'VP of Engineering', bio: 'Former Principal Infrastructure Architect at AWS. Guru of distributed serverless networks.' }
   ];
 
   const awards = [
@@ -117,7 +116,7 @@ export default function AboutPage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {leadership.map((lead, idx) => (
               <motion.div
                 key={idx}
@@ -125,15 +124,30 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="p-6 rounded-2xl glass-card border border-light/20 dark:border-white/5 text-center group cursor-pointer"
+                className="p-8 rounded-3xl glass-panel border border-light/20 dark:border-white/5 text-center group cursor-pointer hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 hover:-translate-y-1 relative overflow-hidden"
               >
-                {/* Avatar circle placeholder */}
-                <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white font-extrabold text-xl mx-auto mb-6 shadow-md shadow-primary/15">
-                  {lead.name.split(' ').map(n => n[0]).join('')}
+                {/* Interactive premium avatar container */}
+                <div className="relative w-24 h-24 mx-auto mb-6 flex items-center justify-center">
+                  {/* Decorative dashed outer rotation ring */}
+                  <div className="absolute inset-0 rounded-full border border-dashed border-primary/30 group-hover:rotate-90 transition-transform duration-[2000ms]" />
+                  
+                  {/* Glowing core background */}
+                  <div className="absolute w-20 h-20 rounded-full bg-primary/10 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  {/* Avatar circle */}
+                  <div className="relative w-20 h-20 rounded-full bg-gradient-to-tr from-primary via-blue-500 to-secondary flex items-center justify-center text-white font-extrabold text-2xl shadow-lg shadow-primary/20 group-hover:scale-105 transition-transform duration-500 border border-white/20">
+                    {lead.name.split(' ').map(n => n[0]).join('')}
+                  </div>
                 </div>
-                <h3 className="text-sm font-bold text-dark dark:text-light mb-1 group-hover:text-primary transition-colors">{lead.name}</h3>
-                <p className="text-[10px] text-primary uppercase font-bold tracking-wider mb-4">{lead.role}</p>
-                <p className="text-xs text-dark/60 dark:text-light/60 leading-relaxed">{lead.bio}</p>
+
+                <h3 className="text-base font-bold text-dark dark:text-light mb-2 group-hover:text-primary transition-colors">{lead.name}</h3>
+                
+                {/* Pill role badge */}
+                <span className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-[9px] text-primary uppercase font-black tracking-widest mb-4">
+                  {lead.role}
+                </span>
+
+                <p className="text-xs text-dark/65 dark:text-light/60 leading-relaxed max-w-xs mx-auto">{lead.bio}</p>
               </motion.div>
             ))}
           </div>
