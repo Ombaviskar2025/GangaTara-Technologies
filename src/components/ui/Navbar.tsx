@@ -151,15 +151,15 @@ const NESTED_NAV_DATA: Record<string, {
 }> = {
   whatwedo: {
     left: {
-      headline: "Enterprise IT, Delivered Right",
+      headline: "Built for Every Sector & Scale",
       body: "We combine deep industry insights with advanced software engineering to design, deploy, and scale robust digital infrastructures.",
       ctaLabel: "See how we deliver →",
       ctaHref: "/services"
     },
     categories: [
       {
-        label: "Core Services",
-        key: "core-services",
+        label: "Industries",
+        key: "industries",
         columns: [
           {
             heading: "Core Infrastructure",
@@ -179,8 +179,8 @@ const NESTED_NAV_DATA: Record<string, {
         ]
       },
       {
-        label: "Digital Solutions",
-        key: "digital-solutions",
+        label: "Services",
+        key: "services",
         columns: [
           {
             heading: "Modern Automation",
@@ -197,8 +197,8 @@ const NESTED_NAV_DATA: Record<string, {
         ]
       },
       {
-        label: "By Industry",
-        key: "by-industry",
+        label: "Products & Platforms",
+        key: "products-platforms",
         columns: [
           {
             heading: "Financial & Health",
