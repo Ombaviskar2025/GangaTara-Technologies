@@ -8,6 +8,7 @@ import { Navbar } from '@/components/ui/Navbar';
 import { Footer } from '@/components/ui/Footer';
 import { ContactModal } from '@/components/ui/ContactModal';
 import { InteractiveUIEffects } from '@/components/ui/InteractiveUIEffects';
+import { Sarthi } from '@/components/ui/Sarthi';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -62,6 +63,9 @@ export default function RootLayout({
 
               {/* Footer */}
               <Footer />
+
+              {/* Sarthi AI Chat Assistant */}
+              <Sarthi />
             </ContactModalProvider>
           </LanguageProvider>
         </ThemeProvider>
