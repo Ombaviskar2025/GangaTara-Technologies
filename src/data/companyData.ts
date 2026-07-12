@@ -91,27 +91,6 @@ export interface JobItem {
 
 export const servicesData: ServiceItem[] = [
   {
-    id: 'cloud-solutions',
-    title: 'Cloud Solutions',
-    shortDesc: 'Accelerate your cloud adoption with scalable, secure public, private, and hybrid cloud architectures.',
-    iconName: 'Cloud',
-    description: 'We help enterprise organizations build scalable, resilient, and highly secure cloud environments. From initial migration assessments to cloud-native application engineering, our certified architects design infrastructure that reduces latency, ensures high availability, and optimizes resource spend across multi-cloud environments.',
-    features: [
-      'Multi-cloud Strategy (AWS, Azure, GCP)',
-      'Enterprise Cloud Migration & Lift-and-Shift',
-      'Serverless Architectures & Microservices',
-      'FinOps Infrastructure Cost Optimization',
-      'Hybrid Cloud Integration & Core Connectivity'
-    ],
-    benefits: [
-      'Reduce operational infrastructure overhead by up to 35%',
-      'Achieve 99.99% uptime with automated multi-region deployments',
-      'Scale compute resources dynamically to meet volatile demand spikes',
-      'Improve developer velocity via automated cloud provisioning environments'
-    ],
-    technologies: ['AWS', 'Azure', 'Google Cloud', 'Terraform', 'Docker', 'Kubernetes']
-  },
-  {
     id: 'ai-machine-learning',
     title: 'AI & Machine Learning',
     shortDesc: 'Automate complex operations, extract predictions, and deploy generative AI agents securely.',
@@ -219,27 +198,6 @@ export const servicesData: ServiceItem[] = [
     technologies: ['Cloudflare', 'Okta', 'Vault', 'Wireshark', 'Kali Linux', 'SonarQube']
   },
   {
-    id: 'devops',
-    title: 'DevOps & GitOps',
-    shortDesc: 'Automate build-test-deploy pipelines and orchestrate container clusters at scale.',
-    iconName: 'Layers',
-    description: 'Achieve absolute delivery predictability. We automate the entire release cycle using Infrastructure-as-Code and declarative GitOps pipelines. By removing manual staging and deployments, we minimize production incident rates and enable developers to push features with confidence.',
-    features: [
-      'CI/CD Pipeline Design (GitHub Actions, GitLab, Jenkins)',
-      'Infrastructure as Code (IaC) via Terraform & Pulumi',
-      'Kubernetes Cluster Orchestration & Helm Packaging',
-      'Automated Blue-Green & Canary Deployment Strategies',
-      'Comprehensive Application & Server Monitoring Systems'
-    ],
-    benefits: [
-      'Accelerate release frequency from monthly cycles to multiple daily deploys',
-      'Reduce release-related rollbacks and configuration drifts to near zero',
-      'Establish programmatic audit trails for every infrastructure adjustment',
-      'Identify bottlenecks quickly via centralized telemetry dashboards'
-    ],
-    technologies: ['Docker', 'Kubernetes', 'Terraform', 'GitHub Actions', 'Prometheus', 'Grafana']
-  },
-  {
     id: 'ui-ux-design',
     title: 'UI/UX Design',
     shortDesc: 'User-centric product design matching premium aesthetics with intuitive task flows.',
@@ -260,90 +218,7 @@ export const servicesData: ServiceItem[] = [
     ],
     technologies: ['Figma', 'Adobe Creative Suite', 'Principle', 'Framer']
   },
-  {
-    id: 'data-analytics',
-    title: 'Data Analytics & BI',
-    shortDesc: 'Turn raw server and transaction records into real-time business intelligence dashboards.',
-    iconName: 'BarChart3',
-    description: 'Stop guessing and start using facts. We engineer unified data warehouses and extract analytical insights, delivering real-time dashboards that expose supply chain health, user retention indicators, operational bottlenecks, and financial forecasting.',
-    features: [
-      'Enterprise Data Warehousing (Snowflake, BigQuery, Redshift)',
-      'ETL/ELT Data Pipelines (dbt, Apache Airflow, Fivetran)',
-      'Real-Time Streaming Analytics (Apache Kafka, Spark)',
-      'Executive BI Dashboards (Tableau, PowerBI, Looker)',
-      'Data Governance, Lineage, & Cataloging Systems'
-    ],
-    benefits: [
-      'Consolidate siloed departmental databases into one single source of truth',
-      'Generate real-time business metrics reporting instantly',
-      'Identify supply-chain cost savings by matching actual execution metrics',
-      'Enforce granular data governance permissions policies'
-    ],
-    technologies: ['Snowflake', 'BigQuery', 'Apache Airflow', 'Kafka', 'Tableau', 'dbt']
-  },
-  {
-    id: 'blockchain',
-    title: 'Blockchain & Web3',
-    shortDesc: 'Secure, decentralized ledgers for supply chain tracking, smart contracts, and identity.',
-    iconName: 'Workflow',
-    description: 'Deploy trustless technology where integrity matters most. We build private and consortium-based ledger architectures that streamline compliance audits, eliminate intermediary clearinghouses, automate supply chain tracking, and manage zero-knowledge identity tokens.',
-    features: [
-      'Consortium Blockchain Design (Hyperledger, Corda)',
-      'Smart Contract Auditing & Verification Protocols',
-      'Zero-Knowledge Proofs for Private Ledger Transactions',
-      'Decentralized Identity (DID) Credentials Systems',
-      'Tokenization Platforms for Enterprise Asset Management'
-    ],
-    benefits: [
-      'Create tamper-proof operational logs that satisfy auditing regulators',
-      'Lower transactional friction in cross-border settlements',
-      'Trace material lineage across multi-tier supplier supply networks',
-      'Implement decentralized authorization tokens'
-    ],
-    technologies: ['Ethereum', 'Solidity', 'Hyperledger Fabric', 'Rust', 'Hardhat', 'Web3.js']
-  },
-  {
-    id: 'iot-solutions',
-    title: 'Internet of Things (IoT)',
-    shortDesc: 'Connect telemetry sensors, process edge-computing inputs, and control hardware remotely.',
-    iconName: 'Radio',
-    description: 'Bridge physical hardware with enterprise software. Our IoT developers write embedded edge-computing code, orchestrate device fleets, and implement message brokers that ingest millions of telemetry messages per second for factory floor and hardware operations.',
-    features: [
-      'Edge Computing Device Frameworks (C/C++, Rust)',
-      'MQTT & CoAP Scalable Message Ingestion Systems',
-      'Device Fleet Management & Over-the-Air (OTA) Updates',
-      'Predictive Equipment Maintenance Systems',
-      'Industrial IoT (IIoT) Integration with Legacy SCADA'
-    ],
-    benefits: [
-      'Predict hardware breakdowns before outages disrupt production',
-      'Monitor asset positions and environmental metrics globally',
-      'Deploy localized machine-learning classification models on the edge',
-      'Safeguard sensor fleets from cyber threats with hardware chips'
-    ],
-    technologies: ['C/C++', 'Rust', 'MQTT', 'Node-RED', 'AWS IoT', 'Raspberry Pi / Arduino']
-  },
-  {
-    id: 'digital-transformation',
-    title: 'Digital Transformation',
-    shortDesc: 'Re-engineer outdated legacy workflows with modern cloud and automation strategies.',
-    iconName: 'TrendingUp',
-    description: 'Re-invent how your business executes. We consult with enterprise leadership teams to replace slow analog processes, legacy mainframe software, and paperwork bottlenecks with automated cloud solutions, modern workspaces, and collaborative API tools.',
-    features: [
-      'Corporate Legacy Workflow Analysis & Audits',
-      'Agile Product Management Reorganization',
-      'Enterprise App Modernization Roadmap Creation',
-      'Employee Modern Digital Workspace Onboarding',
-      'B2B Operations Integration APIs and Connectors'
-    ],
-    benefits: [
-      'Accelerate corporate turnaround times for client onboarding requests',
-      'Repurpose manual oversight work into strategic optimization',
-      'Modernize legacy mainframe cost points with pay-as-you-go cloud services',
-      'Attract top developer talent by introducing modern tools'
-    ],
-    technologies: ['Next.js', 'Jira / Confluence', 'MuleSoft', 'Microsoft Power Platform']
-  },
+
   {
     id: 'digital-marketing',
     title: 'Digital Marketing',
