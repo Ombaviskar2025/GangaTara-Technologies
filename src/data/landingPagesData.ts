@@ -645,19 +645,40 @@ export const landingPagesData: Record<string, LandingPageContent> = {
       eyebrow: 'ADVANCED COGNITIVE ENGINEERING',
       paragraph: 'Integrating artificial intelligence into enterprise workflows requires strict data sovereignty controls, predictable response times, and robust evaluation metrics. GangaTara Technologies constructs secure RAG architectures, orchestrates model fine-tuning inside client cloud boundaries, and secures vector databases.',
     },
+    pillars: [
+      {
+        title: 'Enterprise RAG & Guardrails',
+        description: 'We construct secure vector search indexing pipelines with strict role-based access control, preventing LLM models from leaking restricted database tables to unauthorized users.'
+      },
+      {
+        title: 'GPU Cluster Orchestration',
+        description: 'Our DevOps engineers build serverless model hosting architectures using Kubernetes, autoscaling GPU nodes dynamically to process peak cognitive query volume.'
+      },
+      {
+        title: 'Compliance & Alignment',
+        description: 'We run comprehensive alignment verification checks to verify model outputs remain safe, deterministic, and fully compliant with local compliance declarations.'
+      }
+    ],
     featuredInsight: {
       title: 'GangaTara Research — Deploying Secure RAG in BFSI',
       text: 'Learn how to construct semantic indexing systems that enforce role-based access control, ensuring LLMs do not leak restricted database entries during chat.',
-      image: '/slide_datacenter.png',
+      image: '/srv_ai_1.png',
       link: '/insights',
       align: 'left',
+    },
+    videoShowcase: {
+      title: 'Real-Time RAG & AI Agent Workflow Demo',
+      description: 'Explore the live engineering walkthrough of our cognitive AI pipelines, showcasing document chunking, embeddings generation, and conversational answer rendering.',
+      videoUrl: '/hero-video.mp4',
+      poster: '/srv_ai_1.png',
+      caption: 'Walkthrough of GangaTara AI Studio and semantic search routing',
     },
     inFocus: {
       tabs: [
         {
           label: 'Thought Leadership',
           cards: [
-            { image: '/slide_ai.png', title: 'Semantic Search Integration in Enterprise ERP Systems', link: '/insights' },
+            { image: '/srv_ai_2.png', title: 'Semantic Search Integration in Enterprise ERP Systems', link: '/insights' },
           ],
         },
       ],
@@ -666,7 +687,7 @@ export const landingPagesData: Record<string, LandingPageContent> = {
       eyebrow: 'MLOPS PIPELINES',
       title: 'GPU Cluster Orchestration & Deployment',
       text: 'We build automated pipelines that handle data ingestion, automated label alignment, model validation, and deployment to secure REST API gateways, reducing AI cycle times.',
-      image: '/slide_cloud.png',
+      image: '/srv_ai_2.png',
       link: '/services/devops',
     },
     solutions: {
@@ -674,14 +695,224 @@ export const landingPagesData: Record<string, LandingPageContent> = {
         {
           label: 'Technology',
           cards: [
-            { image: '/slide_ai.png', title: 'PyTorch & HuggingFace pipelines', link: '/technologies' },
-            { image: '/slide_datacenter.png', title: 'Vector Database Integrations', link: '/technologies' },
+            { image: '/srv_ai_1.png', title: 'PyTorch & HuggingFace pipelines', link: '/technologies' },
+            { image: '/srv_ai_2.png', title: 'Vector Database Integrations', link: '/technologies' },
           ],
         },
         {
           label: 'Products & Platforms',
           cards: [
-            { image: '/slide_ai.png', title: 'GangaTara AI Studio', link: '/products' },
+            { image: '/srv_ai_1.png', title: 'GangaTara AI Studio', link: '/products' },
+          ],
+        },
+      ],
+    },
+  },
+
+  'software-development': {
+    id: 'software-development',
+    hero: {
+      breadcrumb: 'SERVICES / SOFTWARE DEVELOPMENT',
+      eyebrow: 'CORE. SCALABLE. ENTERPRISE.',
+      title: 'Bespoke Enterprise Software Engineering',
+      subtitle: 'We build high-throughput transaction backends, robust microservices systems, and complex enterprise integration hubs that power global companies.',
+      bgImage: '/slide_datacenter.png',
+    },
+    intro: {
+      eyebrow: 'CORE SYSTEM MODERNIZATION',
+      paragraph: 'Modern corporate operations require resilient, testable, and highly optimized software cores. GangaTara Technologies engineers robust custom software solutions using clean code standards, automated testing frameworks, and scalable cloud-native structures.',
+    },
+    pillars: [
+      {
+        title: 'Domain-Driven Design',
+        description: 'We structure microservices boundaries using Domain-Driven Design (DDD) principles, preventing codebase bloat and ensuring modular, testable components.'
+      },
+      {
+        title: 'CI/CD & Automated Testing',
+        description: 'Our engineering practices enforce 90%+ unit test coverage, automated load testing, and continuous integration pipelines to prevent regression bugs in production.'
+      },
+      {
+        title: 'Event-Driven Backends',
+        description: 'We deploy high-performance backends using Go, Rust, and Java, leveraging event-driven messaging queues (Apache Kafka, RabbitMQ) to handle millions of transactions.'
+      }
+    ],
+    featuredInsight: {
+      title: 'GangaTara Research — Microservices Orchestration 2026',
+      text: 'Discover why top enterprise brands are migrating to containerized Go microservices to handle rapid horizontal scalability while keeping infrastructure costs minimized.',
+      image: '/srv_soft_1.png',
+      link: '/insights',
+      align: 'right',
+    },
+    videoShowcase: {
+      title: 'High-Throughput Microservices Event Loop Demo',
+      description: 'Watch the live telemetry dashboard of our distributed microservices framework. Learn how the event router forwards transaction batches under sub-millisecond latencies.',
+      videoUrl: '/hero-video.mp4',
+      poster: '/srv_soft_1.png',
+      caption: 'Distributed ledger logging and backend load balancer telemetry dashboard',
+    },
+    inFocus: {
+      tabs: [
+        {
+          label: 'Thought Leadership',
+          cards: [
+            { image: '/srv_soft_2.png', title: 'Managing Configuration Drift in Multi-Tenant Databases', link: '/insights' },
+          ],
+        },
+      ],
+    },
+    secondFeatured: {
+      eyebrow: 'PERFORMANCE TUNING',
+      title: 'High-Performance Backend Optimization',
+      text: 'Deploy optimized codebases that leverage multi-threaded CPU architectures. GangaTara’s engineering practices target resource footprint reduction and database query latency cuts.',
+      image: '/srv_soft_2.png',
+      link: '/services/cloud-solutions',
+    },
+    solutions: {
+      tabs: [
+        {
+          label: 'Technology',
+          cards: [
+            { image: '/srv_soft_1.png', title: 'Go & Rust Systems Core', link: '/technologies' },
+          ],
+        },
+      ],
+    },
+  },
+
+  'web-development': {
+    id: 'web-development',
+    hero: {
+      breadcrumb: 'SERVICES / WEB DEVELOPMENT',
+      eyebrow: 'RESPONSIVE. ACCESSIBLE. SECURE.',
+      title: 'Next-Gen Web Platforms & Applications',
+      subtitle: 'We engineer lightning-fast headless frontends, secure public web portals, and scalable content distribution systems.',
+      bgImage: '/slide_team.png',
+    },
+    intro: {
+      eyebrow: 'WEB PLATFORM ARCHITECTURE',
+      paragraph: 'Your web application is the digital face of your business. GangaTara Technologies crafts responsive, accessible, and fast web portals using modern frameworks (Next.js, React), headless content backends, and globally distributed CDN caching.',
+    },
+    pillars: [
+      {
+        title: 'Headless Architectures',
+        description: 'We decouple front-end presentation from database storage using API-first CMS structures, leading to faster paint speeds and improved developer workflows.'
+      },
+      {
+        title: 'Accessibility & WCAG Compliance',
+        description: 'Our frontend developers build accessible layouts meeting WCAG 2.1 AA guidelines, ensuring clean keyboard navigation, aria-roles, and screen-reader compatibility.'
+      },
+      {
+        title: 'Dynamic Performance Tuning',
+        description: 'We optimize assets, implement server-side rendering (SSR), and configure edge-caching configurations to achieve sub-second load times.'
+      }
+    ],
+    featuredInsight: {
+      title: 'GangaTara Research — Frontend Core Web Vitals 2026',
+      text: 'An analytical study exploring the impact of code-splitting and dynamic route prefetching on enterprise e-commerce conversion rates.',
+      image: '/srv_web_1.png',
+      link: '/insights',
+      align: 'left',
+    },
+    videoShowcase: {
+      title: 'Real-Time Server-Side Rendering Performance Demo',
+      description: 'Watch a direct rendering speed test showcasing our Next.js edge-caching solution. Experience load metrics and layout stability under 10k concurrent hits.',
+      videoUrl: '/hero-video.mp4',
+      poster: '/srv_web_1.png',
+      caption: 'Core Web Vitals dashboard rendering and CDN cache hit stats',
+    },
+    inFocus: {
+      tabs: [
+        {
+          label: 'Thought Leadership',
+          cards: [
+            { image: '/service_web_dev.png', title: 'Designing Accessible Web Components for Global Public Services', link: '/insights' },
+          ],
+        },
+      ],
+    },
+    secondFeatured: {
+      eyebrow: 'SCALABLE DESIGNS',
+      title: 'State Management & Scalable Web Architectures',
+      text: 'We construct clean, maintainable component libraries and unified design tokens, ensuring visual consistency and fast code releases across product lines.',
+      image: '/service_web_dev.png',
+      link: '/services/ui-ux-design',
+    },
+    solutions: {
+      tabs: [
+        {
+          label: 'Technology',
+          cards: [
+            { image: '/srv_web_1.png', title: 'Next.js & React Frameworks', link: '/technologies' },
+          ],
+        },
+      ],
+    },
+  },
+
+  'application-development': {
+    id: 'application-development',
+    hero: {
+      breadcrumb: 'SERVICES / APP DEVELOPMENT',
+      eyebrow: 'CROSS-PLATFORM. FLUID. NATIVE.',
+      title: 'Premium Cross-Platform Mobile Applications',
+      subtitle: 'We design and build fluid, high-performance mobile apps for iOS and Android using modern native and cross-platform frameworks.',
+      bgImage: '/career_banner.png',
+    },
+    intro: {
+      eyebrow: 'MOBILE PLATFORM ENGINEERING',
+      paragraph: 'Mobile platforms require excellent offline functionality, fluid animations, and strict security sandboxing. GangaTara Technologies engineers premium mobile applications that look outstanding and scale smoothly across device sizes.',
+    },
+    pillars: [
+      {
+        title: 'Cross-Platform Frameworks',
+        description: 'We leverage Flutter and React Native to build single-codebase apps that perform identically to native Swift and Kotlin applications, reducing time-to-market.'
+      },
+      {
+        title: 'Offline-First Synchronization',
+        description: 'We build offline-first database sync routines using SQLite and WatermelonDB, synchronizing user state seamlessly when connectivity returns.'
+      },
+      {
+        title: 'Secure Sandboxing & Biometrics',
+        description: 'Our mobile applications integrate biometric authentication (FaceID, fingerprint) and hardware-level encryption keys to protect sensitive user details.'
+      }
+    ],
+    featuredInsight: {
+      title: 'GangaTara Research — Cross-Platform Performance Metrics',
+      text: 'A quantitative analysis comparing bridge rendering times in React Native with Flutter’s canvas rendering engine under graphic-heavy workloads.',
+      image: '/service_app_dev.png',
+      link: '/insights',
+      align: 'right',
+    },
+    videoShowcase: {
+      title: 'Fluid Animations and Biometric Login App Demo',
+      description: 'Experience a walkthrough of our premium cross-platform mobile shell. Watch transition speeds, biometric check-in sequences, and offline mode sync updates.',
+      videoUrl: '/hero-video.mp4',
+      poster: '/service_app_dev.png',
+      caption: 'iOS & Android mobile platform UX walkthrough',
+    },
+    inFocus: {
+      tabs: [
+        {
+          label: 'Thought Leadership',
+          cards: [
+            { image: '/blog_devops.png', title: 'Implementing Cryptographic Local Storage in Mobile Databases', link: '/insights' },
+          ],
+        },
+      ],
+    },
+    secondFeatured: {
+      eyebrow: 'MOBILE SECURITY',
+      title: 'Offline Syncing and Mobile Cryptography',
+      text: 'Protect user credentials and database states using device keychain integration. GangaTara builds high-security apps conforming to financial regulations.',
+      image: '/blog_devops.png',
+      link: '/services/cyber-security',
+    },
+    solutions: {
+      tabs: [
+        {
+          label: 'Technology',
+          cards: [
+            { image: '/service_app_dev.png', title: 'Flutter & React Native frameworks', link: '/technologies' },
           ],
         },
       ],
@@ -695,25 +926,46 @@ export const landingPagesData: Record<string, LandingPageContent> = {
       eyebrow: 'DEFENSIVE. ZERO-TRUST. COMPLIANT.',
       title: 'Zero-Trust Cybersecurity & Threat Management',
       subtitle: 'We construct secure corporate perimeters, audit software repositories, deploy biometric IAM solutions, and automate security scanning.',
-      bgImage: '/slide_datacenter.png',
+      bgImage: '/ind_healthcare.png',
     },
     intro: {
       eyebrow: 'ZERO-TRUST CYBER SECURITY',
       paragraph: 'With rising ransomware threats and lateral network intrusions, traditional VPN systems are no longer sufficient. GangaTara Technologies constructs secure Zero-Trust Network Access (ZTNA) solutions, integrates biometric identity providers, and runs automated compliance checks.',
     },
+    pillars: [
+      {
+        title: 'Zero-Trust Architecture',
+        description: 'We help corporate clients decommission legacy perimeter defenses in favor of micro-segmentation, securing systems from internal threat lateral motion.'
+      },
+      {
+        title: 'Automated DevSecOps Scanning',
+        description: 'We embed static and dynamic security scanners directly into the CI/CD pipeline, catching secrets exposure and SQL injection exploits before deployment.'
+      },
+      {
+        title: 'Continuous Compliance Drifts',
+        description: 'Our cloud security posture monitoring scans active deployments for configuration drift, immediately alerting teams to open ports or public S3 buckets.'
+      }
+    ],
     featuredInsight: {
       title: 'GangaTara Research — Threat Landscapes 2026',
       text: 'An analytical review of cloud security posture management. Learn how real-time configuration drift detection blocks 98% of unauthorized server access attempts.',
-      image: '/slide_cloud.png',
+      image: '/event_security.png',
       link: '/insights',
-      align: 'right',
+      align: 'left',
+    },
+    videoShowcase: {
+      title: 'Simulated Intrusion and Real-Time ZTNA Block Demo',
+      description: 'Watch Sarthi assistant showcase a simulated threat actor lateral access attempt blocked automatically by our context-aware ZTNA secure gateway.',
+      videoUrl: '/hero-video.mp4',
+      poster: '/event_security.png',
+      caption: 'Zero-Trust network telemetry logs and anomaly blocker controls',
     },
     inFocus: {
       tabs: [
         {
           label: 'Thought Leadership',
           cards: [
-            { image: '/slide_datacenter.png', title: 'Securing Decentralized Engineering Teams from Phishing', link: '/insights' },
+            { image: '/blog_ai.png', title: 'Securing Decentralized Engineering Teams from Phishing', link: '/insights' },
           ],
         },
       ],
@@ -722,7 +974,7 @@ export const landingPagesData: Record<string, LandingPageContent> = {
       eyebrow: 'CODE AUDITS',
       title: 'Static Application Security Testing (SAST) Integration',
       text: 'We embed automatic dependency security audits and static analyzer checks directly into your CI/CD pipelines, flagging potential SQL injection and XSS exploits before release.',
-      image: '/slide_team.png',
+      image: '/blog_ai.png',
       link: '/services/devops',
     },
     solutions: {
@@ -730,10 +982,11 @@ export const landingPagesData: Record<string, LandingPageContent> = {
         {
           label: 'Products & Platforms',
           cards: [
-            { image: '/slide_cloud.png', title: 'Sentry ZTNA Gateway', link: '/products' },
+            { image: '/event_security.png', title: 'Sentry ZTNA Gateway', link: '/products' },
           ],
         },
       ],
     },
   },
 };
+
