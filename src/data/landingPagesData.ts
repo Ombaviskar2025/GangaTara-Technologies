@@ -119,19 +119,19 @@ export const landingPagesData: Record<string, LandingPageContent> = {
           label: 'Thought Leadership',
           cards: [
             { image: '/ind_health_2.png', title: 'The Future of HIPAA-Compliant Multi-Cloud Deployments', link: '/insights' },
-            { image: '/ind_health_1.png', title: 'Generative AI in Patient Admissions Management', link: '/insights' },
+            { image: '/slide_ai.png', title: 'Generative AI in Patient Admissions Management', link: '/insights' },
           ],
         },
         {
           label: 'Case Studies',
           cards: [
-            { image: '/ind_health_2.png', title: 'MediHealth Group: EHR Modernization & Migration', link: '/case-studies/telehealth-platform-transformation' },
+            { image: '/blog_ai.png', title: 'MediHealth Group: EHR Modernization & Migration', link: '/case-studies/telehealth-platform-transformation' },
           ],
         },
         {
           label: 'Press Releases',
           cards: [
-            { image: '/ind_health_1.png', title: 'GangaTara Partners with MedTech Alliance for Diagnostics AI', link: '/blog' },
+            { image: '/event_ai.png', title: 'GangaTara Partners with MedTech Alliance for Diagnostics AI', link: '/blog' },
           ],
         },
       ],
@@ -148,15 +148,15 @@ export const landingPagesData: Record<string, LandingPageContent> = {
         {
           label: 'Industry Solutions',
           cards: [
-            { image: '/ind_health_1.png', title: 'Interoperable EHR Data Bridges', link: '/services/web-development' },
-            { image: '/ind_health_2.png', title: 'HIPAA Cloud Landing Zones', link: '/services/cloud-solutions' },
+            { image: '/slide_team.png', title: 'Interoperable EHR Data Bridges', link: '/services/web-development' },
+            { image: '/slide_datacenter.png', title: 'HIPAA Cloud Landing Zones', link: '/services/cloud-solutions' },
           ],
         },
         {
           label: 'Products & Platforms',
           cards: [
-            { image: '/ind_health_1.png', title: 'GangaTara AI HealthStudio', link: '/products' },
-            { image: '/ind_health_2.png', title: 'Sentry ZTNA for Hospitals', link: '/products' },
+            { image: '/slide_cloud.png', title: 'GangaTara AI HealthStudio', link: '/products' },
+            { image: '/event_cloud.png', title: 'Sentry ZTNA for Hospitals', link: '/products' },
           ],
         },
       ],
@@ -223,13 +223,13 @@ export const landingPagesData: Record<string, LandingPageContent> = {
           label: 'Thought Leadership',
           cards: [
             { image: '/ind_finance_2.png', title: 'Zero-Trust Architecture for Decentralized Banking', link: '/insights' },
-            { image: '/ind_finance_1.png', title: 'Federated Learning for Real-Time Fraud Identification', link: '/insights' },
+            { image: '/slide_datacenter.png', title: 'Federated Learning for Real-Time Fraud Identification', link: '/insights' },
           ],
         },
         {
           label: 'Case Studies',
           cards: [
-            { image: '/ind_finance_2.png', title: 'Apex Global Finance: Blockchain Core Settlement', link: '/case-studies/realtime-banking-fraud-prevention' },
+            { image: '/blog_devops.png', title: 'Apex Global Finance: Blockchain Core Settlement', link: '/case-studies/realtime-banking-fraud-prevention' },
           ],
         },
       ],
@@ -246,15 +246,15 @@ export const landingPagesData: Record<string, LandingPageContent> = {
         {
           label: 'Industry Solutions',
           cards: [
-            { image: '/ind_finance_1.png', title: 'GangaTara Core Ledger Engine', link: '/products' },
-            { image: '/ind_finance_2.png', title: 'Compliance Vault for BFSI', link: '/services/cyber-security' },
+            { image: '/event_security.png', title: 'GangaTara Core Ledger Engine', link: '/products' },
+            { image: '/slide_cloud.png', title: 'Compliance Vault for BFSI', link: '/services/cyber-security' },
           ],
         },
         {
           label: 'Products & Platforms',
           cards: [
-            { image: '/ind_finance_1.png', title: 'Sentry ZTNA Core Gateway', link: '/products' },
-            { image: '/ind_finance_2.png', title: 'DataBridge ETL for Finance', link: '/products' },
+            { image: '/slide_ai.png', title: 'Sentry ZTNA Core Gateway', link: '/products' },
+            { image: '/slide_team.png', title: 'DataBridge ETL for Finance', link: '/products' },
           ],
         },
       ],
@@ -315,13 +315,13 @@ export const landingPagesData: Record<string, LandingPageContent> = {
           label: 'Thought Leadership',
           cards: [
             { image: '/ind_retail_2.png', title: 'Scaling Omnichannel Platforms for Peak Seasonal Demand', link: '/insights' },
-            { image: '/ind_retail_1.png', title: 'Vector Search Integration in Catalog Filtering', link: '/insights' },
+            { image: '/slide_team.png', title: 'Vector Search Integration in Catalog Filtering', link: '/insights' },
           ],
         },
         {
           label: 'Case Studies',
           cards: [
-            { image: '/ind_retail_2.png', title: 'Veloce Apparel: Monolith to Headless Microservices Migration', link: '/case-studies/headless-retail-scale-out' },
+            { image: '/blog_ai.png', title: 'Veloce Apparel: Monolith to Headless Microservices Migration', link: '/case-studies/headless-retail-scale-out' },
           ],
         },
       ],
@@ -330,7 +330,7 @@ export const landingPagesData: Record<string, LandingPageContent> = {
       eyebrow: 'AI IN COMMERCE',
       title: 'Predictive Demand Planning & Dynamic Pricing',
       text: 'Deploy AI models that analyze real-time market data, purchase histories, and inventory levels. GangaTara\'s custom engines enable retailers to dynamically adjust prices and automate supplier restock triggers.',
-      image: '/ind_retail_1.png',
+      image: '/ind_retail_2.png',
       link: '/services/ai-machine-learning',
     },
     solutions: {
@@ -338,14 +338,14 @@ export const landingPagesData: Record<string, LandingPageContent> = {
         {
           label: 'Industry Solutions',
           cards: [
-            { image: '/ind_retail_1.png', title: 'Headless E-Commerce Accelerators', link: '/services/web-development' },
-            { image: '/ind_retail_2.png', title: 'Inventory Analytics Dashboards', link: '/services/software-development' },
+            { image: '/slide_cloud.png', title: 'Headless E-Commerce Accelerators', link: '/services/web-development' },
+            { image: '/slide_datacenter.png', title: 'Inventory Analytics Dashboards', link: '/services/software-development' },
           ],
         },
         {
           label: 'Products & Platforms',
           cards: [
-            { image: '/ind_retail_1.png', title: 'DataBridge ETL Suite', link: '/products' },
+            { image: '/event_cloud.png', title: 'DataBridge ETL Suite', link: '/products' },
           ],
         },
       ],
@@ -415,8 +415,8 @@ export const landingPagesData: Record<string, LandingPageContent> = {
         {
           label: 'Industry Solutions',
           cards: [
-            { image: '/ind_mfg_1.png', title: 'Edge-Gateway Sensor Collectors', link: '/services/software-development' },
-            { image: '/ind_mfg_2.png', title: 'Supply Chain Track & Trace portals', link: '/services/web-development' },
+            { image: '/slide_datacenter.png', title: 'Edge-Gateway Sensor Collectors', link: '/services/software-development' },
+            { image: '/slide_cloud.png', title: 'Supply Chain Track & Trace portals', link: '/services/web-development' },
           ],
         },
       ],
@@ -475,7 +475,7 @@ export const landingPagesData: Record<string, LandingPageContent> = {
         {
           label: 'Case Studies',
           cards: [
-            { image: '/ind_edu_2.png', title: 'EduStream: LMS Scale-up for 500k Students', link: '/case-studies' },
+            { image: '/slide_team.png', title: 'EduStream: LMS Scale-up for 500k Students', link: '/case-studies' },
           ],
         },
       ],
@@ -492,7 +492,7 @@ export const landingPagesData: Record<string, LandingPageContent> = {
         {
           label: 'Products & Platforms',
           cards: [
-            { image: '/ind_edu_1.png', title: 'GangaTara LMS', link: '/products' },
+            { image: '/slide_datacenter.png', title: 'GangaTara LMS', link: '/products' },
           ],
         },
       ],
@@ -562,7 +562,7 @@ export const landingPagesData: Record<string, LandingPageContent> = {
         {
           label: 'Products & Platforms',
           cards: [
-            { image: '/ind_gov_1.png', title: 'Sentry ZTNA Gateway', link: '/products' },
+            { image: '/slide_cloud.png', title: 'Sentry ZTNA Gateway', link: '/products' },
           ],
         },
       ],
@@ -601,7 +601,7 @@ export const landingPagesData: Record<string, LandingPageContent> = {
         {
           label: 'Case Studies',
           cards: [
-            { image: '/slide_datacenter.png', title: 'Apex Global Finance: Core Settlement Cloud Migration', link: '/case-studies' },
+            { image: '/event_cloud.png', title: 'Apex Global Finance: Core Settlement Cloud Migration', link: '/case-studies' },
           ],
         },
       ],
@@ -618,14 +618,14 @@ export const landingPagesData: Record<string, LandingPageContent> = {
         {
           label: 'Technology',
           cards: [
-            { image: '/slide_cloud.png', title: 'Kubernetes Orchestration Standard', link: '/technologies' },
-            { image: '/slide_datacenter.png', title: 'AWS Landing Zone Blueprints', link: '/technologies' },
+            { image: '/event_ai.png', title: 'Kubernetes Orchestration Standard', link: '/technologies' },
+            { image: '/blog_devops.png', title: 'AWS Landing Zone Blueprints', link: '/technologies' },
           ],
         },
         {
           label: 'Products & Platforms',
           cards: [
-            { image: '/slide_cloud.png', title: 'CloudOps Suite', link: '/products' },
+            { image: '/blog_ai.png', title: 'CloudOps Suite', link: '/products' },
           ],
         },
       ],
@@ -695,14 +695,14 @@ export const landingPagesData: Record<string, LandingPageContent> = {
         {
           label: 'Technology',
           cards: [
-            { image: '/srv_ai_1.png', title: 'PyTorch & HuggingFace pipelines', link: '/technologies' },
-            { image: '/srv_ai_2.png', title: 'Vector Database Integrations', link: '/technologies' },
+            { image: '/blog_ai.png', title: 'PyTorch & HuggingFace pipelines', link: '/technologies' },
+            { image: '/event_ai.png', title: 'Vector Database Integrations', link: '/technologies' },
           ],
         },
         {
           label: 'Products & Platforms',
           cards: [
-            { image: '/srv_ai_1.png', title: 'GangaTara AI Studio', link: '/products' },
+            { image: '/slide_datacenter.png', title: 'GangaTara AI Studio', link: '/products' },
           ],
         },
       ],
@@ -772,7 +772,7 @@ export const landingPagesData: Record<string, LandingPageContent> = {
         {
           label: 'Technology',
           cards: [
-            { image: '/srv_soft_1.png', title: 'Go & Rust Systems Core', link: '/technologies' },
+            { image: '/blog_devops.png', title: 'Go & Rust Systems Core', link: '/technologies' },
           ],
         },
       ],
@@ -842,7 +842,7 @@ export const landingPagesData: Record<string, LandingPageContent> = {
         {
           label: 'Technology',
           cards: [
-            { image: '/srv_web_1.png', title: 'Next.js & React Frameworks', link: '/technologies' },
+            { image: '/slide_datacenter.png', title: 'Next.js & React Frameworks', link: '/technologies' },
           ],
         },
       ],
@@ -912,7 +912,7 @@ export const landingPagesData: Record<string, LandingPageContent> = {
         {
           label: 'Technology',
           cards: [
-            { image: '/service_app_dev.png', title: 'Flutter & React Native frameworks', link: '/technologies' },
+            { image: '/slide_team.png', title: 'Flutter & React Native frameworks', link: '/technologies' },
           ],
         },
       ],
@@ -982,11 +982,10 @@ export const landingPagesData: Record<string, LandingPageContent> = {
         {
           label: 'Products & Platforms',
           cards: [
-            { image: '/event_security.png', title: 'Sentry ZTNA Gateway', link: '/products' },
+            { image: '/slide_cloud.png', title: 'Sentry ZTNA Gateway', link: '/products' },
           ],
         },
       ],
     },
   },
 };
-
