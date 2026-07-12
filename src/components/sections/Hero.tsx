@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, ChevronDown, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -64,11 +64,6 @@ const TRUST = [
 // ─────────────────────────────────────────────────────────────────────────────
 export const Hero: React.FC = () => {
   const { t }         = useLanguage();
-
-  const scrollDown = useCallback(() => {
-    window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
-  }, []);
-
 
 
   return (
@@ -213,20 +208,6 @@ export const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* ── Scroll cue ────────────────────────────────────────────────────── */}
-      <motion.button
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.4, duration: 0.8 }}
-        onClick={scrollDown}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 cursor-pointer bg-transparent border-none"
-        aria-label="Scroll down"
-      >
-        <span className="text-[10px] font-semibold tracking-[0.18em] uppercase text-gray-800">
-          Scroll Down
-        </span>
-        <ChevronDown className="w-4 h-4 hero-chevron-bounce text-gray-800" />
-      </motion.button>
     </section>
   );
 };
