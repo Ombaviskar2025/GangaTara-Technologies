@@ -1,7 +1,6 @@
 import React from 'react';
 import { HeroVideoScroll } from '@/components/sections/HeroVideoScroll';
 import { Hero } from '@/components/sections/Hero';
-import { WhatsNewCarousel } from '@/components/sections/WhatsNewCarousel';
 import { TabbedSolutions } from '@/components/sections/TabbedSolutions';
 import { Statistics } from '@/components/sections/Statistics';
 import { CustomerStoriesCarousel } from '@/components/sections/CustomerStoriesCarousel';
@@ -51,8 +50,6 @@ export default function Home() {
           backgroundColor: 'var(--background)'
         }}
       >
-        {/* 2. "WHAT'S NEW" CAROUSEL */}
-        <WhatsNewCarousel />
 
         {/* 3. "CUTTING EDGE SOLUTIONS" TABBED SECTION */}
         <TabbedSolutions />
