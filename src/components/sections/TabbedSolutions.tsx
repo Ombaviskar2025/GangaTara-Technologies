@@ -7,7 +7,7 @@ import { ArrowRight } from 'lucide-react';
 import { servicesData, industriesData, productsData } from '@/data/companyData';
 import * as Icons from 'lucide-react';
 
-type TabKey = 'industries' | 'services' | 'products';
+type TabKey = 'core' | 'digital' | 'industry';
 
 const DynamicIcon: React.FC<{ name: string }> = ({ name }) => {
   const I = (Icons as any)[name];
@@ -15,37 +15,37 @@ const DynamicIcon: React.FC<{ name: string }> = ({ name }) => {
 };
 
 const TABS: { key: TabKey; label: string }[] = [
-  { key: 'industries', label: 'Industries' },
-  { key: 'services', label: 'Services' },
-  { key: 'products', label: 'Products & Platforms' },
+  { key: 'core', label: 'Core Services' },
+  { key: 'digital', label: 'Digital Solutions' },
+  { key: 'industry', label: 'By Industry' },
 ];
 
 export const TabbedSolutions: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<TabKey>('industries');
+  const [activeTab, setActiveTab] = useState<TabKey>('core');
 
   const tabContent: Record<TabKey, { items: { label: string; href: string; icon: React.ReactNode; desc: string }[] }> = {
-    industries: {
-      items: industriesData.map((ind) => ({
-        label: ind.title,
-        href: `/industries/${ind.id}`,
-        icon: <DynamicIcon name={ind.iconName} />,
-        desc: ind.shortDesc,
-      })),
-    },
-    services: {
-      items: servicesData.map((srv) => ({
+    core: {
+      items: servicesData.filter(s => ['ai-machine-learning', 'software-development', 'web-development', 'application-development', 'cyber-security', 'cloud-solutions', 'devops', 'data-analytics'].includes(s.id)).map((srv) => ({
         label: srv.title,
         href: `/services/${srv.id}`,
         icon: <DynamicIcon name={srv.iconName} />,
         desc: srv.shortDesc,
       })),
     },
-    products: {
-      items: productsData.map((p) => ({
-        label: p.title,
-        href: p.link,
-        icon: <Icons.Layers className="w-4 h-4" />,
-        desc: p.shortDesc,
+    digital: {
+      items: servicesData.filter(s => ['ui-ux-design', 'digital-marketing', 'digital-transformation', 'iot-solutions', 'blockchain'].includes(s.id)).map((srv) => ({
+        label: srv.title,
+        href: `/services/${srv.id}`,
+        icon: <DynamicIcon name={srv.iconName} />,
+        desc: srv.shortDesc,
+      })),
+    },
+    industry: {
+      items: industriesData.map((ind) => ({
+        label: ind.title,
+        href: `/industries/${ind.id}`,
+        icon: <DynamicIcon name={ind.iconName} />,
+        desc: ind.shortDesc,
       })),
     },
   };
@@ -63,7 +63,7 @@ export const TabbedSolutions: React.FC = () => {
           <div>
             <p className="text-[10px] uppercase tracking-[0.25em] font-bold text-primary mb-2">Cutting Edge Solutions</p>
             <h2 className="text-2xl sm:text-3xl font-poppins font-bold text-dark dark:text-white">
-              Built for Every Sector & Scale
+              What We Do
             </h2>
           </div>
           <p className="text-sm text-dark/55 dark:text-white/50 max-w-sm">
@@ -125,7 +125,7 @@ export const TabbedSolutions: React.FC = () => {
         {/* View all link */}
         <div className="mt-8 flex justify-end">
           <Link
-            href={activeTab === 'industries' ? '/industries' : activeTab === 'services' ? '/services' : '/products'}
+            href={activeTab === 'industry' ? '/industries' : '/services'}
             className="flex items-center gap-2 text-[13px] font-semibold text-primary hover:text-secondary transition-colors"
           >
             View All {TABS.find(t => t.key === activeTab)?.label} <ArrowRight className="w-4 h-4" />
