@@ -151,15 +151,15 @@ const NESTED_NAV_DATA: Record<string, {
 }> = {
   whatwedo: {
     left: {
-      headline: "Built for Every Sector & Scale",
+      headline: "Enterprise IT, Delivered Right",
       body: "We combine deep industry insights with advanced software engineering to design, deploy, and scale robust digital infrastructures.",
       ctaLabel: "See how we deliver →",
       ctaHref: "/services"
     },
     categories: [
       {
-        label: "Industries",
-        key: "industries",
+        label: "Core Services",
+        key: "core-services",
         columns: [
           {
             heading: "Core Infrastructure",
@@ -179,8 +179,8 @@ const NESTED_NAV_DATA: Record<string, {
         ]
       },
       {
-        label: "Services",
-        key: "services",
+        label: "Digital Solutions",
+        key: "digital-solutions",
         columns: [
           {
             heading: "Modern Automation",
@@ -197,8 +197,8 @@ const NESTED_NAV_DATA: Record<string, {
         ]
       },
       {
-        label: "Products & Platforms",
-        key: "products-platforms",
+        label: "By Industry",
+        key: "by-industry",
         columns: [
           {
             heading: "Financial & Health",
@@ -368,7 +368,7 @@ const MegaMenuPanel: React.FC<MegaMenuPanelProps> = ({ item, isActive, onMouseEn
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 4 }}
-          transition={{ duration: 0.18, ease: 'easeOut' }}
+          transition={{ duration: 0.25, ease: 'easeOut' }}
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
           className="absolute top-[64px] left-0 bg-[#1A1A1A] border border-white/8 rounded-b-2xl shadow-2xl shadow-gray-950/60 z-50 overflow-hidden"
@@ -474,7 +474,7 @@ const NestedMegaMenuPanel: React.FC<NestedMegaMenuPanelProps> = ({ menuKey, isAc
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 4 }}
-          transition={{ duration: 0.18, ease: 'easeOut' }}
+          transition={{ duration: 0.25, ease: 'easeOut' }}
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
           className="absolute top-[64px] left-0 bg-[#1A1A1A] border border-white/8 rounded-b-2xl shadow-2xl shadow-gray-950/60 z-50 overflow-hidden flex"
@@ -661,7 +661,7 @@ export const Navbar: React.FC = () => {
   };
 
   const handleMenuLeave = () => {
-    megaMenuTimeout.current = setTimeout(() => setActiveMegaMenu(null), 130);
+    megaMenuTimeout.current = setTimeout(() => setActiveMegaMenu(null), 300);
   };
 
   const isActivePath = (href: string) => pathname === href || pathname.startsWith(href + '/');
