@@ -315,48 +315,6 @@ export const industriesData: IndustryItem[] = [
     image: '/ind_manufacturing.png'
   },
   {
-    id: 'logistics',
-    title: 'Logistics & Supply Chain',
-    shortDesc: 'Fleet route optimization algorithms, real-time package geofencing, and automated invoicing.',
-    iconName: 'Truck',
-    description: 'Maximize fleet utilization and cargo tracking. Our systems analyze traffic and package data in real time, automate driver routing, trigger client geofenced alerts, and generate blockchain-verified customs manifests.',
-    solutions: ['Route Optimization Algorithms', 'Real-Time Package Geofencing', 'Customs Manifest Blockchains', 'Warehouse Sorting Automation Software'],
-    stats: [
-      { label: 'Fuel Cost Savings', value: '14%' },
-      { label: 'Delivery Accuracy', value: '99.6%' },
-      { label: 'Loading Processing', value: '-30%' }
-    ],
-    image: '/ind_manufacturing.png'
-  },
-  {
-    id: 'automobile',
-    title: 'Automobile & Smart Mobility',
-    shortDesc: 'Connected car telemetry backends, OTA firmware platforms, and smart charging solutions.',
-    iconName: 'Car',
-    description: 'Design the future of smart transportation. We build backends that process telemetry data from connected cars, orchestrate over-the-air firmware upgrades, and integrate smart vehicle charging algorithms.',
-    solutions: ['Connected Vehicle Telemetry Systems', 'Secure Over-the-Air Firmware Managers', 'Smart Battery Charging Algorithms', 'Ride-Sharing Fleet Allocators'],
-    stats: [
-      { label: 'Data Ingestion Rate', value: '2M/sec' },
-      { label: 'Firmware Success Rate', value: '99.95%' },
-      { label: 'Fleet Idle Time', value: '-25%' }
-    ],
-    image: '/slide_datacenter.png'
-  },
-  {
-    id: 'real-estate',
-    title: 'Real Estate & PropTech',
-    shortDesc: '3D virtual property tours, automated tenant leasing, and market price valuation models.',
-    iconName: 'Building',
-    description: 'Transform property management. We engineer tenant application systems, integrate WebGL-based 3D virtual building tours, and deploy predictive models that evaluate property prices based on local market metrics.',
-    solutions: ['Tenant Lease Automation Portals', 'WebGL Property Walkthrough Engines', 'Real Estate Valuation Models', 'Property Maintenance Dispatchers'],
-    stats: [
-      { label: 'Lease Processing Time', value: '-70%' },
-      { label: 'Virtual Tours Viewed', value: '1.2M+' },
-      { label: 'Valuation Precision', value: '94.2%' }
-    ],
-    image: '/slide_team.png'
-  },
-  {
     id: 'government',
     title: 'Government & Public Sector',
     shortDesc: 'Secure, accessible citizen service portals, encrypted civic databases, and public records.',
@@ -369,20 +327,6 @@ export const industriesData: IndustryItem[] = [
       { label: 'User Accessibility', value: '100%' }
     ],
     image: '/ind_government.png'
-  },
-  {
-    id: 'travel',
-    title: 'Travel & Hospitality',
-    shortDesc: 'Global booking aggregators, dynamic room pricing engines, and personalized itinerary guides.',
-    iconName: 'Plane',
-    description: 'Empower modern hospitality brands. We build global booking platforms that scale under holiday demand spikes, integrate room pricing algorithms, and design personalized itinerary builders.',
-    solutions: ['Global Reservation Aggregators', 'Dynamic Pricing Engines', 'Itinerary Recommendation Systems', 'Digital Hotel Key Integrations'],
-    stats: [
-      { label: 'Booking Speed', value: '+300%' },
-      { label: 'Dynamic Revenue Boost', value: '12%' },
-      { label: 'Client Retention Rate', value: '+18%' }
-    ],
-    image: '/slide_cloud.png'
   }
 ];
 
