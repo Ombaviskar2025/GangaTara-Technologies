@@ -256,6 +256,9 @@ export const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({ conten
                     poster={content.videoShowcase.poster}
                     controls
                     muted
+                    autoPlay
+                    loop
+                    playsInline
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[9px] text-white/80 font-bold uppercase tracking-wider">
