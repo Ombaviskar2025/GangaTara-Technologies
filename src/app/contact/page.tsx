@@ -138,9 +138,7 @@ function ContactPageContent() {
 
           {/* Compliance pills */}
           <div className="flex flex-wrap gap-2 mt-4">
-            <span className="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-[10px] text-white/70 font-semibold flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-primary" /> ISO 27001 Certified
-            </span>
+
             <span className="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-[10px] text-white/70 font-semibold flex items-center gap-1.5">
               <ShieldCheck className="w-3.5 h-3.5 text-primary" /> GDPR Compliant
             </span>

@@ -452,7 +452,7 @@ export const processData: ProcessItem[] = [
 ];
 
 export const awardsData: AwardItem[] = [
-  { id: 'aw1', title: 'ISO 27001 Certified', issuer: 'International Standards Organization', year: '2025' },
+
   { id: 'aw2', title: 'AWS Advanced Consulting Partner', issuer: 'Amazon Web Services', year: '2024' },
   { id: 'aw3', title: 'Microsoft Gold Partner', issuer: 'Microsoft Corporation', year: '2024' },
   { id: 'aw4', title: 'Google Cloud Partner of the Year', issuer: 'Google Cloud', year: '2025' }

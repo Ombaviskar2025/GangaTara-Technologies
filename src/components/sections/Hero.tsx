@@ -53,7 +53,6 @@ const Typewriter: React.FC = () => {
 //  Trust badges  (small icon + text)
 // ─────────────────────────────────────────────────────────────────────────────
 const TRUST = [
-  'ISO 27001 Certified',
   '200+ Projects Delivered',
   '15+ Countries Served',
   'Global IT Partner',

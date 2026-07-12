@@ -286,7 +286,7 @@ const NESTED_NAV_DATA: Record<string, {
           {
             heading: "Security & Audits",
             links: [
-              { label: 'ISO 27001 Certified', href: '/about#certifications', icon: <Shield className="w-3.5 h-3.5" /> },
+
               { label: 'SOC 2 Type II Certified', href: '/about#certifications', icon: <Shield className="w-3.5 h-3.5" /> },
             ]
           }
