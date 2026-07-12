@@ -487,3 +487,114 @@ body {
   border-color: rgba(100, 160, 255, 0.5);
   color: rgba(200, 230, 255, 0.95);
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HERO VIDEO SCROLL — Pinned video + curtain-rise overlay
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Full-screen video that fills its container */
+.hero-video-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  /* Hint browser to pre-decode frames; keeps playback smooth */
+  will-change: contents;
+}
+
+/* Dark gradient overlay layered above the video for text readability */
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  /* gradient set inline so posterSrc shows through on static fallback */
+  background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.55));
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Curtain panel: GPU-composited, rounded top corners */
+.hero-video-curtain {
+  will-change: transform;
+  /* border-radius set inline per spec; box-shadow gives depth */
+  box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.18);
+}
+
+/* Typewriter gradient text – white/cyan on dark video */
+.hero-video-gradient-text {
+  background: linear-gradient(90deg, #ffffff 0%, #93c5fd 60%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Badge – semi-transparent on dark video */
+.hero-video-badge {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Trust badge pill – on dark video */
+.hero-video-trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Secondary CTA button – ghost style on dark video */
+.hero-video-btn-secondary {
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+}
+.hero-video-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.7);
+  transform: translateY(-2px);
+}
+
+/* ── Mobile fallback: static poster image, no video, no scroll animations ── */
+@media (max-width: 767px) {
+  /* Outer wrapper collapses to auto height (no 200vh scroll zone) */
+  .hero-video-scroll-outer {
+    height: auto !important;
+  }
+
+  /* Static hero uses poster image as background */
+  .hero-video-static-section {
+    background-attachment: scroll;
+  }
+}
+
+/* ── Reduced-motion fallback ─────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  /* Kill all video-hero scroll animations */
+  .hero-video-curtain {
+    transform: none !important;
+    transition: none !important;
+  }
+  /* Disable the typewriter cursor blink */
+  .hero-cursor {
+    animation: none;
+    opacity: 1;
+  }
+  /* Disable chevron bounce */
+  .hero-chevron-bounce {
+    animation: none;
+  }
+}
