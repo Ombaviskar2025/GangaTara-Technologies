@@ -410,11 +410,11 @@ const MegaMenuPanel: React.FC<MegaMenuPanelProps> = ({ item, isActive, onMouseEn
                       <Link
                         href={link.href}
                         role="menuitem"
-                        className={`flex items-center gap-2.5 py-1.5 px-2 rounded-lg text-[13px] font-medium transition-all group/link -mx-2
-                          ${isActivePath(link.href) ? 'text-primary bg-primary/6' : 'text-white/85 hover:text-white hover:bg-white/4'}
+                        className={`flex items-center gap-2.5 py-1.5 px-2 rounded-lg text-[13px] font-medium transition-all group/link -mx-2 hover:underline decoration-white underline-offset-[5px]
+                          ${isActivePath(link.href) ? 'text-white underline' : 'text-white/85 hover:text-white'}
                         `}
                       >
-                        <span className={`shrink-0 transition-colors ${isActivePath(link.href) ? 'text-primary' : 'text-white/30 group-hover/link:text-primary'}`}>
+                        <span className={`shrink-0 transition-colors ${isActivePath(link.href) ? 'text-white' : 'text-white/30 group-hover/link:text-white'}`}>
                           {link.icon}
                         </span>
                         {link.label}
@@ -506,11 +506,11 @@ const NestedMegaMenuPanel: React.FC<NestedMegaMenuPanelProps> = ({ menuKey, isAc
                 key={cat.key}
                 onMouseEnter={() => setActiveCatIdx(idx)}
                 className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left text-[12px] font-semibold transition-all cursor-pointer border-0 outline-none
-                  ${activeCatIdx === idx ? 'text-primary bg-primary/8' : 'text-white/60 hover:text-white hover:bg-white/4'}
+                  ${activeCatIdx === idx ? 'text-white bg-[#333] dark:bg-white/10' : 'text-white/60 hover:text-white hover:bg-white/5'}
                 `}
               >
                 {cat.label}
-                <ChevronRight className={`w-3.5 h-3.5 transition-transform ${activeCatIdx === idx ? 'translate-x-0.5 text-primary' : 'opacity-30 text-white/30'}`} />
+                <ChevronRight className={`w-3.5 h-3.5 transition-transform ${activeCatIdx === idx ? 'translate-x-0.5 text-white' : 'opacity-30 text-white/30'}`} />
               </button>
             ))}
           </div>
@@ -528,12 +528,12 @@ const NestedMegaMenuPanel: React.FC<NestedMegaMenuPanelProps> = ({ menuKey, isAc
                       <Link
                         href={link.href}
                         role="menuitem"
-                        className={`flex items-center gap-2.5 py-1.5 px-2 rounded-lg text-[13px] font-medium transition-all group/link -mx-2 hover:underline
-                          ${isActivePath(link.href) ? 'text-primary' : 'text-white/85 hover:text-white'}
+                        className={`flex items-center gap-2.5 py-1.5 px-2 rounded-lg text-[13px] font-medium transition-all group/link -mx-2 hover:underline decoration-white underline-offset-[5px]
+                          ${isActivePath(link.href) ? 'text-white underline' : 'text-white/85 hover:text-white'}
                         `}
                       >
                         {link.icon && (
-                          <span className={`shrink-0 transition-colors ${isActivePath(link.href) ? 'text-primary' : 'text-white/30 group-hover/link:text-primary'}`}>
+                          <span className={`shrink-0 transition-colors ${isActivePath(link.href) ? 'text-white' : 'text-white/30 group-hover/link:text-white'}`}>
                             {link.icon}
                           </span>
                         )}
@@ -795,7 +795,7 @@ export const Navbar: React.FC = () => {
                     aria-haspopup="true"
                   >
                     {item.label}
-                    <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMegaMenu === item.key ? 'rotate-180 text-primary' : ''}`} />
+                    <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMegaMenu === item.key ? 'rotate-180 text-white' : ''}`} />
                     <span className={`absolute bottom-0 left-4 right-4 h-[2px] bg-primary rounded-t-full transition-transform origin-left duration-200
                       ${activeMegaMenu === item.key ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}
                     `} />
