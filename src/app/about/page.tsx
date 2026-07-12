@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, ArrowRight, Eye } from 'lucide-react';
+import { Sparkles, ArrowRight, Eye, Trophy, Award } from 'lucide-react';
 import Link from 'next/link';
 
 export default function AboutPage() {
@@ -12,13 +12,32 @@ export default function AboutPage() {
     { name: 'Akiro Tanaka', role: 'Head of AI Research', bio: 'Ph.D. in Deep Learning from Stanford. Innovates semantic caches and LLM alignment.' }
   ];
 
-
+  const awards = [
+    {
+      icon: <Trophy className="w-6 h-6 text-yellow-500" />,
+      title: 'Top Enterprise Solutions Partner',
+      year: '2025',
+      desc: 'Awarded for outstanding enterprise software delivery and successful cloud migrations in Central India.'
+    },
+    {
+      icon: <Award className="w-6 h-6 text-primary" />,
+      title: 'AWS Architecting Excellence',
+      year: '2024',
+      desc: 'Recognized for building highly secure, serverless transaction architectures with zero downtime.'
+    },
+    {
+      icon: <Sparkles className="w-6 h-6 text-purple-500" />,
+      title: 'Clutch Frontend Leader',
+      year: '2025',
+      desc: 'Global leader recognition in high-performance React and Next.js custom applications engineering.'
+    }
+  ];
 
   return (
     <div className="pt-28 pb-20">
       
       {/* 1. Header Banner */}
-      <section className="relative py-20 overflow-hidden">
+      <section id="about" className="relative py-20 overflow-hidden scroll-mt-24">
         <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
         <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
         
@@ -87,7 +106,7 @@ export default function AboutPage() {
       </section>
 
       {/* 3. Leadership Team */}
-      <section className="py-20 bg-light/50 dark:bg-dark/40 border-y border-light/10 dark:border-white/5">
+      <section id="leadership" className="py-20 bg-light/50 dark:bg-dark/40 border-y border-light/10 dark:border-white/5 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 border border-primary/20 px-3 py-1 rounded-full mb-4 inline-block">
@@ -121,7 +140,44 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* 4. Awards & Recognition */}
+      <section id="awards" className="py-20 max-w-7xl mx-auto px-6 scroll-mt-24">
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <span className="text-xs font-bold uppercase tracking-widest text-secondary bg-secondary/10 border border-secondary/20 px-3 py-1 rounded-full mb-4 inline-block">
+            Achievements
+          </span>
+          <h2 className="text-3xl font-poppins font-extrabold text-dark dark:text-light">
+            Awards & Recognition
+          </h2>
+          <p className="text-sm text-dark/60 dark:text-light/60 mt-4">
+            Proudly recognized by global clients, directories, and technology partners for our strict adherence to quality and innovation.
+          </p>
+        </div>
 
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {awards.map((award, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="p-8 rounded-3xl glass-panel border border-light/25 dark:border-white/5 flex flex-col gap-5 hover:border-secondary/25 transition-all duration-300 relative overflow-hidden"
+            >
+              <div className="absolute top-4 right-6 text-sm font-bold text-dark/20 dark:text-white/10 font-poppins">
+                {award.year}
+              </div>
+              <div className="w-12 h-12 rounded-2xl bg-light/60 dark:bg-white/5 border border-light/10 dark:border-white/5 flex items-center justify-center shrink-0">
+                {award.icon}
+              </div>
+              <div>
+                <h3 className="text-base font-bold text-dark dark:text-light mb-2">{award.title}</h3>
+                <p className="text-xs text-dark/65 dark:text-light/60 leading-relaxed">{award.desc}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
 
     </div>
   );

@@ -73,7 +73,7 @@ const NAV_ITEMS: {
       {
         heading: 'Company',
         links: [
-          { label: 'About GangaTara', href: '/about', icon: <Users className="w-3.5 h-3.5" /> },
+          { label: 'About GangaTara', href: '/about#about', icon: <Users className="w-3.5 h-3.5" /> },
           { label: 'Leadership Team', href: '/about#leadership', icon: <Award className="w-3.5 h-3.5" /> },
           { label: 'Awards & Recognition', href: '/about#awards', icon: <Award className="w-3.5 h-3.5" /> },
         ],
