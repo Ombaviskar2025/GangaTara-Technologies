@@ -43,7 +43,14 @@ export default function Home() {
       </HeroVideoScroll>
 
       {/* ── Rest of page — normal scroll, overflow-x safe here ── */}
-      <div className="overflow-x-hidden">
+      <div 
+        className="overflow-x-hidden"
+        style={{
+          position: 'relative',
+          zIndex: 10,
+          backgroundColor: 'var(--background)'
+        }}
+      >
         {/* 2. "WHAT'S NEW" CAROUSEL */}
         <WhatsNewCarousel />
 
