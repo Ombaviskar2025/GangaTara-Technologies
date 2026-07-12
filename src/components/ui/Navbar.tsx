@@ -103,7 +103,6 @@ const NAV_ITEMS: {
           { label: 'Blog & Articles', href: '/blog', icon: <BookOpen className="w-3.5 h-3.5" /> },
           { label: 'Case Studies', href: '/case-studies', icon: <BarChart3 className="w-3.5 h-3.5" /> },
           { label: 'Technology Stack', href: '/technologies', icon: <Code2 className="w-3.5 h-3.5" /> },
-          { label: 'Products Portfolio', href: '/products', icon: <Sparkles className="w-3.5 h-3.5" /> },
         ],
       },
     ],
