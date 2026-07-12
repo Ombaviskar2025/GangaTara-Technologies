@@ -131,7 +131,6 @@ const NAV_ITEMS: {
       type: 'jobs' as const,
       heading: 'Featured Openings',
     },
-    footerLink: { label: 'View All Jobs', href: '/careers' },
   },
   {
     label: 'Industries',
