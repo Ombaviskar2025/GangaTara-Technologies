@@ -147,8 +147,9 @@ export const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({ conten
           alt={content.hero.title}
           className="absolute inset-0 w-full h-full object-cover"
         />
-        {/* Gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#4A4B50]/96 via-[#4A4B50]/80 to-[#4A4B50]/30" />
+        {/* Gradient overlays for strong text contrast */}
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-900/80 to-transparent" />
+        <div className="absolute inset-0 bg-slate-950/40" />
         <div className="absolute inset-0 grid-bg opacity-15" />
 
         <div className="relative z-10 max-w-screen-xl mx-auto px-6 sm:px-14 py-16 w-full text-white">
@@ -159,11 +160,11 @@ export const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({ conten
             className="max-w-2xl"
           >
             {/* Breadcrumb */}
-            <p className="text-[10px] sm:text-[11px] font-bold tracking-[0.22em] text-primary uppercase mb-4">
+            <p className="text-[10px] sm:text-[11px] font-bold tracking-[0.22em] text-blue-300 uppercase mb-4">
               {content.hero.breadcrumb}
             </p>
             {/* Eyebrow */}
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/20 border border-primary/40 text-primary text-[9px] sm:text-[10px] font-bold uppercase tracking-widest mb-6">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-200 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest mb-6">
               {content.hero.eyebrow}
             </span>
             {/* Headline */}
