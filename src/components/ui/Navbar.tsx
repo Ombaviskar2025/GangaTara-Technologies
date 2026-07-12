@@ -389,7 +389,7 @@ const MegaMenuPanel: React.FC<MegaMenuPanelProps> = ({ item, isActive, onMouseEn
               {item.intro.link && (
                 <Link
                   href={item.intro.link}
-                  className="shrink-0 mt-0.5 text-primary text-[11px] font-semibold hover:text-secondary flex items-center gap-1 transition-colors"
+                  className="shrink-0 mt-0.5 text-white text-[11px] font-bold hover:underline underline-offset-[5px] flex items-center gap-1 transition-all"
                 >
                   Learn more <ArrowRight className="w-3 h-3" />
                 </Link>
@@ -403,7 +403,7 @@ const MegaMenuPanel: React.FC<MegaMenuPanelProps> = ({ item, isActive, onMouseEn
           >
             {item.columns.map((col, ci) => (
               <div key={ci}>
-                <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-primary mb-4">{col.heading}</p>
+                <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-white/50 mb-4">{col.heading}</p>
                 <ul className="flex flex-col gap-0.5">
                   {col.links.map((link, li) => (
                     <li key={li}>
@@ -493,7 +493,7 @@ const NestedMegaMenuPanel: React.FC<NestedMegaMenuPanelProps> = ({ menuKey, isAc
             </div>
             <Link
               href={data.left.ctaHref}
-              className="text-primary text-[11px] font-bold hover:text-secondary flex items-center gap-1 transition-colors mt-4"
+              className="text-white text-[11px] font-bold hover:underline underline-offset-[5px] flex items-center gap-1 transition-all mt-4"
             >
               {data.left.ctaLabel} <ArrowRight className="w-3.5 h-3.5" />
             </Link>
@@ -519,7 +519,7 @@ const NestedMegaMenuPanel: React.FC<NestedMegaMenuPanelProps> = ({ menuKey, isAc
           <div className="flex-1 p-6 grid grid-cols-2 gap-8 bg-white/[0.005]">
             {activeCategory.columns.map((col, ci) => (
               <div key={ci}>
-                <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-primary mb-4">
+                <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-white/50 mb-4">
                   {col.heading}
                 </p>
                 <ul className="flex flex-col gap-0.5">
