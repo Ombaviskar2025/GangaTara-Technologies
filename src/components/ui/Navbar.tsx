@@ -54,7 +54,7 @@ const NAV_ITEMS: {
   href?: string;
   isNested?: boolean;
   intro?: { headline?: string; body?: string; link?: string };
-  columns?: { heading: string; links: { label: string; href: string; icon: React.ReactNode }[] }[];
+  columns?: { heading: string; links: { label: string; href: string; icon: React.ReactNode; target?: string }[] }[];
   liveStrip?: { type: 'blogs' | 'jobs' | 'awards'; heading: string };
   footerLink?: { label: string; href: string };
 }[] = [
@@ -73,15 +73,15 @@ const NAV_ITEMS: {
       {
         heading: 'Company',
         links: [
-          { label: 'About GangaTara', href: '/about', icon: <Users className="w-3.5 h-3.5" /> },
-          { label: 'Leadership Team', href: '/about#leadership', icon: <Award className="w-3.5 h-3.5" /> },
-          { label: 'Awards & Recognition', href: '/about#awards', icon: <Award className="w-3.5 h-3.5" /> },
+          { label: 'About GangaTara', href: '/about', icon: <Users className="w-3.5 h-3.5" />, target: '_blank' },
+          { label: 'Leadership Team', href: '/about#leadership', icon: <Award className="w-3.5 h-3.5" />, target: '_blank' },
+          { label: 'Awards & Recognition', href: '/about#awards', icon: <Award className="w-3.5 h-3.5" />, target: '_blank' },
         ],
       },
       {
         heading: 'Global Presence',
         links: [
-          { label: 'Indore Madhya-Pradesh', href: '/contact', icon: <MapPin className="w-3.5 h-3.5" /> },
+          { label: 'Indore Madhya-Pradesh', href: 'https://www.google.com/maps/search/?api=1&query=GangaTara+Technologies+Indore+Madhya+Pradesh+India', icon: <MapPin className="w-3.5 h-3.5" />, target: '_blank' },
         ],
       },
     ],
@@ -371,6 +371,8 @@ const MegaMenuPanel: React.FC<MegaMenuPanelProps> = ({ item, isActive, onMouseEn
                       <Link
                         href={link.href}
                         role="menuitem"
+                        target={link.target}
+                        rel={link.target === '_blank' ? 'noopener noreferrer' : undefined}
                         className={`flex items-center gap-2.5 py-1.5 px-2 rounded-lg text-[13px] font-medium transition-all group/link -mx-2 hover:underline decoration-white underline-offset-[5px]
                           ${isActivePath(link.href) ? 'text-white underline' : 'text-white/85 hover:text-white'}
                         `}
@@ -981,6 +983,8 @@ export const Navbar: React.FC = () => {
                                             <Link
                                               key={li}
                                               href={link.href}
+                                              target={link.target}
+                                              rel={link.target === '_blank' ? 'noopener noreferrer' : undefined}
                                               onClick={() => setIsMobileMenuOpen(false)}
                                               className="flex items-center gap-2 py-1.5 px-2 text-[13px] text-white/60 hover:text-white transition-colors rounded-lg hover:bg-white/4"
                                             >
