@@ -68,6 +68,8 @@ const NAV_ITEMS: {
     key: 'whoweare',
     intro: {
       headline: 'Built on Trust, Driven by Innovation',
+      body: 'We design and deploy modern cloud architectures, secure systems, and high-performance digital solutions for enterprise clients worldwide.',
+      link: '/about',
     },
     columns: [
       {
@@ -91,6 +93,8 @@ const NAV_ITEMS: {
     key: 'insights',
     intro: {
       headline: 'Knowledge Drives Transformation',
+      body: 'Explore our latest research, whitepapers, technology blogs, and corporate press announcements on enterprise software.',
+      link: '/insights',
     },
     columns: [
       {
@@ -111,10 +115,10 @@ const NAV_ITEMS: {
       {
         heading: 'Work at GangaTara',
         links: [
-          { label: 'Open Positions', href: '/careers#positions', icon: <Briefcase className="w-3.5 h-3.5" /> },
+          { label: 'Open Positions', href: '/careers/positions', icon: <Briefcase className="w-3.5 h-3.5" /> },
           { label: 'Life at GangaTara', href: '/careers#culture', icon: <Sparkles className="w-3.5 h-3.5" /> },
           { label: 'Benefits & Perks', href: '/careers#benefits', icon: <Award className="w-3.5 h-3.5" /> },
-          { label: 'Internships', href: '/careers#internships', icon: <GraduationCap className="w-3.5 h-3.5" /> },
+          { label: 'Internships', href: '/careers/internships', icon: <GraduationCap className="w-3.5 h-3.5" /> },
         ],
       },
     ],

@@ -1,19 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle, ShieldCheck, Mail, Briefcase, Award, Heart, Smile, X, Coffee, Users, Code, GraduationCap, BookOpen, Sparkles } from 'lucide-react';
-import { jobsData, JobItem } from '@/data/companyData';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ShieldCheck, Briefcase, Award, Heart, Smile, Coffee, Users, Code, GraduationCap, BookOpen, Sparkles, ArrowRight } from 'lucide-react';
 
 export default function CareersPage() {
-  const [selectedJob, setSelectedJob] = useState<JobItem | null>(null);
-  const [applySuccess, setApplySuccess] = useState(false);
-  const [applyForm, setApplyForm] = useState({
-    name: '',
-    email: '',
-    github: '',
-    coverLetter: ''
-  });
 
   const benefits = [
     { icon: <Heart className="w-5 h-5 text-red-500" />, title: 'Health & Wellness', desc: 'Comprehensive medical, dental, and vision insurance policies for you and your family.' },
@@ -42,17 +33,7 @@ export default function CareersPage() {
     }
   ];
 
-  const handleApplySubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!applyForm.name || !applyForm.email) return;
 
-    setApplySuccess(true);
-    setApplyForm({ name: '', email: '', github: '', coverLetter: '' });
-    setTimeout(() => {
-      setApplySuccess(false);
-      setSelectedJob(null);
-    }, 4000);
-  };
 
   return (
     <div className="pt-28 pb-20">
@@ -121,182 +102,77 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* 4. Job Listings Section */}
-      <section id="positions" className="max-w-4xl mx-auto px-6 py-16 scroll-mt-24 border-t border-light/10 dark:border-white/5 flex flex-col gap-6">
-        <div className="text-center max-w-xl mx-auto mb-12">
-          <span className="text-[10px] uppercase font-bold text-primary tracking-widest mb-2 block">Available Opportunities</span>
-          <h2 className="text-3xl font-poppins font-bold text-dark dark:text-light mb-4">Open Positions</h2>
-          <p className="text-sm text-dark/60 dark:text-light/60">Browse active opportunities below. Click to read specifications and apply.</p>
-        </div>
+      {/* 4. CTA: Open Positions */}
+      <section id="positions" className="max-w-7xl mx-auto px-6 py-16 scroll-mt-24 border-t border-light/10 dark:border-white/5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-        {jobsData.map((job) => (
-          <div
-            key={job.id}
-            className="p-6 rounded-2xl glass-card border border-light/20 dark:border-white/5 hover:border-primary/20 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all duration-300"
-          >
-            <div>
-              <h3 className="text-sm font-bold text-dark dark:text-light mb-1.5">{job.title}</h3>
-              <div className="flex flex-wrap gap-2 text-[10px] text-dark/50 dark:text-light/50 font-bold uppercase tracking-wider">
-                <span>{job.department}</span>
-                <span>•</span>
-                <span className="text-primary">{job.location}</span>
-                <span>•</span>
-                <span>{job.type}</span>
-              </div>
-            </div>
-
-            <button
-              onClick={() => setSelectedJob(job)}
-              className="px-5 py-2.5 rounded-xl bg-primary hover:bg-secondary text-white font-bold text-xs transition-colors cursor-pointer self-start sm:self-auto"
-            >
-              Apply / Specifications
-            </button>
-          </div>
-        ))}
-      </section>
-
-      {/* 5. Internships Section */}
-      <section id="internships" className="max-w-7xl mx-auto px-6 py-16 scroll-mt-24 border-t border-light/10 dark:border-white/5">
-        <div className="text-center max-w-xl mx-auto mb-16">
-          <span className="text-[10px] uppercase font-bold text-purple-500 tracking-widest mb-2 block">For Students & Graduates</span>
-          <h2 className="text-3xl font-poppins font-bold text-dark dark:text-light mb-4">Internship Programs</h2>
-          <p className="text-sm text-dark/60 dark:text-light/60">
-            Kickstart your software engineering career with our structured mentorship programs. We pair you with senior engineers to work on real, production systems.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          <div className="p-8 rounded-2xl glass-panel border border-light/25 dark:border-white/5 flex gap-5 hover:border-primary/25 transition-all duration-300">
-            <div className="w-12 h-12 rounded-xl bg-light/60 dark:bg-white/5 border border-light/10 dark:border-white/5 flex items-center justify-center text-primary shrink-0">
-              <GraduationCap className="w-6 h-6" />
-            </div>
-            <div>
-              <h3 className="text-base font-bold text-dark dark:text-light mb-2">1-on-1 Mentorship</h3>
-              <p className="text-xs text-dark/65 dark:text-light/60 leading-relaxed">
-                Work directly with a designated Senior Mentor. You will learn modern frontend/backend best practices, code review standards, and scalable system design.
-              </p>
-            </div>
-          </div>
-          <div className="p-8 rounded-2xl glass-panel border border-light/25 dark:border-white/5 flex gap-5 hover:border-secondary/25 transition-all duration-300">
-            <div className="w-12 h-12 rounded-xl bg-light/60 dark:bg-white/5 border border-light/10 dark:border-white/5 flex items-center justify-center text-secondary shrink-0">
+          {/* Open Positions Card */}
+          <div className="relative p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-primary/10 to-blue-600/5 border border-primary/20 overflow-hidden group hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10">
+            <div className="absolute top-0 right-0 w-40 h-40 bg-primary/5 rounded-full blur-[60px] pointer-events-none" />
+            <div className="w-14 h-14 rounded-2xl bg-primary/15 border border-primary/25 flex items-center justify-center text-primary mb-6">
               <Briefcase className="w-6 h-6" />
             </div>
-            <div>
-              <h3 className="text-base font-bold text-dark dark:text-light mb-2">Real Production Code</h3>
-              <p className="text-xs text-dark/65 dark:text-light/60 leading-relaxed">
-                We do not do throwaway sandbox projects. You will build and ship features that actively run on GangaTara platforms, gaining invaluable real-world experience.
-              </p>
-            </div>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-primary mb-2 block">Full-Time Roles</span>
+            <h2 className="text-2xl font-poppins font-extrabold text-dark dark:text-light mb-3">Open Positions</h2>
+            <p className="text-sm text-dark/60 dark:text-light/55 leading-relaxed mb-6">
+              We are actively hiring for 10 roles across Engineering, Marketing, AI & Data, QA, and more. Join our growing team and work on real enterprise products.
+            </p>
+            <ul className="flex flex-col gap-2 mb-8">
+              {[
+                'Full Stack Developer',
+                'AI Automation Specialist',
+                'Business Development Associate',
+                'Project Manager',
+                '+ 6 more roles'
+              ].map((role, i) => (
+                <li key={i} className="flex items-center gap-2 text-xs text-dark/70 dark:text-light/60">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                  {role}
+                </li>
+              ))}
+            </ul>
+            <a
+              href="/careers/positions"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary hover:bg-primary/90 text-white font-bold text-xs transition-all shadow-lg shadow-primary/20 cursor-pointer group-hover:gap-3"
+            >
+              View All Open Positions <ArrowRight className="w-3.5 h-3.5" />
+            </a>
           </div>
-        </div>
-        <div className="mt-12 text-center">
-          <p className="text-xs text-dark/50 dark:text-light/50 mb-4">Looking for an internship opportunity in Madhya Pradesh or Remote?</p>
-          <a
-            href="mailto:careers@gangatara.com"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary hover:bg-secondary text-white font-bold text-xs transition-colors cursor-pointer"
-          >
-            <Mail className="w-4 h-4" /> Send your Resume to careers@gangatara.com
-          </a>
+
+          {/* Internships Card */}
+          <div className="relative p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-purple-500/10 to-pink-500/5 border border-purple-500/20 overflow-hidden group hover:border-purple-500/40 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/10">
+            <div className="absolute top-0 right-0 w-40 h-40 bg-purple-500/5 rounded-full blur-[60px] pointer-events-none" />
+            <div className="w-14 h-14 rounded-2xl bg-purple-500/15 border border-purple-500/25 flex items-center justify-center text-purple-400 mb-6">
+              <GraduationCap className="w-6 h-6" />
+            </div>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-purple-400 mb-2 block">Student Programs</span>
+            <h2 className="text-2xl font-poppins font-extrabold text-dark dark:text-light mb-3">Internship Programs</h2>
+            <p className="text-sm text-dark/60 dark:text-light/55 leading-relaxed mb-6">
+              10 internship roles across Engineering, Design, AI, Marketing, and HR. Paid stipend, real projects, and a path to a full-time offer.
+            </p>
+            <ul className="flex flex-col gap-2 mb-8">
+              {[
+                'Full Stack Developer Intern',
+                'AI & Machine Learning Intern',
+                'UI/UX Design Intern',
+                'HR Intern',
+                '+ 6 more programs'
+              ].map((role, i) => (
+                <li key={i} className="flex items-center gap-2 text-xs text-dark/70 dark:text-light/60">
+                  <span className="w-1.5 h-1.5 rounded-full bg-purple-400 shrink-0" />
+                  {role}
+                </li>
+              ))}
+            </ul>
+            <a
+              href="/careers/internships"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-purple-600 hover:bg-purple-600/90 text-white font-bold text-xs transition-all shadow-lg shadow-purple-500/20 cursor-pointer group-hover:gap-3"
+            >
+              View All Internships <ArrowRight className="w-3.5 h-3.5" />
+            </a>
+          </div>
         </div>
       </section>
-
-      {/* 6. Application / Job Modal */}
-      <AnimatePresence>
-        {selectedJob && (
-          <div className="fixed inset-0 bg-dark/80 z-50 flex items-center justify-center p-4 overflow-y-auto">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              className="w-full max-w-2xl bg-light dark:bg-dark border border-light/20 dark:border-white/5 rounded-3xl p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto"
-            >
-              {/* Close */}
-              <button
-                onClick={() => setSelectedJob(null)}
-                className="absolute top-4 right-4 p-2 text-dark/60 dark:text-light/65 hover:bg-light-hover dark:hover:bg-white/5 rounded-full cursor-pointer"
-              >
-                <X className="w-5 h-5" />
-              </button>
-
-              <span className="text-[9px] uppercase font-bold text-primary tracking-widest mb-1 block">{selectedJob.department}</span>
-              <h3 className="text-xl font-poppins font-bold text-dark dark:text-light mb-4">{selectedJob.title}</h3>
-
-              <div className="flex gap-4 text-[10px] text-dark/50 dark:text-light/50 font-bold uppercase tracking-wider border-b border-light/10 dark:border-white/5 pb-4 mb-6">
-                <span>Location: {selectedJob.location}</span>
-                <span>•</span>
-                <span>Salary/Level: {selectedJob.experience}</span>
-              </div>
-
-              {/* Specs */}
-              <div className="flex flex-col gap-6 mb-8 text-xs sm:text-sm">
-                <div>
-                  <h4 className="font-bold text-dark dark:text-light mb-2">Description</h4>
-                  <p className="text-dark/70 dark:text-light/75 leading-relaxed">{selectedJob.description}</p>
-                </div>
-                <div>
-                  <h4 className="font-bold text-dark dark:text-light mb-2">Requirements</h4>
-                  <ul className="list-disc list-inside flex flex-col gap-1.5 text-dark/70 dark:text-light/75 pl-2">
-                    {selectedJob.requirements.map((req, i) => <li key={i}>{req}</li>)}
-                  </ul>
-                </div>
-              </div>
-
-              {/* Form */}
-              <form onSubmit={handleApplySubmit} className="border-t border-light/10 dark:border-white/5 pt-6 flex flex-col gap-4">
-                <h4 className="text-xs font-bold text-dark dark:text-light uppercase tracking-wider mb-2">Application Form</h4>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <input
-                    type="text"
-                    required
-                    value={applyForm.name}
-                    onChange={(e) => setApplyForm({ ...applyForm, name: e.target.value })}
-                    placeholder="Your Name *"
-                    className="px-4 py-3 bg-white/5 border border-dark/15 dark:border-white/10 rounded-xl text-xs text-dark dark:text-white focus:outline-none focus:border-primary"
-                  />
-                  <input
-                    type="email"
-                    required
-                    value={applyForm.email}
-                    onChange={(e) => setApplyForm({ ...applyForm, email: e.target.value })}
-                    placeholder="Your Email *"
-                    className="px-4 py-3 bg-white/5 border border-dark/15 dark:border-white/10 rounded-xl text-xs text-dark dark:text-white focus:outline-none focus:border-primary"
-                  />
-                </div>
-
-                <input
-                  type="url"
-                  value={applyForm.github}
-                  onChange={(e) => setApplyForm({ ...applyForm, github: e.target.value })}
-                  placeholder="Portfolio or GitHub Link (Optional)"
-                  className="px-4 py-3 bg-white/5 border border-dark/15 dark:border-white/10 rounded-xl text-xs text-dark dark:text-white focus:outline-none focus:border-primary"
-                />
-
-                <textarea
-                  rows={3}
-                  value={applyForm.coverLetter}
-                  onChange={(e) => setApplyForm({ ...applyForm, coverLetter: e.target.value })}
-                  placeholder="Why would you like to join our engineering practice?"
-                  className="px-4 py-3 bg-white/5 border border-dark/15 dark:border-white/10 rounded-xl text-xs text-dark dark:text-white focus:outline-none focus:border-primary resize-none"
-                />
-
-                <button
-                  type="submit"
-                  className="py-3 bg-primary hover:bg-secondary text-white font-bold text-xs rounded-xl transition-colors cursor-pointer"
-                >
-                  Submit Application
-                </button>
-
-                {applySuccess && (
-                  <div className="p-3 bg-success/15 border border-success/20 rounded-xl text-success text-xs font-semibold text-center flex items-center justify-center gap-2">
-                    <CheckCircle className="w-4 h-4 animate-pulse" /> Application successfully submitted. We will contact you.
-                  </div>
-                )}
-              </form>
-
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
 
     </div>
   );
