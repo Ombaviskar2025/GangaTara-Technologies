@@ -272,46 +272,7 @@ const NESTED_NAV_DATA: Record<string, {
           }
         ]
       },
-      {
-        label: "Our Accreditations",
-        key: "accreditations",
-        columns: [
-          {
-            heading: "Partner Status",
-            links: [
-              { label: 'AWS Advanced Partner', href: '/about#partners', icon: <Award className="w-3.5 h-3.5" /> },
-              { label: 'GCP Consulting Partner', href: '/about#partners', icon: <Award className="w-3.5 h-3.5" /> },
-            ]
-          },
-          {
-            heading: "Security & Audits",
-            links: [
 
-              { label: 'SOC 2 Type II Certified', href: '/about#certifications', icon: <Shield className="w-3.5 h-3.5" /> },
-            ]
-          }
-        ]
-      },
-      {
-        label: "Connect With Us",
-        key: "connect",
-        columns: [
-          {
-            heading: "Join & Collaborate",
-            links: [
-              { label: 'Careers & Hiring', href: '/careers', icon: <Users className="w-3.5 h-3.5" /> },
-              { label: 'Partnerships & Alliances', href: '/contact', icon: <Handshake className="w-3.5 h-3.5" /> },
-            ]
-          },
-          {
-            heading: "Media & Press",
-            links: [
-              { label: 'Press Inquiries', href: '/contact', icon: <Mic2 className="w-3.5 h-3.5" /> },
-              { label: 'Media Statements', href: '/contact', icon: <Mic2 className="w-3.5 h-3.5" /> },
-            ]
-          }
-        ]
-      }
     ]
   }
 };
