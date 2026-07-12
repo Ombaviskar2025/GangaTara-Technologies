@@ -146,13 +146,12 @@ export const Footer: React.FC = () => {
             {/* Brand */}
             <div className="lg:col-span-2 flex flex-col gap-6">
               <Link href="/" className="flex items-center gap-2 group w-fit">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center shadow-lg shadow-primary/20">
-                  <span className="text-white font-extrabold text-lg">GT</span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-poppins font-bold text-lg leading-tight tracking-wider text-white">GangaTara</span>
-                  <span className="text-[9px] uppercase tracking-widest text-primary font-semibold">Technologies</span>
-                </div>
+                <img
+                  src="/logo-new.png"
+                  alt="GangaTara Technologies"
+                  className="h-10 w-auto object-contain"
+                  loading="lazy"
+                />
               </Link>
 
               <p className="text-xs text-white/55 leading-relaxed max-w-sm">
