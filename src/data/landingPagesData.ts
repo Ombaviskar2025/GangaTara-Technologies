@@ -64,6 +64,10 @@ export interface LandingPageContent {
     poster: string;
     caption: string;
   };
+  pillars?: {
+    title: string;
+    description: string;
+  }[];
 }
 
 export const landingPagesData: Record<string, LandingPageContent> = {
@@ -81,6 +85,20 @@ export const landingPagesData: Record<string, LandingPageContent> = {
       eyebrow: 'INNOVATION IN HEALTHCARE & LIFE SCIENCES',
       paragraph: 'The healthcare sector faces unprecedented demands: from legacy system modernization and strict regulatory compliance (HIPAA/GDPR) to the integration of real-time clinical AI. GangaTara Technologies addresses these complex hurdles by deploying secure cloud-native architectures, automating patient record indexing, and building predictive patient monitoring pipelines that ensure operational continuity and protect patient confidentiality.',
     },
+    pillars: [
+      {
+        title: 'EHR Interoperability & HL7 FHIR',
+        description: 'We engineer custom API integrations and data brokers using HL7 FHIR standards, enabling seamless, secure electronic health record transfers between legacy clinical portals, hospital labs, and diagnostic databases.'
+      },
+      {
+        title: 'Regulatory Compliance & HIPAA Guardrails',
+        description: 'Our cloud landing zones are architected with automated HIPAA, GDPR, and HITECH compliance guardrails. We implement KMS-driven data encryption at rest and transit, comprehensive access audits, and secure tokenization.'
+      },
+      {
+        title: 'Real-Time Patient Monitoring AI',
+        description: 'We deploy edge-computing predictive monitoring solutions that analyze patient telemetry data streams directly from smart clinical devices, helping medical staff predict critical events and reduce reaction times.'
+      }
+    ],
     featuredInsight: {
       title: 'GangaTara Research — Healthcare Technology Trends 2026',
       text: 'Our latest whitepaper explores the deployment of federated learning in medical institutions. Learn how hospitals train diagnostic AI models on secure patient data pools without violating privacy boundaries or exposing raw health records.',
@@ -171,6 +189,20 @@ export const landingPagesData: Record<string, LandingPageContent> = {
       eyebrow: 'INNOVATION IN BFSI',
       paragraph: 'Modern financial systems demand instantaneous settlement times, absolute ledger auditability, and watertight cybersecurity perimeters. GangaTara Technologies meets these rigorous enterprise demands by designing secure zero-trust network access (ZTNA), high-performance cloud architectures, and machine learning transaction monitoring that flag anomalies before they impact the bottom line.',
     },
+    pillars: [
+      {
+        title: 'Sub-10ms Fraud Prevention',
+        description: 'We deploy distributed stream-processing event pipelines using Apache Kafka and PyTorch models that inspect credit transactions under 10ms, blocking anomalies with 99.85% precision.'
+      },
+      {
+        title: 'Secure Multi-Party Ledger Settlement',
+        description: 'Our ledger development practices leverage secure cryptographic frameworks and smart contracts to build tamper-proof, transparent ledger settlement protocols for cross-border banking operations.'
+      },
+      {
+        title: 'SOC 2 & PCI-DSS Audit Readiness',
+        description: 'We implement automated configuration drift checks, centralized logging, and access control scopes, enabling financial clients to pass SOC 2 Type II and PCI-DSS compliance audits with zero friction.'
+      }
+    ],
     featuredInsight: {
       title: 'GangaTara Research — FinOps & Cloud Economics 2026',
       text: 'Our research report outlines strategic frameworks for cloud-native asset management. Learn how retail banks cut computing operational expenses by 35% through dynamic serverless scheduling and automated database scaling.',
@@ -249,6 +281,20 @@ export const landingPagesData: Record<string, LandingPageContent> = {
       eyebrow: 'INNOVATION IN RETAIL & COMMERCE',
       paragraph: 'The digital retail sector demands absolute system availability during seasonal traffic peaks, personalized real-time catalog recommendations, and automated order fulfillment. GangaTara Technologies constructs headless commerce architectures, secure payment integrations, and AI-driven inventory models that ensure checkout remains fast and stock levels stay optimized.',
     },
+    pillars: [
+      {
+        title: 'Headless E-Commerce Orchestration',
+        description: 'We build flexible headless storefronts using Next.js, Node.js, and Redis caching. This decoupled architecture results in 0.6-second page load times and scales seamlessly during peak holiday traffic.'
+      },
+      {
+        title: 'Predictive Supply Chain Restocking',
+        description: 'Our analytics engines analyze live inventory telemetry and historical purchase patterns to forecast demand fluctuations, dynamically generating auto-restock triggers for suppliers.'
+      },
+      {
+        title: 'Omnichannel User Identity Sync',
+        description: 'We establish unified single sign-on (SSO) systems that track and synchronize user cart state, purchase history, and loyalty records across mobile apps, online web shops, and physical kiosks.'
+      }
+    ],
     featuredInsight: {
       title: 'GangaTara Research — The Shift to Headless Commerce',
       text: 'Discover why top retail brands are transitioning from monolithic platforms to API-first, headless commerce systems to reduce page load times and improve conversion rates.',
@@ -319,6 +365,20 @@ export const landingPagesData: Record<string, LandingPageContent> = {
       eyebrow: 'INNOVATION IN INDUSTRY 4.0',
       paragraph: 'Unscheduled factory downtime is incredibly costly. GangaTara Technologies deploys secure industrial IoT (IIoT) sensors, edge-gateway architectures, and anomaly detection algorithms that warn engineering teams of component wear before failures happen, optimizing overall equipment efficiency.',
     },
+    pillars: [
+      {
+        title: 'MQTT Edge Telemetry Ingestion',
+        description: 'We construct high-frequency telemetry ingestion pipelines using MQTT protocols that gather machinery vibration, acoustics, and temperature metrics from shopfloor sensors to a centralized portal.'
+      },
+      {
+        title: 'Predictive Equipment Maintenance',
+        description: 'Our custom ML models analyze OT telemetry live to identify wear signatures, allowing assembly line engineers to schedule repairs proactively and reduce unscheduled outages by up to 42%.'
+      },
+      {
+        title: 'Multi-Tier Supplier Visibility',
+        description: 'We design supply chain tracking portals that aggregate inventory data feeds across suppliers, logistics fleets, and warehouses, giving procurement teams absolute transparency.'
+      }
+    ],
     featuredInsight: {
       title: 'GangaTara Research — Industrial IIoT Security 2026',
       text: 'An in-depth study on securing legacy operational technology (OT) networks using software-defined perimeters and micro-segmentation to block external cyberthreats.',
@@ -376,6 +436,20 @@ export const landingPagesData: Record<string, LandingPageContent> = {
       eyebrow: 'INNOVATION IN DIGITAL LEARNING',
       paragraph: 'Educational platforms must support hundreds of thousands of concurrent users, comply with student data privacy acts, and offer personalized learning tracks. GangaTara Technologies designs modular architectures and serverless systems that handle rapid user spikes during exams while keeping data private.',
     },
+    pillars: [
+      {
+        title: 'Adaptive LMS Core Engines',
+        description: 'We engineer cloud-native Learning Management Systems (LMS) that auto-tailor student learning paths based on interactive study habits, improving overall exam scores and course comprehension.'
+      },
+      {
+        title: 'Serverless Virtual Classrooms',
+        description: 'Our video streaming architectures run on serverless cloud containers, scaling dynamically to support hundreds of thousands of concurrent students during remote lectures and exam periods.'
+      },
+      {
+        title: 'Biometric Anti-Cheating Proctoring',
+        description: 'We integrate secure biometric face verification and identity controls to establish the integrity of online exams, protecting academic credibility.'
+      }
+    ],
     featuredInsight: {
       title: 'GangaTara Research — AI-Curated Learning Paths',
       text: 'A research whitepaper detailing how machine learning analysis of study habits can dynamically adjust lecture paces and recommend homework modules for improved comprehension.',
@@ -438,6 +512,20 @@ export const landingPagesData: Record<string, LandingPageContent> = {
       eyebrow: 'INNOVATION IN PUBLIC SERVICES',
       paragraph: 'Public sector portals require absolute security clearance, compliance with accessibility declarations, and resilient server architectures. GangaTara Technologies engineers WCAG 2.1 AA compliant portals, encrypted administrative databases, and load-balanced cloud infrastructure.',
     },
+    pillars: [
+      {
+        title: 'WCAG 2.1 AA Accessibility',
+        description: 'We build accessible administrative citizen portals compliant with WCAG 2.1 AA rules, ensuring all citizens—regardless of physical abilities—can easily request records, pay taxes, and settle fees.'
+      },
+      {
+        title: 'Context-Aware ZTNA Protection',
+        description: 'We help government agencies transition away from legacy VPNs to modern, context-aware Zero-Trust Network Access (ZTNA) solutions, preventing lateral network intrusion.'
+      },
+      {
+        title: 'Encrypted Civic Databases',
+        description: 'Our database engineers build encrypted citizen registry databases featuring multi-factor authentication, cryptographic access logs, and complete audit tracking.'
+      }
+    ],
     featuredInsight: {
       title: 'GangaTara Research — Securing Municipal Databases',
       text: 'Learn how modern municipal databases implement biometric authorization and hardware security keys to defend public systems from advanced persistent threat (APT) attacks.',

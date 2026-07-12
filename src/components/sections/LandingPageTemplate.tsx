@@ -202,6 +202,19 @@ export const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({ conten
           </p>
         </section>
 
+        {/* PILLARS / CHALLENGES BLOCK */}
+        {content.pillars && (
+          <section className="grid grid-cols-1 md:grid-cols-3 gap-8 py-10 border-t border-dark/5 dark:border-white/5">
+            {content.pillars.map((pillar, idx) => (
+              <div key={idx} className="p-8 rounded-2xl bg-white dark:bg-white/3 border border-dark/6 dark:border-white/6 hover:border-primary/30 transition-all">
+                <div className="text-primary font-bold text-xs uppercase tracking-wider mb-3">0{idx + 1} / Strategic Pillar</div>
+                <h4 className="text-base font-bold text-dark dark:text-white mb-3">{pillar.title}</h4>
+                <p className="text-xs sm:text-sm text-dark/70 dark:text-white/60 leading-relaxed">{pillar.description}</p>
+              </div>
+            ))}
+          </section>
+        )}
+
         {/* 3. FEATURED INSIGHT BLOCK */}
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center py-10 border-t border-dark/5 dark:border-white/5">
           <div className={`lg:col-span-6 ${content.featuredInsight.align === 'left' ? 'lg:order-2' : ''}`}>
