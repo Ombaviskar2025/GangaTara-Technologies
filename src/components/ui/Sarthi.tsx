@@ -24,7 +24,7 @@ function renderMessageContent(content: string) {
   return lines.map((line, lineIdx) => {
     // Process inline formatting
     const processInline = (text: string) => {
-      const parts: (string | JSX.Element)[] = [];
+      const parts: (string | React.ReactNode)[] = [];
       let remaining = text;
       let keyCounter = 0;
 
@@ -326,7 +326,7 @@ export const Sarthi = () => {
                   disabled={isLoading}
                 />
                 <button
-                  onClick={sendMessage}
+                  onClick={() => sendMessage()}
                   disabled={!input.trim() || isLoading}
                   className="w-8 h-8 rounded-lg bg-primary/80 hover:bg-primary flex items-center justify-center transition-all disabled:opacity-30 disabled:hover:bg-primary/80 shrink-0"
                   aria-label="Send message"

@@ -232,6 +232,41 @@ export const LandingPageTemplate: React.FC<LandingPageTemplateProps> = ({ conten
           </div>
         </section>
 
+        {/* VIDEO SHOWCASE BLOCK */}
+        {content.videoShowcase && (
+          <section className="py-12 border-t border-dark/5 dark:border-white/5">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+              <div className="lg:col-span-7">
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-black border border-white/10 group aspect-video">
+                  <video
+                    src={content.videoShowcase.videoUrl}
+                    poster={content.videoShowcase.poster}
+                    controls
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[9px] text-white/80 font-bold uppercase tracking-wider">
+                    Demo Video
+                  </div>
+                </div>
+              </div>
+              <div className="lg:col-span-5">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary/15 border border-secondary/20 text-secondary text-[9px] font-bold uppercase tracking-widest mb-4">
+                  Video Walkthrough
+                </span>
+                <h3 className="text-xl sm:text-2xl font-poppins font-bold text-dark dark:text-white mb-4">
+                  {content.videoShowcase.title}
+                </h3>
+                <p className="text-dark/70 dark:text-white/65 text-xs sm:text-sm leading-relaxed mb-6">
+                  {content.videoShowcase.description}
+                </p>
+                <div className="p-4 rounded-2xl bg-dark/5 dark:bg-white/5 border border-dark/5 dark:border-white/5 text-[11px] text-dark/60 dark:text-white/50 italic">
+                  Caption: {content.videoShowcase.caption}
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* 4. "IN FOCUS" TABBED CONTENT CAROUSEL */}
         <TabbedCarousel
           tabs={content.inFocus.tabs}

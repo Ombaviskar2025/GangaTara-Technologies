@@ -57,6 +57,13 @@ export interface LandingPageContent {
     image: string;
     link: string;
   };
+  videoShowcase?: {
+    title: string;
+    description: string;
+    videoUrl: string;
+    poster: string;
+    caption: string;
+  };
 }
 
 export const landingPagesData: Record<string, LandingPageContent> = {
@@ -77,29 +84,36 @@ export const landingPagesData: Record<string, LandingPageContent> = {
     featuredInsight: {
       title: 'GangaTara Research — Healthcare Technology Trends 2026',
       text: 'Our latest whitepaper explores the deployment of federated learning in medical institutions. Learn how hospitals train diagnostic AI models on secure patient data pools without violating privacy boundaries or exposing raw health records.',
-      image: '/slide_ai.png',
+      image: '/ind_health_1.png',
       link: '/insights',
       align: 'right',
+    },
+    videoShowcase: {
+      title: 'HIPAA-Compliant Telehealth & EHR Platform Scale-Out Demo',
+      description: 'Explore the live engineering walkthrough of our serverless medical video routing and patient intake portal. Learn how the system auto-scales during 400% active user spikes without packet loss.',
+      videoUrl: '/hero-video.mp4',
+      poster: '/ind_health_1.png',
+      caption: 'Walkthrough of MediHealth Group Telehealth scaling architecture',
     },
     inFocus: {
       tabs: [
         {
           label: 'Thought Leadership',
           cards: [
-            { image: '/slide_cloud.png', title: 'The Future of HIPAA-Compliant Multi-Cloud Deployments', link: '/insights' },
-            { image: '/slide_ai.png', title: 'Generative AI in Patient Admissions Management', link: '/insights' },
+            { image: '/ind_health_2.png', title: 'The Future of HIPAA-Compliant Multi-Cloud Deployments', link: '/insights' },
+            { image: '/ind_health_1.png', title: 'Generative AI in Patient Admissions Management', link: '/insights' },
           ],
         },
         {
           label: 'Case Studies',
           cards: [
-            { image: '/slide_datacenter.png', title: 'MediHealth Group: EHR Modernization & Migration', link: '/case-studies/medihealth' },
+            { image: '/ind_health_2.png', title: 'MediHealth Group: EHR Modernization & Migration', link: '/case-studies/telehealth-platform-transformation' },
           ],
         },
         {
           label: 'Press Releases',
           cards: [
-            { image: '/slide_team.png', title: 'GangaTara Partners with MedTech Alliance for Diagnostics AI', link: '/blog' },
+            { image: '/ind_health_1.png', title: 'GangaTara Partners with MedTech Alliance for Diagnostics AI', link: '/blog' },
           ],
         },
       ],
@@ -108,7 +122,7 @@ export const landingPagesData: Record<string, LandingPageContent> = {
       eyebrow: 'AI IN HEALTHCARE',
       title: 'Accelerating Diagnostics with Cognitive Pipelines',
       text: 'By constructing secure, GPU-accelerated computer vision pipelines, GangaTara enables medical imaging companies to reduce analysis times from hours to seconds. Our zero-trust data access protocols ensure that patient scans are processed in secure sandboxes.',
-      image: '/slide_team.png',
+      image: '/ind_health_2.png',
       link: '/services/ai-machine-learning',
     },
     solutions: {
@@ -116,15 +130,15 @@ export const landingPagesData: Record<string, LandingPageContent> = {
         {
           label: 'Industry Solutions',
           cards: [
-            { image: '/slide_datacenter.png', title: 'Interoperable EHR Data Bridges', link: '/services' },
-            { image: '/slide_cloud.png', title: 'HIPAA Cloud Landing Zones', link: '/services' },
+            { image: '/ind_health_1.png', title: 'Interoperable EHR Data Bridges', link: '/services/web-development' },
+            { image: '/ind_health_2.png', title: 'HIPAA Cloud Landing Zones', link: '/services/cloud-solutions' },
           ],
         },
         {
           label: 'Products & Platforms',
           cards: [
-            { image: '/slide_ai.png', title: 'GangaTara AI HealthStudio', link: '/products' },
-            { image: '/slide_cloud.png', title: 'Sentry ZTNA for Hospitals', link: '/products' },
+            { image: '/ind_health_1.png', title: 'GangaTara AI HealthStudio', link: '/products' },
+            { image: '/ind_health_2.png', title: 'Sentry ZTNA for Hospitals', link: '/products' },
           ],
         },
       ],
@@ -139,7 +153,7 @@ export const landingPagesData: Record<string, LandingPageContent> = {
       eyebrow: 'COMPLIANCE & AUDITS',
       title: 'GangaTara Achieves ISO 27001 Recertification for Medical Data Systems',
       text: 'Our information security management system (ISMS) has been verified compliant under the latest ISO standards, ensuring maximum protection for client codebases.',
-      image: '/slide_cloud.png',
+      image: '/ind_health_2.png',
       link: '/about',
     },
   },
@@ -160,23 +174,30 @@ export const landingPagesData: Record<string, LandingPageContent> = {
     featuredInsight: {
       title: 'GangaTara Research — FinOps & Cloud Economics 2026',
       text: 'Our research report outlines strategic frameworks for cloud-native asset management. Learn how retail banks cut computing operational expenses by 35% through dynamic serverless scheduling and automated database scaling.',
-      image: '/slide_cloud.png',
+      image: '/ind_finance_1.png',
       link: '/insights',
       align: 'left',
+    },
+    videoShowcase: {
+      title: 'Real-Time Transaction Fraud Detection Pipeline In Action',
+      description: 'Watch Sarthi assistant showcase the sub-10ms event processing engine running on Apache Kafka and PyTorch models, tracking simulated fraud attempts live.',
+      videoUrl: '/hero-video.mp4',
+      poster: '/ind_finance_1.png',
+      caption: 'Real-time telemetry and fraud prevention dashboard walkthrough',
     },
     inFocus: {
       tabs: [
         {
           label: 'Thought Leadership',
           cards: [
-            { image: '/slide_datacenter.png', title: 'Zero-Trust Architecture for Decentralized Banking', link: '/insights' },
-            { image: '/slide_ai.png', title: 'Federated Learning for Real-Time Fraud Identification', link: '/insights' },
+            { image: '/ind_finance_2.png', title: 'Zero-Trust Architecture for Decentralized Banking', link: '/insights' },
+            { image: '/ind_finance_1.png', title: 'Federated Learning for Real-Time Fraud Identification', link: '/insights' },
           ],
         },
         {
           label: 'Case Studies',
           cards: [
-            { image: '/slide_datacenter.png', title: 'Apex Global Finance: Blockchain Core Settlement', link: '/case-studies' },
+            { image: '/ind_finance_2.png', title: 'Apex Global Finance: Blockchain Core Settlement', link: '/case-studies/realtime-banking-fraud-prevention' },
           ],
         },
       ],
@@ -185,7 +206,7 @@ export const landingPagesData: Record<string, LandingPageContent> = {
       eyebrow: 'AI & COGNITIVE SCALING',
       title: 'Cognitive Risk Auditing for Modern Banking',
       text: 'Deploy automated risk-modeling agents across your entire transactional ledger. GangaTara\'s AI engines process unstructured contract data, ledger entries, and market movements to generate real-time compliance forecasts.',
-      image: '/slide_ai.png',
+      image: '/ind_finance_2.png',
       link: '/services/ai-machine-learning',
     },
     solutions: {
@@ -193,15 +214,15 @@ export const landingPagesData: Record<string, LandingPageContent> = {
         {
           label: 'Industry Solutions',
           cards: [
-            { image: '/slide_datacenter.png', title: 'GangaTara Core Ledger Engine', link: '/products' },
-            { image: '/slide_cloud.png', title: 'Compliance Vault for BFSI', link: '/services' },
+            { image: '/ind_finance_1.png', title: 'GangaTara Core Ledger Engine', link: '/products' },
+            { image: '/ind_finance_2.png', title: 'Compliance Vault for BFSI', link: '/services/cyber-security' },
           ],
         },
         {
           label: 'Products & Platforms',
           cards: [
-            { image: '/slide_cloud.png', title: 'Sentry ZTNA Core Gateway', link: '/products' },
-            { image: '/slide_ai.png', title: 'DataBridge ETL for Finance', link: '/products' },
+            { image: '/ind_finance_1.png', title: 'Sentry ZTNA Core Gateway', link: '/products' },
+            { image: '/ind_finance_2.png', title: 'DataBridge ETL for Finance', link: '/products' },
           ],
         },
       ],
@@ -210,7 +231,7 @@ export const landingPagesData: Record<string, LandingPageContent> = {
       eyebrow: 'ACCREDITATIONS',
       title: 'GangaTara Recognized as AWS Advanced Consulting Partner',
       text: 'Acknowledging our delivery speed, depth of certified engineering talent, and expertise in migrating complex financial workloads to AWS.',
-      image: '/slide_cloud.png',
+      image: '/ind_finance_2.png',
       link: '/about',
     },
   },
@@ -231,23 +252,30 @@ export const landingPagesData: Record<string, LandingPageContent> = {
     featuredInsight: {
       title: 'GangaTara Research — The Shift to Headless Commerce',
       text: 'Discover why top retail brands are transitioning from monolithic platforms to API-first, headless commerce systems to reduce page load times and improve conversion rates.',
-      image: '/slide_team.png',
+      image: '/ind_retail_1.png',
       link: '/insights',
       align: 'right',
+    },
+    videoShowcase: {
+      title: 'Next-Generation Headless Commerce Live Showcase',
+      description: 'Watch a demo of our ultra-fast Next.js frontend combined with Redis caching, resulting in 0.6-second page loads and seamless transactional scaling.',
+      videoUrl: '/hero-video.mp4',
+      poster: '/ind_retail_1.png',
+      caption: 'Headless e-commerce performance and checkout flow demo',
     },
     inFocus: {
       tabs: [
         {
           label: 'Thought Leadership',
           cards: [
-            { image: '/slide_cloud.png', title: 'Scaling Omnichannel Platforms for Peak Seasonal Demand', link: '/insights' },
-            { image: '/slide_ai.png', title: 'Vector Search Integration in Catalog Filtering', link: '/insights' },
+            { image: '/ind_retail_2.png', title: 'Scaling Omnichannel Platforms for Peak Seasonal Demand', link: '/insights' },
+            { image: '/ind_retail_1.png', title: 'Vector Search Integration in Catalog Filtering', link: '/insights' },
           ],
         },
         {
           label: 'Case Studies',
           cards: [
-            { image: '/slide_datacenter.png', title: 'ShopSmart: Monolith to Headless Microservices Migration', link: '/case-studies' },
+            { image: '/ind_retail_2.png', title: 'Veloce Apparel: Monolith to Headless Microservices Migration', link: '/case-studies/headless-retail-scale-out' },
           ],
         },
       ],
@@ -256,7 +284,7 @@ export const landingPagesData: Record<string, LandingPageContent> = {
       eyebrow: 'AI IN COMMERCE',
       title: 'Predictive Demand Planning & Dynamic Pricing',
       text: 'Deploy AI models that analyze real-time market data, purchase histories, and inventory levels. GangaTara\'s custom engines enable retailers to dynamically adjust prices and automate supplier restock triggers.',
-      image: '/slide_cloud.png',
+      image: '/ind_retail_1.png',
       link: '/services/ai-machine-learning',
     },
     solutions: {
@@ -264,14 +292,14 @@ export const landingPagesData: Record<string, LandingPageContent> = {
         {
           label: 'Industry Solutions',
           cards: [
-            { image: '/slide_cloud.png', title: 'Headless E-Commerce Accelerators', link: '/services' },
-            { image: '/slide_datacenter.png', title: 'Inventory Analytics Dashboards', link: '/services' },
+            { image: '/ind_retail_1.png', title: 'Headless E-Commerce Accelerators', link: '/services/web-development' },
+            { image: '/ind_retail_2.png', title: 'Inventory Analytics Dashboards', link: '/services/software-development' },
           ],
         },
         {
           label: 'Products & Platforms',
           cards: [
-            { image: '/slide_ai.png', title: 'DataBridge ETL Suite', link: '/products' },
+            { image: '/ind_retail_1.png', title: 'DataBridge ETL Suite', link: '/products' },
           ],
         },
       ],
@@ -294,16 +322,23 @@ export const landingPagesData: Record<string, LandingPageContent> = {
     featuredInsight: {
       title: 'GangaTara Research — Industrial IIoT Security 2026',
       text: 'An in-depth study on securing legacy operational technology (OT) networks using software-defined perimeters and micro-segmentation to block external cyberthreats.',
-      image: '/slide_datacenter.png',
+      image: '/ind_mfg_1.png',
       link: '/insights',
       align: 'left',
+    },
+    videoShowcase: {
+      title: 'Industrial IoT Telemetry & Anomaly Detection Demonstration',
+      description: 'A visual demo of our MQTT-based sensor fleet dashboard, showcasing real-time anomaly alerts and edge-computing predictive equipment maintenance logs.',
+      videoUrl: '/hero-video.mp4',
+      poster: '/ind_mfg_1.png',
+      caption: 'Vibration and thermal telemetry analysis tool walkthrough',
     },
     inFocus: {
       tabs: [
         {
           label: 'Thought Leadership',
           cards: [
-            { image: '/slide_cloud.png', title: 'Edge Computing Architectures for Real-Time Assembly Line Inspection', link: '/insights' },
+            { image: '/ind_mfg_2.png', title: 'Edge Computing Architectures for Real-Time Assembly Line Inspection', link: '/insights' },
           ],
         },
       ],
@@ -312,7 +347,7 @@ export const landingPagesData: Record<string, LandingPageContent> = {
       eyebrow: 'PREDICTIVE AI',
       title: 'Zero-Downtime Factory Control Systems',
       text: 'By training localized machine learning models on vibration, acoustic, and thermal telemetry, GangaTara helps manufacturing clients identify operational deviations in real-time, sending instant maintenance tickets.',
-      image: '/slide_ai.png',
+      image: '/ind_mfg_2.png',
       link: '/services/ai-machine-learning',
     },
     solutions: {
@@ -320,8 +355,8 @@ export const landingPagesData: Record<string, LandingPageContent> = {
         {
           label: 'Industry Solutions',
           cards: [
-            { image: '/slide_datacenter.png', title: 'Edge-Gateway Sensor Collectors', link: '/services' },
-            { image: '/slide_cloud.png', title: 'Supply Chain Track & Trace portals', link: '/services' },
+            { image: '/ind_mfg_1.png', title: 'Edge-Gateway Sensor Collectors', link: '/services/software-development' },
+            { image: '/ind_mfg_2.png', title: 'Supply Chain Track & Trace portals', link: '/services/web-development' },
           ],
         },
       ],
@@ -344,22 +379,29 @@ export const landingPagesData: Record<string, LandingPageContent> = {
     featuredInsight: {
       title: 'GangaTara Research — AI-Curated Learning Paths',
       text: 'A research whitepaper detailing how machine learning analysis of study habits can dynamically adjust lecture paces and recommend homework modules for improved comprehension.',
-      image: '/slide_ai.png',
+      image: '/ind_edu_1.png',
       link: '/insights',
       align: 'right',
+    },
+    videoShowcase: {
+      title: 'GangaTara LMS Platform Architecture Walkthrough',
+      description: 'Take a virtual tour of our modern, accessible LMS. Watch how it handles student registration, dynamic content delivery, and interactive exam modules under heavy loads.',
+      videoUrl: '/hero-video.mp4',
+      poster: '/ind_edu_1.png',
+      caption: 'LMS dashboard interface and proctoring tools demo',
     },
     inFocus: {
       tabs: [
         {
           label: 'Thought Leadership',
           cards: [
-            { image: '/slide_cloud.png', title: 'Scalable Serverless Infrastructure for Massive Open Online Courses', link: '/insights' },
+            { image: '/ind_edu_2.png', title: 'Scalable Serverless Infrastructure for Massive Open Online Courses', link: '/insights' },
           ],
         },
         {
           label: 'Case Studies',
           cards: [
-            { image: '/slide_datacenter.png', title: 'EduStream: LMS Scale-up for 500k Students', link: '/case-studies' },
+            { image: '/ind_edu_2.png', title: 'EduStream: LMS Scale-up for 500k Students', link: '/case-studies' },
           ],
         },
       ],
@@ -368,7 +410,7 @@ export const landingPagesData: Record<string, LandingPageContent> = {
       eyebrow: 'TECHNOLOGY IMPACT',
       title: 'Biometric Exam Proctoring & Identity Verification',
       text: 'By integrating advanced biometric facial verification and multi-factor authentication, GangaTara ensures the integrity of virtual testing environments for universities.',
-      image: '/slide_team.png',
+      image: '/ind_edu_2.png',
       link: '/services/cyber-security',
     },
     solutions: {
@@ -376,7 +418,7 @@ export const landingPagesData: Record<string, LandingPageContent> = {
         {
           label: 'Products & Platforms',
           cards: [
-            { image: '/slide_cloud.png', title: 'GangaTara LMS', link: '/products' },
+            { image: '/ind_edu_1.png', title: 'GangaTara LMS', link: '/products' },
           ],
         },
       ],
@@ -399,16 +441,23 @@ export const landingPagesData: Record<string, LandingPageContent> = {
     featuredInsight: {
       title: 'GangaTara Research — Securing Municipal Databases',
       text: 'Learn how modern municipal databases implement biometric authorization and hardware security keys to defend public systems from advanced persistent threat (APT) attacks.',
-      image: '/slide_cloud.png',
+      image: '/ind_gov_1.png',
       link: '/insights',
       align: 'left',
+    },
+    videoShowcase: {
+      title: 'Secure Citizen Portal & Administrative Flow Demo',
+      description: 'A detailed demo showcasing WCAG accessibility controls, encrypted document submittal, and citizen login workflows on a tablet device.',
+      videoUrl: '/hero-video.mp4',
+      poster: '/ind_gov_1.png',
+      caption: 'Walkthrough of secure citizen platform tools and database safety grid',
     },
     inFocus: {
       tabs: [
         {
           label: 'Thought Leadership',
           cards: [
-            { image: '/slide_datacenter.png', title: 'Implementing WCAG AA Accessibility Standards in Government Portals', link: '/insights' },
+            { image: '/ind_gov_2.png', title: 'Implementing WCAG AA Accessibility Standards in Government Portals', link: '/insights' },
           ],
         },
       ],
@@ -417,7 +466,7 @@ export const landingPagesData: Record<string, LandingPageContent> = {
       eyebrow: 'ZERO-TRUST ARCHITECTURE',
       title: 'Zero-Trust Networks for Administrative Agencies',
       text: 'We help government agencies transition away from legacy VPNs to modern, context-aware Zero-Trust Network Access (ZTNA) solutions, preventing lateral network intrusion.',
-      image: '/slide_datacenter.png',
+      image: '/ind_gov_2.png',
       link: '/services/cyber-security',
     },
     solutions: {
@@ -425,7 +474,7 @@ export const landingPagesData: Record<string, LandingPageContent> = {
         {
           label: 'Products & Platforms',
           cards: [
-            { image: '/slide_cloud.png', title: 'Sentry ZTNA Gateway', link: '/products' },
+            { image: '/ind_gov_1.png', title: 'Sentry ZTNA Gateway', link: '/products' },
           ],
         },
       ],
