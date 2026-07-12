@@ -410,6 +410,40 @@ export const caseStudiesData: CaseStudyItem[] = [
     technologies: ['Next.js', 'React', 'Tailwind CSS', 'Redis', 'GraphQL'],
     imagePath: IMAGES.caseStudies.retail,
     impactHeadline: '0.6-second page load speed and -35% checkout churn for Veloce Apparel'
+  },
+  {
+    id: 'edustream-lms-scaleup',
+    title: 'Scaling LMS Platforms for Remote Academics',
+    client: 'EduStream Platform',
+    industry: 'Education',
+    overview: 'We engineered a highly available containerized learning platform to handle massive concurrent student loads during examinations without performance degradation.',
+    challenge: 'EduStream was experiencing severe classroom disconnects and server crashes when thousands of students logged on concurrently for testing, resulting in lost assessments.',
+    solution: 'We re-architected their server infrastructure into containerized microservices running on AWS, optimized database query caches with Redis, and deployed CDN endpoints for static assets.',
+    results: [
+      { label: 'Student capacity', value: '500k concurrent' },
+      { label: 'Page load time', value: '-58%' },
+      { label: 'Server uptime', value: '99.99%' }
+    ],
+    technologies: ['AWS', 'Docker', 'Redis', 'PostgreSQL', 'Next.js'],
+    imagePath: '/ind_edu_1.png',
+    impactHeadline: 'Scaled to 500k concurrent students for EduStream'
+  },
+  {
+    id: 'govconnect-portal-modernization',
+    title: 'Modernizing Public Portal Infrastructures',
+    client: 'GovConnect Portal',
+    industry: 'Government',
+    overview: 'We rebuilt a state public administration portal to enhance security and streamline digital services for citizens with zero-trust protocols.',
+    challenge: 'The outdated public portal suffered from frequent security vulnerabilities, long loading times, and lacked accessibility standards for disabled citizens.',
+    solution: 'We redesigned the portal with Next.js, added zero-trust identity verification via JWT, and achieved strict compliance with W3C web accessibility guidelines.',
+    results: [
+      { label: 'Security breaches', value: 'Reduced to 0' },
+      { label: 'Citizen satisfaction', value: '+42%' },
+      { label: 'Accessibility rating', value: 'WCAG AA' }
+    ],
+    technologies: ['Next.js', 'TypeScript', 'Node.js', 'PostgreSQL', 'Docker'],
+    imagePath: '/ind_gov_1.png',
+    impactHeadline: 'Zero security breaches achieved for GovConnect Portal'
   }
 ];
 

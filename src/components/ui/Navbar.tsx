@@ -258,16 +258,16 @@ const NESTED_NAV_DATA: Record<string, {
           {
             heading: "Active Scopes",
             links: [
-              { label: 'MediHealth Group', href: '/case-studies', icon: <Briefcase className="w-3.5 h-3.5" /> },
-              { label: 'Apex Global Finance', href: '/case-studies', icon: <Briefcase className="w-3.5 h-3.5" /> },
-              { label: 'ShopSmart E-Commerce', href: '/case-studies', icon: <Briefcase className="w-3.5 h-3.5" /> },
+              { label: 'MediHealth Group', href: '/case-studies#telehealth-platform-transformation', icon: <Briefcase className="w-3.5 h-3.5" /> },
+              { label: 'Apex Global Finance', href: '/case-studies#realtime-banking-fraud-prevention', icon: <Briefcase className="w-3.5 h-3.5" /> },
+              { label: 'ShopSmart E-Commerce', href: '/case-studies#headless-retail-scale-out', icon: <Briefcase className="w-3.5 h-3.5" /> },
             ]
           },
           {
             heading: "Academic & Public",
             links: [
-              { label: 'EduStream Platform', href: '/case-studies', icon: <Briefcase className="w-3.5 h-3.5" /> },
-              { label: 'GovConnect Portal', href: '/case-studies', icon: <Briefcase className="w-3.5 h-3.5" /> },
+              { label: 'EduStream Platform', href: '/case-studies#edustream-lms-scaleup', icon: <Briefcase className="w-3.5 h-3.5" /> },
+              { label: 'GovConnect Portal', href: '/case-studies#govconnect-portal-modernization', icon: <Briefcase className="w-3.5 h-3.5" /> },
             ]
           }
         ]

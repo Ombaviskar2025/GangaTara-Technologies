@@ -8,7 +8,7 @@ import { caseStudiesData } from '@/data/companyData';
 
 export default function CaseStudiesPage() {
   const [filter, setFilter] = useState('All');
-  const industries = ['All', 'Healthcare', 'Finance', 'Retail'];
+  const industries = ['All', 'Healthcare', 'Finance', 'Retail', 'Education', 'Government'];
 
   const filteredCases = filter === 'All'
     ? caseStudiesData
@@ -58,10 +58,11 @@ export default function CaseStudiesPage() {
           {filteredCases.map((cs, index) => (
             <motion.div
               key={cs.id}
+              id={cs.id}
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
-              className="group"
+              className="group scroll-mt-28"
             >
               <div className="h-full rounded-2xl glass-card border border-light/20 dark:border-white/5 hover:border-primary/20 flex flex-col overflow-hidden">
                 <div className="w-full h-48 relative overflow-hidden border-b border-light/10 dark:border-white/5">
