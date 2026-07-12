@@ -245,9 +245,7 @@ export const Footer: React.FC = () => {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/30">
             <p className="flex items-center gap-1">
               © {new Date().getFullYear()} GangaTara Technologies. {t('footer.rights')}
-              <span className="hidden sm:inline ml-1">| Made with <Heart className="w-3 h-3 text-red-500 fill-current inline" /> by GangaTara Technologies</span>
             </p>
-            <p className="text-[10px]">ISO 27001:2022 Certified · GDPR Compliant · SOC 2 Type II</p>
           </div>
         </div>
       </footer>
