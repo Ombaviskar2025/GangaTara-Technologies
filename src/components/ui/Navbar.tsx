@@ -61,7 +61,30 @@ const NAV_ITEMS: {
   {
     label: 'What We Do',
     key: 'whatwedo',
-    isNested: true,
+    intro: {
+      headline: 'Enterprise IT, Delivered Right',
+      body: 'We combine deep industry insights with advanced software engineering to design, deploy, and scale robust digital infrastructures.',
+      link: '/services'
+    },
+    columns: [
+      {
+        heading: 'Core Services',
+        links: [
+          { label: 'AI & Machine Learning', href: '/services/ai-machine-learning', icon: <Cpu className="w-3.5 h-3.5" /> },
+          { label: 'Software Development', href: '/services/software-development', icon: <Code2 className="w-3.5 h-3.5" /> },
+          { label: 'Web Development', href: '/services/web-development', icon: <Globe2 className="w-3.5 h-3.5" /> },
+          { label: 'App Development', href: '/services/application-development', icon: <Smartphone className="w-3.5 h-3.5" /> },
+          { label: 'Cybersecurity', href: '/services/cyber-security', icon: <Shield className="w-3.5 h-3.5" /> },
+        ],
+      },
+      {
+        heading: 'Digital Solutions',
+        links: [
+          { label: 'UI/UX Design', href: '/services/ui-ux-design', icon: <Palette className="w-3.5 h-3.5" /> },
+          { label: 'Digital Marketing', href: '/services/digital-marketing', icon: <Megaphone className="w-3.5 h-3.5" /> },
+        ],
+      },
+    ],
   },
   {
     label: 'Who We Are',
@@ -127,7 +150,29 @@ const NAV_ITEMS: {
   {
     label: 'Industries',
     key: 'industries',
-    isNested: true,
+    intro: {
+      headline: 'Sector-Specific Engineering',
+      body: 'We align digital systems with the operational realities and regulatory compliance of every major industry vertical.',
+      link: '/industries'
+    },
+    columns: [
+      {
+        heading: 'Private Sector Practice',
+        links: [
+          { label: 'Healthcare & Life Sciences', href: '/industries/healthcare', icon: <HeartPulse className="w-3.5 h-3.5" /> },
+          { label: 'Banking & Finance', href: '/industries/finance', icon: <DollarSign className="w-3.5 h-3.5" /> },
+          { label: 'Retail & E-commerce', href: '/industries/retail', icon: <ShoppingBag className="w-3.5 h-3.5" /> },
+          { label: 'Manufacturing', href: '/industries/manufacturing', icon: <Factory className="w-3.5 h-3.5" /> },
+        ],
+      },
+      {
+        heading: 'Public & Services',
+        links: [
+          { label: 'Education & EdTech', href: '/industries/education', icon: <GraduationCap className="w-3.5 h-3.5" /> },
+          { label: 'Government & Public', href: '/industries/government', icon: <Landmark className="w-3.5 h-3.5" /> },
+        ],
+      },
+    ],
   },
 ];
 
