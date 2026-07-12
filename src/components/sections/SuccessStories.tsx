@@ -49,7 +49,7 @@ export const SuccessStories: React.FC = () => {
               <div className="h-full rounded-2xl glass-card border border-light/20 dark:border-white/5 hover:border-primary/25 flex flex-col overflow-hidden">
                 <div className="w-full h-48 relative overflow-hidden border-b border-light/10 dark:border-white/5">
                   <img
-                    src={cs.imagePath === 'case_healthcare' ? '/ind_healthcare.png' : cs.imagePath === 'case_finance' ? '/ind_finance.png' : '/ind_retail.png'}
+                    src={cs.imagePath}
                     alt={cs.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"

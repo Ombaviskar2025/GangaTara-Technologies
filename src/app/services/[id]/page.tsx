@@ -8,6 +8,7 @@ import * as Icons from 'lucide-react';
 import { servicesData } from '@/data/companyData';
 import { landingPagesData } from '@/data/landingPagesData';
 import { LandingPageTemplate } from '@/components/sections/LandingPageTemplate';
+import { IMAGES } from '@/data/images';
 const DynamicIcon: React.FC<{ name: string; className?: string }> = ({ name, className }) => {
   const IconComponent = (Icons as any)[name];
   if (!IconComponent) return <Icons.Code className={className} />;
@@ -15,36 +16,8 @@ const DynamicIcon: React.FC<{ name: string; className?: string }> = ({ name, cla
 };
 
 const getServiceImage = (id: string) => {
-  switch (id) {
-    case 'cloud-solutions':
-      return '/slide_cloud.png';
-    case 'ai-machine-learning':
-      return '/slide_ai.png';
-    case 'software-development':
-      return '/slide_datacenter.png';
-    case 'web-development':
-      return '/slide_team.png';
-    case 'application-development':
-      return '/career_banner.png';
-    case 'cyber-security':
-      return '/ind_healthcare.png';
-    case 'devops':
-      return '/slide_datacenter.png';
-    case 'ui-ux-design':
-      return '/ind_education.png';
-    case 'data-analytics':
-      return '/ind_finance.png';
-    case 'blockchain':
-      return '/ind_government.png';
-    case 'iot-solutions':
-      return '/ind_manufacturing.png';
-    case 'digital-transformation':
-      return '/slide_team.png';
-    case 'digital-marketing':
-      return '/ind_retail.png';
-    default:
-      return '/slide_team.png';
-  }
+  const service = (IMAGES.services as any)[id];
+  return service ? service.hero : IMAGES.services['digital-transformation'].hero;
 };
 
 export default function ServiceDetailPage() {
@@ -143,7 +116,7 @@ export default function ServiceDetailPage() {
       tag: string;
     }> = {
       'web-development': {
-        image: '/service_web_dev.png',
+        image: IMAGES.services['web-development'].hero,
         gradientFrom: 'from-[#0057FF]',
         gradientTo: 'to-[#00B4FF]',
         accentFrom: 'from-[#0057FF]',
@@ -151,7 +124,7 @@ export default function ServiceDetailPage() {
         tag: 'Web Solutions',
       },
       'application-development': {
-        image: '/service_app_dev.png',
+        image: IMAGES.services['application-development'].hero,
         gradientFrom: 'from-[#7C3AED]',
         gradientTo: 'to-[#EC4899]',
         accentFrom: 'from-[#7C3AED]',
@@ -159,7 +132,7 @@ export default function ServiceDetailPage() {
         tag: 'Mobile & App',
       },
       'digital-marketing': {
-        image: '/service_digital_marketing.png',
+        image: IMAGES.services['digital-marketing'].hero,
         gradientFrom: 'from-[#0090FF]',
         gradientTo: 'to-[#00D2C8]',
         accentFrom: 'from-[#0090FF]',
@@ -167,7 +140,7 @@ export default function ServiceDetailPage() {
         tag: 'Growth & Reach',
       },
       'ai-machine-learning': {
-        image: '/slide_ai.png',
+        image: IMAGES.services['ai-machine-learning'].hero,
         gradientFrom: 'from-[#8B5CF6]',
         gradientTo: 'to-[#EC4899]',
         accentFrom: 'from-[#8B5CF6]',
@@ -175,7 +148,7 @@ export default function ServiceDetailPage() {
         tag: 'AI & Cognition',
       },
       'software-development': {
-        image: '/slide_datacenter.png',
+        image: IMAGES.services['software-development'].hero,
         gradientFrom: 'from-[#10B981]',
         gradientTo: 'to-[#3B82F6]',
         accentFrom: 'from-[#10B981]',
@@ -183,7 +156,7 @@ export default function ServiceDetailPage() {
         tag: 'Core Software',
       },
       'cyber-security': {
-        image: '/event_security.png',
+        image: IMAGES.services['cyber-security'].hero,
         gradientFrom: 'from-[#EF4444]',
         gradientTo: 'to-[#F59E0B]',
         accentFrom: 'from-[#EF4444]',
@@ -191,7 +164,7 @@ export default function ServiceDetailPage() {
         tag: 'Cybersecurity',
       },
       'ui-ux-design': {
-        image: '/ind_education.png',
+        image: IMAGES.services['ui-ux-design'].hero,
         gradientFrom: 'from-[#EC4899]',
         gradientTo: 'to-[#F59E0B]',
         accentFrom: 'from-[#EC4899]',
@@ -199,7 +172,7 @@ export default function ServiceDetailPage() {
         tag: 'Design & Experience',
       },
       'cloud-solutions': {
-        image: '/slide_cloud.png',
+        image: IMAGES.services['cloud-solutions'].hero,
         gradientFrom: 'from-[#0EA5E9]',
         gradientTo: 'to-[#2563EB]',
         accentFrom: 'from-[#0EA5E9]',
@@ -207,7 +180,7 @@ export default function ServiceDetailPage() {
         tag: 'Cloud Solutions',
       },
       'devops': {
-        image: '/blog_devops.png',
+        image: IMAGES.services['devops'].hero,
         gradientFrom: 'from-[#6366F1]',
         gradientTo: 'to-[#A855F7]',
         accentFrom: 'from-[#6366F1]',
@@ -215,7 +188,7 @@ export default function ServiceDetailPage() {
         tag: 'DevOps & GitOps',
       },
       'data-analytics': {
-        image: '/ind_finance.png',
+        image: IMAGES.services['data-analytics'].hero,
         gradientFrom: 'from-[#F59E0B]',
         gradientTo: 'to-[#10B981]',
         accentFrom: 'from-[#F59E0B]',
@@ -223,7 +196,7 @@ export default function ServiceDetailPage() {
         tag: 'Analytics & BI',
       },
       'blockchain': {
-        image: '/ind_government.png',
+        image: IMAGES.services['blockchain'].hero,
         gradientFrom: 'from-[#3B82F6]',
         gradientTo: 'to-[#8B5CF6]',
         accentFrom: 'from-[#3B82F6]',
@@ -231,7 +204,7 @@ export default function ServiceDetailPage() {
         tag: 'Web3 & Ledger',
       },
       'iot-solutions': {
-        image: '/ind_manufacturing.png',
+        image: IMAGES.services['iot-solutions'].hero,
         gradientFrom: 'from-[#14B8A6]',
         gradientTo: 'to-[#0EA5E9]',
         accentFrom: 'from-[#14B8A6]',
@@ -239,7 +212,7 @@ export default function ServiceDetailPage() {
         tag: 'IoT & Edge',
       },
       'digital-transformation': {
-        image: '/slide_team.png',
+        image: IMAGES.services['digital-transformation'].hero,
         gradientFrom: 'from-[#6366F1]',
         gradientTo: 'to-[#EC4899]',
         accentFrom: 'from-[#6366F1]',

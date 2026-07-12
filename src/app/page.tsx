@@ -1,4 +1,5 @@
 import React from 'react';
+import { IMAGES } from '@/data/images';
 import { HeroVideoScroll } from '@/components/sections/HeroVideoScroll';
 import { Hero } from '@/components/sections/Hero';
 import { TabbedSolutions } from '@/components/sections/TabbedSolutions';
@@ -14,28 +15,28 @@ export default function Home() {
   return (
     <>
       {/*
-       * TCS-STYLE VIDEO CURTAIN
-       * ─────────────────────────────────────────────────────────────────────
-       * Phase 1 (scroll = 0)
-       *   Full-screen video plays. No text on top. Just cinematic video.
+       * Curtain Hero Section using HeroVideoScroll.
        *
-       * Phase 2 (user scrolls ↓)
-       *   <Hero /> rises from the bottom as a rounded white card, covering
-       *   the video — the "curtain rising" effect identical to TCS.com.
+       * Phase 1 (Scroll 0% to 20%)
+       *   curtain-track (outer container) tracks viewport scroll,
+       *   keeps the video container fixed, while curtain cards move up.
+       *
+       * Phase 2 (Scroll 20% to 100%)
+       *   Video scales down slightly, cards scroll normally over it.
        *
        * Phase 3 (Hero fully visible)
        *   Normal page scroll continues with WhatsNewCarousel and below.
        *
        * VIDEO  →  /public/hero-video.mp4  (3.26 MB ✅)
-       * POSTER →  /public/slide_ai.png    (mobile fallback + preload)
+       * POSTER →  /public/img_common_hero_video_poster.png    (mobile fallback + preload)
        *
        * IMPORTANT: No overflow-x-hidden on the root wrapper.
        * overflow:hidden on any ancestor of position:fixed breaks the effect
        * in some browsers. Apply it only to the sections div below.
-       */}
+       * */}
       <HeroVideoScroll
         videoSrc="/hero-video.mp4"
-        posterSrc="/slide_ai.png"
+        posterSrc={IMAGES.common.heroVideoPoster}
       >
         {/* <Hero /> is the curtain card that slides up over the video */}
         <Hero />

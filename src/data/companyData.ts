@@ -1,3 +1,5 @@
+import { IMAGES } from './images';
+
 export interface ServiceItem {
   id: string;
   title: string;
@@ -256,7 +258,7 @@ export const industriesData: IndustryItem[] = [
       { label: 'Ingestion Time', value: '-60%' },
       { label: 'Active Care Users', value: '4M+' }
     ],
-    image: '/ind_healthcare.png'
+    image: IMAGES.industries.healthcare.hero
   },
   {
     id: 'finance',
@@ -270,7 +272,7 @@ export const industriesData: IndustryItem[] = [
       { label: 'Fraud Detection Rate', value: '99.8%' },
       { label: 'Compliance Audit Time', value: '-75%' }
     ],
-    image: '/ind_finance.png'
+    image: IMAGES.industries.finance.hero
   },
   {
     id: 'retail',
@@ -284,7 +286,7 @@ export const industriesData: IndustryItem[] = [
       { label: 'Inventory Updates', value: 'Real-time' },
       { label: 'System Load Capacity', value: '100k req/s' }
     ],
-    image: '/ind_retail.png'
+    image: IMAGES.industries.retail.hero
   },
   {
     id: 'education',
@@ -298,7 +300,7 @@ export const industriesData: IndustryItem[] = [
       { label: 'Platform Availability', value: '99.99%' },
       { label: 'Graduation Auditing', value: '-80%' }
     ],
-    image: '/ind_education.png'
+    image: IMAGES.industries.education.hero
   },
   {
     id: 'manufacturing',
@@ -312,7 +314,7 @@ export const industriesData: IndustryItem[] = [
       { label: 'Equipment Lifetime', value: '+18%' },
       { label: 'Data Latency', value: '<20ms' }
     ],
-    image: '/ind_manufacturing.png'
+    image: IMAGES.industries.manufacturing.hero
   },
   {
     id: 'government',
@@ -326,7 +328,7 @@ export const industriesData: IndustryItem[] = [
       { label: 'Data Breaches', value: '0' },
       { label: 'User Accessibility', value: '100%' }
     ],
-    image: '/ind_government.png'
+    image: IMAGES.industries.government.hero
   }
 ];
 
@@ -372,7 +374,7 @@ export const caseStudiesData: CaseStudyItem[] = [
       { label: 'Compliance checklist', value: 'Passed 100%' }
     ],
     technologies: ['AWS', 'Next.js', 'PostgreSQL', 'WebRTC', 'Docker'],
-    imagePath: 'case_healthcare',
+    imagePath: IMAGES.caseStudies.healthcare,
     impactHeadline: '4.2x faster patient ingestion for MediHealth Group Inc.'
   },
   {
@@ -389,7 +391,7 @@ export const caseStudiesData: CaseStudyItem[] = [
       { label: 'Decision response time', value: '6.4ms' }
     ],
     technologies: ['Python', 'PyTorch', 'Apache Kafka', 'Kubernetes', 'Redis'],
-    imagePath: 'case_finance',
+    imagePath: IMAGES.caseStudies.finance,
     impactHeadline: '99.85% fraud detection accuracy for Apex Global Bank'
   },
   {
@@ -406,7 +408,7 @@ export const caseStudiesData: CaseStudyItem[] = [
       { label: 'Abandoned shopping carts', value: '-35%' }
     ],
     technologies: ['Next.js', 'React', 'Tailwind CSS', 'Redis', 'GraphQL'],
-    imagePath: 'case_retail',
+    imagePath: IMAGES.caseStudies.retail,
     impactHeadline: '0.6-second page load speed and -35% checkout churn for Veloce Apparel'
   }
 ];
@@ -419,7 +421,7 @@ export const testimonialsData: TestimonialItem[] = [
     company: 'MediHealth Group Inc.',
     quote: 'GangaTara Technologies delivered a HIPAA-compliant serverless infrastructure that scaled flawlessly through our largest patient surge in history. Their technical depth and execution speed are world-class.',
     rating: 5,
-    image: '/avatar_sarah.png'
+    image: IMAGES.common.avatarSarah
   },
   {
     id: 't2',
@@ -428,7 +430,7 @@ export const testimonialsData: TestimonialItem[] = [
     company: 'Apex Global Bank',
     quote: 'The AI fraud prevention system designed by their engineers reduced our evaluation latency to under 7 milliseconds while slashing false positive block triggers by 80%. An incredible engineering feat.',
     rating: 5,
-    image: '/ind_finance.png'
+    image: IMAGES.common.avatarDavid
   },
   {
     id: 't3',
@@ -437,7 +439,7 @@ export const testimonialsData: TestimonialItem[] = [
     company: 'Veloce Apparel',
     quote: 'Our Black Friday site reliability went from a source of stress to a complete success. The Next.js frontend is stunningly fast, and our checkout conversions increased by 22% immediately.',
     rating: 5,
-    image: '/ind_retail.png'
+    image: IMAGES.common.avatarElena
   }
 ];
 
@@ -499,7 +501,7 @@ When engineering enterprise AI, keeping data safe is critical:
 
 Implementing these practices helps organizations integrate Generative AI tools safely and effectively.
     `,
-    image: 'blog_ai'
+    image: 'img_blog_ai_architecture'
   },
   {
     slug: 'mastering-gitops-kubernetes-releases',
@@ -533,7 +535,7 @@ This approach offers key advantages:
 
 Adopting GitOps principles enables enterprises to release updates faster and minimize deployment risks.
     `,
-    image: 'blog_devops'
+    image: 'img_blog_gitops_kubernetes'
   }
 ];
 
@@ -604,7 +606,7 @@ export const webinarsData: WebinarItem[] = [
     description: 'Learn how GangaTara architects design retrieval-augmented generation (RAG) systems that keep corporate data private while unlocking the full power of large language models.',
     category: 'AI & Machine Learning',
     registerLink: '/contact',
-    image: '/event_ai.png'
+    image: IMAGES.events.ai
   },
   {
     id: 'w2',
@@ -614,7 +616,7 @@ export const webinarsData: WebinarItem[] = [
     description: 'Our senior cloud architects share proven FinOps frameworks that help enterprise clients cut cloud spend by 30–40% without sacrificing performance or reliability.',
     category: 'Cloud & DevOps',
     registerLink: '/contact',
-    image: '/event_cloud.png'
+    image: IMAGES.events.cloud
   },
   {
     id: 'w3',
@@ -624,7 +626,7 @@ export const webinarsData: WebinarItem[] = [
     description: 'A deep dive into implementing zero-trust network access, IAM strategies, and automated vulnerability scanning to protect your enterprise perimeter in 2026.',
     category: 'Cybersecurity',
     registerLink: '/contact',
-    image: '/event_security.png'
+    image: IMAGES.events.security
   }
 ];
 
@@ -650,7 +652,7 @@ export const whatsNewData: WhatsNewItem[] = [
     tag: 'Recognition',
     date: 'June 2026',
     link: '/about',
-    image: '/slide_datacenter.png',
+    image: IMAGES.whatsNew.googlePartner,
     gradientFrom: '#0057FF',
     gradientTo: '#4A4B50'
   },
@@ -661,7 +663,7 @@ export const whatsNewData: WhatsNewItem[] = [
     tag: 'Product Launch',
     date: 'May 2026',
     link: '/products',
-    image: '/slide_ai.png',
+    image: IMAGES.whatsNew.aiStudioLaunch,
     gradientFrom: '#4A4B50',
     gradientTo: '#00B4FF'
   },
@@ -672,7 +674,7 @@ export const whatsNewData: WhatsNewItem[] = [
     tag: 'Careers',
     date: 'April 2026',
     link: '/careers',
-    image: '/slide_team.png',
+    image: IMAGES.whatsNew.hiringEngineers,
     gradientFrom: '#0057FF',
     gradientTo: '#10B981'
   },
@@ -683,7 +685,7 @@ export const whatsNewData: WhatsNewItem[] = [
     tag: 'News',
     date: 'March 2026',
     link: '/products',
-    image: '/slide_cloud.png',
+    image: IMAGES.whatsNew.cloudOpsMarketplace,
     gradientFrom: '#00B4FF',
     gradientTo: '#4A4B50'
   }

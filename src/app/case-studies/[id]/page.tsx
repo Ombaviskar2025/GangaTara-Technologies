@@ -44,7 +44,7 @@ export default function CaseStudyDetailPage() {
       <div className="max-w-7xl mx-auto px-6 mb-12">
         <div className="w-full h-[280px] sm:h-[380px] rounded-3xl overflow-hidden relative border border-light/20 dark:border-white/5">
           <img
-            src={cs.imagePath === 'case_healthcare' ? '/ind_healthcare.png' : cs.imagePath === 'case_finance' ? '/ind_finance.png' : '/ind_retail.png'}
+            src={cs.imagePath}
             alt={cs.title}
             className="w-full h-full object-cover"
           />

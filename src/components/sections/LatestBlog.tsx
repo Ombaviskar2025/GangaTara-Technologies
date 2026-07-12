@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, BookOpen, Clock, User } from 'lucide-react';
 import { blogsData } from '@/data/companyData';
+import { IMAGES } from '@/data/images';
 
 export const LatestBlog: React.FC = () => {
   return (
@@ -18,20 +19,20 @@ export const LatestBlog: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="max-w-2xl">
             <span className="text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 border border-primary/20 px-3 py-1 rounded-full mb-4 inline-block">
-              Corporate Intelligence
+              Latest Blog & Insights
             </span>
             <h2 className="text-3xl sm:text-4xl font-poppins font-extrabold text-dark dark:text-light mb-4">
-              Latest Technology Insights
+              Explore Our Engineering Insights
             </h2>
-            <p className="text-sm text-dark/70 dark:text-light/60">
-              Read our analysis of emerging engineering stacks, artificial intelligence security, cloud orchestration frameworks, and digital trends.
+            <p className="text-sm text-dark/70 dark:text-light/65">
+              Read technical deep-dives and research summaries authored by our senior architects.
             </p>
           </div>
           <Link
             href="/blog"
-            className="flex-shrink-0 px-6 py-3 rounded-xl border border-light/20 dark:border-white/10 text-dark dark:text-light hover:border-primary/50 hover:bg-primary/5 font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 text-xs font-bold text-primary hover:text-secondary group transition-colors cursor-pointer self-start md:self-auto"
           >
-            Go to Blog <ArrowRight className="w-3.5 h-3.5" />
+            Go to Blog <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
 
@@ -50,7 +51,7 @@ export const LatestBlog: React.FC = () => {
                 {/* Blog Cover Image */}
                 <div className="w-full h-44 relative overflow-hidden">
                   <img
-                    src={blog.image ? `/${blog.image}.png` : '/slide_ai.png'}
+                    src={blog.image ? `/${blog.image}.png` : IMAGES.common.blogFallback}
                     alt={blog.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"

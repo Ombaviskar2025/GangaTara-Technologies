@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, Newspaper, BookOpen, Trophy, BarChart3 } from 'lucide-react';
+import { IMAGES } from '@/data/images';
 
 const CARDS = [
   {
@@ -14,7 +15,7 @@ const CARDS = [
     gradient: 'from-blue-600/15 to-primary/10',
     iconColor: 'text-primary',
     iconBg: 'bg-primary/10 border-primary/20',
-    image: '/slide_team.png',
+    image: IMAGES.common.newsroomCard,
   },
   {
     icon: <BookOpen className="w-6 h-6" />,
@@ -24,7 +25,7 @@ const CARDS = [
     gradient: 'from-cyan-600/15 to-secondary/10',
     iconColor: 'text-secondary',
     iconBg: 'bg-secondary/10 border-secondary/20',
-    image: '/blog_ai.png',
+    image: IMAGES.common.insightsCard,
   },
   {
     icon: <Trophy className="w-6 h-6" />,
@@ -34,7 +35,7 @@ const CARDS = [
     gradient: 'from-amber-600/15 to-yellow-500/10',
     iconColor: 'text-amber-500',
     iconBg: 'bg-amber-500/10 border-amber-500/20',
-    image: '/slide_datacenter.png',
+    image: IMAGES.common.recognitionsCard,
   },
   {
     icon: <BarChart3 className="w-6 h-6" />,
@@ -44,7 +45,7 @@ const CARDS = [
     gradient: 'from-emerald-600/15 to-green-500/10',
     iconColor: 'text-emerald-500',
     iconBg: 'bg-emerald-500/10 border-emerald-500/20',
-    image: '/ind_healthcare.png',
+    image: IMAGES.common.caseStudiesCard,
   },
 ];
 

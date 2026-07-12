@@ -91,7 +91,7 @@ export const CustomerStoriesCarousel: React.FC = () => {
                   {/* Client banner with logo overlay */}
                   <div className="w-full h-40 rounded-xl overflow-hidden mb-5 relative border border-light/10 dark:border-white/5">
                     <img 
-                      src={cs.imagePath === 'case_healthcare' ? '/ind_healthcare.png' : cs.imagePath === 'case_finance' ? '/ind_finance.png' : '/ind_retail.png'}
+                      src={cs.imagePath}
                       alt={cs.client}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />

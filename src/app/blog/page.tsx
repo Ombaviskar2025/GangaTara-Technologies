@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, Clock, User, BookOpen } from 'lucide-react';
 import { blogsData } from '@/data/companyData';
+import { IMAGES } from '@/data/images';
 
 export default function BlogIndexPage() {
   return (
@@ -20,17 +21,17 @@ export default function BlogIndexPage() {
             Insights & Trends
           </span>
           <h1 className="text-4xl sm:text-5xl font-poppins font-extrabold text-dark dark:text-light mb-6 tracking-tight">
-            The GangaTara Blog
+            The GangaTara Pressroom
           </h1>
           <p className="text-base text-dark/70 dark:text-light/60 max-w-2xl mx-auto leading-relaxed">
-            Technical analysis of emerging frameworks, database optimization practices, MLOps orchestration, and zero-trust security architecture.
+            Thought leadership, technical analysis, and research findings from our AI, cloud, and engineering specialists.
           </p>
         </div>
       </section>
 
-      {/* 2. Grid */}
+      {/* 2. Blog Grid */}
       <section className="max-w-7xl mx-auto px-6 py-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogsData.map((blog, index) => (
             <motion.div
               key={blog.slug}
@@ -43,7 +44,7 @@ export default function BlogIndexPage() {
                 {/* Blog Cover Image */}
                 <div className="w-full h-48 relative overflow-hidden">
                   <img
-                    src={blog.image ? `/${blog.image}.png` : '/slide_ai.png'}
+                    src={blog.image ? `/${blog.image}.png` : IMAGES.common.blogFallback}
                     alt={blog.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"

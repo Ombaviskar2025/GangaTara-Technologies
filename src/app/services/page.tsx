@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, Search, Code, Cpu, Cloud, ShieldAlert } from 'lucide-react';
 import * as Icons from 'lucide-react';
 import { servicesData } from '@/data/companyData';
+import { IMAGES } from '@/data/images';
 
 const DynamicIcon: React.FC<{ name: string; className?: string }> = ({ name, className }) => {
   const IconComponent = (Icons as any)[name];
@@ -14,36 +15,8 @@ const DynamicIcon: React.FC<{ name: string; className?: string }> = ({ name, cla
 };
 
 const getServiceImage = (id: string) => {
-  switch (id) {
-    case 'cloud-solutions':
-      return '/slide_cloud.png';
-    case 'ai-machine-learning':
-      return '/slide_ai.png';
-    case 'software-development':
-      return '/slide_datacenter.png';
-    case 'web-development':
-      return '/slide_team.png';
-    case 'application-development':
-      return '/career_banner.png';
-    case 'cyber-security':
-      return '/ind_healthcare.png';
-    case 'devops':
-      return '/slide_datacenter.png';
-    case 'ui-ux-design':
-      return '/ind_education.png';
-    case 'data-analytics':
-      return '/ind_finance.png';
-    case 'blockchain':
-      return '/ind_government.png';
-    case 'iot-solutions':
-      return '/ind_manufacturing.png';
-    case 'digital-transformation':
-      return '/slide_team.png';
-    case 'digital-marketing':
-      return '/ind_retail.png';
-    default:
-      return '/slide_team.png';
-  }
+  const service = (IMAGES.services as any)[id];
+  return service ? service.hero : IMAGES.services['digital-transformation'].hero;
 };
 
 export default function ServicesPage() {

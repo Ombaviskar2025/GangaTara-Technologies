@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
+import { IMAGES } from '@/data/images';
 
 const PERKS = ['Competitive Compensation', 'Remote & Hybrid Roles', '€2,000 Learning Budget', 'ISO-Certified Workplace'];
 
@@ -12,7 +13,7 @@ export const CareerBanner: React.FC = () => {
     <section className="relative overflow-hidden min-h-[420px] flex items-center" aria-label="Careers at GangaTara Technologies">
       {/* Background image */}
       <img
-        src="/career_banner.png"
+        src={IMAGES.common.careerBanner}
         alt="GangaTara Technologies engineering team collaborating on enterprise software"
         className="absolute inset-0 w-full h-full object-cover"
         loading="lazy"
