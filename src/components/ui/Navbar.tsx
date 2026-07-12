@@ -718,7 +718,7 @@ export const Navbar: React.FC = () => {
             aria-label="GangaTara Technologies – Home"
           >
             <img
-              src="/logo-new.png"
+              src="/GangaTAralogo.svg"
               alt="GangaTara Technologies"
               className="h-12 w-auto object-contain"
               loading="eager"
@@ -887,7 +887,7 @@ export const Navbar: React.FC = () => {
               <div className="flex items-center justify-between px-6 py-4 border-b border-white/8">
                 <Link href="/" className="flex items-center gap-2.5" onClick={() => setIsMobileMenuOpen(false)}>
                   <img
-                    src="/logo-new.png"
+                    src="/GangaTAralogo.svg"
                     alt="GangaTara Technologies"
                     className="h-10 w-auto object-contain"
                     loading="eager"

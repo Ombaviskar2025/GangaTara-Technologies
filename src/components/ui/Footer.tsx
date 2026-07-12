@@ -147,7 +147,7 @@ export const Footer: React.FC = () => {
             <div className="lg:col-span-2 flex flex-col gap-6">
               <Link href="/" className="flex items-center gap-2 group w-fit">
                 <img
-                  src="/logo-new.png"
+                  src="/GangaTAralogo.svg"
                   alt="GangaTara Technologies"
                   className="h-10 w-auto object-contain"
                   loading="lazy"
